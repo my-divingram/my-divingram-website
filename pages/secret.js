@@ -23,12 +23,12 @@ export const getStaticProps = async() => {
     };
 };
 
-// 33行目と一番下を変更
+// 31, 33行目と一番下を変更
 
 function Home({data_fish, data_blog}) {
 
     return (
-        <Layout title="僕のだいびんぐらむ">
+        <Layout title="僕のだいびんぐらむ" bg_color_to="bg-sky-700">
 
             <div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-700">
 
