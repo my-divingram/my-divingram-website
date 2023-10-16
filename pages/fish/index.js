@@ -57,277 +57,277 @@ function Home({data_fish, data_num}) {
                 </div>
 
                 <div className="grid grid-cols-3 md:grid-cols-6">
-                    <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/shark">
                             <Image src="/img/class/shark.png" alt="shark" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">サメの仲間</h2>
                         </Link>
                     </div>
-                    <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/ray">
                             <Image src="/img/class/ray.png" alt="ray" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">エイの仲間</h2>
                         </Link>
                     </div>
-                    <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/moray">
                             <Image src="/img/class/moray.jpeg" alt="moray" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">ウツボの仲間</h2>
                         </Link>
                     </div>
-                    <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/seasnake">
                             <Image src="/img/class/seasnake.png" alt="seasnake" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">ウミヘビの仲間</h2>
                         </Link>
                     </div>
-                    <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/eel">
                             <Image src="/img/class/eel.png" alt="eel" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">アナゴの仲間</h2>
                         </Link>
                     </div>
-                    <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/monkfish">
                             <Image src="/img/class/monkfish.jpeg" alt="monkfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">アンコウの仲間</h2>
                         </Link>
                     </div>
-                    <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/squirrelfish">
                             <Image src="/img/class/squirrelfish.png" alt="squirrelfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">イットウダイの仲間</h2>
                         </Link>
                     </div>
-                    <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/seahorse">
                             <Image src="/img/class/seahorse.png" alt="seahorse" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">トゲウオの仲間</h2>
                         </Link>
                     </div>
-                    <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/rockfish">
                             <Image src="/img/class/rockfish.jpeg" alt="rockfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">メバル・カサゴの仲間</h2>
                         </Link>
                     </div>
-                    <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/stonefish">
                             <Image src="/img/class/stonefish.png" alt="stonefish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">オコゼの仲間</h2>
                         </Link>
                     </div>
-                    <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/anthias">
                             <Image src="/img/class/anthias.jpeg" alt="anthias" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">ハナダイの仲間</h2>
                         </Link>
                     </div>
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/grouper">
                             <Image src="/img/class/anthias.png" alt="anthias" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">ハタの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/cardinalfish">
                             <Image src="/img/class/anthias.png" alt="anthias" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">テンジクダイの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/tilefish">
                             <Image src="/img/class/anthias.png" alt="anthias" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">アマダイの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/horsemackerel">
                             <Image src="/img/class/anthias.png" alt="anthias" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">アジの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/anthias">
                             <Image src="/img/class/anthias.png" alt="anthias" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">フエダイの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/anthias">
                             <Image src="/img/class/anthias.png" alt="anthias" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">タカサゴの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/anthias">
                             <Image src="/img/class/anthias.png" alt="anthias" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">コショウダイの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/anthias">
                             <Image src="/img/class/anthias.png" alt="anthias" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">イトヨリダイの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/anthias">
                             <Image src="/img/class/anthias.png" alt="anthias" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">タイの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/anthias">
                             <Image src="/img/class/anthias.png" alt="anthias" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">フエフキダイの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/anthias">
                             <Image src="/img/class/anthias.png" alt="anthias" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">ヒメジの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/anthias">
                             <Image src="/img/class/anthias.png" alt="anthias" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">ハタンポの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/anthias">
                             <Image src="/img/class/anthias.png" alt="anthias" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">チョウチョウウオの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/angelfish">
                             <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">キンチャクダイの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/angelfish">
                             <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">ゴンべの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/angelfish">
                             <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">タカノハダイの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/angelfish">
                             <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">スズメダイの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/angelfish">
                             <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">イスズミ・メジナの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/angelfish">
                             <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">ベラの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/angelfish">
                             <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">ブダイの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/angelfish">
                             <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">アイナメ・カジカの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/angelfish">
                             <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">トラギスの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/angelfish">
                             <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">ギンポの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/angelfish">
                             <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">ウバウオの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/angelfish">
                             <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">ネズッポの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/angelfish">
                             <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">ハゼの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/angelfish">
                             <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">ツバメウオの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/angelfish">
                             <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">アイゴの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/angelfish">
                             <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">ニザダイの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/angelfish">
                             <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">カマスの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/angelfish">
                             <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">サバの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/angelfish">
                             <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">カレイの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/angelfish">
                             <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">カワハギの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/angelfish">
                             <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">フグの仲間</h2>
                         </Link>
                     </div> */}
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-3 flex justify-center hover:opacity-80">
                         <Link href="fish/angelfish">
                             <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">その他</h2>
