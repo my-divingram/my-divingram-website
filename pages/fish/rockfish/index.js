@@ -15,6 +15,7 @@ export const getStaticProps = async() => {
 	const data_Scorpaenopsis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]オニカサゴ属` , limit: 100 }});
 	const data_Scorpaena = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]フサカサゴ属` , limit: 100 }});
 	const data_Sebastapistes = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]マダラフサカサゴ属` , limit: 100 }});
+	const data_Parascorpaena = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ネッタイフサカサゴ属` , limit: 100 }});
 	const data_Scorpaenodes = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イソカサゴ属` , limit: 100 }});
 	const data_Caracanthus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ダンゴオコゼ属` , limit: 100 }});
 	const data_Neosebastes = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒレナガカサゴ属` , limit: 100 }});
@@ -32,6 +33,7 @@ export const getStaticProps = async() => {
     		data_Scorpaenopsis: data_Scorpaenopsis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Scorpaena: data_Scorpaena.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Sebastapistes: data_Sebastapistes.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Parascorpaena: data_Parascorpaena.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Scorpaenodes: data_Scorpaenodes.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Caracanthus: data_Caracanthus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Neosebastes: data_Neosebastes.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
@@ -39,7 +41,7 @@ export const getStaticProps = async() => {
 	};
 };
 
-export default function Home({data_Sebastes, data_Sebastiscus, data_Pterois, data_Parapterois, data_Dendrochirus, data_Taenianotus, data_Rhinopias, data_Pteroidichthys, data_Scorpaenopsis, data_Scorpaena, data_Sebastapistes, data_Scorpaenodes, data_Caracanthus, data_Neosebastes}) {
+export default function Home({data_Sebastes, data_Sebastiscus, data_Pterois, data_Parapterois, data_Dendrochirus, data_Taenianotus, data_Rhinopias, data_Pteroidichthys, data_Scorpaenopsis, data_Scorpaena, data_Sebastapistes, data_Parascorpaena, data_Scorpaenodes, data_Caracanthus, data_Neosebastes}) {
 
 	return (
 		<Layout title="メバル・カサゴの仲間">
@@ -61,6 +63,7 @@ export default function Home({data_Sebastes, data_Sebastiscus, data_Pterois, dat
 				<Genus genus="オニカサゴ属 (Scorpaenopsis)" data={data_Scorpaenopsis}></Genus>
 				<Genus genus="フサカサゴ属 (Scorpaena)" data={data_Scorpaena}></Genus>
 				<Genus genus="マダラフサカサゴ属 (Sebastapistes)" data={data_Sebastapistes}></Genus>
+				<Genus genus="ネッタイフサカサゴ属 (Parascorpaena)" data={data_Parascorpaena}></Genus>
 				<Genus genus="イソカサゴ属 (Scorpaenodes)" data={data_Scorpaenodes}></Genus>
 				<Genus genus="ダンゴオコゼ属 (Caracanthus)" data={data_Caracanthus}></Genus>
 
