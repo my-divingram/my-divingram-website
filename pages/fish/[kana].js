@@ -103,7 +103,7 @@ export default function kanaList({kana, data_kana_a, data_kana_i, data_kana_u, d
                 <p className="text-center text-sm md:text-lg text-gray-700 font-medium">索引</p>
                 <div className="pt-2 pb-10 flex justify-center space-x-3 text-gray-700 font-medium">
                     {kanaList.map((data) => (
-                        <p key={data} className="underline hover:opacity-50">
+                        <p key={data} className="text-xs md:text-base underline hover:opacity-50">
                             <Link href={`/fish/${data}`}>
                                 {data}
                             </Link>
