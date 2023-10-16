@@ -111,12 +111,12 @@ function Home({data_fish, data_num}) {
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">メバル・カサゴの仲間</h2>
                         </Link>
                     </div>
-                    {/* <div className="px-3 flex justify-center items-center hover:opacity-80">
+                    <div className="px-3 flex justify-center items-center hover:opacity-80">
                         <Link href="fish/stonefish">
                             <Image src="/img/class/stonefish.png" alt="stonefish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="pt-3 pb-6 text-xs md:text-base text-center text-gray-700 font-medium">オコゼの仲間</h2>
                         </Link>
-                    </div> */}
+                    </div>
                     <div className="px-3 flex justify-center items-center hover:opacity-80">
                         <Link href="fish/anthias">
                             <Image src="/img/class/anthias.jpeg" alt="anthias" width={300} height={200} style={{objectFit:"contain"}}/>
