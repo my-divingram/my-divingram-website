@@ -51,19 +51,19 @@ function Home({data_fish, data_blog}) {
                 <h1 className="pt-10 pb-6 text-xl md:text-2xl text-center text-sky-800 font-black">僕の水中生物図鑑</h1>
 
                 <div className="md:flex md:space-x-5 justify-center">
-                    <div className="flex justify-center items-center hover:opacity-80">
+                    <div className="px-10 md:px-0 flex justify-center items-center hover:opacity-80">
                         <Link href="fish">
                             <Image src="/img/book/fish.jpeg" alt="fish" width={360} height={240} style={{objectFit:"contain"}}/>
                             <h2 className="py-3 text-lg md:text-xl text-center text-gray-700 font-medium">魚図鑑</h2>
                         </Link>
                     </div>
-                    {/* <div className="flex justify-center items-center hover:opacity-80">
+                    {/* <div className="px-10 md:px-0 flex justify-center items-center hover:opacity-80">
                         <Link href="crustacean">
                             <Image src="/img/book/crustacean.png" alt="crustacean" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="py-3 text-lg md:text-xl text-center text-gray-700 font-medium">甲殻類図鑑・その他</h2>
                         </Link>
                     </div>
-                    <div className="flex justify-center items-center hover:opacity-80">
+                    <div className="px-10 md:px-0 flex justify-center items-center hover:opacity-80">
                         <Link href="seaslug">
                             <Image src="/img/book/seaslug.png" alt="seaslug" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="py-3 text-lg md:text-xl text-center text-gray-700 font-medium">ウミウシ図鑑</h2>
@@ -84,7 +84,7 @@ function Home({data_fish, data_blog}) {
                                     </div> */}
                                     <p className="pt-1 pb-1 text-base md:text-xl text-center text-gray-700 font-black">{data.title}</p>
                                     <p className="pb-1 text-sm md:text-base text-center text-gray-700">{data.publishedAt.substr(0,10)}</p>
-                                    <p className="text-xs md:text-sm text-center text-gray-700">{data.abstruct.substr(0,130)}…</p>
+                                    <p className="text-xs md:text-sm text-center text-gray-700">{data.abstruct.substr(0,50)}…</p>
                                 </div>
                             </div>
                         </Link>
