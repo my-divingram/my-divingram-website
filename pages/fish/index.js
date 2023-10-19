@@ -24,10 +24,10 @@ function Home({data_fish, data_num}) {
     const kanaList = ["ア", "カ", "サ", "タ", "ナ", "ハ", "マ", "ヤ", "ラ", "ワ"];
 
     return (
-        <Layout title="僕の魚図鑑">
+        <Layout title="僕らむの魚図鑑">
             <div className="px-3 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
-                <h1 className="pt-10 pb-5 text-xl md:text-2xl text-center text-sky-800 font-black">僕の魚図鑑</h1>
+                <h1 className="pt-10 pb-5 text-xl md:text-2xl text-center text-sky-800 font-black">僕らむの魚図鑑</h1>
 
                 <Splide options={{type:"loop", gap:"24px", drag:"free", perPage:10, breakpoints:{640:{perPage:3}}, autoScroll:{pauseOnHover:true, pauseOnFocus:false, rewind:false, speed:0.3}}} extensions={{AutoScroll}}>
                     {data_fish.map((data) => (
@@ -141,12 +141,12 @@ function Home({data_fish, data_num}) {
                             <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">アマダイの仲間</h2>
                         </Link>
                     </div>
-                    {/* <div className="flex justify-center hover:opacity-80">
+                    <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/horsemackerel">
-                            <Image src="/img/class/anthias.png" alt="anthias" width={300} height={200} style={{objectFit:"contain"}}/>
+                            <Image src="/img/class/horsemackerel.png" alt="anthias" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">アジの仲間</h2>
                         </Link>
-                    </div> */}
+                    </div>
                     {/* <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/anthias">
                             <Image src="/img/class/anthias.png" alt="anthias" width={300} height={200} style={{objectFit:"contain"}}/>
