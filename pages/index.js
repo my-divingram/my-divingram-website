@@ -48,7 +48,7 @@ function Home({data_fish, data_blog}) {
                 </Splide>
 
 
-                <h1 className="pt-10 pb-6 text-xl md:text-2xl text-center text-sky-800 font-black">僕の水中生物図鑑</h1>
+                <h1 className="pt-10 pb-6 text-xl md:text-2xl text-center text-sky-800 font-black">僕らむの水中生物図鑑</h1>
 
                 <div className="md:flex md:space-x-5 justify-center">
                     <div className="px-10 md:px-0 flex justify-center items-center hover:opacity-80">
