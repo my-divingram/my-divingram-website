@@ -189,12 +189,12 @@ function Home({data_fish, data_num}) {
                             <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">ヒメジの仲間</h2>
                         </Link>
                     </div>
-                    {/* <div className="flex justify-center hover:opacity-80">
-                        <Link href="fish/anthias">
-                            <Image src="/img/class/anthias.png" alt="anthias" width={300} height={200} style={{objectFit:"contain"}}/>
+                    <div className="flex justify-center hover:opacity-80">
+                        <Link href="fish/sweeper">
+                            <Image src="/img/class/sweeper.jpeg" alt="sweeper" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">ハタンポの仲間</h2>
                         </Link>
-                    </div> */}
+                    </div>
                     {/* <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/anthias">
                             <Image src="/img/class/anthias.png" alt="anthias" width={300} height={200} style={{objectFit:"contain"}}/>
