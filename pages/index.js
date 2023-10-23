@@ -83,7 +83,7 @@ function Home({data_fish, data_blog}) {
                                     <p className="pb-2 text-sm md:text-base text-center text-gray-700">{data.publishedAt.substr(0,10)}</p>
                                     <div className="flex space-x-3 justify-center items-center">
                                         <Image src={data.thumbnail.url} alt="thumbnail" width={120} height={80} style={{objectFit:"contain"}}/>
-                                        <p className="text-xs md:text-sm text-center text-gray-700">{data.abstruct.substr(0,80)}…</p>
+                                        <p className="text-xs md:text-sm text-center text-gray-700">{data.abstruct.substr(0,75)}…</p>
                                     </div>
                                 </div>
                             </div>
