@@ -15,7 +15,7 @@ export const getStaticProps = async (context) => {
 };
 
 export const getStaticPaths = async() => {
-    const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]monkfish`, limit: 100 }});
+    const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]seabream`, limit: 100 }});
     const paths = data.contents.map((content) => `/fish/${content.class}/${content.latinName}`.replace(" ", "_"));
 
     return {
@@ -29,7 +29,7 @@ export default function IndividualPage({pagedata}){
 
     return (
         <Layout title={pagedata.japaneseName}>
-            <Species classes="アンコウの仲間" pagedata={pagedata}></Species>
+            <Species classes="タイの仲間" pagedata={pagedata}></Species>
         </Layout>
     )
 }
