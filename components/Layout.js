@@ -1,17 +1,15 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-// import { useRouter } from "next/router";
-// import { Link as Scroll } from "react-scroll";
+import { Link as Scroll } from "react-scroll";
 
 export default function Layout({children, title="僕のだいびんぐらむ", bg_color_to="bg-sky-100"}) {
-    // const router = useRouter();
     return (
         <div>
             <Head>
                 <title>{title}</title>
             </Head>
-            <header>
+            <header id="header">
                 <nav className="bg-sky-800">
                     <div className="h-5"></div>
                     <div className="flex justify-center">
@@ -37,13 +35,6 @@ export default function Layout({children, title="僕のだいびんぐらむ", b
                                 BLOG
                             </p>
                         </Link>
-                        {/* <Scroll to="youtube" smooth={true} duration={600} className="text-white hover:bg-sky-700 px-3 py-2 rounded">YouTube</Scroll>
-                        <Scroll to="contact" smooth={true} duration={600} className="text-white hover:bg-sky-700 px-3 py-2 rounded">CONTACT</Scroll> */}
-                        {/* {(router.pathname == '/') ?
-                            <Scroll to="contact" smooth={true} duration={600} className="text-white hover:bg-sky-700 px-3 py-2 rounded">CONTACT</Scroll>
-                            :
-
-                        } */}
                     </div>
                     <div className="h-1"></div>
                 </nav>
@@ -54,9 +45,12 @@ export default function Layout({children, title="僕のだいびんぐらむ", b
             <footer className={`pt-6 pb-2 ${bg_color_to}`}>
                 <div className="flex justify-center items-center space-x-3">
                     <p className="text-xs text-gray-700 text-center">© 2023 僕のだいびんぐらむ.</p>
-                    <Link href={"/secret"}>
+                    <Scroll to="header" smooth={true} duration={600}>
                         <Image src="/img/logo/ornate.png" alt="ornate" width={100} height={100} style={{objectFit:"contain"}}/>
-                    </Link>
+                    </Scroll>
+                    {/* <Link href={"/secret"}>
+                        <Image src="/img/logo/ornate.png" alt="ornate" width={100} height={100} style={{objectFit:"contain"}}/>
+                    </Link> */}
                 </div>
             </footer>
         </div>
