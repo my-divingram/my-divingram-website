@@ -5,7 +5,7 @@ import Layout from "/components/Layout";
 
 // SSG
 export const getStaticProps = async() => {
-    const data_blog = await client.get({ endpoint: "blog", queries: {orders: `-updatedAt`, limit: 100}});
+    const data_blog = await client.get({ endpoint: "blog", queries: {orders: `-createdAt`, limit: 100}});
 
     return {
         props: {
