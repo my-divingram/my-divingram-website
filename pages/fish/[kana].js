@@ -98,7 +98,8 @@ export default function kanaList({kana, data_kana_a, data_kana_i, data_kana_u, d
                 </Splide>
 
                 <p className="text-sm md:text-lg text-center text-gray-700 font-medium">現在掲載種 (未記載種やハイブリッドを含む) : {data_num}種</p>
-                <p className="pb-10 text-sm md:text-lg text-center text-gray-700 font-medium">Last Updated : {data_fish[0].updatedAt.substr(0,10)}</p>
+                <p className="pb-1 text-sm md:text-lg text-center text-gray-700 font-medium">Last Updated : {data_fish[0].updatedAt.substr(0,10)}</p>
+                <p className="pb-10 text-xs md:text-sm text-center text-gray-700 font-medium">学名および掲載順は「日本産魚類全種リスト(ver22)」に準拠する</p>
 
                 <p className="text-center text-sm md:text-lg text-gray-700 font-medium">索引</p>
                 <div className="pt-2 pb-10 flex justify-center space-x-3 text-gray-700 font-medium">
