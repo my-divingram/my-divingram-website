@@ -28,9 +28,9 @@ export default function Home({data_Sargocentron, data_Neoniphon, data_Myripristi
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">イットウダイの仲間</h1>
 
 				<Family family="イットウダイ科"></Family>
-				<Genus genus="イットウダイ属 (Sargocentron)" data={data_Sargocentron}></Genus>
-				<Genus genus="ウケグチイットウダイ属 (Neoniphon)" data={data_Neoniphon}></Genus>
 				<Genus genus="アカマツカサ属 (Myripristis)" data={data_Myripristis}></Genus>
+				<Genus genus="ウケグチイットウダイ属 (Neoniphon)" data={data_Neoniphon}></Genus>
+				<Genus genus="イットウダイ属 (Sargocentron)" data={data_Sargocentron}></Genus>
 
 				<Family family="マツカサウオ科"></Family>
 				<Genus genus="マツカサウオ属 (Monocentris)" data={data_Monocentris}></Genus>

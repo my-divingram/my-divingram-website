@@ -50,28 +50,29 @@ export default function Home({data_Eurypegasus, data_Fistularia, data_Aulostomus
 				<Family family="ウミテング科"></Family>
 				<Genus genus="ウミテング属 (Eurypegasus)" data={data_Eurypegasus}></Genus>
 
+				<Family family="ヘラヤガラ科"></Family>
+				<Genus genus="ヘラヤガラ属 (Aulostomus)" data={data_Aulostomus}></Genus>
+
+
 				<Family family="ヤガラ科"></Family>
 				<Genus genus="ヤガラ属 (Fistularia)" data={data_Fistularia}></Genus>
 
-				<Family family="ヘラヤガラ科"></Family>
-				<Genus genus="ヘラヤガラ属 (Aulostomus)" data={data_Aulostomus}></Genus>
+				<Family family="ヘコアユ科"></Family>
+				<Genus genus="ヘコアユ属 (Aeoliscus)" data={data_Aeoliscus}></Genus>
+				<Genus genus="ヨロイウオ属 (Centriscus)" data={data_Centriscus}></Genus>
 
 				<Family family="カミソリウオ科"></Family>
 				<Genus genus="カミソリウオ属 (Solenostomus)" data={data_Solenostomus}></Genus>
 
 				<Family family="ヨウジウオ科"></Family>
-				<Genus genus="アマクサヨウジ属 (Festucalex)" data={data_Festucalex}></Genus>
+				<Genus genus="タツノイトコ属 (Acentronura)" data={data_Acentronura}></Genus>
 				<Genus genus="イシヨウジ属 (Corythoichthys)" data={data_Corythoichthys}></Genus>
-				<Genus genus="ヒフキヨウジ属 (Trachyrhamphus)" data={data_Trachyrhamphus}></Genus>
 				<Genus genus="ヒバシヨウジ属 (Doryrhamphus)" data={data_Doryrhamphus}></Genus>
+				<Genus genus="アマクサヨウジ属 (Festucalex)" data={data_Festucalex}></Genus>
+				<Genus genus="タツノオトシゴ属 (Hippocampus)" data={data_Hippocampus}></Genus>
 				<Genus genus="ダイダイヨウジ属 (Maroubra)" data={data_Maroubra}></Genus>
 				<Genus genus="ボウヨウジ属 (Phoxocampus)" data={data_Phoxocampus}></Genus>
-				<Genus genus="タツノイトコ属 (Acentronura)" data={data_Acentronura}></Genus>
-				<Genus genus="タツノオトシゴ属 (Hippocampus)" data={data_Hippocampus}></Genus>
-
-				<Family family="ヘコアユ科"></Family>
-				<Genus genus="ヘコアユ属 (Aeoliscus)" data={data_Aeoliscus}></Genus>
-				<Genus genus="ヨロイウオ属 (Centriscus)" data={data_Centriscus}></Genus>
+				<Genus genus="ヒフキヨウジ属 (Trachyrhamphus)" data={data_Trachyrhamphus}></Genus>
 
 			</div>
 		</Layout>
