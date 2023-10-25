@@ -32,12 +32,12 @@ export default function Home({data_Ophichthus, data_Myrichthys, data_Apterichtus
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">ウミヘビの仲間</h1>
 
 				<Family family="ウミヘビ科"></Family>
-				<Genus genus="ウミヘビ属 (Ophichthus)" data={data_Ophichthus}></Genus>
-				<Genus genus="ゴイシウミヘビ属 (Myrichthys)" data={data_Myrichthys}></Genus>
 				<Genus genus="ゴマウミヘビ属 (Apterichtus)" data={data_Apterichtus}></Genus>
-				<Genus genus="ダイナンウミヘビ属 (Ophisurus)" data={data_Ophisurus}></Genus>
 				<Genus genus="タツウミヘビ属 (Brachysomophis)" data={data_Brachysomophis}></Genus>
 				<Genus genus="ヒモウミヘビ属 (Callechelys)" data={data_Callechelys}></Genus>
+				<Genus genus="ゴイシウミヘビ属 (Myrichthys)" data={data_Myrichthys}></Genus>
+				<Genus genus="ウミヘビ属 (Ophichthus)" data={data_Ophichthus}></Genus>
+				<Genus genus="ダイナンウミヘビ属 (Ophisurus)" data={data_Ophisurus}></Genus>
 
 			</div>
 		</Layout>

@@ -38,18 +38,18 @@ export default function Home({data_Heterodontus, data_Carcharias, data_Rhincodon
 				<Family family="ネコザメ科"></Family>
 				<Genus genus="ネコザメ属 (Heterodontus)" data={data_Heterodontus}></Genus>
 
-				<Family family="オオワニザメ科"></Family>
-				<Genus genus="シロワニ属 (Carcharias)" data={data_Carcharias}></Genus>
-
 				<Family family="ジンベエザメ科"></Family>
 				<Genus genus="ジンベエザメ属 (Rhincodon)" data={data_Rhincodon}></Genus>
+
+				<Family family="オオワニザメ科"></Family>
+				<Genus genus="シロワニ属 (Carcharias)" data={data_Carcharias}></Genus>
 
 				<Family family="トラザメ科"></Family>
 				<Genus genus="ナヌカザメ属 (Cephaloscyllium)" data={data_Cephaloscyllium}></Genus>
 
 				<Family family="メジロザメ科"></Family>
-				<Genus genus="ネムリブカ属 (Triaenodon)" data={data_Triaenodon}></Genus>
 				<Genus genus="メジロザメ属 (Carcharhinus)" data={data_Carcharhinus}></Genus>
+				<Genus genus="ネムリブカ属 (Triaenodon)" data={data_Triaenodon}></Genus>
 
 				<Family family="シュモクザメ科"></Family>
 				<Genus genus="シュモクザメ属 (Sphyrna)" data={data_Sphyrna}></Genus>

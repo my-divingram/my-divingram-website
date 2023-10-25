@@ -27,8 +27,8 @@ export default function Home({data_Ariosoma, data_Heteroconger, data_Gorgasia}) 
 
 				<Family family="アナゴ科"></Family>
 				<Genus genus="ゴテンアナゴ属 (Ariosoma)" data={data_Ariosoma}></Genus>
-				<Genus genus="チンアナゴ属 (Heteroconger)" data={data_Heteroconger}></Genus>
 				<Genus genus="シンジュアナゴ属 (Gorgasia)" data={data_Gorgasia}></Genus>
+				<Genus genus="チンアナゴ属 (Heteroconger)" data={data_Heteroconger}></Genus>
 
 			</div>
 		</Layout>
