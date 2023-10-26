@@ -42,17 +42,17 @@ export default function Home({data_Epinephelus, data_Cephalopholis, data_Aethalo
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">ハタの仲間</h1>
 
 				<Family family="ハタ科"></Family>
-				<Genus genus="アカハタ属 (Epinephelus)" data={data_Epinephelus}></Genus>
-				<Genus genus="ユカタハタ属 (Cephalopholis)" data={data_Cephalopholis}></Genus>
+				<Genus genus="ルリハタ属 (Aulacocephalus)" data={data_Aulacocephalus}></Genus>
+				<Genus genus="キハッソク属 (Diploprion)" data={data_Diploprion}></Genus>
 				<Genus genus="クロハタ属 (Aethaloperca)" data={data_Aethaloperca}></Genus>
+				<Genus genus="ユカタハタ属 (Cephalopholis)" data={data_Cephalopholis}></Genus>
+				<Genus genus="サラサハタ属 (Chromileptes)" data={data_Chromileptes}></Genus>
+				<Genus genus="アカハタ属 (Epinephelus)" data={data_Epinephelus}></Genus>
+				<Genus genus="タテスジハタ属 (Gracila)" data={data_Gracila}></Genus>
 				<Genus genus="スジアラ属 (Plectropomus)" data={data_Plectropomus}></Genus>
 				<Genus genus="バラハタ属 (Variola)" data={data_Variola}></Genus>
-				<Genus genus="タテスジハタ属 (Gracila)" data={data_Gracila}></Genus>
-				<Genus genus="サラサハタ属 (Chromileptes)" data={data_Chromileptes}></Genus>
-				<Genus genus="キハッソク属 (Diploprion)" data={data_Diploprion}></Genus>
-				<Genus genus="ルリハタ属 (Aulacocephalus)" data={data_Aulacocephalus}></Genus>
-				<Genus genus="ハナスズキ属 (Liopropoma)" data={data_Liopropoma}></Genus>
 				<Genus genus="ヌノサラシ属 (Grammistes)" data={data_Grammistes}></Genus>
+				<Genus genus="ハナスズキ属 (Liopropoma)" data={data_Liopropoma}></Genus>
 
 			</div>
 		</Layout>

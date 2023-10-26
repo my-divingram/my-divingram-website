@@ -49,26 +49,26 @@ export default function Home({data_Caprodon, data_Nemanthias, data_Pyronotanthia
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">ハナダイの仲間</h1>
 
-				<Family family="ハタ科 ハナダイ亜科"></Family>
-				<Genus genus="ナガハナダイ属 (Pseudanthias)" data={data_Pseudanthias}></Genus>
-				<Genus genus="イトヒキハナダイ属 (Tosanoides)" data={data_Tosanoides}></Genus>
-				<Genus genus="サクラダイ属 (Sacura)" data={data_Sacura}></Genus>
-				<Genus genus="イッテンサクラダイ属 (Odontanthias)" data={data_Odontanthias}></Genus>
+				<Family family="ハナダイ科"></Family>
 				<Genus genus="アカイサキ属 (Caprodon)" data={data_Caprodon}></Genus>
+				<Genus genus="ミナミハナダイ属 (Luzonichthys)" data={data_Luzonichthys}></Genus>
 				<Genus genus="ハナゴイ属 (Mirolabrichthys)" data={data_Mirolabrichthys}></Genus>
-				<Genus genus="アカボシハナゴイ属 (Pyronotanthias)" data={data_Pyronotanthias}></Genus>
 				<Genus genus="アカネハナゴイ属 (Nemanthias)" data={data_Nemanthias}></Genus>
+				<Genus genus="イッテンサクラダイ属 (Odontanthias)" data={data_Odontanthias}></Genus>
 				<Genus genus="イズハナダイ属 (Plectranthias)" data={data_Plectranthias}></Genus>
+				<Genus genus="ナガハナダイ属 (Pseudanthias)" data={data_Pseudanthias}></Genus>
+				<Genus genus="アカボシハナゴイ属 (Pyronotanthias)" data={data_Pyronotanthias}></Genus>
+				<Genus genus="ホカケハナダイ属 (Rabaulichthys)" data={data_Rabaulichthys}></Genus>
+				<Genus genus="サクラダイ属 (Sacura)" data={data_Sacura}></Genus>
 				<Genus genus="スミツキハナダイ属 (Selenanthias)" data={data_Selenanthias}></Genus>
 				<Genus genus="ハナゴンベ属 (Serranocirrhitus)" data={data_Serranocirrhitus}></Genus>
-				<Genus genus="ホカケハナダイ属 (Rabaulichthys)" data={data_Rabaulichthys}></Genus>
-				<Genus genus="ミナミハナダイ属 (Luzonichthys)" data={data_Luzonichthys}></Genus>
-
-				<Family family="カワリハナダイ科"></Family>
-				<Genus genus="カワリハナダイ属 (Symphysanodon)" data={data_Symphysanodon}></Genus>
+				<Genus genus="イトヒキハナダイ属 (Tosanoides)" data={data_Tosanoides}></Genus>
 
 				<Family family="シキシマハナダイ科"></Family>
 				<Genus genus="シキシマハナダイ属 (Callanthias)" data={data_Callanthias}></Genus>
+
+				<Family family="カワリハナダイ科"></Family>
+				<Genus genus="カワリハナダイ属 (Symphysanodon)" data={data_Symphysanodon}></Genus>
 
 			</div>
 		</Layout>
