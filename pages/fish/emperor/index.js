@@ -28,9 +28,9 @@ export default function Home({data_Lethrinus, data_Gnathodentex, data_Gymnocrani
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">フエフキダイの仲間</h1>
 
 				<Family family="フエフキダイ科"></Family>
-				<Genus genus="フエフキダイ属 (Lethrinus)" data={data_Lethrinus}></Genus>
 				<Genus genus="ノコギリダイ属 (Gnathodentex)" data={data_Gnathodentex}></Genus>
 				<Genus genus="メイチダイ属 (Gymnocranius)" data={data_Gymnocranius}></Genus>
+				<Genus genus="フエフキダイ属 (Lethrinus)" data={data_Lethrinus}></Genus>
 				<Genus genus="ヨコシマクロダイ属 (Monotaxis)" data={data_Monotaxis}></Genus>
 
 			</div>

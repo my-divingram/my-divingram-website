@@ -30,11 +30,11 @@ export default function Home({data_Lutjanus, data_Aphareus, data_Macolor, data_P
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">フエダイの仲間</h1>
 
 				<Family family="フエダイ科"></Family>
-				<Genus genus="フエダイ属 (Lutjanus)" data={data_Lutjanus}></Genus>
 				<Genus genus="イシフエダイ属 (Aphareus)" data={data_Aphareus}></Genus>
+				<Genus genus="アオチビキ属 (Aprion)" data={data_Aprion}></Genus>
+				<Genus genus="フエダイ属 (Lutjanus)" data={data_Lutjanus}></Genus>
 				<Genus genus="マダラタルミ属 (Macolor)" data={data_Macolor}></Genus>
 				<Genus genus="アオダイ属 (Paracaesio)" data={data_Paracaesio}></Genus>
-				<Genus genus="アオチビキ属 (Aprion)" data={data_Aprion}></Genus>
 
 			</div>
 		</Layout>

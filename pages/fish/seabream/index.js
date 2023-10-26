@@ -24,8 +24,8 @@ export default function Home({data_Pagrus, data_Acanthopagrus}) {
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">タイの仲間</h1>
 
 				<Family family="タイ科"></Family>
-				<Genus genus="マダイ属 (Pagrus)" data={data_Pagrus}></Genus>
 				<Genus genus="クロダイ属 (Acanthopagrus)" data={data_Acanthopagrus}></Genus>
+				<Genus genus="マダイ属 (Pagrus)" data={data_Pagrus}></Genus>
 
 			</div>
 		</Layout>

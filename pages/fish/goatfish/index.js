@@ -26,9 +26,9 @@ export default function Home({data_Upeneus, data_Mulloidichthys, data_Parupeneus
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">ヒメジの仲間</h1>
 
 				<Family family="ヒメジ科"></Family>
-				<Genus genus="ヒメジ属 (Upeneus)" data={data_Upeneus}></Genus>
 				<Genus genus="アカヒメジ属 (Mulloidichthys)" data={data_Mulloidichthys}></Genus>
 				<Genus genus="ウミヒゴイ属 (Parupeneus)" data={data_Parupeneus}></Genus>
+				<Genus genus="ヒメジ属 (Upeneus)" data={data_Upeneus}></Genus>
 
 			</div>
 		</Layout>

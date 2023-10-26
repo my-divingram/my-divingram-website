@@ -33,11 +33,11 @@ export default function Home({data_Cirrhitichthys, data_Oxycirrhites, data_Parac
 
 				<Family family="ゴンベ科"></Family>
 				<Genus genus="オキゴンベ属 (Cirrhitichthys)" data={data_Cirrhitichthys}></Genus>
-				<Genus genus="クダゴンベ属 (Oxycirrhites)" data={data_Oxycirrhites}></Genus>
-				<Genus genus="ホシゴンベ属 (Paracirrhites)" data={data_Paracirrhites}></Genus>
-				<Genus genus="ベニゴンベ属 (Neocirrhites)" data={data_Neocirrhites}></Genus>
 				<Genus genus="スミツキゴンベ属 (Cirrhitops)" data={data_Cirrhitops}></Genus>
 				<Genus genus="ウイゴンベ属 (Cyprinocirrhites)" data={data_Cyprinocirrhites}></Genus>
+				<Genus genus="ベニゴンベ属 (Neocirrhites)" data={data_Neocirrhites}></Genus>
+				<Genus genus="クダゴンベ属 (Oxycirrhites)" data={data_Oxycirrhites}></Genus>
+				<Genus genus="ホシゴンベ属 (Paracirrhites)" data={data_Paracirrhites}></Genus>
 
 			</div>
 		</Layout>

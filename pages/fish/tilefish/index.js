@@ -24,8 +24,8 @@ export default function Home({data_Malacanthus, data_Hoplolatilus}) {
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">アマダイの仲間</h1>
 
 				<Family family="キツネアマダイ科"></Family>
-				<Genus genus="キツネアマダイ属 (Malacanthus)" data={data_Malacanthus}></Genus>
 				<Genus genus="サンゴアマダイ属 (Hoplolatilus)" data={data_Hoplolatilus}></Genus>
+				<Genus genus="キツネアマダイ属 (Malacanthus)" data={data_Malacanthus}></Genus>
 
 			</div>
 		</Layout>

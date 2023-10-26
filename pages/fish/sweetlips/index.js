@@ -26,9 +26,9 @@ export default function Home({data_Parapristipoma, data_Plectorhinchus, data_Dia
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">イサキの仲間</h1>
 
 				<Family family="イサキ科"></Family>
+				<Genus genus="コロダイ属 (Diagramma)" data={data_Diagramma}></Genus>
 				<Genus genus="イサキ属 (Parapristipoma)" data={data_Parapristipoma}></Genus>
 				<Genus genus="コショウダイ属 (Plectorhinchus)" data={data_Plectorhinchus}></Genus>
-				<Genus genus="コロダイ属 (Diagramma)" data={data_Diagramma}></Genus>
 
 			</div>
 		</Layout>

@@ -40,16 +40,16 @@ export default function Home({data_Ostorhinchus, data_Pristiapogon, data_Cheilod
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">テンジクダイの仲間</h1>
 
 				<Family family="テンジクダイ科"></Family>
+				<Genus genus="コミナトテンジクダイ属 (Apogon)" data={data_Apogon}></Genus>
+				<Genus genus="サクラテンジクダイ属 (Cercamia)" data={data_Cercamia}></Genus>
+				<Genus genus="ヤライイシモチ属 (Cheilodipterus)" data={data_Cheilodipterus}></Genus>
 				<Genus genus="スジイシモチ属 (Ostorhinchus)" data={data_Ostorhinchus}></Genus>
 				<Genus genus="ヒトスジイシモチ属 (Pristiapogon)" data={data_Pristiapogon}></Genus>
-				<Genus genus="ヤライイシモチ属 (Cheilodipterus)" data={data_Cheilodipterus}></Genus>
-				<Genus genus="ヒカリイシモチ属 (Siphamia)" data={data_Siphamia}></Genus>
 				<Genus genus="アカヒレイシモチ属 (Pristicon)" data={data_Pristicon}></Genus>
-				<Genus genus="マンジュウイシモチ属 (Sphaeramia)" data={data_Sphaeramia}></Genus>
-				<Genus genus="スカシテンジクダイ属 (Rhabdamia)" data={data_Rhabdamia}></Genus>
-				<Genus genus="サクラテンジクダイ属 (Cercamia)" data={data_Cercamia}></Genus>
-				<Genus genus="コミナトテンジクダイ属 (Apogon)" data={data_Apogon}></Genus>
 				<Genus genus="ヌメリテンジクダイ属 (Pseudamia)" data={data_Pseudamia}></Genus>
+				<Genus genus="スカシテンジクダイ属 (Rhabdamia)" data={data_Rhabdamia}></Genus>
+				<Genus genus="ヒカリイシモチ属 (Siphamia)" data={data_Siphamia}></Genus>
+				<Genus genus="マンジュウイシモチ属 (Sphaeramia)" data={data_Sphaeramia}></Genus>
 
 			</div>
 		</Layout>
