@@ -9,7 +9,7 @@ function record(pagedata) {
                         <div key={data.fieldId} className="px-3 w-1/3 md:w-1/5">
                             <div>
                                 <Link href={data.image.url}>
-                                    <Image src={data.image.url} alt="image" width={300} height={200} style={{objectFit:"contain"}}/>
+                                    <Image src={data.image.url} alt="image" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
                                 </Link>
                                 <p className="py-1 text-xs md:text-sm text-center text-black">{data.info}</p>
                             </div>
