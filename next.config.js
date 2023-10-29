@@ -7,4 +7,7 @@ module.exports = {
   images: {
     domains: ["images.microcms-assets.io"],
   },
+  experimental: {
+    scrollRestoration: true,
+  },
 };
