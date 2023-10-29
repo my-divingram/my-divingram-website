@@ -57,14 +57,14 @@ export default function Home({data_Sebastes, data_Sebastiscus, data_Pterois, dat
 
 				<Family family="フサカサゴ科"></Family>
 				<Genus genus="ダンゴオコゼ属 (Caracanthus)" data={data_Caracanthus}></Genus>
-				<Genus genus="Dendrochirus" data={data_Dendrochirus}></Genus>
-				<Genus genus="Nemapterois" data={data_Nemapterois}></Genus>
-				<Genus genus="Neochirus" data={data_Neochirus}></Genus>
+				<Genus genus="Dendrochirus属" data={data_Dendrochirus}></Genus>
+				<Genus genus="Nemapterois属" data={data_Nemapterois}></Genus>
+				<Genus genus="Neochirus属" data={data_Neochirus}></Genus>
 				<Genus genus="セトミノカサゴ属 (Parapterois)" data={data_Parapterois}></Genus>
 				<Genus genus="ネッタイフサカサゴ属 (Parascorpaena)" data={data_Parascorpaena}></Genus>
 				<Genus genus="ツノカサゴ属 (Pteroidichthys)" data={data_Pteroidichthys}></Genus>
 				<Genus genus="ミノカサゴ属 (Pterois)" data={data_Pterois}></Genus>
-				<Genus genus="Pteropterus" data={data_Pteropterus}></Genus>
+				<Genus genus="Pteropterus属" data={data_Pteropterus}></Genus>
 				<Genus genus="ボロカサゴ属 (Rhinopias)" data={data_Rhinopias}></Genus>
 				<Genus genus="フサカサゴ属 (Scorpaena)" data={data_Scorpaena}></Genus>
 				<Genus genus="イソカサゴ属 (Scorpaenodes)" data={data_Scorpaenodes}></Genus>

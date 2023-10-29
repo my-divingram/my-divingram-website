@@ -62,7 +62,7 @@ export default function Home({data_Chrysiptera, data_Pomacentrus, data_Chromis, 
 				<Genus genus="イシガキスズメダイ属 (Plectroglyphidodon)" data={data_Plectroglyphidodon}></Genus>
 				<Genus genus="クロソラスズメダイ属 (Stegastes)" data={data_Stegastes}></Genus>
 				<Genus genus="クマノミ属 (Amphiprion)" data={data_Amphiprion}></Genus>
-				<Genus genus="Premnas" data={data_Premnas}></Genus>
+				<Genus genus="Premnas属" data={data_Premnas}></Genus>
 				<Genus genus="ルリスズメダイ属 (Chrysiptera)" data={data_Chrysiptera}></Genus>
 				<Genus genus="ダンダラスズメダイ属 (Dischistodus)" data={data_Dischistodus}></Genus>
 				<Genus genus="オキナワスズメダイ属 (Pomachromis)" data={data_Pomachromis}></Genus>
