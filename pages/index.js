@@ -39,7 +39,7 @@ function Home({data_fish, data_blog}) {
                         <SplideSlide key={data.id}>
                             <div className="hover:opacity-80">
                                 <Link href={`/fish/${data.class}/${data.latinName}`.replace(" ", "_")}>
-                                    <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}}/>
+                                    <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
                                     <h2 className="pt-3 pb-5 text-xs md:text-sm text-center text-gray-700 font-medium">{data.japaneseName}</h2>
                                 </Link>
                             </div>

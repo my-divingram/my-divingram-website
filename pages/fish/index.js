@@ -34,7 +34,7 @@ function Home({data_fish, data_num}) {
                         <SplideSlide key={data.id}>
                             <div className="hover:opacity-80">
                                 <Link href={`/fish/${data.class}/${data.latinName}`.replace(" ", "_")}>
-                                    <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}}/>
+                                    <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
                                     <h2 className="pt-3 pb-5 text-xs md:text-sm text-center text-gray-700 font-medium">{data.japaneseName}</h2>
                                 </Link>
                             </div>
@@ -232,12 +232,12 @@ function Home({data_fish, data_num}) {
                             <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">イスズミ・メジナの仲間</h2>
                         </Link>
                     </div>
-                    {/* <div className="flex justify-center hover:opacity-80">
-                        <Link href="fish/angelfish">
-                            <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
+                    <div className="flex justify-center hover:opacity-80">
+                        <Link href="fish/wrasse">
+                            <Image src="/img/class/wrasse.png" alt="wrasse" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">ベラの仲間</h2>
                         </Link>
-                    </div> */}
+                    </div>
                     {/* <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/angelfish">
                             <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
