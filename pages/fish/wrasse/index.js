@@ -5,7 +5,7 @@ import {Family, Genus} from "/components/Class";
 // SSG
 export const getStaticProps = async() => {
 	const data_Pseudojuloides = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]オグロベラ属` , limit: 100 }});
-	const data_Terelabrus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ソラスズメダイ属` , limit: 100 }});
+	const data_Terelabrus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ミヤビベラ属` , limit: 100 }});
 	const data_Pseudolabrus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ササノハベラ属` , limit: 100 }});
 	const data_Pteragogus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]オハグロベラ属` , limit: 100 }});
 	const data_Halichoeres = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ホンベラ属` , limit: 100 }});
@@ -19,7 +19,7 @@ export const getStaticProps = async() => {
 	const data_Coris = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カンムリベラ属` , limit: 100 }});
 	const data_Bodianus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]タキベラ属` , limit: 100 }});
 	const data_Cheilinus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]モチノウオ属` , limit: 100 }});
-	const data_Cheilio = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ミヤビベラ属` , limit: 100 }});
+	const data_Cheilio = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カマスベラ属` , limit: 100 }});
 	const data_Thalassoma = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]オトメベラ属` , limit: 100 }});
 
 	return {
