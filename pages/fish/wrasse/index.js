@@ -26,7 +26,7 @@ export const getStaticProps = async() => {
 	const data_Parajulis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]キュウセン属` , limit: 100 }});
 	const data_Cymolutes = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]タテヤマベラ属` , limit: 100 }});
 	const data_Anampses = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ススキベラ属` , limit: 100 }});
-	const data_Pseudocoriss = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]シラタキベラダマシ属` , limit: 100 }});
+	const data_Pseudocoris = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]シラタキベラダマシ属` , limit: 100 }});
 	const data_Labrichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]クロベラ属` , limit: 100 }});
 	const data_Novaculops = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]テンスモドキ属` , limit: 100 }});
 	const data_Iniistius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]テンス属` , limit: 100 }});
@@ -63,7 +63,7 @@ export const getStaticProps = async() => {
     		data_Parajulis: data_Parajulis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Cymolutes: data_Cymolutes.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Anampses: data_Anampses.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
-    		data_Pseudocoriss: data_Pseudocoriss.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Pseudocoris: data_Pseudocoris.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Labrichthys: data_Labrichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Novaculops: data_Novaculops.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Iniistius: data_Iniistius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
@@ -79,7 +79,7 @@ export const getStaticProps = async() => {
 	};
 };
 
-export default function Home({data_Pseudojuloides, data_Terelabrus, data_Pseudolabrus, data_Pteragogus, data_Halichoeres, data_Choerodon, data_Suezichthys, data_Novaculichthys, data_Oxycheilinus, data_Novaculoides, data_Cirrhilabrus, data_Stethojulis, data_Coris, data_Bodianus, data_Cheilinus, data_Cheilio, data_Thalassoma, data_Labroides, data_Hemigymnus, data_Parajulis, data_Cymolutes, data_Anampses, data_Pseudocoriss, data_Labrichthys, data_Novaculops, data_Iniistius, data_Hologymnosus, data_Semicossyphus, data_Epibulus, data_Labropsis, data_Gomphosus, data_Paracheilinus, data_Pseudocheilinus, data_Macropharyngodon}) {
+export default function Home({data_Pseudojuloides, data_Terelabrus, data_Pseudolabrus, data_Pteragogus, data_Halichoeres, data_Choerodon, data_Suezichthys, data_Novaculichthys, data_Oxycheilinus, data_Novaculoides, data_Cirrhilabrus, data_Stethojulis, data_Coris, data_Bodianus, data_Cheilinus, data_Cheilio, data_Thalassoma, data_Labroides, data_Hemigymnus, data_Parajulis, data_Cymolutes, data_Anampses, data_Pseudocoris, data_Labrichthys, data_Novaculops, data_Iniistius, data_Hologymnosus, data_Semicossyphus, data_Epibulus, data_Labropsis, data_Gomphosus, data_Paracheilinus, data_Pseudocheilinus, data_Macropharyngodon}) {
 
 	return (
 		<Layout title="ベラの仲間">
@@ -111,7 +111,7 @@ export default function Home({data_Pseudojuloides, data_Terelabrus, data_Pseudol
 				<Genus genus="ソメワケベラ属 (Labroides)" data={data_Labroides}></Genus>
 				<Genus genus="マナベベラ属 (Labropsis)" data={data_Labropsis}></Genus>
 				<Genus genus="ノドグロベラ属 (Macropharyngodon)" data={data_Macropharyngodon}></Genus>
-				<Genus genus="シラタキベラダマシ属 (Pseudocoris)" data={data_Pseudocoriss}></Genus>
+				<Genus genus="シラタキベラダマシ属 (Pseudocoris)" data={data_Pseudocoris}></Genus>
 				<Genus genus="オグロベラ属 (Pseudojuloides)" data={data_Pseudojuloides}></Genus>
 				<Genus genus="カミナリベラ属 (Stethojulis)" data={data_Stethojulis}></Genus>
 				<Genus genus="ニシキベラ属 (Thalassoma)" data={data_Thalassoma}></Genus>
