@@ -8,6 +8,7 @@ export const getStaticProps = async() => {
 	const data_Echidna = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アラシウツボ属` , limit: 100 }});
 	const data_Enchelycore = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]コケウツボ属` , limit: 100 }});
 	const data_Rhinomuraena = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハナヒゲウツボ属` , limit: 100 }});
+	const data_Strophidon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]タケウツボ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -15,11 +16,12 @@ export const getStaticProps = async() => {
     		data_Echidna: data_Echidna.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Enchelycore: data_Enchelycore.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Rhinomuraena: data_Rhinomuraena.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Strophidon: data_Strophidon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_Gymnothorax, data_Echidna, data_Enchelycore, data_Rhinomuraena}) {
+export default function Home({data_Gymnothorax, data_Echidna, data_Enchelycore, data_Rhinomuraena, data_Strophidon}) {
 
 	return (
 		<Layout title="ウツボの仲間">
@@ -32,6 +34,7 @@ export default function Home({data_Gymnothorax, data_Echidna, data_Enchelycore, 
 				<Genus genus="コケウツボ属 (Enchelycore)" data={data_Enchelycore}></Genus>
 				<Genus genus="ウツボ属 (Gymnothorax)" data={data_Gymnothorax}></Genus>
 				<Genus genus="ハナヒゲウツボ属 (Rhinomuraena)" data={data_Rhinomuraena}></Genus>
+				<Genus genus="タケウツボ属 (Strophidon)" data={data_Strophidon}></Genus>
 
 			</div>
 		</Layout>
