@@ -19,6 +19,7 @@ export const getStaticProps = async() => {
 	const data_Luzonichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ミナミハナダイ属`, limit: 100 }});
 	const data_Symphysanodon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カワリハナダイ属`, limit: 100 }});
 	const data_Callanthias = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]シキシマハナダイ属`, limit: 100 }});
+	const data_Tosana = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒメハナダイ属`, limit: 100 }});
 
 	return {
     	props: {
@@ -37,11 +38,12 @@ export const getStaticProps = async() => {
     		data_Luzonichthys: data_Luzonichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Symphysanodon: data_Symphysanodon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Callanthias: data_Callanthias.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Tosana: data_Tosana.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_Caprodon, data_Nemanthias, data_Pyronotanthias, data_Plectranthias, data_Odontanthias, data_Tosanoides, data_Sacura, data_Selenanthias, data_Pseudanthias, data_Mirolabrichthys, data_Serranocirrhitus, data_Rabaulichthys, data_Luzonichthys, data_Symphysanodon, data_Callanthias}) {
+export default function Home({data_Caprodon, data_Nemanthias, data_Pyronotanthias, data_Plectranthias, data_Odontanthias, data_Tosanoides, data_Sacura, data_Selenanthias, data_Pseudanthias, data_Tosana, data_Mirolabrichthys, data_Serranocirrhitus, data_Rabaulichthys, data_Luzonichthys, data_Symphysanodon, data_Callanthias}) {
 
 	return (
 		<Layout title="ハナダイの仲間">
@@ -61,6 +63,7 @@ export default function Home({data_Caprodon, data_Nemanthias, data_Pyronotanthia
 				<Genus genus="ホカケハナダイ属 (Rabaulichthys)" data={data_Rabaulichthys}></Genus>
 				<Genus genus="サクラダイ属 (Sacura)" data={data_Sacura}></Genus>
 				<Genus genus="スミツキハナダイ属 (Selenanthias)" data={data_Selenanthias}></Genus>
+				<Genus genus="ヒメハナダイ属 (Tosana)" data={data_Tosana}></Genus>
 				<Genus genus="ハナゴンベ属 (Serranocirrhitus)" data={data_Serranocirrhitus}></Genus>
 				<Genus genus="イトヒキハナダイ属 (Tosanoides)" data={data_Tosanoides}></Genus>
 
