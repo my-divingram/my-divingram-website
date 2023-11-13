@@ -16,8 +16,8 @@ export const getStaticProps = async (context) => {
 
 export const getStaticPaths = async() => {
     // 200件以上の場合は要対策
-    const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]goby`, limit: 100 }});
-    const data_ = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]goby`, limit: 100, offset: data.totalCount-100 }});
+    const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]wrasse`, limit: 100 }});
+    const data_ = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]wrasse`, limit: 100, offset: data.totalCount-100 }});
 
     const paths = data.contents.concat(data_.contents).map((content) => `/fish/${content.class}/${content.latinName}`.replace(" ", "_"));
 
