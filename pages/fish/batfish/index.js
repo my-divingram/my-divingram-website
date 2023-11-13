@@ -13,7 +13,7 @@ export const getStaticProps = async() => {
 	};
 };
 
-export default function Home({data_Platax, data_Girella}) {
+export default function Home({data_Platax}) {
 
 	return (
 		<Layout title="ツバメウオの仲間">
