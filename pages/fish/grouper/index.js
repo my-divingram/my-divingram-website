@@ -4,6 +4,7 @@ import {Family, Genus} from "/components/Class";
 
 // SSG
 export const getStaticProps = async() => {
+	const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]grouper` , limit: 1 }});
 	const data_Epinephelus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アカハタ属` , limit: 100 }});
 	const data_Cephalopholis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ユカタハタ属` , limit: 100 }});
 	const data_Aethaloperca = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]クロハタ属` , limit: 100 }});
@@ -18,6 +19,7 @@ export const getStaticProps = async() => {
 
 	return {
     	props: {
+			data_num: data.totalCount,
     		data_Epinephelus: data_Epinephelus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Cephalopholis: data_Cephalopholis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Aethaloperca: data_Aethaloperca.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
@@ -33,13 +35,14 @@ export const getStaticProps = async() => {
 	};
 };
 
-export default function Home({data_Epinephelus, data_Cephalopholis, data_Aethaloperca, data_Plectropomus, data_Variola, data_Gracila, data_Chromileptes, data_Diploprion, data_Aulacocephalus, data_Liopropoma, data_Grammistes}) {
+export default function Home({data_num, data_Epinephelus, data_Cephalopholis, data_Aethaloperca, data_Plectropomus, data_Variola, data_Gracila, data_Chromileptes, data_Diploprion, data_Aulacocephalus, data_Liopropoma, data_Grammistes}) {
 
 	return (
 		<Layout title="ハタの仲間">
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">ハタの仲間</h1>
+				<p className="pt-2 text-xs md:text-sm text-center text-gray-700 font-medium">掲載種 : {data_num}種</p>
 
 				<Family family="ハタ科"></Family>
 				<Genus genus="ルリハタ属 (Aulacocephalus)" data={data_Aulacocephalus}></Genus>

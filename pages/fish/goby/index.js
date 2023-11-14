@@ -4,6 +4,7 @@ import {Family, Genus} from "/components/Class";
 
 // SSG
 export const getStaticProps = async() => {
+	const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]goby` , limit: 1 }});
 	const data_Oxyurichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]サルハゼ属` , limit: 100 }});
 	const data_Waitea = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カスリハゼ属` , limit: 100 }});
 	const data_Discordipinna = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ホムラハゼ属` , limit: 100 }});
@@ -44,6 +45,7 @@ export const getStaticProps = async() => {
 
 	return {
     	props: {
+			data_num: data.totalCount,
     		data_Oxyurichthys: data_Oxyurichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Waitea: data_Waitea.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Discordipinna: data_Discordipinna.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
@@ -85,13 +87,14 @@ export const getStaticProps = async() => {
 	};
 };
 
-export default function Home({data_Oxyurichthys, data_Waitea, data_Discordipinna, data_Ptereleotris, data_Bryaninops, data_Lotilia, data_Myersina, data_Ancistrogobius, data_Pleurosicya, data_Asterropteryx, data_Gobiodon, data_Paragobiodon, data_Fusigobius, data_Lubricogobius, data_Nemateleotris, data_Trimma, data_Chaenogobius, data_Priolepis, data_Amblygobius, data_Valenciennea, data_Oplopomops, data_Gnatholepis, data_Acentrogobius, data_Gunnellichthys, data_Istigobius, data_Stonogobiops, data_Amblyeleotris, data_Tomiyamichthys, data_Eviota, data_Tryssogobius, data_Signigobius, data_Vanderhorstia, data_Cryptocentrus, data_Ctenogobiops, data_Echinogobius, data_Hazeus, data_Koumansetta}) {
+export default function Home({data_num, data_Oxyurichthys, data_Waitea, data_Discordipinna, data_Ptereleotris, data_Bryaninops, data_Lotilia, data_Myersina, data_Ancistrogobius, data_Pleurosicya, data_Asterropteryx, data_Gobiodon, data_Paragobiodon, data_Fusigobius, data_Lubricogobius, data_Nemateleotris, data_Trimma, data_Chaenogobius, data_Priolepis, data_Amblygobius, data_Valenciennea, data_Oplopomops, data_Gnatholepis, data_Acentrogobius, data_Gunnellichthys, data_Istigobius, data_Stonogobiops, data_Amblyeleotris, data_Tomiyamichthys, data_Eviota, data_Tryssogobius, data_Signigobius, data_Vanderhorstia, data_Cryptocentrus, data_Ctenogobiops, data_Echinogobius, data_Hazeus, data_Koumansetta}) {
 
 	return (
 		<Layout title="ハゼの仲間">
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">ハゼの仲間</h1>
+				<p className="pt-2 text-xs md:text-sm text-center text-gray-700 font-medium">掲載種 (未記載種を含む) : {data_num}種</p>
 
 				<Family family="ハゼ科"></Family>
 				<Genus genus="キララハゼ属 (Acentrogobius)" data={data_Acentrogobius}></Genus>

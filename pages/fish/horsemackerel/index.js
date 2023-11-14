@@ -4,6 +4,7 @@ import {Family, Genus} from "/components/Class";
 
 // SSG
 export const getStaticProps = async() => {
+	const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]horsemackerel` , limit: 1 }});
 	const data_Seriola = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ブリ属` , limit: 100 }});
 	const data_Caranx = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ギンガメアジ属` , limit: 100 }});
 	const data_Craterognathus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]インドカイワリ属` , limit: 100 }});
@@ -18,6 +19,7 @@ export const getStaticProps = async() => {
 
 	return {
     	props: {
+			data_num: data.totalCount,
     		data_Seriola: data_Seriola.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Caranx: data_Caranx.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Craterognathus: data_Craterognathus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
@@ -33,13 +35,14 @@ export const getStaticProps = async() => {
 	};
 };
 
-export default function Home({data_Seriola, data_Caranx, data_Craterognathus, data_Flavocaranx, data_Trachurus, data_Decapterus, data_Ferdaiua, data_Pseudocaranx, data_Alectis, data_Uraspis, data_Trachinotus}) {
+export default function Home({data_num, data_Seriola, data_Caranx, data_Craterognathus, data_Flavocaranx, data_Trachurus, data_Decapterus, data_Ferdaiua, data_Pseudocaranx, data_Alectis, data_Uraspis, data_Trachinotus}) {
 
 	return (
 		<Layout title="アジの仲間">
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">アジの仲間</h1>
+				<p className="pt-2 text-xs md:text-sm text-center text-gray-700 font-medium">掲載種 : {data_num}種</p>
 
 				<Family family="アジ科"></Family>
 				<Genus genus="イトヒキアジ属 (Alectis)" data={data_Alectis}></Genus>

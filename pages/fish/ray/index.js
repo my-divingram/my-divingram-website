@@ -4,6 +4,7 @@ import {Family, Genus} from "/components/Class";
 
 // SSG
 export const getStaticProps = async() => {
+	const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]ray` , limit: 1 }});
 	const data_Hemitrygon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アカエイ属` , limit: 100 }});
 	const data_Pateobatis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]オグロオトメエイ属` , limit: 100 }});
 	const data_Pastinachus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ツカエイ属` , limit: 100 }});
@@ -18,6 +19,7 @@ export const getStaticProps = async() => {
 
 	return {
     	props: {
+			data_num: data.totalCount,
     		data_Hemitrygon: data_Hemitrygon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Pateobatis: data_Pateobatis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Pastinachus: data_Pastinachus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
@@ -32,13 +34,14 @@ export const getStaticProps = async() => {
 	};
 };
 
-export default function Home({data_Hemitrygon, data_Pateobatis, data_Pastinachus, data_Taeniurops, data_Neotrygon, data_Rhinoptera, data_Aetobatus, data_Mobula, data_Myliobatis, data_Urolophus}) {
+export default function Home({data_num, data_Hemitrygon, data_Pateobatis, data_Pastinachus, data_Taeniurops, data_Neotrygon, data_Rhinoptera, data_Aetobatus, data_Mobula, data_Myliobatis, data_Urolophus}) {
 
 	return (
 		<Layout title="エイの仲間">
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">エイの仲間</h1>
+				<p className="pt-2 text-xs md:text-sm text-center text-gray-700 font-medium">掲載種 : {data_num}種</p>
 
 				<Family family="ヒラタエイ科"></Family>
 				<Genus genus="ヒラタエイ属 (Urolophus)" data={data_Urolophus}></Genus>

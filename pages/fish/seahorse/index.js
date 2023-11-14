@@ -4,6 +4,7 @@ import {Family, Genus} from "/components/Class";
 
 // SSG
 export const getStaticProps = async() => {
+	const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]seahorse` , limit: 1 }});
 	const data_Eurypegasus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ウミテング属` , limit: 100 }});
 	const data_Fistularia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヤガラ属` , limit: 100 }});
 	const data_Aulostomus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヘラヤガラ属` , limit: 100 }});
@@ -21,6 +22,7 @@ export const getStaticProps = async() => {
 
 	return {
     	props: {
+			data_num: data.totalCount,
     		data_Eurypegasus: data_Eurypegasus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Fistularia: data_Fistularia.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Aulostomus: data_Aulostomus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
@@ -39,13 +41,14 @@ export const getStaticProps = async() => {
 	};
 };
 
-export default function Home({data_Eurypegasus, data_Fistularia, data_Aulostomus, data_Solenostomus, data_Festucalex, data_Corythoichthys, data_Trachyrhamphus, data_Doryrhamphus, data_Maroubra, data_Phoxocampus, data_Acentronura, data_Hippocampus, data_Aeoliscus, data_Centriscus}) {
+export default function Home({data_num, data_Eurypegasus, data_Fistularia, data_Aulostomus, data_Solenostomus, data_Festucalex, data_Corythoichthys, data_Trachyrhamphus, data_Doryrhamphus, data_Maroubra, data_Phoxocampus, data_Acentronura, data_Hippocampus, data_Aeoliscus, data_Centriscus}) {
 
 	return (
 		<Layout title="トゲウオの仲間">
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">トゲウオの仲間</h1>
+				<p className="pt-2 text-xs md:text-sm text-center text-gray-700 font-medium">掲載種 (未記載種を含む) : {data_num}種</p>
 
 				<Family family="ウミテング科"></Family>
 				<Genus genus="ウミテング属 (Eurypegasus)" data={data_Eurypegasus}></Genus>

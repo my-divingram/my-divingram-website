@@ -4,6 +4,7 @@ import {Family, Genus} from "/components/Class";
 
 // SSG
 export const getStaticProps = async() => {
+	const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]stonefish` , limit: 1 }});
 	const data_Paracentropogon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハオコゼ属` , limit: 100 }});
 	const data_Ablabys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ツマジロオコゼ属` , limit: 100 }});
 	const data_Inimicus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]オニオコゼ属` , limit: 100 }});
@@ -12,6 +13,7 @@ export const getStaticProps = async() => {
 
 	return {
     	props: {
+			data_num: data.totalCount,
     		data_Paracentropogon: data_Paracentropogon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Ablabys: data_Ablabys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Inimicus: data_Inimicus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
@@ -21,13 +23,14 @@ export const getStaticProps = async() => {
 	};
 };
 
-export default function Home({data_Paracentropogon, data_Ablabys, data_Inimicus, data_Erosa, data_Synanceia}) {
+export default function Home({data_num, data_Paracentropogon, data_Ablabys, data_Inimicus, data_Erosa, data_Synanceia}) {
 
 	return (
 		<Layout title="オコゼの仲間">
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">オコゼの仲間</h1>
+				<p className="pt-2 text-xs md:text-sm text-center text-gray-700 font-medium">掲載種 : {data_num}種</p>
 
 				<Family family="オニオコゼ科"></Family>
 				<Genus genus="ダルマオコゼ属 (Erosa)" data={data_Erosa}></Genus>

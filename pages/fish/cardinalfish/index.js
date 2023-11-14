@@ -4,6 +4,7 @@ import {Family, Genus} from "/components/Class";
 
 // SSG
 export const getStaticProps = async() => {
+	const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]cardinalfish` , limit: 1 }});
 	const data_Ostorhinchus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]スジイシモチ属` , limit: 100 }});
 	const data_Pristiapogon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒトスジイシモチ属` , limit: 100 }});
 	const data_Cheilodipterus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヤライイシモチ属` , limit: 100 }});
@@ -17,6 +18,7 @@ export const getStaticProps = async() => {
 
 	return {
     	props: {
+			data_num: data.totalCount,
     		data_Ostorhinchus: data_Ostorhinchus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Pristiapogon: data_Pristiapogon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Cheilodipterus: data_Cheilodipterus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
@@ -31,13 +33,14 @@ export const getStaticProps = async() => {
 	};
 };
 
-export default function Home({data_Ostorhinchus, data_Pristiapogon, data_Cheilodipterus, data_Siphamia, data_Pristicon, data_Sphaeramia, data_Rhabdamia, data_Cercamia, data_Apogon, data_Pseudamia}) {
+export default function Home({data_num, data_Ostorhinchus, data_Pristiapogon, data_Cheilodipterus, data_Siphamia, data_Pristicon, data_Sphaeramia, data_Rhabdamia, data_Cercamia, data_Apogon, data_Pseudamia}) {
 
 	return (
 		<Layout title="テンジクダイの仲間">
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">テンジクダイの仲間</h1>
+				<p className="pt-2 text-xs md:text-sm text-center text-gray-700 font-medium">掲載種 : {data_num}種</p>
 
 				<Family family="テンジクダイ科"></Family>
 				<Genus genus="コミナトテンジクダイ属 (Apogon)" data={data_Apogon}></Genus>

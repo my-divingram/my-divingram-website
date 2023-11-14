@@ -4,6 +4,7 @@ import {Family, Genus} from "/components/Class";
 
 // SSG
 export const getStaticProps = async() => {
+	const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]anthias` , limit: 1 }});
 	const data_Caprodon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アカイサキ属` , limit: 100 }});
 	const data_Nemanthias = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アカネハナゴイ属` , limit: 100 }});
 	const data_Pyronotanthias = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アカボシハナゴイ属` , limit: 100 }});
@@ -23,6 +24,7 @@ export const getStaticProps = async() => {
 
 	return {
     	props: {
+			data_num: data.totalCount,
     		data_Caprodon: data_Caprodon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Nemanthias: data_Nemanthias.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Pyronotanthias: data_Pyronotanthias.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
@@ -43,13 +45,14 @@ export const getStaticProps = async() => {
 	};
 };
 
-export default function Home({data_Caprodon, data_Nemanthias, data_Pyronotanthias, data_Plectranthias, data_Odontanthias, data_Tosanoides, data_Sacura, data_Selenanthias, data_Pseudanthias, data_Tosana, data_Mirolabrichthys, data_Serranocirrhitus, data_Rabaulichthys, data_Luzonichthys, data_Symphysanodon, data_Callanthias}) {
+export default function Home({data_num, data_Caprodon, data_Nemanthias, data_Pyronotanthias, data_Plectranthias, data_Odontanthias, data_Tosanoides, data_Sacura, data_Selenanthias, data_Pseudanthias, data_Tosana, data_Mirolabrichthys, data_Serranocirrhitus, data_Rabaulichthys, data_Luzonichthys, data_Symphysanodon, data_Callanthias}) {
 
 	return (
 		<Layout title="ハナダイの仲間">
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">ハナダイの仲間</h1>
+				<p className="pt-2 text-xs md:text-sm text-center text-gray-700 font-medium">掲載種 (未記載種を含む) : {data_num}種</p>
 
 				<Family family="ハナダイ科"></Family>
 				<Genus genus="アカイサキ属 (Caprodon)" data={data_Caprodon}></Genus>

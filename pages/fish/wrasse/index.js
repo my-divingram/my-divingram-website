@@ -4,6 +4,7 @@ import {Family, Genus} from "/components/Class";
 
 // SSG
 export const getStaticProps = async() => {
+	const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]wrasse` , limit: 1 }});
 	const data_Pseudojuloides = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]オグロベラ属` , limit: 100 }});
 	const data_Terelabrus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ミヤビベラ属` , limit: 100 }});
 	const data_Pseudolabrus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ササノハベラ属` , limit: 100 }});
@@ -41,6 +42,7 @@ export const getStaticProps = async() => {
 
 	return {
     	props: {
+			data_num: data.totalCount,
     		data_Pseudojuloides: data_Pseudojuloides.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Terelabrus: data_Terelabrus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Pseudolabrus: data_Pseudolabrus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
@@ -79,13 +81,14 @@ export const getStaticProps = async() => {
 	};
 };
 
-export default function Home({data_Pseudojuloides, data_Terelabrus, data_Pseudolabrus, data_Pteragogus, data_Halichoeres, data_Choerodon, data_Suezichthys, data_Novaculichthys, data_Oxycheilinus, data_Novaculoides, data_Cirrhilabrus, data_Stethojulis, data_Coris, data_Bodianus, data_Cheilinus, data_Cheilio, data_Thalassoma, data_Labroides, data_Hemigymnus, data_Parajulis, data_Cymolutes, data_Anampses, data_Pseudocoris, data_Labrichthys, data_Novaculops, data_Iniistius, data_Hologymnosus, data_Semicossyphus, data_Epibulus, data_Labropsis, data_Gomphosus, data_Paracheilinus, data_Pseudocheilinus, data_Macropharyngodon}) {
+export default function Home({data_num, data_Pseudojuloides, data_Terelabrus, data_Pseudolabrus, data_Pteragogus, data_Halichoeres, data_Choerodon, data_Suezichthys, data_Novaculichthys, data_Oxycheilinus, data_Novaculoides, data_Cirrhilabrus, data_Stethojulis, data_Coris, data_Bodianus, data_Cheilinus, data_Cheilio, data_Thalassoma, data_Labroides, data_Hemigymnus, data_Parajulis, data_Cymolutes, data_Anampses, data_Pseudocoris, data_Labrichthys, data_Novaculops, data_Iniistius, data_Hologymnosus, data_Semicossyphus, data_Epibulus, data_Labropsis, data_Gomphosus, data_Paracheilinus, data_Pseudocheilinus, data_Macropharyngodon}) {
 
 	return (
 		<Layout title="ベラの仲間">
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">ベラの仲間</h1>
+				<p className="pt-2 text-xs md:text-sm text-center text-gray-700 font-medium">掲載種 (未記載種を含む) : {data_num}種</p>
 
 				<Family family="ベラ科"></Family>
 				<Genus genus="カマスベラ属 (Cheilio)" data={data_Cheilio}></Genus>

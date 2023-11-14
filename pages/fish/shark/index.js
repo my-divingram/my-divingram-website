@@ -4,6 +4,7 @@ import {Family, Genus} from "/components/Class";
 
 // SSG
 export const getStaticProps = async() => {
+	const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]shark` , limit: 1 }});
 	const data_Heterodontus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ネコザメ属` , limit: 100 }});
 	const data_Carcharias = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]シロワニ属` , limit: 100 }});
 	const data_Rhincodon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ジンベエザメ属` , limit: 100 }});
@@ -15,6 +16,7 @@ export const getStaticProps = async() => {
 
 	return {
     	props: {
+			data_num: data.totalCount,
     		data_Heterodontus: data_Heterodontus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Carcharias: data_Carcharias.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Rhincodon: data_Rhincodon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
@@ -27,13 +29,14 @@ export const getStaticProps = async() => {
 	};
 };
 
-export default function Home({data_Heterodontus, data_Carcharias, data_Rhincodon, data_Cephaloscyllium, data_Triaenodon, data_Carcharhinus, data_Sphyrna, data_Squatina}) {
+export default function Home({data_num, data_Heterodontus, data_Carcharias, data_Rhincodon, data_Cephaloscyllium, data_Triaenodon, data_Carcharhinus, data_Sphyrna, data_Squatina}) {
 
 	return (
 		<Layout title="サメの仲間">
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">サメの仲間</h1>
+				<p className="pt-2 text-xs md:text-sm text-center text-gray-700 font-medium">掲載種 : {data_num}種</p>
 
 				<Family family="ネコザメ科"></Family>
 				<Genus genus="ネコザメ属 (Heterodontus)" data={data_Heterodontus}></Genus>

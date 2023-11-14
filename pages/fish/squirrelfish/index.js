@@ -4,6 +4,7 @@ import {Family, Genus} from "/components/Class";
 
 // SSG
 export const getStaticProps = async() => {
+	const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]squirrelfish` , limit: 1 }});
 	const data_Sargocentron = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イットウダイ属` , limit: 100 }});
 	const data_Neoniphon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ウケグチイットウダイ属` , limit: 100 }});
 	const data_Myripristis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アカマツカサ属` , limit: 100 }});
@@ -11,6 +12,7 @@ export const getStaticProps = async() => {
 
 	return {
     	props: {
+			data_num: data.totalCount,
     		data_Sargocentron: data_Sargocentron.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Neoniphon: data_Neoniphon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Myripristis: data_Myripristis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
@@ -19,13 +21,14 @@ export const getStaticProps = async() => {
 	};
 };
 
-export default function Home({data_Sargocentron, data_Neoniphon, data_Myripristis, data_Monocentris}) {
+export default function Home({data_num, data_Sargocentron, data_Neoniphon, data_Myripristis, data_Monocentris}) {
 
 	return (
 		<Layout title="イットウダイの仲間">
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">イットウダイの仲間</h1>
+				<p className="pt-2 text-xs md:text-sm text-center text-gray-700 font-medium">掲載種 : {data_num}種</p>
 
 				<Family family="イットウダイ科"></Family>
 				<Genus genus="アカマツカサ属 (Myripristis)" data={data_Myripristis}></Genus>

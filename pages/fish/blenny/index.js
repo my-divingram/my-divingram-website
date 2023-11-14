@@ -4,6 +4,7 @@ import {Family, Genus} from "/components/Class";
 
 // SSG
 export const getStaticProps = async() => {
+	const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]blenny` , limit: 1 }});
 	const data_Petroscirtes = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハタタテギンポ属` , limit: 100 }});
 	const data_Salarias = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヤエヤマギンポ属` , limit: 100 }});
 	const data_Mimoblennius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]マツバギンポ属` , limit: 100 }});
@@ -24,6 +25,7 @@ export const getStaticProps = async() => {
 
 	return {
     	props: {
+			data_num: data.totalCount,
     		data_Petroscirtes: data_Petroscirtes.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Salarias: data_Salarias.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Mimoblennius: data_Mimoblennius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
@@ -45,13 +47,14 @@ export const getStaticProps = async() => {
 	};
 };
 
-export default function Home({data_Petroscirtes, data_Salarias, data_Mimoblennius, data_Helcogramma, data_Plagiotremus, data_Meiacanthus, data_Springerichthys, data_Exallias, data_Crossosalarias, data_Cirripectes, data_Ecsenius, data_Aspidontus, data_Limnichthys, data_Neoclinus, data_Trichonotus, data_Istiblennius, data_Enneapterygius}) {
+export default function Home({data_num, data_Petroscirtes, data_Salarias, data_Mimoblennius, data_Helcogramma, data_Plagiotremus, data_Meiacanthus, data_Springerichthys, data_Exallias, data_Crossosalarias, data_Cirripectes, data_Ecsenius, data_Aspidontus, data_Limnichthys, data_Neoclinus, data_Trichonotus, data_Istiblennius, data_Enneapterygius}) {
 
 	return (
 		<Layout title="ギンポの仲間">
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">ギンポの仲間</h1>
+				<p className="pt-2 text-xs md:text-sm text-center text-gray-700 font-medium">掲載種 (未記載種を含む) : {data_num}種</p>
 
 				<Family family="ベラギンポ科"></Family>
 				<Genus genus="ベラギンポ属 (Trichonotus)" data={data_Trichonotus}></Genus>

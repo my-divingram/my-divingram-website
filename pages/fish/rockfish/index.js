@@ -4,6 +4,7 @@ import {Family, Genus} from "/components/Class";
 
 // SSG
 export const getStaticProps = async() => {
+	const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]rockfish` , limit: 1 }});
 	const data_Sebastes = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]メバル属` , limit: 100 }});
 	const data_Sebastiscus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カサゴ属` , limit: 100 }});
 	const data_Pterois = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ミノカサゴ属` , limit: 100 }});
@@ -25,6 +26,7 @@ export const getStaticProps = async() => {
 
 	return {
     	props: {
+			data_num: data.totalCount,
     		data_Sebastes: data_Sebastes.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Sebastiscus: data_Sebastiscus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Pterois: data_Pterois.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
@@ -47,13 +49,14 @@ export const getStaticProps = async() => {
 	};
 };
 
-export default function Home({data_Sebastes, data_Sebastiscus, data_Pterois, data_Pteropterus, data_Parapterois, data_Dendrochirus, data_Nemapterois, data_Neochirus, data_Taenianotus, data_Rhinopias, data_Pteroidichthys, data_Scorpaenopsis, data_Scorpaena, data_Sebastapistes, data_Parascorpaena, data_Scorpaenodes, data_Caracanthus, data_Neosebastes}) {
+export default function Home({data_num, data_Sebastes, data_Sebastiscus, data_Pterois, data_Pteropterus, data_Parapterois, data_Dendrochirus, data_Nemapterois, data_Neochirus, data_Taenianotus, data_Rhinopias, data_Pteroidichthys, data_Scorpaenopsis, data_Scorpaena, data_Sebastapistes, data_Parascorpaena, data_Scorpaenodes, data_Caracanthus, data_Neosebastes}) {
 
 	return (
 		<Layout title="メバル・カサゴの仲間">
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">メバル・カサゴの仲間</h1>
+				<p className="pt-2 text-xs md:text-sm text-center text-gray-700 font-medium">掲載種 : {data_num}種</p>
 
 				<Family family="フサカサゴ科"></Family>
 				<Genus genus="ダンゴオコゼ属 (Caracanthus)" data={data_Caracanthus}></Genus>

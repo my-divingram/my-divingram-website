@@ -4,6 +4,7 @@ import {Family, Genus} from "/components/Class";
 
 // SSG
 export const getStaticProps = async() => {
+	const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]hawkfish` , limit: 1 }});
 	const data_Cirrhitichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]オキゴンベ属` , limit: 100 }});
 	const data_Oxycirrhites = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]クダゴンベ属` , limit: 100 }});
 	const data_Paracirrhites = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ホシゴンベ属` , limit: 100 }});
@@ -13,6 +14,7 @@ export const getStaticProps = async() => {
 
 	return {
     	props: {
+			data_num: data.totalCount,
     		data_Cirrhitichthys: data_Cirrhitichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Oxycirrhites: data_Oxycirrhites.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Paracirrhites: data_Paracirrhites.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
@@ -23,13 +25,14 @@ export const getStaticProps = async() => {
 	};
 };
 
-export default function Home({data_Cirrhitichthys, data_Oxycirrhites, data_Paracirrhites, data_Neocirrhites, data_Cirrhitops, data_Cyprinocirrhites}) {
+export default function Home({data_num, data_Cirrhitichthys, data_Oxycirrhites, data_Paracirrhites, data_Neocirrhites, data_Cirrhitops, data_Cyprinocirrhites}) {
 
 	return (
 		<Layout title="ゴンベの仲間">
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">ゴンベの仲間</h1>
+				<p className="pt-2 text-xs md:text-sm text-center text-gray-700 font-medium">掲載種 : {data_num}種</p>
 
 				<Family family="ゴンベ科"></Family>
 				<Genus genus="オキゴンベ属 (Cirrhitichthys)" data={data_Cirrhitichthys}></Genus>
