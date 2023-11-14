@@ -7,7 +7,7 @@ export const getStaticProps = async() => {
 	const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]flatfish` , limit: 1 }});
 	const data_Paralichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒラメ属` , limit: 100 }});
 	const data_Asterorhombus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]セイテンビラメ属` , limit: 100 }});
-	const data_Bothus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]トゲダルマガレイ属` , limit: 100 }});
+	const data_Bothus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ホシダルマガレイ属` , limit: 100 }});
 	const data_Crossorhombus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]コウベダルマガレイ属` , limit: 100 }});
 	const data_Engyprosopon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ダルマガレイ属` , limit: 100 }});
 	const data_Pleuronichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]メイタガレイ属` , limit: 100 }});
@@ -47,7 +47,7 @@ export default function Home({data_num, data_Paralichthys, data_Asterorhombus, d
 
 				<Family family="ダルマガレイ科"></Family>
 				<Genus genus="セイテンビラメ属 (Asterorhombus)" data={data_Asterorhombus}></Genus>
-				<Genus genus="トゲダルマガレイ属 (Bothus)" data={data_Bothus}></Genus>
+				<Genus genus="ホシダルマガレイ属 (Bothus)" data={data_Bothus}></Genus>
 				<Genus genus="コウベダルマガレイ属 (Crossorhombus)" data={data_Crossorhombus}></Genus>
 				<Genus genus="ダルマガレイ属 (Engyprosopon)" data={data_Engyprosopon}></Genus>
 
