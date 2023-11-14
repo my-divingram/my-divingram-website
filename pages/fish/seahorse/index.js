@@ -9,6 +9,7 @@ export const getStaticProps = async() => {
 	const data_Fistularia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヤガラ属` , limit: 100 }});
 	const data_Aulostomus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヘラヤガラ属` , limit: 100 }});
 	const data_Solenostomus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カミソリウオ属` , limit: 100 }});
+	const data_Halicampus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ウミヤッコ属` , limit: 100 }});
 	const data_Festucalex = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アマクサヨウジ属` , limit: 100 }});
 	const data_Corythoichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イシヨウジ属` , limit: 100 }});
 	const data_Trachyrhamphus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒフキヨウジ属` , limit: 100 }});
@@ -34,6 +35,7 @@ export const getStaticProps = async() => {
     		data_Maroubra: data_Maroubra.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Phoxocampus: data_Phoxocampus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Acentronura: data_Acentronura.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Halicampus: data_Halicampus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Hippocampus: data_Hippocampus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Aeoliscus: data_Aeoliscus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Centriscus: data_Centriscus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
@@ -41,7 +43,7 @@ export const getStaticProps = async() => {
 	};
 };
 
-export default function Home({data_num, data_Eurypegasus, data_Fistularia, data_Aulostomus, data_Solenostomus, data_Festucalex, data_Corythoichthys, data_Trachyrhamphus, data_Doryrhamphus, data_Maroubra, data_Phoxocampus, data_Acentronura, data_Hippocampus, data_Aeoliscus, data_Centriscus}) {
+export default function Home({data_num, data_Eurypegasus, data_Fistularia, data_Aulostomus, data_Solenostomus, data_Festucalex, data_Halicampus, data_Corythoichthys, data_Trachyrhamphus, data_Doryrhamphus, data_Maroubra, data_Phoxocampus, data_Acentronura, data_Hippocampus, data_Aeoliscus, data_Centriscus}) {
 
 	return (
 		<Layout title="トゲウオの仲間">
@@ -72,6 +74,7 @@ export default function Home({data_num, data_Eurypegasus, data_Fistularia, data_
 				<Genus genus="イシヨウジ属 (Corythoichthys)" data={data_Corythoichthys}></Genus>
 				<Genus genus="ヒバシヨウジ属 (Doryrhamphus)" data={data_Doryrhamphus}></Genus>
 				<Genus genus="アマクサヨウジ属 (Festucalex)" data={data_Festucalex}></Genus>
+				<Genus genus="ウミヤッコ属 (Halicampus)" data={data_Halicampus}></Genus>
 				<Genus genus="タツノオトシゴ属 (Hippocampus)" data={data_Hippocampus}></Genus>
 				<Genus genus="ダイダイヨウジ属 (Maroubra)" data={data_Maroubra}></Genus>
 				<Genus genus="ボウヨウジ属 (Phoxocampus)" data={data_Phoxocampus}></Genus>
