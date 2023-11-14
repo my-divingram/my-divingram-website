@@ -4,7 +4,7 @@ import {Family, Genus} from "/components/Class";
 
 // SSG
 export const getStaticProps = async() => {
-	const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]seachub` , limit: 1 }});
+	const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]flatfish` , limit: 1 }});
 	const data_Paralichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒラメ属` , limit: 100 }});
 	const data_Asterorhombus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]セイテンビラメ属` , limit: 100 }});
 	const data_Bothus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]トゲダルマガレイ属` , limit: 100 }});
