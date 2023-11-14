@@ -14,6 +14,7 @@ export const getStaticProps = async() => {
 	const data_Springerichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒメギンポ属` , limit: 100 }});
 	const data_Exallias = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]セダカギンポ属` , limit: 100 }});
 	const data_Crossosalarias = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]エリグロギンポ属` , limit: 100 }});
+	const data_Blenniella = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハナカエルウオ属` , limit: 100 }});
 	const data_Cirripectes = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]タテガミカエルウオ属` , limit: 100 }});
 	const data_Ecsenius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ニラミギンポ属` , limit: 100 }});
 	const data_Aspidontus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]クロスジギンポ属` , limit: 100 }});
@@ -26,6 +27,7 @@ export const getStaticProps = async() => {
 	return {
     	props: {
 			data_num: data.totalCount,
+    		data_Blenniella: data_Blenniella.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Petroscirtes: data_Petroscirtes.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Salarias: data_Salarias.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Mimoblennius: data_Mimoblennius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
@@ -47,7 +49,7 @@ export const getStaticProps = async() => {
 	};
 };
 
-export default function Home({data_num, data_Petroscirtes, data_Salarias, data_Mimoblennius, data_Helcogramma, data_Plagiotremus, data_Meiacanthus, data_Springerichthys, data_Exallias, data_Crossosalarias, data_Cirripectes, data_Ecsenius, data_Aspidontus, data_Limnichthys, data_Neoclinus, data_Trichonotus, data_Istiblennius, data_Enneapterygius}) {
+export default function Home({data_num, data_Blenniella, data_Petroscirtes, data_Salarias, data_Mimoblennius, data_Helcogramma, data_Plagiotremus, data_Meiacanthus, data_Springerichthys, data_Exallias, data_Crossosalarias, data_Cirripectes, data_Ecsenius, data_Aspidontus, data_Limnichthys, data_Neoclinus, data_Trichonotus, data_Istiblennius, data_Enneapterygius}) {
 
 	return (
 		<Layout title="ギンポの仲間">
@@ -72,6 +74,7 @@ export default function Home({data_num, data_Petroscirtes, data_Salarias, data_M
 
 				<Family family="イソギンポ科"></Family>
 				<Genus genus="クロスジギンポ属 (Aspidontus)" data={data_Aspidontus}></Genus>
+				<Genus genus="ハナカエルウオ属 (Blenniella)" data={data_Blenniella}></Genus>
 				<Genus genus="タテガミカエルウオ属 (Cirripectes)" data={data_Cirripectes}></Genus>
 				<Genus genus="エリグロギンポ属 (Crossosalarias)" data={data_Crossosalarias}></Genus>
 				<Genus genus="ニラミギンポ属 (Ecsenius)" data={data_Ecsenius}></Genus>
