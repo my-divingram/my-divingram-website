@@ -66,8 +66,8 @@ export default function Home({data_num, data_Caprodon, data_Nemanthias, data_Pyr
 				<Genus genus="ホカケハナダイ属 (Rabaulichthys)" data={data_Rabaulichthys}></Genus>
 				<Genus genus="サクラダイ属 (Sacura)" data={data_Sacura}></Genus>
 				<Genus genus="スミツキハナダイ属 (Selenanthias)" data={data_Selenanthias}></Genus>
-				<Genus genus="ヒメハナダイ属 (Tosana)" data={data_Tosana}></Genus>
 				<Genus genus="ハナゴンベ属 (Serranocirrhitus)" data={data_Serranocirrhitus}></Genus>
+				<Genus genus="ヒメハナダイ属 (Tosana)" data={data_Tosana}></Genus>
 				<Genus genus="イトヒキハナダイ属 (Tosanoides)" data={data_Tosanoides}></Genus>
 
 				<Family family="シキシマハナダイ科"></Family>
