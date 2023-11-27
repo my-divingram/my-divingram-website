@@ -1,0 +1,217 @@
+import { client } from "/libs/client";
+import Layout from "/components/Layout";
+import {Family, Genus} from "/components/Class";
+
+// SSG
+export const getStaticProps = async() => {
+	const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]others` , limit: 1 }});
+	const data_Acanthocepola = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アカタチ属` , limit: 100 }});
+	const data_Pseudoblennius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アナハゼ属` , limit: 100 }});
+	const data_Oplegnathus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イシダイ属` , limit: 100 }});
+	const data_Pseudochromis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ニセスズメ属` , limit: 100 }});
+	const data_Opistognathus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アゴアマダイ属` , limit: 100 }});
+	const data_Hexagrammos = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アイナメ属` , limit: 100 }});
+	const data_Phtheirichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]スジコバン属` , limit: 100 }});
+	const data_Calloplesiops = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]シモフリタナバタウオ属` , limit: 100 }});
+	const data_Gerres = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]クロサギ属` , limit: 100 }});
+	const data_Pictichromis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]クレナイニセスズメ属` , limit: 100 }});
+	const data_Plotosus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ゴンズイ属` , limit: 100 }});
+	const data_Spratelloides = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]キビナゴ属` , limit: 100 }});
+	const data_Brotula = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イタチウオ属` , limit: 100 }});
+	const data_Oncorhynchus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]サケ属` , limit: 100 }});
+	const data_Cociella = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イネゴチ属` , limit: 100 }});
+	const data_Microcanthus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カゴカキダイ属` , limit: 100 }});
+	const data_Heteropriacanthus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ゴマヒレキントキ属` , limit: 100 }});
+	const data_Tylosurus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]テンジクダツ属` , limit: 100 }});
+	const data_Trachipterus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]サケガシラ属` , limit: 100 }});
+	const data_Assessor = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ツバメタナバタウオ属` , limit: 100 }});
+	const data_Dactyloptena = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]セミホウボウ属` , limit: 100 }});
+	const data_Labracoglossa = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]タカベ属` , limit: 100 }});
+	const data_Physiculus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]チゴダラ属` , limit: 100 }});
+	const data_Priacanthus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]キントキダイ属` , limit: 100 }});
+	const data_Chelidonichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ホウボウ属` , limit: 100 }});
+	const data_Metavelifer = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒメクサアジ属` , limit: 100 }});
+	const data_Scombrops = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ムツ属` , limit: 100 }});
+	const data_Mugil = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ボラ属` , limit: 100 }});
+	const data_Uranoscopus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ミシマオコゼ属` , limit: 100 }});
+	const data_Mola = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]マンボウ属` , limit: 100 }});
+	const data_Remora = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ナガコバン属` , limit: 100 }});
+	const data_Evistias = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]テングダイ属` , limit: 100 }});
+	const data_Platycephalus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]コチ属` , limit: 100 }});
+	const data_Labracinus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]メギス属` , limit: 100 }});
+	const data_Inegocia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]トカゲゴチ属` , limit: 100 }});
+
+	return {
+    	props: {
+			data_num: data.totalCount,
+    		data_Pictichromis: data_Pictichromis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Acanthocepola: data_Acanthocepola.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Pseudoblennius: data_Pseudoblennius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Oplegnathus: data_Oplegnathus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Pseudochromis: data_Pseudochromis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Opistognathus: data_Opistognathus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Hexagrammos: data_Hexagrammos.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Phtheirichthys: data_Phtheirichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+			data_Calloplesiops: data_Calloplesiops.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+			data_Gerres: data_Gerres.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Plotosus: data_Plotosus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Spratelloides: data_Spratelloides.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Brotula: data_Brotula.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Oncorhynchus: data_Oncorhynchus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Cociella: data_Cociella.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+			data_Microcanthus: data_Microcanthus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+			data_Heteropriacanthus: data_Heteropriacanthus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Tylosurus: data_Tylosurus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Trachipterus: data_Trachipterus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Assessor: data_Assessor.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Dactyloptena: data_Dactyloptena.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Labracoglossa: data_Labracoglossa.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+			data_Physiculus: data_Physiculus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Priacanthus: data_Priacanthus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Chelidonichthys: data_Chelidonichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Metavelifer: data_Metavelifer.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Scombrops: data_Scombrops.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Mugil: data_Mugil.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Uranoscopus: data_Uranoscopus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Mola: data_Mola.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Remora: data_Remora.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Evistias: data_Evistias.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Platycephalus: data_Platycephalus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Labracinus: data_Labracinus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Inegocia: data_Inegocia.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    	},
+	};
+};
+
+export default function Home({data_num, data_Pictichromis, data_Acanthocepola, data_Pseudoblennius, data_Oplegnathus, data_Pseudochromis, data_Opistognathus, data_Hexagrammos, data_Phtheirichthys, data_Calloplesiops, data_Gerres, data_Plotosus, data_Spratelloides, data_Brotula, data_Oncorhynchus, data_Cociella, data_Microcanthus, data_Heteropriacanthus, data_Tylosurus, data_Trachipterus, data_Assessor, data_Dactyloptena, data_Labracoglossa, data_Physiculus, data_Priacanthus, data_Chelidonichthys, data_Metavelifer, data_Scombrops, data_Mugil, data_Uranoscopus, data_Mola, data_Remora, data_Evistias, data_Platycephalus, data_Labracinus, data_Inegocia}) {
+
+	return (
+		<Layout title="その他の海水魚">
+			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
+
+				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">その他の海水魚</h1>
+				<p className="pt-2 text-xs md:text-sm text-center text-gray-700 font-medium">掲載種 (未記載種を含む) : {data_num}種</p>
+
+				{/* 503 */}
+				<Family family="キビナゴ科"></Family>
+				<Genus genus="キビナゴ属 (Spratelloides)" data={data_Spratelloides}></Genus>
+
+				{/* 641 */}
+				<Family family="ゴンズイ科"></Family>
+				<Genus genus="ゴンズイ属 (Plotosus)" data={data_Plotosus}></Genus>
+
+				{/* 710 */}
+				<Family family="サケ科"></Family>
+				<Genus genus="サケ属 (Oncorhynchus)" data={data_Oncorhynchus}></Genus>
+
+				{/* 1038 */}
+				<Family family="クサアジ科"></Family>
+				<Genus genus="ヒメクサアジ属 (Metavelifer)" data={data_Metavelifer}></Genus>
+
+				{/* 1046 */}
+				<Family family="フリソデウオ科"></Family>
+				<Genus genus="サケガシラ属 (Trachipterus)" data={data_Trachipterus}></Genus>
+
+				{/* 1065 */}
+				<Family family="チゴダラ科"></Family>
+				<Genus genus="チゴダラ属 (Physiculus)" data={data_Physiculus}></Genus>
+
+				{/* 1173 */}
+				<Family family="アシロ科"></Family>
+				<Genus genus="イタチウオ属 (Brotula)" data={data_Brotula}></Genus>
+
+				{/* 1542 */}
+				<Family family="ボラ科"></Family>
+				<Genus genus="ボラ属 (Mugil)" data={data_Mugil}></Genus>
+
+				{/* 1622 */}
+				<Family family="ダツ科"></Family>
+				<Genus genus="テンジクダツ属 (Tylosurus)" data={data_Tylosurus}></Genus>
+
+				{/* 1780 */}
+				<Family family="ホウボウ科"></Family>
+				<Genus genus="ホウボウ属 (Chelidonichthys)" data={data_Chelidonichthys}></Genus>
+
+				{/* 1821 */}
+				<Family family="コチ科"></Family>
+				<Genus genus="イネゴチ属 (Cociella)" data={data_Cociella}></Genus>
+				<Genus genus="トカゲゴチ属 (Inegocia)" data={data_Inegocia}></Genus>
+				<Genus genus="コチ属 (Platycephalus)" data={data_Platycephalus}></Genus>
+
+				{/* 1856 */}
+				<Family family="アイナメ科"></Family>
+				<Genus genus="アイナメ属 (Hexagrammos)" data={data_Hexagrammos}></Genus>
+
+				{/* 1930 */}
+				<Family family="カジカ科"></Family>
+				<Genus genus="アナハゼ属 (Pseudoblennius)" data={data_Pseudoblennius}></Genus>
+
+				{/* 2075 */}
+				<Family family="セミホウボウ科"></Family>
+				<Genus genus="セミホウボウ属 (Dactyloptena)" data={data_Dactyloptena}></Genus>
+
+				{/* 2288 */}
+				<Family family="メギス科"></Family>
+				<Genus genus="メギス属 (Labracinus)" data={data_Labracinus}></Genus>
+				<Genus genus="クレナイニセスズメ属 (Pictichromis)" data={data_Pictichromis}></Genus>
+				<Genus genus="ニセスズメ属 (Pseudochromis)" data={data_Pseudochromis}></Genus>
+
+				{/* 2303 */}
+				<Family family="タナバタウオ科"></Family>
+				<Genus genus="ツバメタナバタウオ属 (Assessor)" data={data_Assessor}></Genus>
+				<Genus genus="シモフリタナバタウオ属 (Calloplesiops)" data={data_Calloplesiops}></Genus>
+
+				{/* 2310 */}
+				<Family family="アゴアマダイ科"></Family>
+				<Genus genus="アゴアマダイ属 (Opistognathus)" data={data_Opistognathus}></Genus>
+
+				{/* 2334 */}
+				<Family family="キントキダイ科"></Family>
+				<Genus genus="ゴマヒレキントキ属 (Heteropriacanthus)" data={data_Heteropriacanthus}></Genus>
+				<Genus genus="キントキダイ属 (Priacanthus)" data={data_Priacanthus}></Genus>
+
+				{/* 2471 */}
+				<Family family="ムツ科"></Family>
+				<Genus genus="ムツ属 (Scombrops)" data={data_Scombrops}></Genus>
+
+				{/* 2475 */}
+				<Family family="コバンザメ科"></Family>
+				<Genus genus="スジコバン属 (Phtheirichthys)" data={data_Phtheirichthys}></Genus>
+				<Genus genus="ナガコバン属 (Remora)" data={data_Remora}></Genus>
+
+				{/* 2655 */}
+				<Family family="クロサギ科"></Family>
+				<Genus genus="クロサギ属 (Gerres)" data={data_Gerres}></Genus>
+
+				{/* 2913 */}
+				<Family family="カワビシャ科"></Family>
+				<Genus genus="テングダイ属 (Evistias)" data={data_Evistias}></Genus>
+
+				{/* 2937 */}
+				<Family family="アカタチ科"></Family>
+				<Genus genus="アカタチ属 (Acanthocepola)" data={data_Acanthocepola}></Genus>
+
+				{/* 3074 */}
+				<Family family="タカベ科"></Family>
+				<Genus genus="タカベ属 (Labracoglossa)" data={data_Labracoglossa}></Genus>
+
+				{/* 3080 */}
+				<Family family="イシダイ科"></Family>
+				<Genus genus="イシダイ属 (Oplegnathus)" data={data_Oplegnathus}></Genus>
+
+				{/* 3087 */}
+				<Family family="カゴカキダイ科"></Family>
+				<Genus genus="カゴカキダイ属 (Microcanthus)" data={data_Microcanthus}></Genus>
+
+				{/* 3521 */}
+				<Family family="ミシマオコゼ科"></Family>
+				<Genus genus="ミシマオコゼ属 (Uranoscopus)" data={data_Uranoscopus}></Genus>
+
+				{/* 4759 */}
+				<Family family="マンボウ科"></Family>
+				<Genus genus="マンボウ属 (Mola)" data={data_Mola}></Genus>
+
+			</div>
+		</Layout>
+  	);
+}

@@ -328,13 +328,13 @@ function Home({data_fish, data_num}) {
                             <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">フグの仲間</h2>
                         </Link>
                     </div>
-                    {/* <div className="flex justify-center hover:opacity-80">
-                        <Link href="fish/angelfish">
-                            <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">その他</h2>
-                            イワシ、ゴンズイ、ヒメクサアジ、チゴダラ、イタチウオ、ボラ、ダツ、ホウボウ、セミホウボウ、コチ、メギス、タナバタウオ、アゴアマダイ、キントキダイ、ムツ、コバンザメ、 クロサギ、テングダイ、アカタチ、タカベ、イシダイ、イシガキダイ、カゴカキダイ、メガネウオ、ツノダシ
+                    <div className="flex justify-center hover:opacity-80">
+                        <Link href="fish/others">
+                            <Image src="/img/class/others.jpeg" alt="others" width={300} height={200} style={{objectFit:"contain"}}/>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">その他の海水魚</h2>
+                            {/* イワシ、ゴンズイ、ヒメクサアジ、チゴダラ、イタチウオ、ボラ、ダツ、ホウボウ、セミホウボウ、コチ、メギス、タナバタウオ、アゴアマダイ、キントキダイ、ムツ、コバンザメ、 クロサギ、テングダイ、アカタチ、タカベ、イシダイ、イシガキダイ、カゴカキダイ、メガネウオ、ツノダシ */}
                         </Link>
-                    </div> */}
+                    </div>
                 </div>
             </div>
         </Layout>
