@@ -40,6 +40,7 @@ export const getStaticProps = async() => {
 	const data_Platycephalus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]コチ属` , limit: 100 }});
 	const data_Labracinus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]メギス属` , limit: 100 }});
 	const data_Inegocia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]トカゲゴチ属` , limit: 100 }});
+	const data_Nemichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]シギウナギ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -79,11 +80,12 @@ export const getStaticProps = async() => {
     		data_Platycephalus: data_Platycephalus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Labracinus: data_Labracinus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Inegocia: data_Inegocia.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Nemichthys: data_Nemichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Pictichromis, data_Acanthocepola, data_Pseudoblennius, data_Oplegnathus, data_Pseudochromis, data_Opistognathus, data_Hexagrammos, data_Phtheirichthys, data_Calloplesiops, data_Gerres, data_Plotosus, data_Spratelloides, data_Brotula, data_Oncorhynchus, data_Cociella, data_Microcanthus, data_Heteropriacanthus, data_Tylosurus, data_Trachipterus, data_Assessor, data_Dactyloptena, data_Labracoglossa, data_Physiculus, data_Priacanthus, data_Chelidonichthys, data_Metavelifer, data_Scombrops, data_Mugil, data_Uranoscopus, data_Mola, data_Remora, data_Evistias, data_Platycephalus, data_Labracinus, data_Inegocia}) {
+export default function Home({data_num, data_Pictichromis, data_Acanthocepola, data_Pseudoblennius, data_Oplegnathus, data_Pseudochromis, data_Opistognathus, data_Hexagrammos, data_Phtheirichthys, data_Calloplesiops, data_Gerres, data_Plotosus, data_Spratelloides, data_Brotula, data_Oncorhynchus, data_Cociella, data_Microcanthus, data_Heteropriacanthus, data_Tylosurus, data_Trachipterus, data_Assessor, data_Dactyloptena, data_Labracoglossa, data_Physiculus, data_Priacanthus, data_Chelidonichthys, data_Metavelifer, data_Scombrops, data_Mugil, data_Uranoscopus, data_Mola, data_Remora, data_Evistias, data_Platycephalus, data_Labracinus, data_Inegocia, data_Nemichthys}) {
 
 	return (
 		<Layout title="その他の海水魚">
@@ -91,6 +93,10 @@ export default function Home({data_num, data_Pictichromis, data_Acanthocepola, d
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">その他の海水魚</h1>
 				<p className="pt-2 text-xs md:text-sm text-center text-gray-700 font-medium">掲載種 (未記載種を含む) : {data_num}種</p>
+
+				{/* 467 */}
+				<Family family="シギウナギ科"></Family>
+				<Genus genus="シギウナギ属 (Nemichthys)" data={data_Nemichthys}></Genus>
 
 				{/* 503 */}
 				<Family family="キビナゴ科"></Family>
