@@ -15,6 +15,7 @@ export const getStaticProps = async() => {
 	const data_Cercamia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]サクラテンジクダイ属` , limit: 100 }});
 	const data_Apogon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]コミナトテンジクダイ属` , limit: 100 }});
 	const data_Pseudamia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヌメリテンジクダイ属` , limit: 100 }});
+	const data_Apogonichthyoides = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カクレテンジクダイ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -29,11 +30,12 @@ export const getStaticProps = async() => {
     		data_Cercamia: data_Cercamia.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Apogon: data_Apogon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Pseudamia: data_Pseudamia.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Apogonichthyoides: data_Apogonichthyoides.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Ostorhinchus, data_Pristiapogon, data_Cheilodipterus, data_Siphamia, data_Pristicon, data_Sphaeramia, data_Rhabdamia, data_Cercamia, data_Apogon, data_Pseudamia}) {
+export default function Home({data_num, data_Ostorhinchus, data_Pristiapogon, data_Cheilodipterus, data_Siphamia, data_Pristicon, data_Sphaeramia, data_Rhabdamia, data_Cercamia, data_Apogon, data_Pseudamia, data_Apogonichthyoides}) {
 
 	return (
 		<Layout title="テンジクダイの仲間">
@@ -44,6 +46,7 @@ export default function Home({data_num, data_Ostorhinchus, data_Pristiapogon, da
 
 				<Family family="テンジクダイ科"></Family>
 				<Genus genus="コミナトテンジクダイ属 (Apogon)" data={data_Apogon}></Genus>
+				<Genus genus="カクレテンジクダイ属 (Apogonichthyoides)" data={data_Apogonichthyoides}></Genus>
 				<Genus genus="サクラテンジクダイ属 (Cercamia)" data={data_Cercamia}></Genus>
 				<Genus genus="ヤライイシモチ属 (Cheilodipterus)" data={data_Cheilodipterus}></Genus>
 				<Genus genus="スジイシモチ属 (Ostorhinchus)" data={data_Ostorhinchus}></Genus>
