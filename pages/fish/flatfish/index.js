@@ -15,6 +15,7 @@ export const getStaticProps = async() => {
 	const data_Brachirus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ミナミシマウシノシタ属` , limit: 100 }});
 	const data_Pardachirus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ミナミウシノシタ属` , limit: 100 }});
 	const data_Soleichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]サザナミウシノシタ属` , limit: 100 }});
+	const data_Cynoglossus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]オオシタビラメ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -29,11 +30,12 @@ export const getStaticProps = async() => {
     		data_Brachirus: data_Brachirus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Pardachirus: data_Pardachirus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Soleichthys: data_Soleichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Cynoglossus: data_Cynoglossus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Paralichthys, data_Asterorhombus, data_Bothus, data_Crossorhombus, data_Engyprosopon, data_Pleuronichthys, data_Aseraggodes, data_Brachirus, data_Pardachirus, data_Soleichthys}) {
+export default function Home({data_num, data_Paralichthys, data_Asterorhombus, data_Bothus, data_Crossorhombus, data_Engyprosopon, data_Pleuronichthys, data_Aseraggodes, data_Brachirus, data_Pardachirus, data_Soleichthys, data_Cynoglossus}) {
 
 	return (
 		<Layout title="カレイの仲間">
@@ -59,6 +61,9 @@ export default function Home({data_num, data_Paralichthys, data_Asterorhombus, d
 				<Genus genus="ミナミシマウシノシタ属 (Brachirus)" data={data_Brachirus}></Genus>
 				<Genus genus="ミナミウシノシタ属 (Pardachirus)" data={data_Pardachirus}></Genus>
 				<Genus genus="サザナミウシノシタ属 (Soleichthys)" data={data_Soleichthys}></Genus>
+
+				<Family family="ウシノシタ科"></Family>
+				<Genus genus="オオシタビラメ属 (Cynoglossus)" data={data_Cynoglossus}></Genus>
 
 			</div>
 		</Layout>
