@@ -79,10 +79,10 @@ export default function kanaList({kana, data_kana_a, data_kana_i, data_kana_u, d
     const kanaList = ["ア", "カ", "サ", "タ", "ナ", "ハ", "マ", "ヤ", "ラ", "ワ"];
 
     return (
-        <Layout title="僕の魚図鑑">
+        <Layout title="僕らむの魚図鑑">
             <div className="px-3 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
-                <h1 className="pt-10 pb-5 text-xl md:text-2xl text-center text-sky-800 font-black">僕の魚図鑑</h1>
+                <h1 className="pt-10 pb-5 text-xl md:text-2xl text-center text-sky-800 font-black">僕らむの魚図鑑</h1>
 
                 <Splide options={{type:"loop", gap:"24px", drag:"free", perPage:10, breakpoints:{640:{perPage:3}}, autoScroll:{pauseOnHover:true, pauseOnFocus:false, rewind:false, speed:0.3}}} extensions={{AutoScroll}}>
                     {data_fish.map((data) => (
