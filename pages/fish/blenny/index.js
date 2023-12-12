@@ -23,6 +23,7 @@ export const getStaticProps = async() => {
 	const data_Trichonotus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ベラギンポ属` , limit: 100 }});
 	const data_Istiblennius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カエルウオ属` , limit: 100 }});
 	const data_Enneapterygius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヘビギンポ属` , limit: 100 }});
+	const data_Ucla = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カスリヘビギンポ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -45,11 +46,12 @@ export const getStaticProps = async() => {
 			data_Trichonotus: data_Trichonotus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Istiblennius: data_Istiblennius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Enneapterygius: data_Enneapterygius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Ucla: data_Ucla.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Blenniella, data_Petroscirtes, data_Salarias, data_Mimoblennius, data_Helcogramma, data_Plagiotremus, data_Meiacanthus, data_Springerichthys, data_Exallias, data_Crossosalarias, data_Cirripectes, data_Ecsenius, data_Aspidontus, data_Limnichthys, data_Neoclinus, data_Trichonotus, data_Istiblennius, data_Enneapterygius}) {
+export default function Home({data_num, data_Blenniella, data_Petroscirtes, data_Salarias, data_Mimoblennius, data_Helcogramma, data_Plagiotremus, data_Meiacanthus, data_Springerichthys, data_Exallias, data_Crossosalarias, data_Cirripectes, data_Ecsenius, data_Aspidontus, data_Limnichthys, data_Neoclinus, data_Trichonotus, data_Istiblennius, data_Enneapterygius, data_Ucla}) {
 
 	return (
 		<Layout title="ギンポの仲間">
@@ -68,6 +70,7 @@ export default function Home({data_num, data_Blenniella, data_Petroscirtes, data
 				<Genus genus="ヘビギンポ属 (Enneapterygius)" data={data_Enneapterygius}></Genus>
 				<Genus genus="クロマスク属 (Helcogramma)" data={data_Helcogramma}></Genus>
 				<Genus genus="ヒメギンポ属 (Springerichthys)" data={data_Springerichthys}></Genus>
+				<Genus genus="カスリヘビギンポ属 (Ucla)" data={data_Ucla}></Genus>
 
 				<Family family="コケギンポ科"></Family>
 				<Genus genus="コケギンポ属 (Neoclinus)" data={data_Neoclinus}></Genus>
