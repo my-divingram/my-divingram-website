@@ -16,6 +16,7 @@ export const getStaticProps = async() => {
 	const data_Aulacocephalus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ルリハタ属` , limit: 100 }});
 	const data_Liopropoma = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハナスズキ属` , limit: 100 }});
 	const data_Grammistes = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヌノサラシ属` , limit: 100 }});
+	const data_Belonoperca = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヤミスズキ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -31,11 +32,12 @@ export const getStaticProps = async() => {
     		data_Aulacocephalus: data_Aulacocephalus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Liopropoma: data_Liopropoma.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Grammistes: data_Grammistes.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Belonoperca: data_Belonoperca.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Epinephelus, data_Cephalopholis, data_Aethaloperca, data_Plectropomus, data_Variola, data_Gracila, data_Chromileptes, data_Diploprion, data_Aulacocephalus, data_Liopropoma, data_Grammistes}) {
+export default function Home({data_num, data_Epinephelus, data_Cephalopholis, data_Aethaloperca, data_Plectropomus, data_Variola, data_Gracila, data_Chromileptes, data_Diploprion, data_Aulacocephalus, data_Liopropoma, data_Grammistes, data_Belonoperca}) {
 
 	return (
 		<Layout title="ハタの仲間">
@@ -46,6 +48,7 @@ export default function Home({data_num, data_Epinephelus, data_Cephalopholis, da
 
 				<Family family="ハタ科"></Family>
 				<Genus genus="ルリハタ属 (Aulacocephalus)" data={data_Aulacocephalus}></Genus>
+				<Genus genus="ヤミスズキ属 (Belonoperca)" data={data_Belonoperca}></Genus>
 				<Genus genus="キハッソク属 (Diploprion)" data={data_Diploprion}></Genus>
 				<Genus genus="クロハタ属 (Aethaloperca)" data={data_Aethaloperca}></Genus>
 				<Genus genus="ユカタハタ属 (Cephalopholis)" data={data_Cephalopholis}></Genus>
