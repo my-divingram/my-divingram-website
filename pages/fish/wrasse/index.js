@@ -39,6 +39,7 @@ export const getStaticProps = async() => {
 	const data_Paracheilinus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]クジャクベラ属` , limit: 100 }});
 	const data_Pseudocheilinus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ニセモチノウオ属` , limit: 100 }});
 	const data_Macropharyngodon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ノドグロベラ属` , limit: 100 }});
+	const data_Wetmorella = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ノドグロベラ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -77,11 +78,12 @@ export const getStaticProps = async() => {
 			data_Paracheilinus: data_Paracheilinus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Pseudocheilinus: data_Pseudocheilinus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Macropharyngodon: data_Macropharyngodon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Wetmorella: data_Wetmorella.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Pseudojuloides, data_Terelabrus, data_Pseudolabrus, data_Pteragogus, data_Halichoeres, data_Choerodon, data_Suezichthys, data_Novaculichthys, data_Oxycheilinus, data_Novaculoides, data_Cirrhilabrus, data_Stethojulis, data_Coris, data_Bodianus, data_Cheilinus, data_Cheilio, data_Thalassoma, data_Labroides, data_Hemigymnus, data_Parajulis, data_Cymolutes, data_Anampses, data_Pseudocoris, data_Labrichthys, data_Novaculops, data_Iniistius, data_Hologymnosus, data_Semicossyphus, data_Epibulus, data_Labropsis, data_Gomphosus, data_Paracheilinus, data_Pseudocheilinus, data_Macropharyngodon}) {
+export default function Home({data_num, data_Pseudojuloides, data_Terelabrus, data_Pseudolabrus, data_Pteragogus, data_Halichoeres, data_Choerodon, data_Suezichthys, data_Novaculichthys, data_Oxycheilinus, data_Novaculoides, data_Cirrhilabrus, data_Stethojulis, data_Coris, data_Bodianus, data_Cheilinus, data_Cheilio, data_Thalassoma, data_Labroides, data_Hemigymnus, data_Parajulis, data_Cymolutes, data_Anampses, data_Pseudocoris, data_Labrichthys, data_Novaculops, data_Iniistius, data_Hologymnosus, data_Semicossyphus, data_Epibulus, data_Labropsis, data_Gomphosus, data_Paracheilinus, data_Pseudocheilinus, data_Macropharyngodon, data_Wetmorella}) {
 
 	return (
 		<Layout title="ベラの仲間">
@@ -95,6 +97,7 @@ export default function Home({data_num, data_Pseudojuloides, data_Terelabrus, da
 				<Genus genus="キュウセン属 (Parajulis)" data={data_Parajulis}></Genus>
 				<Genus genus="ギチベラ属 (Epibulus)" data={data_Epibulus}></Genus>
 				<Genus genus="ホホスジモチノウオ属 (Oxycheilinus)" data={data_Oxycheilinus}></Genus>
+				<Genus genus="ハシナガベラ属 (Wetmorella)" data={data_Wetmorella}></Genus>
 				<Genus genus="モチノウオ属 (Cheilinus)" data={data_Cheilinus}></Genus>
 				<Genus genus="イトヒキベラ属 (Cirrhilabrus)" data={data_Cirrhilabrus}></Genus>
 				<Genus genus="クジャクベラ属 (Paracheilinus)" data={data_Paracheilinus}></Genus>
