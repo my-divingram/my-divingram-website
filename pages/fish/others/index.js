@@ -24,7 +24,7 @@ export const getStaticProps = async() => {
 	const data_Assessor = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ツバメタナバタウオ属` , limit: 100 }});
 	const data_Dactyloptena = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]セミホウボウ属` , limit: 100 }});
 	const data_Labracoglossa = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]タカベ属` , limit: 100 }});
-	const data_Physiculus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]チゴダラ属` , limit: 100 }});
+	const data_Lotella = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イソアイナメ属` , limit: 100 }});
 	const data_Priacanthus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]キントキダイ属` , limit: 100 }});
 	const data_Chelidonichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ホウボウ属` , limit: 100 }});
 	const data_Metavelifer = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒメクサアジ属` , limit: 100 }});
@@ -64,7 +64,7 @@ export const getStaticProps = async() => {
     		data_Assessor: data_Assessor.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Dactyloptena: data_Dactyloptena.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Labracoglossa: data_Labracoglossa.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
-			data_Physiculus: data_Physiculus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+			data_Lotella: data_Lotella.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Priacanthus: data_Priacanthus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Chelidonichthys: data_Chelidonichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Metavelifer: data_Metavelifer.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
@@ -85,7 +85,7 @@ export const getStaticProps = async() => {
 	};
 };
 
-export default function Home({data_num, data_Acanthocepola, data_Pseudoblennius, data_Oplegnathus, data_Opistognathus, data_Hexagrammos, data_Phtheirichthys, data_Calloplesiops, data_Gerres, data_Plotosus, data_Spratelloides, data_Brotula, data_Oncorhynchus, data_Cociella, data_Microcanthus, data_Tylosurus, data_Trachipterus, data_Assessor, data_Dactyloptena, data_Labracoglossa, data_Physiculus, data_Priacanthus, data_Chelidonichthys, data_Metavelifer, data_Scombrops, data_Mugil, data_Uranoscopus, data_Mola, data_Echeneis, data_Evistias, data_Platycephalus, data_Inegocia, data_Nemichthys, data_Trichiurus, data_Psenes, data_Zeus, data_Alepisaurus}) {
+export default function Home({data_num, data_Acanthocepola, data_Pseudoblennius, data_Oplegnathus, data_Opistognathus, data_Hexagrammos, data_Phtheirichthys, data_Calloplesiops, data_Gerres, data_Plotosus, data_Spratelloides, data_Brotula, data_Oncorhynchus, data_Cociella, data_Microcanthus, data_Tylosurus, data_Trachipterus, data_Assessor, data_Dactyloptena, data_Labracoglossa, data_Lotella, data_Priacanthus, data_Chelidonichthys, data_Metavelifer, data_Scombrops, data_Mugil, data_Uranoscopus, data_Mola, data_Echeneis, data_Evistias, data_Platycephalus, data_Inegocia, data_Nemichthys, data_Trichiurus, data_Psenes, data_Zeus, data_Alepisaurus}) {
 
 	return (
 		<Layout title="その他の海水魚">
@@ -124,7 +124,7 @@ export default function Home({data_num, data_Acanthocepola, data_Pseudoblennius,
 
 				{/* 1065 */}
 				<Family family="チゴダラ科"></Family>
-				<Genus genus="チゴダラ属 (Physiculus)" data={data_Physiculus}></Genus>
+				<Genus genus="イソアイナメ属 (Lotella)" data={data_Lotella}></Genus>
 
 				{/* 1173 */}
 				<Family family="アシロ科"></Family>
