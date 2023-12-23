@@ -7,17 +7,19 @@ export const getStaticProps = async() => {
 	const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]fusilier` , limit: 1 }});
 	const data_Caesio = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]タカサゴ属` , limit: 100 }});
 	const data_Pterocaesio = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]クマササハナムロ属` , limit: 100 }});
+	const data_Gymnocaesio = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ホソタカサゴ属` , limit: 100 }});
 
 	return {
     	props: {
 			data_num: data.totalCount,
     		data_Caesio: data_Caesio.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Pterocaesio: data_Pterocaesio.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Gymnocaesio: data_Gymnocaesio.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Caesio, data_Pterocaesio}) {
+export default function Home({data_num, data_Caesio, data_Pterocaesio, data_Gymnocaesio}) {
 
 	return (
 		<Layout title="タカサゴの仲間">
@@ -28,6 +30,7 @@ export default function Home({data_num, data_Caesio, data_Pterocaesio}) {
 
 				<Family family="タカサゴ科"></Family>
 				<Genus genus="タカサゴ属 (Caesio)" data={data_Caesio}></Genus>
+				<Genus genus="ホソタカサゴ属 (Gymnocaesio)" data={data_Gymnocaesio}></Genus>
 				<Genus genus="クマササハナムロ属 (Pterocaesio)" data={data_Pterocaesio}></Genus>
 
 			</div>
