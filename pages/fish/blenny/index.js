@@ -25,6 +25,7 @@ export const getStaticProps = async() => {
 	const data_Enneapterygius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヘビギンポ属` , limit: 100 }});
 	const data_Ucla = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カスリヘビギンポ属` , limit: 100 }});
 	const data_Norfolkia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ニセヘビギンポ属` , limit: 100 }});
+	const data_Omobranchus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ナベカ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -49,11 +50,12 @@ export const getStaticProps = async() => {
     		data_Enneapterygius: data_Enneapterygius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Ucla: data_Ucla.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Norfolkia: data_Norfolkia.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Omobranchus: data_Omobranchus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Blenniella, data_Petroscirtes, data_Salarias, data_Mimoblennius, data_Helcogramma, data_Plagiotremus, data_Meiacanthus, data_Springerichthys, data_Exallias, data_Crossosalarias, data_Cirripectes, data_Ecsenius, data_Aspidontus, data_Limnichthys, data_Neoclinus, data_Trichonotus, data_Istiblennius, data_Enneapterygius, data_Ucla, data_Norfolkia}) {
+export default function Home({data_num, data_Blenniella, data_Petroscirtes, data_Salarias, data_Mimoblennius, data_Helcogramma, data_Plagiotremus, data_Meiacanthus, data_Springerichthys, data_Exallias, data_Crossosalarias, data_Cirripectes, data_Ecsenius, data_Aspidontus, data_Limnichthys, data_Neoclinus, data_Trichonotus, data_Istiblennius, data_Enneapterygius, data_Ucla, data_Norfolkia, data_Omobranchus}) {
 
 	return (
 		<Layout title="ギンポの仲間">
@@ -88,6 +90,7 @@ export default function Home({data_num, data_Blenniella, data_Petroscirtes, data
 				<Genus genus="カエルウオ属 (Istiblennius)" data={data_Istiblennius}></Genus>
 				<Genus genus="ヒゲニジギンポ属 (Meiacanthus)" data={data_Meiacanthus}></Genus>
 				<Genus genus="マツバギンポ属 (Mimoblennius)" data={data_Mimoblennius}></Genus>
+				<Genus genus="ナベカ属 (Omobranchus)" data={data_Omobranchus}></Genus>
 				<Genus genus="ハタタテギンポ属 (Petroscirtes)" data={data_Petroscirtes}></Genus>
 				<Genus genus="テンクロスジギンポ属 (Plagiotremus)" data={data_Plagiotremus}></Genus>
 				<Genus genus="ヤエヤマギンポ属 (Salarias)" data={data_Salarias}></Genus>
