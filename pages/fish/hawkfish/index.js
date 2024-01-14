@@ -11,6 +11,7 @@ export const getStaticProps = async() => {
 	const data_Neocirrhites = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ベニゴンベ属` , limit: 100 }});
 	const data_Cirrhitops = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]スミツキゴンベ属` , limit: 100 }});
 	const data_Cyprinocirrhites = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ウイゴンベ属` , limit: 100 }});
+	const data_Cirrhitus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イソゴンベ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -21,11 +22,12 @@ export const getStaticProps = async() => {
     		data_Neocirrhites: data_Neocirrhites.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Cirrhitops: data_Cirrhitops.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Cyprinocirrhites: data_Cyprinocirrhites.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Cirrhitus: data_Cirrhitus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Cirrhitichthys, data_Oxycirrhites, data_Paracirrhites, data_Neocirrhites, data_Cirrhitops, data_Cyprinocirrhites}) {
+export default function Home({data_num, data_Cirrhitichthys, data_Oxycirrhites, data_Paracirrhites, data_Neocirrhites, data_Cirrhitops, data_Cyprinocirrhites, data_Cirrhitus}) {
 
 	return (
 		<Layout title="ゴンベの仲間">
@@ -37,6 +39,7 @@ export default function Home({data_num, data_Cirrhitichthys, data_Oxycirrhites, 
 				<Family family="ゴンベ科"></Family>
 				<Genus genus="オキゴンベ属 (Cirrhitichthys)" data={data_Cirrhitichthys}></Genus>
 				<Genus genus="スミツキゴンベ属 (Cirrhitops)" data={data_Cirrhitops}></Genus>
+				<Genus genus="イソゴンベ属 (Cirrhitus)" data={data_Cirrhitus}></Genus>
 				<Genus genus="ウイゴンベ属 (Cyprinocirrhites)" data={data_Cyprinocirrhites}></Genus>
 				<Genus genus="ベニゴンベ属 (Neocirrhites)" data={data_Neocirrhites}></Genus>
 				<Genus genus="クダゴンベ属 (Oxycirrhites)" data={data_Oxycirrhites}></Genus>
