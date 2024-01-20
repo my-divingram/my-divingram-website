@@ -17,6 +17,7 @@ export const getStaticProps = async() => {
 	const data_Pseudamia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヌメリテンジクダイ属` , limit: 100 }});
 	const data_Apogonichthyoides = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カクレテンジクダイ属` , limit: 100 }});
 	const data_Foa = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]タイワンマトイシモチ属` , limit: 100 }});
+	const data_Taeniamia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アトヒキテンジクダイ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -33,11 +34,12 @@ export const getStaticProps = async() => {
     		data_Pseudamia: data_Pseudamia.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Apogonichthyoides: data_Apogonichthyoides.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Foa: data_Foa.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Taeniamia: data_Taeniamia.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Ostorhinchus, data_Pristiapogon, data_Cheilodipterus, data_Siphamia, data_Pristicon, data_Sphaeramia, data_Rhabdamia, data_Cercamia, data_Apogon, data_Pseudamia, data_Apogonichthyoides, data_Foa}) {
+export default function Home({data_num, data_Ostorhinchus, data_Pristiapogon, data_Cheilodipterus, data_Siphamia, data_Pristicon, data_Sphaeramia, data_Rhabdamia, data_Cercamia, data_Apogon, data_Pseudamia, data_Apogonichthyoides, data_Foa, data_Taeniamia}) {
 
 	return (
 		<Layout title="テンジクダイの仲間">
@@ -59,6 +61,7 @@ export default function Home({data_num, data_Ostorhinchus, data_Pristiapogon, da
 				<Genus genus="スカシテンジクダイ属 (Rhabdamia)" data={data_Rhabdamia}></Genus>
 				<Genus genus="ヒカリイシモチ属 (Siphamia)" data={data_Siphamia}></Genus>
 				<Genus genus="マンジュウイシモチ属 (Sphaeramia)" data={data_Sphaeramia}></Genus>
+				<Genus genus="アトヒキテンジクダイ属 (Taeniamia)" data={data_Taeniamia}></Genus>
 
 			</div>
 		</Layout>
