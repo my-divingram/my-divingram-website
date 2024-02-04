@@ -60,7 +60,7 @@ function Home({data_fish, data_num}) {
                 <div className="grid px-3 gap-3 grid-cols-3 md:grid-cols-6">
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/shark">
-                            <Image src="/img/class/shark.png" alt="shark" width={300} height={200} style={{objectFit:"contain"}}/>
+                            <Image src="/img/class/shark.jpeg" alt="shark" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">サメの仲間</h2>
                         </Link>
                     </div>
@@ -78,13 +78,13 @@ function Home({data_fish, data_num}) {
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/seasnake">
-                            <Image src="/img/class/seasnake.png" alt="seasnake" width={300} height={200} style={{objectFit:"contain"}}/>
+                            <Image src="/img/class/seasnake.jpeg" alt="seasnake" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">ウミヘビの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/eel">
-                            <Image src="/img/class/eel.png" alt="eel" width={300} height={200} style={{objectFit:"contain"}}/>
+                            <Image src="/img/class/eel.jpeg" alt="eel" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">アナゴの仲間</h2>
                         </Link>
                     </div>
@@ -102,7 +102,7 @@ function Home({data_fish, data_num}) {
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/squirrelfish">
-                            <Image src="/img/class/squirrelfish.png" alt="squirrelfish" width={300} height={200} style={{objectFit:"contain"}}/>
+                            <Image src="/img/class/squirrelfish.jpeg" alt="squirrelfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">イットウダイの仲間</h2>
                         </Link>
                     </div>
@@ -240,13 +240,13 @@ function Home({data_fish, data_num}) {
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/seachub">
-                            <Image src="/img/class/seachub.png" alt="seachub" width={300} height={200} style={{objectFit:"contain"}}/>
+                            <Image src="/img/class/seachub.jpeg" alt="seachub" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">イスズミ・メジナの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/wrasse">
-                            <Image src="/img/class/wrasse.png" alt="wrasse" width={300} height={200} style={{objectFit:"contain"}}/>
+                            <Image src="/img/class/wrasse.jpeg" alt="wrasse" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">ベラの仲間</h2>
                         </Link>
                     </div>
@@ -306,7 +306,7 @@ function Home({data_fish, data_num}) {
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/barracuda">
-                            <Image src="/img/class/barracuda.png" alt="barracuda" width={300} height={200} style={{objectFit:"contain"}}/>
+                            <Image src="/img/class/barracuda.jpeg" alt="barracuda" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">カマスの仲間</h2>
                         </Link>
                     </div>
