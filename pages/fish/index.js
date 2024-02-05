@@ -288,7 +288,7 @@ function Home({data_fish, data_num}) {
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/batfish">
-                            <Image src="/img/class/batfish.png" alt="batfish" width={300} height={200} style={{objectFit:"contain"}}/>
+                            <Image src="/img/class/batfish.jpeg" alt="batfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">ツバメウオの仲間</h2>
                         </Link>
                     </div>
