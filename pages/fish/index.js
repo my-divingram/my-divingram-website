@@ -8,7 +8,7 @@ import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 
 // SSG
 export const getStaticProps = async() => {
-    const data_fish = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚`, orders: `-updatedAt`, limit: 30}});
+    const data_fish = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚`, orders: `-updatedAt`, limit: 100}});
 
     return {
         props: {
