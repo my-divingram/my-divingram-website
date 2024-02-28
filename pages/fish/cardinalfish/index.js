@@ -18,6 +18,7 @@ export const getStaticProps = async() => {
 	const data_Apogonichthyoides = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カクレテンジクダイ属` , limit: 100 }});
 	const data_Foa = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]タイワンマトイシモチ属` , limit: 100 }});
 	const data_Taeniamia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アトヒキテンジクダイ属` , limit: 100 }});
+	const data_Amioides = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]オニイシモチ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -35,11 +36,12 @@ export const getStaticProps = async() => {
     		data_Apogonichthyoides: data_Apogonichthyoides.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Foa: data_Foa.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Taeniamia: data_Taeniamia.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Amioides: data_Amioides.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Ostorhinchus, data_Pristiapogon, data_Cheilodipterus, data_Siphamia, data_Pristicon, data_Sphaeramia, data_Rhabdamia, data_Cercamia, data_Apogon, data_Pseudamia, data_Apogonichthyoides, data_Foa, data_Taeniamia}) {
+export default function Home({data_num, data_Ostorhinchus, data_Pristiapogon, data_Cheilodipterus, data_Siphamia, data_Pristicon, data_Sphaeramia, data_Rhabdamia, data_Cercamia, data_Apogon, data_Pseudamia, data_Apogonichthyoides, data_Foa, data_Taeniamia, data_Amioides}) {
 
 	return (
 		<Layout title="テンジクダイの仲間">
@@ -49,6 +51,7 @@ export default function Home({data_num, data_Ostorhinchus, data_Pristiapogon, da
 				<p className="pt-2 text-xs md:text-sm text-center text-gray-700 font-medium">掲載種 : {data_num}種</p>
 
 				<Family family="テンジクダイ科"></Family>
+				<Genus genus="オニイシモチ属 (Amioides)" data={data_Amioides}></Genus>
 				<Genus genus="コミナトテンジクダイ属 (Apogon)" data={data_Apogon}></Genus>
 				<Genus genus="カクレテンジクダイ属 (Apogonichthyoides)" data={data_Apogonichthyoides}></Genus>
 				<Genus genus="サクラテンジクダイ属 (Cercamia)" data={data_Cercamia}></Genus>
