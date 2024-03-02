@@ -39,7 +39,7 @@ export const getStaticProps = async() => {
 	const data_Paracheilinus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]クジャクベラ属` , limit: 100 }});
 	const data_Pseudocheilinus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ニセモチノウオ属` , limit: 100 }});
 	const data_Macropharyngodon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ノドグロベラ属` , limit: 100 }});
-	const data_Wetmorella = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ノドグロベラ属` , limit: 100 }});
+	const data_Wetmorella = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハシナガベラ属` , limit: 100 }});
 	const data_Xyrichtys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ホンテンスモドキ属` , limit: 100 }});
 
 	return {
