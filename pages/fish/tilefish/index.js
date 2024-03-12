@@ -19,7 +19,7 @@ export const getStaticProps = async() => {
 	};
 };
 
-export default function Home({data_num, data_Malacanthus, data_Hoplolatilus}) {
+export default function Home({data_num, data_Malacanthus, data_Hoplolatilus, data_Branchiostegus}) {
 
 	return (
 		<Layout title="アマダイの仲間">
