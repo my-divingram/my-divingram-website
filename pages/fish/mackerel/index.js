@@ -7,17 +7,19 @@ export const getStaticProps = async() => {
 	const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]mackerel` , limit: 1 }});
 	const data_Acanthocybium = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カマスサワラ属` , limit: 100 }});
 	const data_Gymnosarda = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イソマグロ属` , limit: 100 }});
+	const data_Rastrelliger = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]グルクマ属` , limit: 100 }});
 
 	return {
     	props: {
 			data_num: data.totalCount,
     		data_Acanthocybium: data_Acanthocybium.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Gymnosarda: data_Gymnosarda.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Rastrelliger: data_Rastrelliger.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Acanthocybium, data_Gymnosarda}) {
+export default function Home({data_num, data_Acanthocybium, data_Gymnosarda, data_Rastrelliger}) {
 
 	return (
 		<Layout title="サバの仲間">
@@ -29,6 +31,7 @@ export default function Home({data_num, data_Acanthocybium, data_Gymnosarda}) {
 				<Family family="サバ科"></Family>
 				<Genus genus="カマスサワラ属 (Acanthocybium)" data={data_Acanthocybium}></Genus>
 				<Genus genus="イソマグロ属 (Gymnosarda)" data={data_Gymnosarda}></Genus>
+				<Genus genus="グルクマ属 (Rastrelliger)" data={data_Rastrelliger}></Genus>
 
 			</div>
 		</Layout>
