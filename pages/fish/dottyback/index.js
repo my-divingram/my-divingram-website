@@ -8,6 +8,7 @@ export const getStaticProps = async() => {
 	const data_Labracinus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]メギス属` , limit: 100 }});
 	const data_Pictichromis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]クレナイニセスズメ属` , limit: 100 }});
 	const data_Pseudochromis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ニセスズメ属` , limit: 100 }});
+	const data_Pseudoplesiops = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]タナバタメギス属` , limit: 100 }});
 
 	return {
     	props: {
@@ -15,11 +16,12 @@ export const getStaticProps = async() => {
     		data_Pseudochromis: data_Pseudochromis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Pictichromis: data_Pictichromis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Labracinus: data_Labracinus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+			data_Pseudoplesiops: data_Pseudoplesiops.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Labracinus, data_Pictichromis, data_Pseudochromis, data_Monotaxis}) {
+export default function Home({data_num, data_Labracinus, data_Pictichromis, data_Pseudochromis, data_Pseudoplesiops}) {
 
 	return (
 		<Layout title="メギスの仲間">
@@ -32,6 +34,7 @@ export default function Home({data_num, data_Labracinus, data_Pictichromis, data
 				<Genus genus="メギス属 (Labracinus)" data={data_Labracinus}></Genus>
 				<Genus genus="クレナイニセスズメ属 (Pictichromis)" data={data_Pictichromis}></Genus>
 				<Genus genus="ニセスズメ属 (Pseudochromis)" data={data_Pseudochromis}></Genus>
+				<Genus genus="タナバタメギス属 (Pseudoplesiops)" data={data_Pseudoplesiops}></Genus>
 
 			</div>
 		</Layout>
