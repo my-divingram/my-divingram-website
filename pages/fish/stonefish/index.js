@@ -10,6 +10,7 @@ export const getStaticProps = async() => {
 	const data_Inimicus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]オニオコゼ属` , limit: 100 }});
 	const data_Erosa = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ダルマオコゼ属` , limit: 100 }});
 	const data_Synanceia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]オニダルマオコゼ属` , limit: 100 }});
+	const data_Paraploactis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カゴシマオコゼ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -19,11 +20,12 @@ export const getStaticProps = async() => {
     		data_Inimicus: data_Inimicus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Erosa: data_Erosa.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Synanceia: data_Synanceia.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Paraploactis: data_Paraploactis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Paracentropogon, data_Ablabys, data_Inimicus, data_Erosa, data_Synanceia}) {
+export default function Home({data_num, data_Paracentropogon, data_Ablabys, data_Inimicus, data_Erosa, data_Synanceia, data_Paraploactis}) {
 
 	return (
 		<Layout title="オコゼの仲間">
@@ -40,6 +42,9 @@ export default function Home({data_num, data_Paracentropogon, data_Ablabys, data
 				<Family family="ハオコゼ科"></Family>
 				<Genus genus="ツマジロオコゼ属 (Ablabys)" data={data_Ablabys}></Genus>
 				<Genus genus="ハオコゼ属 (Paracentropogon)" data={data_Paracentropogon}></Genus>
+
+				<Family family="イボオコゼ科"></Family>
+				<Genus genus="カゴシマオコゼ属 (Paraploactis)" data={data_Paraploactis}></Genus>
 
 			</div>
 		</Layout>
