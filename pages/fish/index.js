@@ -120,7 +120,7 @@ function Home({data_fish, data_num}) {
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/stonefish">
-                            <Image src="/img/class/stonefish.png" alt="stonefish" width={300} height={200} style={{objectFit:"contain"}}/>
+                            <Image src="/img/class/stonefish.jpeg" alt="stonefish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">オコゼの仲間</h2>
                         </Link>
                     </div>
@@ -144,7 +144,7 @@ function Home({data_fish, data_num}) {
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/cardinalfish">
-                            <Image src="/img/class/cardinalfish.jpeg" alt="cardinalfish" width={300} height={200} style={{objectFit:"contain"}}/>
+                            <Image src="/img/class/cardinalfish.png" alt="cardinalfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">テンジクダイの仲間</h2>
                         </Link>
                     </div>
@@ -198,7 +198,7 @@ function Home({data_fish, data_num}) {
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/goatfish">
-                            <Image src="/img/class/goatfish.png" alt="goatfish" width={300} height={200} style={{objectFit:"contain"}}/>
+                            <Image src="/img/class/goatfish.jpeg" alt="goatfish" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">ヒメジの仲間</h2>
                         </Link>
                     </div>
