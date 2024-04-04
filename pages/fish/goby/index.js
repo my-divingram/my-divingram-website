@@ -45,6 +45,7 @@ export const getStaticProps = async() => {
 	const data_Oplopomus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ケショウハゼ属` , limit: 100 }});
 	const data_Trimmatom = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]シマイソハゼ属` , limit: 100 }});
 	const data_Pterogobius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]キヌバリ属` , limit: 100 }});
+	const data_Oxymetopon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]タンザクハゼ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -89,11 +90,12 @@ export const getStaticProps = async() => {
     		data_Oplopomus: data_Oplopomus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Trimmatom: data_Trimmatom.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Pterogobius: data_Pterogobius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Oxymetopon: data_Oxymetopon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Oxyurichthys, data_Waitea, data_Discordipinna, data_Ptereleotris, data_Bryaninops, data_Lotilia, data_Myersina, data_Ancistrogobius, data_Pleurosicya, data_Asterropteryx, data_Gobiodon, data_Paragobiodon, data_Fusigobius, data_Lubricogobius, data_Nemateleotris, data_Trimma, data_Chaenogobius, data_Priolepis, data_Amblygobius, data_Valenciennea, data_Oplopomops, data_Gnatholepis, data_Acentrogobius, data_Gunnellichthys, data_Istigobius, data_Stonogobiops, data_Amblyeleotris, data_Tomiyamichthys, data_Eviota, data_Tryssogobius, data_Signigobius, data_Vanderhorstia, data_Cryptocentrus, data_Ctenogobiops, data_Echinogobius, data_Hazeus, data_Koumansetta, data_Oplopomus, data_Trimmatom, data_Pterogobius}) {
+export default function Home({data_num, data_Oxyurichthys, data_Waitea, data_Discordipinna, data_Ptereleotris, data_Bryaninops, data_Lotilia, data_Myersina, data_Ancistrogobius, data_Pleurosicya, data_Asterropteryx, data_Gobiodon, data_Paragobiodon, data_Fusigobius, data_Lubricogobius, data_Nemateleotris, data_Trimma, data_Chaenogobius, data_Priolepis, data_Amblygobius, data_Valenciennea, data_Oplopomops, data_Gnatholepis, data_Acentrogobius, data_Gunnellichthys, data_Istigobius, data_Stonogobiops, data_Amblyeleotris, data_Tomiyamichthys, data_Eviota, data_Tryssogobius, data_Signigobius, data_Vanderhorstia, data_Cryptocentrus, data_Ctenogobiops, data_Echinogobius, data_Hazeus, data_Koumansetta, data_Oplopomus, data_Trimmatom, data_Pterogobius, data_Oxymetopon}) {
 
 	return (
 		<Layout title="ハゼの仲間">
@@ -146,6 +148,7 @@ export default function Home({data_num, data_Oxyurichthys, data_Waitea, data_Dis
 
 				<Family family="クロユリハゼ科"></Family>
 				<Genus genus="ハタタテハゼ属 (Nemateleotris)" data={data_Nemateleotris}></Genus>
+				<Genus genus="タンザクハゼ属 (Oxymetopon)" data={data_Oxymetopon}></Genus>
 				<Genus genus="クロユリハゼ属 (Ptereleotris)" data={data_Ptereleotris}></Genus>
 			</div>
 		</Layout>
