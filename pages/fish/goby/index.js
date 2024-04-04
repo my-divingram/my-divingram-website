@@ -25,7 +25,6 @@ export const getStaticProps = async() => {
 	const data_Priolepis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イレズミハゼ属` , limit: 100 }});
 	const data_Amblygobius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]サラサハゼ属` , limit: 100 }});
 	const data_Valenciennea = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]クロイトハゼ属` , limit: 100 }});
-	const data_Oplopomops = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]トンガリハゼ属` , limit: 100 }});
 	const data_Gnatholepis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]オオモンハゼ属` , limit: 100 }});
 	const data_Acentrogobius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]キララハゼ属` , limit: 100 }});
 	const data_Gunnellichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]オオメワラスボ属` , limit: 100 }});
@@ -71,7 +70,6 @@ export const getStaticProps = async() => {
 			data_Priolepis: data_Priolepis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Amblygobius: data_Amblygobius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Valenciennea: data_Valenciennea.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
-    		data_Oplopomops: data_Oplopomops.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Gnatholepis: data_Gnatholepis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Acentrogobius: data_Acentrogobius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Gunnellichthys: data_Gunnellichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
@@ -97,7 +95,7 @@ export const getStaticProps = async() => {
 	};
 };
 
-export default function Home({data_num, data_Oxyurichthys, data_Waitea, data_Discordipinna, data_Ptereleotris, data_Bryaninops, data_Lotilia, data_Myersina, data_Ancistrogobius, data_Pleurosicya, data_Asterropteryx, data_Gobiodon, data_Paragobiodon, data_Fusigobius, data_Lubricogobius, data_Nemateleotris, data_Trimma, data_Chaenogobius, data_Priolepis, data_Amblygobius, data_Valenciennea, data_Oplopomops, data_Gnatholepis, data_Acentrogobius, data_Gunnellichthys, data_Istigobius, data_Stonogobiops, data_Amblyeleotris, data_Tomiyamichthys, data_Eviota, data_Tryssogobius, data_Signigobius, data_Vanderhorstia, data_Cryptocentrus, data_Ctenogobiops, data_Echinogobius, data_Hazeus, data_Koumansetta, data_Oplopomus, data_Trimmatom, data_Pterogobius, data_Oxymetopon, data_Yongeichthys}) {
+export default function Home({data_num, data_Oxyurichthys, data_Waitea, data_Discordipinna, data_Ptereleotris, data_Bryaninops, data_Lotilia, data_Myersina, data_Ancistrogobius, data_Pleurosicya, data_Asterropteryx, data_Gobiodon, data_Paragobiodon, data_Fusigobius, data_Lubricogobius, data_Nemateleotris, data_Trimma, data_Chaenogobius, data_Priolepis, data_Amblygobius, data_Valenciennea, data_Gnatholepis, data_Acentrogobius, data_Gunnellichthys, data_Istigobius, data_Stonogobiops, data_Amblyeleotris, data_Tomiyamichthys, data_Eviota, data_Tryssogobius, data_Signigobius, data_Vanderhorstia, data_Cryptocentrus, data_Ctenogobiops, data_Echinogobius, data_Hazeus, data_Koumansetta, data_Oplopomus, data_Trimmatom, data_Pterogobius, data_Oxymetopon, data_Yongeichthys}) {
 
 	return (
 		<Layout title="ハゼの仲間">
@@ -123,7 +121,6 @@ export default function Home({data_num, data_Oxyurichthys, data_Waitea, data_Dis
 				<Genus genus="オオモンハゼ属 (Gnatholepis)" data={data_Gnatholepis}></Genus>
 				<Genus genus="コバンハゼ属 (Gobiodon)" data={data_Gobiodon}></Genus>
 				<Genus genus="ユカタハゼ属 (Hazeus)" data={data_Hazeus}></Genus>
-				<Genus genus="トンガリハゼ属 (Oplopomops)" data={data_Oplopomops}></Genus>
 				<Genus genus="クツワハゼ属 (Istigobius)" data={data_Istigobius}></Genus>
 				<Genus genus="キンセンハゼ属 (Koumansetta)" data={data_Koumansetta}></Genus>
 				<Genus genus="オドリハゼ属 (Lotilia)" data={data_Lotilia}></Genus>
