@@ -29,7 +29,7 @@ export default function IndividualPage({pagedata}){
 
     return (
         <Layout title={pagedata.japaneseName}>
-            <Species classes="メバル・カサゴの仲間" pagedata={pagedata}></Species>
+            <Species classes="カサゴ・メバルの仲間" pagedata={pagedata}></Species>
         </Layout>
     )
 }
