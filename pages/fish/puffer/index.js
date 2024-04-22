@@ -13,6 +13,7 @@ export const getStaticProps = async() => {
 	const data_Ostracion = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハコフグ属` , limit: 100 }});
 	const data_Lactoria = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]コンゴウフグ属` , limit: 100 }});
 	const data_Cyclichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]メイタイシガキフグ属` , limit: 100 }});
+	const data_Lagocephalus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]サバフグ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -25,11 +26,12 @@ export const getStaticProps = async() => {
     		data_Ostracion: data_Ostracion.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Lactoria: data_Lactoria.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Cyclichthys: data_Cyclichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+			data_Lagocephalus: data_Lagocephalus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Chilomycterus, data_Arothron, data_Takifugu, data_Diodon, data_Canthigaster, data_Ostracion, data_Lactoria, data_Cyclichthys}) {
+export default function Home({data_num, data_Chilomycterus, data_Arothron, data_Takifugu, data_Diodon, data_Canthigaster, data_Ostracion, data_Lactoria, data_Cyclichthys, data_Lagocephalus}) {
 
 	return (
 		<Layout title="フグの仲間">
@@ -45,6 +47,7 @@ export default function Home({data_num, data_Chilomycterus, data_Arothron, data_
 				<Family family="フグ科"></Family>
 				<Genus genus="モヨウフグ属 (Arothron)" data={data_Arothron}></Genus>
 				<Genus genus="キタマクラ属 (Canthigaster)" data={data_Canthigaster}></Genus>
+				<Genus genus="サバフグ属 (Lagocephalus)" data={data_Lagocephalus}></Genus>
 				<Genus genus="トラフグ属 (Takifugu)" data={data_Takifugu}></Genus>
 
 				<Family family="ハリセンボン科"></Family>
