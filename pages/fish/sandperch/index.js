@@ -6,16 +6,18 @@ import {Family, Genus} from "/components/Class";
 export const getStaticProps = async() => {
 	const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]sandperch` , limit: 1 }});
 	const data_Parapercis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]トラギス属` , limit: 100 }});
+	const data_Osopsaron = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒメトラギス属` , limit: 100 }});
 
 	return {
     	props: {
 			data_num: data.totalCount,
 			data_Parapercis: data_Parapercis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+			data_Osopsaron: data_Osopsaron.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Parapercis}) {
+export default function Home({data_num, data_Parapercis, data_Osopsaron}) {
 
 	return (
 		<Layout title="トラギスの仲間">
@@ -26,6 +28,9 @@ export default function Home({data_num, data_Parapercis}) {
 
 				<Family family="トラギス科"></Family>
 				<Genus genus="トラギス属 (Parapercis)" data={data_Parapercis}></Genus>
+
+				<Family family="ホカケトラギス科"></Family>
+				<Genus genus="ヒメトラギス属 (Osopsaron)" data={data_Osopsaron}></Genus>
 			</div>
 		</Layout>
   	);
