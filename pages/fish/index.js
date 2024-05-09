@@ -115,7 +115,7 @@ function Home({data_fish, data_num}) {
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/rockfish">
                             <Image src="/img/class/rockfish.jpeg" alt="rockfish" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">メバル・カサゴの仲間</h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">カサゴ・メバルの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
