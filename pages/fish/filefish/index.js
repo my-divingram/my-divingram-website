@@ -23,6 +23,7 @@ export const getStaticProps = async() => {
 	const data_Brachaluteres = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アオサハギ属` , limit: 100 }});
 	const data_Paramonacanthus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヨソギ属` , limit: 100 }});
 	const data_Aluterus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ウスバハギ属` , limit: 100 }});
+	const data_Odonus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アカモンガラ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -45,11 +46,12 @@ export const getStaticProps = async() => {
 			data_Brachaluteres: data_Brachaluteres.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Paramonacanthus: data_Paramonacanthus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Aluterus: data_Aluterus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Odonus: data_Odonus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Oxymonacanthus, data_Xanthichthys, data_Pseudobalistes, data_Rhinecanthus, data_Thamnaconus, data_Melichthys, data_Balistoides, data_Stephanolepis, data_Balistapus, data_Paraluteres, data_Pervagor, data_Cantherhines, data_Sufflamen, data_Rudarius, data_Acreichthys, data_Brachaluteres, data_Paramonacanthus, data_Aluterus}) {
+export default function Home({data_num, data_Oxymonacanthus, data_Xanthichthys, data_Pseudobalistes, data_Rhinecanthus, data_Thamnaconus, data_Melichthys, data_Balistoides, data_Stephanolepis, data_Balistapus, data_Paraluteres, data_Pervagor, data_Cantherhines, data_Sufflamen, data_Rudarius, data_Acreichthys, data_Brachaluteres, data_Paramonacanthus, data_Aluterus, data_Odonus}) {
 
 	return (
 		<Layout title="カワハギの仲間">
@@ -62,6 +64,7 @@ export default function Home({data_num, data_Oxymonacanthus, data_Xanthichthys, 
 				<Genus genus="クマドリ属 (Balistapus)" data={data_Balistapus}></Genus>
 				<Genus genus="モンガラカワハギ属 (Balistoides)" data={data_Balistoides}></Genus>
 				<Genus genus="ソロイモンガラ属 (Melichthys)" data={data_Melichthys}></Genus>
+				<Genus genus="アカモンガラ属 (Odonus)" data={data_Odonus}></Genus>
 				<Genus genus="キヘリモンガラ属 (Pseudobalistes)" data={data_Pseudobalistes}></Genus>
 				<Genus genus="ムラサメモンガラ属 (Rhinecanthus)" data={data_Rhinecanthus}></Genus>
 				<Genus genus="メガネハギ属 (Sufflamen)" data={data_Sufflamen}></Genus>
