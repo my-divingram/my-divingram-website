@@ -73,7 +73,7 @@ function Home({data_fish, data_blog}) {
 
 
                 <h1 className="pt-10 pb-6 text-xl md:text-2xl text-center text-sky-800 font-black">BLOG</h1>
-                <p className="mb-3 text-xs md:text-base text-center text-gray-700 font-medium"><Link href="/blog" className="hover:opacity-50">他の記事はこちら</Link></p>
+                <p className="mb-3 text-xs md:text-base text-center text-gray-700 font-medium">他の記事は<Link href="/blog" className="hover:opacity-50 underline">こちら</Link></p>
                 <div className="grid grid-cols-1 md:grid-cols-3 px-15">
                     {data_blog.map((data) => (
                         <Link key={data.id} href={`/blog/${data.id}`}>
