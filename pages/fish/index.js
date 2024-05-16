@@ -8,18 +8,31 @@ import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 
 // SSG
 export const getStaticProps = async() => {
-    const data_fish = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚`, orders: `-updatedAt`, limit: 70}});
+    const data_fish = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚`, orders: `-updatedAt`, limit: 1}});
+    const data_fish_slider = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]isSpotlight[equals]true`, orders: `-updatedAt`, limit: 40}});
+
+    const shuffleArray = (array) => {
+        const cloneArray = [...array];
+        for (let i = cloneArray.length - 1; 0 <= i; i--) {
+            let randomNum = Math.floor(Math.random() * (i + 1));
+            let tmpStorage = cloneArray[i];
+            cloneArray[i] = cloneArray[randomNum];
+            cloneArray[randomNum] = tmpStorage;
+        }
+        return cloneArray;
+    };
 
     return {
         props: {
             data_fish: data_fish.contents,
+            data_fish_slider: shuffleArray(data_fish_slider.contents),
             data_num: data_fish.totalCount,
         },
     };
 };
 
 
-function Home({data_fish, data_num}) {
+function Home({data_fish, data_fish_slider, data_num}) {
 
     const kanaList = ["ア", "カ", "サ", "タ", "ナ", "ハ", "マ", "ヤ", "ラ", "ワ"];
 
@@ -30,7 +43,7 @@ function Home({data_fish, data_num}) {
                 <h1 className="pt-10 pb-5 text-xl md:text-2xl text-center text-sky-800 font-black">僕らむの魚図鑑</h1>
 
                 <Splide options={{type:"loop", gap:"24px", drag:"free", perPage:10, breakpoints:{640:{perPage:3}}, autoScroll:{pauseOnHover:true, pauseOnFocus:false, rewind:false, speed:0.3}}} extensions={{AutoScroll}}>
-                    {data_fish.map((data) => (
+                    {data_fish_slider.map((data) => (
                         <SplideSlide key={data.id}>
                             <div className="hover:opacity-80">
                                 <Link href={`/fish/${data.class}/${data.latinName}`.replace(" ", "_")}>
@@ -44,7 +57,8 @@ function Home({data_fish, data_num}) {
 
                 <p className="text-sm md:text-lg text-center text-gray-700 font-medium">現在掲載種 (未記載種やハイブリッドを含む) : {data_num}種</p>
                 <p className="pb-1 text-sm md:text-lg text-center text-gray-700 font-medium">Last Updated : {data_fish[0].updatedAt.substr(0,10)}</p>
-                <p className="pb-10 text-xs md:text-sm text-center text-gray-700 font-medium">学名および掲載順は「日本産魚類全種リスト(ver22)」に準拠する</p>
+                <p className="pb-1 text-xs md:text-sm text-center text-gray-700 font-medium">学名および掲載順は「日本産魚類全種リスト(ver22)」に準拠する</p>
+                <p className="pb-10 text-xs md:text-sm text-center text-gray-700 font-medium">最近の更新一覧は<Link href={"/fish/recent_updates"} className="underline hover:opacity-50">こちら</Link></p>
 
                 <p className="text-center text-sm md:text-lg text-gray-700 font-medium">索引</p>
                 <div className="pt-2 pb-10 flex justify-center space-x-3 text-gray-700 font-medium">
