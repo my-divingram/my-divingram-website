@@ -9,6 +9,7 @@ export const getStaticProps = async() => {
 	const data_Abantennarius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ベニカエルアンコウ属` , limit: 100 }});
 	const data_Antennarius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カエルアンコウ属` , limit: 100 }});
 	const data_Fowlerichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ソウシカエルアンコウ属` , limit: 100 }});
+	const data_Nudiantennarius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]Nudiantennarius` , limit: 100 }});
 
 	return {
     	props: {
@@ -17,11 +18,12 @@ export const getStaticProps = async() => {
     		data_Abantennarius: data_Abantennarius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Antennarius: data_Antennarius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Fowlerichthys: data_Fowlerichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Nudiantennarius: data_Nudiantennarius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Lophiomus, data_Abantennarius, data_Antennarius, data_Fowlerichthys}) {
+export default function Home({data_num, data_Lophiomus, data_Abantennarius, data_Antennarius, data_Fowlerichthys, data_Nudiantennarius}) {
 
 	return (
 		<Layout title="アンコウの仲間">
@@ -37,6 +39,7 @@ export default function Home({data_num, data_Lophiomus, data_Abantennarius, data
 				<Genus genus="ベニカエルアンコウ属 (Abantennarius)" data={data_Abantennarius}></Genus>
 				<Genus genus="カエルアンコウ属 (Antennarius)" data={data_Antennarius}></Genus>
 				<Genus genus="ソウシカエルアンコウ属 (Fowlerichthys)" data={data_Fowlerichthys}></Genus>
+				<Genus genus="Nudiantennarius属" data={data_Nudiantennarius}></Genus>
 
 			</div>
 		</Layout>
