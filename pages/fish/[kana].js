@@ -39,6 +39,7 @@ export const getStaticProps = async (context) => {
     const data_kana_e_p = await client.get({ endpoint: "uwphoto", queries: { filters: `japaneseName[begins_with]${kana50[kana][13]}`, limit: 100 }});
     const data_kana_o_p = await client.get({ endpoint: "uwphoto", queries: { filters: `japaneseName[begins_with]${kana50[kana][14]}`, limit: 100 }});
     const data_fish = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚`, orders: `-updatedAt`, limit: 1}});
+    const data_fish_ja = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]isOversea[equals]false`, orders: `-updatedAt`, limit: 1}});
     const data_fish_slider = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]isSpotlight[equals]true`, orders: `-updatedAt`, limit: 40}});
 
     const shuffleArray = (array) => {
@@ -73,6 +74,7 @@ export const getStaticProps = async (context) => {
             data_fish: data_fish.contents,
             data_fish_slider: shuffleArray(data_fish_slider.contents),
             data_num: data_fish.totalCount,
+            data_num_ja: data_fish_ja.totalCount,
         },
     };
 };
@@ -87,7 +89,17 @@ export const getStaticPaths = async() => {
     };
 };
 
-export default function kanaList({kana, data_kana_a, data_kana_i, data_kana_u, data_kana_e, data_kana_o, data_kana_a_d, data_kana_i_d, data_kana_u_d, data_kana_e_d, data_kana_o_d, data_kana_a_p, data_kana_i_p, data_kana_u_p, data_kana_e_p, data_kana_o_p, data_fish, data_fish_slider, data_num}){
+
+function getJapaneseName(data) {
+    if (data.isOversea){
+        return `${data.japaneseName}*`
+    } else {
+        return data.japaneseName;
+    }
+}
+
+
+export default function kanaList({kana, data_kana_a, data_kana_i, data_kana_u, data_kana_e, data_kana_o, data_kana_a_d, data_kana_i_d, data_kana_u_d, data_kana_e_d, data_kana_o_d, data_kana_a_p, data_kana_i_p, data_kana_u_p, data_kana_e_p, data_kana_o_p, data_fish, data_fish_slider, data_num, data_num_ja}){
 
     const kanaList = ["ア", "カ", "サ", "タ", "ナ", "ハ", "マ", "ヤ", "ラ", "ワ"];
 
@@ -103,7 +115,7 @@ export default function kanaList({kana, data_kana_a, data_kana_i, data_kana_u, d
                             <div className="hover:opacity-80">
                                 <Link href={`/fish/${data.class}/${data.latinName}`.replace(" ", "_")}>
                                     <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                    <h2 className="py-3 mb-2 text-xs md:text-sm text-center text-gray-700 font-medium">{data.japaneseName}</h2>
+                                    <h2 className="py-3 mb-2 text-xs md:text-sm text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                                 </Link>
                             </div>
                         </SplideSlide>
@@ -111,9 +123,10 @@ export default function kanaList({kana, data_kana_a, data_kana_i, data_kana_u, d
                 </Splide>
 
                 <p className="text-sm md:text-lg text-center text-gray-700 font-medium">現在掲載種 (未記載種やハイブリッドを含む) : {data_num}種</p>
-                <p className="pb-1 text-sm md:text-lg text-center text-gray-700 font-medium">Last Updated : {data_fish[0].updatedAt.substr(0,10)}</p>
+                <p className="text-sm md:text-lg text-center text-gray-700 font-medium">うち国内種 : {data_num_ja}種</p>
+                <p className="pt-1 pb-1 text-xs md:text-sm text-center text-gray-700 font-medium">最近の更新一覧は<Link href={"/fish/recent_updates"} className="underline hover:opacity-50">こちら</Link> (最終更新 : {data_fish[0].updatedAt.substr(0,10)})</p>
                 <p className="pb-1 text-xs md:text-sm text-center text-gray-700 font-medium">学名および掲載順は「日本産魚類全種リスト(ver22)」に準拠する</p>
-                <p className="pb-10 text-xs md:text-sm text-center text-gray-700 font-medium">最近の更新一覧は<Link href={"/fish/recent_updates"} className="underline hover:opacity-50">こちら</Link></p>
+                <p className="pb-10 text-xs md:text-sm text-center text-gray-700 font-medium">海外種は名称の末尾に*の注釈あり</p>
 
                 <p className="text-center text-sm md:text-lg text-gray-700 font-medium">索引</p>
                 <div className="pt-2 pb-10 flex justify-center space-x-3 text-gray-700 font-medium">
@@ -132,7 +145,7 @@ export default function kanaList({kana, data_kana_a, data_kana_i, data_kana_u, d
                         <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
                             <Link href={`${data.class}/${data.latinName}`.replace(" ", "_")}>
                                 <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{data.japaneseName}</h2>
+                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                             </Link>
                         </div>
                     ))}
@@ -140,7 +153,7 @@ export default function kanaList({kana, data_kana_a, data_kana_i, data_kana_u, d
                         <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
                             <Link href={`${data.class}/${data.latinName}`.replace(" ", "_")}>
                                 <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{data.japaneseName}</h2>
+                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                             </Link>
                         </div>
                     ))}
@@ -148,7 +161,7 @@ export default function kanaList({kana, data_kana_a, data_kana_i, data_kana_u, d
                         <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
                             <Link href={`${data.class}/${data.latinName}`.replace(" ", "_")}>
                                 <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{data.japaneseName}</h2>
+                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                             </Link>
                         </div>
                     ))}
@@ -156,7 +169,7 @@ export default function kanaList({kana, data_kana_a, data_kana_i, data_kana_u, d
                         <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
                             <Link href={`${data.class}/${data.latinName}`.replace(" ", "_")}>
                                 <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{data.japaneseName}</h2>
+                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                             </Link>
                         </div>
                     ))}
@@ -164,7 +177,7 @@ export default function kanaList({kana, data_kana_a, data_kana_i, data_kana_u, d
                         <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
                             <Link href={`${data.class}/${data.latinName}`.replace(" ", "_")}>
                                 <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{data.japaneseName}</h2>
+                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                             </Link>
                         </div>
                     ))}
@@ -172,7 +185,7 @@ export default function kanaList({kana, data_kana_a, data_kana_i, data_kana_u, d
                         <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
                             <Link href={`${data.class}/${data.latinName}`.replace(" ", "_")}>
                                 <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{data.japaneseName}</h2>
+                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                             </Link>
                         </div>
                     ))}
@@ -180,7 +193,7 @@ export default function kanaList({kana, data_kana_a, data_kana_i, data_kana_u, d
                         <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
                             <Link href={`${data.class}/${data.latinName}`.replace(" ", "_")}>
                                 <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{data.japaneseName}</h2>
+                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                             </Link>
                         </div>
                     ))}
@@ -188,7 +201,7 @@ export default function kanaList({kana, data_kana_a, data_kana_i, data_kana_u, d
                         <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
                             <Link href={`${data.class}/${data.latinName}`.replace(" ", "_")}>
                                 <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{data.japaneseName}</h2>
+                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                             </Link>
                         </div>
                     ))}
@@ -196,7 +209,7 @@ export default function kanaList({kana, data_kana_a, data_kana_i, data_kana_u, d
                         <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
                             <Link href={`${data.class}/${data.latinName}`.replace(" ", "_")}>
                                 <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{data.japaneseName}</h2>
+                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                             </Link>
                         </div>
                     ))}
@@ -204,7 +217,7 @@ export default function kanaList({kana, data_kana_a, data_kana_i, data_kana_u, d
                         <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
                             <Link href={`${data.class}/${data.latinName}`.replace(" ", "_")}>
                                 <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{data.japaneseName}</h2>
+                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                             </Link>
                         </div>
                     ))}
@@ -212,7 +225,7 @@ export default function kanaList({kana, data_kana_a, data_kana_i, data_kana_u, d
                         <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
                             <Link href={`${data.class}/${data.latinName}`.replace(" ", "_")}>
                                 <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{data.japaneseName}</h2>
+                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                             </Link>
                         </div>
                     ))}
@@ -220,7 +233,7 @@ export default function kanaList({kana, data_kana_a, data_kana_i, data_kana_u, d
                         <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
                             <Link href={`${data.class}/${data.latinName}`.replace(" ", "_")}>
                                 <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{data.japaneseName}</h2>
+                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                             </Link>
                         </div>
                     ))}
@@ -228,7 +241,7 @@ export default function kanaList({kana, data_kana_a, data_kana_i, data_kana_u, d
                         <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
                             <Link href={`${data.class}/${data.latinName}`.replace(" ", "_")}>
                                 <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{data.japaneseName}</h2>
+                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                             </Link>
                         </div>
                     ))}
@@ -236,7 +249,7 @@ export default function kanaList({kana, data_kana_a, data_kana_i, data_kana_u, d
                         <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
                             <Link href={`${data.class}/${data.latinName}`.replace(" ", "_")}>
                                 <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{data.japaneseName}</h2>
+                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                             </Link>
                         </div>
                     ))}
@@ -244,7 +257,7 @@ export default function kanaList({kana, data_kana_a, data_kana_i, data_kana_u, d
                         <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
                             <Link href={`${data.class}/${data.latinName}`.replace(" ", "_")}>
                                 <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{data.japaneseName}</h2>
+                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                             </Link>
                         </div>
                     ))}

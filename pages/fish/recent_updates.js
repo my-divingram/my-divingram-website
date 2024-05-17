@@ -16,6 +16,7 @@ export const getStaticProps = async() => {
     const month_3rdLast = today.toLocaleDateString('sv-SE').substring(0,7)
 
     const data_fish = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚`, orders: `-updatedAt`, limit: 1}});
+    const data_fish_ja = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]isOversea[equals]false`, orders: `-updatedAt`, limit: 1}});
     const data_fish_1stLast = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]updatedAt[begins_with]${month_1stLast}`, orders: `-updatedAt`, limit: 100}});
     const data_fish_2ndLast = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]updatedAt[begins_with]${month_2ndLast}`, orders: `-updatedAt`, limit: 100}});
     const data_fish_3rdLast = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]updatedAt[begins_with]${month_3rdLast}`, orders: `-updatedAt`, limit: 100}});
@@ -34,12 +35,12 @@ export const getStaticProps = async() => {
 
     return {
         props: {
-            data_fish: data_fish.contents,
             data_fish_1stLast: data_fish_1stLast.contents,
             data_fish_2ndLast: data_fish_2ndLast.contents,
             data_fish_3rdLast: data_fish_3rdLast.contents,
             data_fish_slider: shuffleArray(data_fish_slider.contents),
             data_num: data_fish.totalCount,
+            data_num_ja: data_fish_ja.totalCount,
             data_num_1stLast: data_fish_1stLast.totalCount,
             data_num_2ndLast: data_fish_2ndLast.totalCount,
             data_num_3rdLast: data_fish_3rdLast.totalCount,
@@ -50,8 +51,15 @@ export const getStaticProps = async() => {
     };
 };
 
+function getJapaneseName(data) {
+    if (data.isOversea){
+        return `${data.japaneseName}*`
+    } else {
+        return data.japaneseName;
+    }
+}
 
-function Home({data_fish, data_fish_1stLast, data_fish_2ndLast, data_fish_3rdLast, data_fish_slider, data_num, data_num_1stLast, data_num_2ndLast, data_num_3rdLast, month_1stLast, month_2ndLast, month_3rdLast}) {
+function Home({data_fish_1stLast, data_fish_2ndLast, data_fish_3rdLast, data_fish_slider, data_num, data_num_ja, data_num_1stLast, data_num_2ndLast, data_num_3rdLast, month_1stLast, month_2ndLast, month_3rdLast}) {
 
     return (
         <Layout title="僕らむの魚図鑑">
@@ -65,7 +73,7 @@ function Home({data_fish, data_fish_1stLast, data_fish_2ndLast, data_fish_3rdLas
                             <div className="hover:opacity-80">
                                 <Link href={`/fish/${data.class}/${data.latinName}`.replace(" ", "_")}>
                                     <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                    <h2 className="pt-3 pb-5 text-xs md:text-sm text-center text-gray-700 font-medium">{data.japaneseName}</h2>
+                                    <h2 className="pt-3 pb-5 text-xs md:text-sm text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                                 </Link>
                             </div>
                         </SplideSlide>
@@ -73,8 +81,9 @@ function Home({data_fish, data_fish_1stLast, data_fish_2ndLast, data_fish_3rdLas
                 </Splide>
 
                 <p className="text-sm md:text-lg text-center text-gray-700 font-medium">現在掲載種 (未記載種やハイブリッドを含む) : {data_num}種</p>
-                <p className="pb-1 text-sm md:text-lg text-center text-gray-700 font-medium">Last Updated : {data_fish[0].updatedAt.substr(0,10)}</p>
-                <p className="pb-10 text-xs md:text-sm text-center text-gray-700 font-medium">学名および掲載順は「日本産魚類全種リスト(ver22)」に準拠する</p>
+                <p className="text-sm md:text-lg text-center text-gray-700 font-medium">うち国内種 : {data_num_ja}種</p>
+                <p className="pt-1 text-xs md:text-sm text-center text-gray-700 font-medium">学名および掲載順は「日本産魚類全種リスト(ver22)」に準拠する</p>
+                <p className="pb-10 text-xs md:text-sm text-center text-gray-700 font-medium">海外種は名称の末尾に*の注釈あり</p>
 
                 <h1 className="pb-3 text-center text-xl md:text-2xl text-sky-800 font-black">{month_1stLast}</h1>
                 <p className="pb-10 text-sm md:text-lg text-center text-gray-700 font-medium">更新数 : {data_num_1stLast}種</p>
@@ -83,7 +92,7 @@ function Home({data_fish, data_fish_1stLast, data_fish_2ndLast, data_fish_3rdLas
                         <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
                             <Link href={`${data.class}/${data.latinName}`.replace(" ", "_")}>
                                 <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{data.japaneseName}</h2>
+                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                             </Link>
                         </div>
                     ))}
@@ -95,7 +104,7 @@ function Home({data_fish, data_fish_1stLast, data_fish_2ndLast, data_fish_3rdLas
                         <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
                             <Link href={`${data.class}/${data.latinName}`.replace(" ", "_")}>
                                 <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{data.japaneseName}</h2>
+                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                             </Link>
                         </div>
                     ))}
@@ -107,7 +116,7 @@ function Home({data_fish, data_fish_1stLast, data_fish_2ndLast, data_fish_3rdLas
                         <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
                             <Link href={`${data.class}/${data.latinName}`.replace(" ", "_")}>
                                 <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{data.japaneseName}</h2>
+                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                             </Link>
                         </div>
                     ))}

@@ -8,6 +8,14 @@ export function Family({family}) {
     )
 }
 
+function getJapaneseName(data) {
+    if (data.isOversea){
+        return `${data.japaneseName}*`
+    } else {
+        return data.japaneseName;
+    }
+}
+
 export function Genus({genus, data}) {
     return (
         <div>
@@ -17,7 +25,7 @@ export function Genus({genus, data}) {
                         <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
                             <Link href={`${data.class}/${data.latinName}`.replace(" ", "_")}>
                                 <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{data.japaneseName}</h2>
+                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                             </Link>
                         </div>
                     ))}
