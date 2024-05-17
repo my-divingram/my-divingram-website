@@ -24,6 +24,7 @@ export const getStaticProps = async() => {
 	const data_Paramonacanthus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヨソギ属` , limit: 100 }});
 	const data_Aluterus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ウスバハギ属` , limit: 100 }});
 	const data_Odonus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アカモンガラ属` , limit: 100 }});
+	const data_Pseudalutarius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハナツノハギ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -47,11 +48,12 @@ export const getStaticProps = async() => {
 			data_Paramonacanthus: data_Paramonacanthus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Aluterus: data_Aluterus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Odonus: data_Odonus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Pseudalutarius: data_Pseudalutarius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Oxymonacanthus, data_Xanthichthys, data_Pseudobalistes, data_Rhinecanthus, data_Thamnaconus, data_Melichthys, data_Balistoides, data_Stephanolepis, data_Balistapus, data_Paraluteres, data_Pervagor, data_Cantherhines, data_Sufflamen, data_Rudarius, data_Acreichthys, data_Brachaluteres, data_Paramonacanthus, data_Aluterus, data_Odonus}) {
+export default function Home({data_num, data_Oxymonacanthus, data_Xanthichthys, data_Pseudobalistes, data_Rhinecanthus, data_Thamnaconus, data_Melichthys, data_Balistoides, data_Stephanolepis, data_Balistapus, data_Paraluteres, data_Pervagor, data_Cantherhines, data_Sufflamen, data_Rudarius, data_Acreichthys, data_Brachaluteres, data_Paramonacanthus, data_Aluterus, data_Odonus, data_Pseudalutarius}) {
 
 	return (
 		<Layout title="カワハギの仲間">
@@ -79,6 +81,7 @@ export default function Home({data_num, data_Oxymonacanthus, data_Xanthichthys, 
 				<Genus genus="ノコギリハギ属 (Paraluteres)" data={data_Paraluteres}></Genus>
 				<Genus genus="ヨソギ属 (Paramonacanthus)" data={data_Paramonacanthus}></Genus>
 				<Genus genus="ニシキカワハギ属 (Pervagor)" data={data_Pervagor}></Genus>
+				<Genus genus="ハナツノハギ属 (Pseudalutarius)" data={data_Pseudalutarius}></Genus>
 				<Genus genus="アミメハギ属 (Rudarius)" data={data_Rudarius}></Genus>
 				<Genus genus="カワハギ属 (Stephanolepis)" data={data_Stephanolepis}></Genus>
 				<Genus genus="ウマヅラハギ属 (Thamnaconus)" data={data_Thamnaconus}></Genus>
