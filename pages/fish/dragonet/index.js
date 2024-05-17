@@ -9,6 +9,7 @@ export const getStaticProps = async() => {
 	const data_Diplogrammus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]コブヌメリ属` , limit: 100 }});
 	const data_Neosynchiropus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]コウワンテグリ属` , limit: 100 }});
 	const data_Dactylopus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イッポンテグリ属` , limit: 100 }});
+	const data_Pterosynchiropus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ニシキテグリ属` , limit: 100 }});
 	const data_indet = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]属不明` , limit: 100 }});
 
 	return {
@@ -19,11 +20,12 @@ export const getStaticProps = async() => {
     		data_Neosynchiropus: data_Neosynchiropus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Dactylopus: data_Dactylopus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_indet: data_indet.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+			data_Pterosynchiropus: data_Pterosynchiropus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Minysynchiropus, data_Diplogrammus, data_Neosynchiropus, data_Dactylopus, data_indet}) {
+export default function Home({data_num, data_Minysynchiropus, data_Diplogrammus, data_Neosynchiropus, data_Dactylopus, data_indet, data_Pterosynchiropus}) {
 
 	return (
 		<Layout title="ネズッポの仲間">
@@ -37,6 +39,7 @@ export default function Home({data_num, data_Minysynchiropus, data_Diplogrammus,
 				<Genus genus="コブヌメリ属 (Diplogrammus)" data={data_Diplogrammus}></Genus>
 				<Genus genus="ヒメテグリ属 (Minysynchiropus)" data={data_Minysynchiropus}></Genus>
 				<Genus genus="コウワンテグリ属 (Neosynchiropus)" data={data_Neosynchiropus}></Genus>
+				<Genus genus="ニシキテグリ属 (Pterosynchiropus)" data={data_Pterosynchiropus}></Genus>
 				<Genus genus="属不明 (Callionymidae, indet. gen.)" data={data_indet}></Genus>
 
 			</div>
