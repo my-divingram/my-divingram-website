@@ -15,6 +15,7 @@ export const getStaticProps = async() => {
 	const data_Mobula = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イトマキエイ属` , limit: 100 }});
 	const data_Myliobatis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]トビエイ属` , limit: 100 }});
 	const data_Urolophus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒラタエイ属` , limit: 100 }});
+	const data_Taeniura = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]Taeniura` , limit: 100 }});
 
 
 	return {
@@ -30,11 +31,12 @@ export const getStaticProps = async() => {
     		data_Mobula: data_Mobula.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Myliobatis: data_Myliobatis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Urolophus: data_Urolophus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+			data_Taeniura: data_Taeniura.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Hemitrygon, data_Pateobatis, data_Pastinachus, data_Taeniurops, data_Neotrygon, data_Rhinoptera, data_Aetobatus, data_Mobula, data_Myliobatis, data_Urolophus}) {
+export default function Home({data_num, data_Hemitrygon, data_Pateobatis, data_Pastinachus, data_Taeniurops, data_Neotrygon, data_Rhinoptera, data_Aetobatus, data_Mobula, data_Myliobatis, data_Urolophus, data_Taeniura}) {
 
 	return (
 		<Layout title="エイの仲間">
@@ -52,6 +54,7 @@ export default function Home({data_num, data_Hemitrygon, data_Pateobatis, data_P
 				<Genus genus="ツカエイ属 (Pastinachus)" data={data_Pastinachus}></Genus>
 				<Genus genus="オグロオトメエイ属 (Pateobatis)" data={data_Pateobatis}></Genus>
 				<Genus genus="マダラエイ属 (Taeniurops)" data={data_Taeniurops}></Genus>
+				<Genus genus="Taeniura属" data={data_Taeniura}></Genus>
 
 				<Family family="トビエイ科"></Family>
 				<Genus genus="トビエイ属 (Myliobatis)" data={data_Myliobatis}></Genus>
