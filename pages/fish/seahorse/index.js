@@ -21,6 +21,7 @@ export const getStaticProps = async() => {
 	const data_Aeoliscus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヘコアユ属` , limit: 100 }});
 	const data_Centriscus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヨロイウオ属` , limit: 100 }});
 	const data_Bulbonaricus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]チンヨウジウオ属` , limit: 100 }});
+	const data_Siokunichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]Siokunichthys` , limit: 100 }});
 
 	return {
     	props: {
@@ -41,11 +42,12 @@ export const getStaticProps = async() => {
     		data_Aeoliscus: data_Aeoliscus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Centriscus: data_Centriscus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Bulbonaricus: data_Bulbonaricus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Siokunichthys: data_Siokunichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Eurypegasus, data_Fistularia, data_Aulostomus, data_Solenostomus, data_Festucalex, data_Halicampus, data_Corythoichthys, data_Trachyrhamphus, data_Doryrhamphus, data_Maroubra, data_Phoxocampus, data_Acentronura, data_Hippocampus, data_Aeoliscus, data_Centriscus, data_Bulbonaricus}) {
+export default function Home({data_num, data_Eurypegasus, data_Fistularia, data_Aulostomus, data_Solenostomus, data_Festucalex, data_Halicampus, data_Corythoichthys, data_Trachyrhamphus, data_Doryrhamphus, data_Maroubra, data_Phoxocampus, data_Acentronura, data_Hippocampus, data_Aeoliscus, data_Centriscus, data_Bulbonaricus, data_Siokunichthys}) {
 
 	return (
 		<Layout title="トゲウオの仲間">
@@ -81,6 +83,7 @@ export default function Home({data_num, data_Eurypegasus, data_Fistularia, data_
 				<Genus genus="タツノオトシゴ属 (Hippocampus)" data={data_Hippocampus}></Genus>
 				<Genus genus="ダイダイヨウジ属 (Maroubra)" data={data_Maroubra}></Genus>
 				<Genus genus="ボウヨウジ属 (Phoxocampus)" data={data_Phoxocampus}></Genus>
+				<Genus genus="Siokunichthys属" data={data_Siokunichthys}></Genus>
 				<Genus genus="ヒフキヨウジ属 (Trachyrhamphus)" data={data_Trachyrhamphus}></Genus>
 
 			</div>
