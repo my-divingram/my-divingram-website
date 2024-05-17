@@ -16,6 +16,7 @@ export const getStaticProps = async() => {
 	const data_Alectis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イトヒキアジ属` , limit: 100 }});
 	const data_Uraspis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]オキアジ属` , limit: 100 }});
 	const data_Trachinotus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]コバンアジ属` , limit: 100 }});
+	const data_Atule = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]マテアジ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -31,11 +32,12 @@ export const getStaticProps = async() => {
     		data_Alectis: data_Alectis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Uraspis: data_Uraspis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Trachinotus: data_Trachinotus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Atule: data_Atule.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Seriola, data_Caranx, data_Craterognathus, data_Flavocaranx, data_Trachurus, data_Decapterus, data_Ferdaiua, data_Pseudocaranx, data_Alectis, data_Uraspis, data_Trachinotus}) {
+export default function Home({data_num, data_Seriola, data_Caranx, data_Craterognathus, data_Flavocaranx, data_Trachurus, data_Decapterus, data_Ferdaiua, data_Pseudocaranx, data_Alectis, data_Uraspis, data_Trachinotus, data_Atule}) {
 
 	return (
 		<Layout title="アジの仲間">
@@ -46,6 +48,7 @@ export default function Home({data_num, data_Seriola, data_Caranx, data_Craterog
 
 				<Family family="アジ科"></Family>
 				<Genus genus="イトヒキアジ属 (Alectis)" data={data_Alectis}></Genus>
+				<Genus genus="マテアジ属 (Atule)" data={data_Atule}></Genus>
 				<Genus genus="ギンガメアジ属 (Caranx)" data={data_Caranx}></Genus>
 				<Genus genus="インドカイワリ属 (Craterognathus)" data={data_Craterognathus}></Genus>
 				<Genus genus="ムロアジ属 (Decapterus)" data={data_Decapterus}></Genus>
