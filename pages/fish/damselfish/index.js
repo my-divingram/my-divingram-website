@@ -23,6 +23,7 @@ export const getStaticProps = async() => {
 	const data_Amblypomacentrus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ミスジスズメダイ属` , limit: 100 }});
 	const data_Dischistodus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ダンダラスズメダイ属` , limit: 100 }});
 	const data_Lepidozygus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハナダイダマシ属` , limit: 100 }});
+	const data_Acanthochromis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]Acanthochromis` , limit: 100 }});
 
 	return {
     	props: {
@@ -45,11 +46,12 @@ export const getStaticProps = async() => {
     		data_Amblypomacentrus: data_Amblypomacentrus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Dischistodus: data_Dischistodus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Lepidozygus: data_Lepidozygus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Acanthochromis: data_Acanthochromis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Chrysiptera, data_Pomacentrus, data_Chromis, data_Pomachromis, data_Abudefduf, data_Amphiprion, data_Plectroglyphidodon, data_Amblyglyphidodon, data_Neoglyphidodon, data_Premnas, data_Stegastes, data_Azurina, data_Neopomacentrus, data_Dascyllus, data_Pycnochromis, data_Amblypomacentrus, data_Dischistodus, data_Lepidozygus}) {
+export default function Home({data_num, data_Chrysiptera, data_Pomacentrus, data_Chromis, data_Pomachromis, data_Abudefduf, data_Amphiprion, data_Plectroglyphidodon, data_Amblyglyphidodon, data_Neoglyphidodon, data_Premnas, data_Stegastes, data_Azurina, data_Neopomacentrus, data_Dascyllus, data_Pycnochromis, data_Amblypomacentrus, data_Dischistodus, data_Lepidozygus, data_Acanthochromis}) {
 
 	return (
 		<Layout title="スズメダイの仲間">
@@ -72,6 +74,7 @@ export default function Home({data_num, data_Chrysiptera, data_Pomacentrus, data
 				<Genus genus="ルリスズメダイ属 (Chrysiptera)" data={data_Chrysiptera}></Genus>
 				<Genus genus="ダンダラスズメダイ属 (Dischistodus)" data={data_Dischistodus}></Genus>
 				<Genus genus="オキナワスズメダイ属 (Pomachromis)" data={data_Pomachromis}></Genus>
+				<Genus genus="Acanthochromis属" data={data_Acanthochromis}></Genus>
 				<Genus genus="クラカオスズメダイ属 (Amblyglyphidodon)" data={data_Amblyglyphidodon}></Genus>
 				<Genus genus="ヒレナガスズメダイ属 (Neoglyphidodon)" data={data_Neoglyphidodon}></Genus>
 				<Genus genus="ミスジスズメダイ属 (Amblypomacentrus)" data={data_Amblypomacentrus}></Genus>
