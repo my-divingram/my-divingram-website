@@ -30,6 +30,7 @@ export const getStaticProps = async() => {
 	const data_Cirrisalarias = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]シシマイギンポ属` , limit: 100 }});
 	const data_Alticus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]タマカエルウオ属` , limit: 100 }});
 	const data_Rhabdoblennius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ロウソクギンポ属` , limit: 100 }});
+	const data_Andamia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヨダレカケ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -59,11 +60,12 @@ export const getStaticProps = async() => {
     		data_Cirrisalarias: data_Cirrisalarias.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Alticus: data_Alticus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Rhabdoblennius: data_Rhabdoblennius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Andamia: data_Andamia.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Blenniella, data_Petroscirtes, data_Salarias, data_Mimoblennius, data_Helcogramma, data_Plagiotremus, data_Meiacanthus, data_Springerichthys, data_Exallias, data_Crossosalarias, data_Cirripectes, data_Ecsenius, data_Aspidontus, data_Limnichthys, data_Neoclinus, data_Trichonotus, data_Istiblennius, data_Enneapterygius, data_Ucla, data_Norfolkia, data_Omobranchus, data_Entomacrodus, data_Cirrisalarias, data_Alticus, data_Rhabdoblennius}) {
+export default function Home({data_num, data_Blenniella, data_Petroscirtes, data_Salarias, data_Mimoblennius, data_Helcogramma, data_Plagiotremus, data_Meiacanthus, data_Springerichthys, data_Exallias, data_Crossosalarias, data_Cirripectes, data_Ecsenius, data_Aspidontus, data_Limnichthys, data_Neoclinus, data_Trichonotus, data_Istiblennius, data_Enneapterygius, data_Ucla, data_Norfolkia, data_Omobranchus, data_Entomacrodus, data_Cirrisalarias, data_Alticus, data_Rhabdoblennius, data_Andamia}) {
 
 	return (
 		<Layout title="ギンポの仲間">
@@ -90,6 +92,7 @@ export default function Home({data_num, data_Blenniella, data_Petroscirtes, data
 
 				<Family family="イソギンポ科"></Family>
 				<Genus genus="タマカエルウオ属 (Alticus)" data={data_Alticus}></Genus>
+				<Genus genus="ヨダレカケ属 (Andamia)" data={data_Andamia}></Genus>
 				<Genus genus="クロスジギンポ属 (Aspidontus)" data={data_Aspidontus}></Genus>
 				<Genus genus="ハナカエルウオ属 (Blenniella)" data={data_Blenniella}></Genus>
 				<Genus genus="タテガミカエルウオ属 (Cirripectes)" data={data_Cirripectes}></Genus>
