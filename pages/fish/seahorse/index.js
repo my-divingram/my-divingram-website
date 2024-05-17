@@ -20,6 +20,7 @@ export const getStaticProps = async() => {
 	const data_Hippocampus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]タツノオトシゴ属` , limit: 100 }});
 	const data_Aeoliscus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヘコアユ属` , limit: 100 }});
 	const data_Centriscus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヨロイウオ属` , limit: 100 }});
+	const data_Bulbonaricus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]チンヨウジウオ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -39,11 +40,12 @@ export const getStaticProps = async() => {
     		data_Hippocampus: data_Hippocampus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Aeoliscus: data_Aeoliscus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Centriscus: data_Centriscus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Bulbonaricus: data_Bulbonaricus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Eurypegasus, data_Fistularia, data_Aulostomus, data_Solenostomus, data_Festucalex, data_Halicampus, data_Corythoichthys, data_Trachyrhamphus, data_Doryrhamphus, data_Maroubra, data_Phoxocampus, data_Acentronura, data_Hippocampus, data_Aeoliscus, data_Centriscus}) {
+export default function Home({data_num, data_Eurypegasus, data_Fistularia, data_Aulostomus, data_Solenostomus, data_Festucalex, data_Halicampus, data_Corythoichthys, data_Trachyrhamphus, data_Doryrhamphus, data_Maroubra, data_Phoxocampus, data_Acentronura, data_Hippocampus, data_Aeoliscus, data_Centriscus, data_Bulbonaricus}) {
 
 	return (
 		<Layout title="トゲウオの仲間">
@@ -71,6 +73,7 @@ export default function Home({data_num, data_Eurypegasus, data_Fistularia, data_
 
 				<Family family="ヨウジウオ科"></Family>
 				<Genus genus="タツノイトコ属 (Acentronura)" data={data_Acentronura}></Genus>
+				<Genus genus="チンヨウジウオ属 (Bulbonaricus)" data={data_Bulbonaricus}></Genus>
 				<Genus genus="イシヨウジ属 (Corythoichthys)" data={data_Corythoichthys}></Genus>
 				<Genus genus="ヒバシヨウジ属 (Doryrhamphus)" data={data_Doryrhamphus}></Genus>
 				<Genus genus="アマクサヨウジ属 (Festucalex)" data={data_Festucalex}></Genus>
