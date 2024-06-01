@@ -51,6 +51,7 @@ export const getStaticProps = async() => {
 	const data_Liparis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]クサウオ属` , limit: 100 }});
 	const data_Thysanophrys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]クロシマゴチ属` , limit: 100 }});
 	const data_Pholidichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]Pholidichthys` , limit: 100 }});
+	const data_Hypoatherina = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ギンイソイワシ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -101,11 +102,12 @@ export const getStaticProps = async() => {
     		data_Liparis: data_Liparis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Thysanophrys: data_Thysanophrys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Pholidichthys: data_Pholidichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Hypoatherina: data_Hypoatherina.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Acanthocepola, data_Pseudoblennius, data_Oplegnathus, data_Opistognathus, data_Hexagrammos, data_Phtheirichthys, data_Calloplesiops, data_Gerres, data_Plotosus, data_Spratelloides, data_Brotula, data_Oncorhynchus, data_Cociella, data_Microcanthus, data_Tylosurus, data_Trachipterus, data_Assessor, data_Dactyloptena, data_Labracoglossa, data_Lotella, data_Priacanthus, data_Chelidonichthys, data_Metavelifer, data_Scombrops, data_Mugil, data_Uranoscopus, data_Mola, data_Echeneis, data_Evistias, data_Platycephalus, data_Inegocia, data_Nemichthys, data_Trichiurus, data_Psenes, data_Zeus, data_Alepisaurus, data_Physiculus, data_Furcina, data_Kuhlia, data_Heteropriacanthus, data_Lepidotrigla, data_Zoarchias, data_Eumicrotremus, data_Liparis, data_Thysanophrys, data_Pholidichthys}) {
+export default function Home({data_num, data_Acanthocepola, data_Pseudoblennius, data_Oplegnathus, data_Opistognathus, data_Hexagrammos, data_Phtheirichthys, data_Calloplesiops, data_Gerres, data_Plotosus, data_Spratelloides, data_Brotula, data_Oncorhynchus, data_Cociella, data_Microcanthus, data_Tylosurus, data_Trachipterus, data_Assessor, data_Dactyloptena, data_Labracoglossa, data_Lotella, data_Priacanthus, data_Chelidonichthys, data_Metavelifer, data_Scombrops, data_Mugil, data_Uranoscopus, data_Mola, data_Echeneis, data_Evistias, data_Platycephalus, data_Inegocia, data_Nemichthys, data_Trichiurus, data_Psenes, data_Zeus, data_Alepisaurus, data_Physiculus, data_Furcina, data_Kuhlia, data_Heteropriacanthus, data_Lepidotrigla, data_Zoarchias, data_Eumicrotremus, data_Liparis, data_Thysanophrys, data_Pholidichthys, data_Hypoatherina}) {
 
 	return (
 		<Layout title="その他の海水魚">
@@ -158,6 +160,10 @@ export default function Home({data_num, data_Acanthocepola, data_Pseudoblennius,
 				{/* 1542 */}
 				<Family family="ボラ科"></Family>
 				<Genus genus="ボラ属 (Mugil)" data={data_Mugil}></Genus>
+
+				{/* 1559 */}
+				<Family family="トウゴロウイワシ科"></Family>
+				<Genus genus="ギンイソイワシ属 (Hypoatherina)" data={data_Hypoatherina}></Genus>
 
 				{/* 1622 */}
 				<Family family="ダツ科"></Family>
