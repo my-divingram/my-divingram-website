@@ -13,6 +13,7 @@ export const getStaticProps = async() => {
 	const data_Carcharhinus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]メジロザメ属` , limit: 100 }});
 	const data_Sphyrna = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]シュモクザメ属` , limit: 100 }});
 	const data_Squatina = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カスザメ属` , limit: 100 }});
+	const data_Squalus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ツノザメ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -25,11 +26,12 @@ export const getStaticProps = async() => {
     		data_Carcharhinus: data_Carcharhinus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Sphyrna: data_Sphyrna.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Squatina: data_Squatina.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+			data_Squalus: data_Squalus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Heterodontus, data_Carcharias, data_Rhincodon, data_Cephaloscyllium, data_Triaenodon, data_Carcharhinus, data_Sphyrna, data_Squatina}) {
+export default function Home({data_num, data_Heterodontus, data_Carcharias, data_Rhincodon, data_Cephaloscyllium, data_Triaenodon, data_Carcharhinus, data_Sphyrna, data_Squatina, data_Squalus}) {
 
 	return (
 		<Layout title="サメの仲間">
@@ -56,6 +58,9 @@ export default function Home({data_num, data_Heterodontus, data_Carcharias, data
 
 				<Family family="シュモクザメ科"></Family>
 				<Genus genus="シュモクザメ属 (Sphyrna)" data={data_Sphyrna}></Genus>
+
+				<Family family="ツノザメ科"></Family>
+				<Genus genus="ツノザメ属 (Squalus)" data={data_Squalus}></Genus>
 
 				<Family family="カスザメ科"></Family>
 				<Genus genus="カスザメ属 (Squatina)" data={data_Squatina}></Genus>
