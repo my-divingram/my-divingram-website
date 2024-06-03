@@ -10,7 +10,7 @@ export const getStaticProps = async() => {
 	const data_Neosynchiropus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]コウワンテグリ属` , limit: 100 }});
 	const data_Dactylopus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イッポンテグリ属` , limit: 100 }});
 	const data_Pterosynchiropus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ニシキテグリ属` , limit: 100 }});
-	const data_indet = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]属不明` , limit: 100 }});
+	const data_indet = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ネズッポ科属不明` , limit: 100 }});
 
 	return {
     	props: {

@@ -11,7 +11,7 @@ export const getStaticProps = async() => {
 	const data_Erosa = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ダルマオコゼ属` , limit: 100 }});
 	const data_Synanceia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]オニダルマオコゼ属` , limit: 100 }});
 	const data_Paraploactis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カゴシマオコゼ属` , limit: 100 }});
-	const data_indet = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]属不明` , limit: 100 }});
+	const data_indet = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イボオコゼ科属不明` , limit: 100 }});
 
 	return {
     	props: {
