@@ -9,6 +9,7 @@ export const getStaticProps = async() => {
 	const data_Neoniphon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ウケグチイットウダイ属` , limit: 100 }});
 	const data_Myripristis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アカマツカサ属` , limit: 100 }});
 	const data_Monocentris = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]マツカサウオ属` , limit: 100 }});
+	const data_Pristilepis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヤセエビス属` , limit: 100 }});
 
 	return {
     	props: {
@@ -17,11 +18,12 @@ export const getStaticProps = async() => {
     		data_Neoniphon: data_Neoniphon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Myripristis: data_Myripristis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Monocentris: data_Monocentris.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Pristilepis: data_Pristilepis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Sargocentron, data_Neoniphon, data_Myripristis, data_Monocentris}) {
+export default function Home({data_num, data_Sargocentron, data_Neoniphon, data_Myripristis, data_Monocentris, data_Pristilepis}) {
 
 	return (
 		<Layout title="イットウダイの仲間">
@@ -33,6 +35,7 @@ export default function Home({data_num, data_Sargocentron, data_Neoniphon, data_
 				<Family family="イットウダイ科"></Family>
 				<Genus genus="アカマツカサ属 (Myripristis)" data={data_Myripristis}></Genus>
 				<Genus genus="ウケグチイットウダイ属 (Neoniphon)" data={data_Neoniphon}></Genus>
+				<Genus genus="ヤセエビス属 (Pristilepis)" data={data_Pristilepis}></Genus>
 				<Genus genus="イットウダイ属 (Sargocentron)" data={data_Sargocentron}></Genus>
 
 				<Family family="マツカサウオ科"></Family>
