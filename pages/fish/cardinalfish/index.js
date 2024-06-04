@@ -21,6 +21,7 @@ export const getStaticProps = async() => {
 	const data_Amioides = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]オニイシモチ属` , limit: 100 }});
 	const data_Fowleria = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]シボリ属` , limit: 100 }});
 	const data_Nectamia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ナミダテンジクダイ属` , limit: 100 }});
+	const data_Gymnapogon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]クダリボウズギス属` , limit: 100 }});
 
 	return {
     	props: {
@@ -41,11 +42,12 @@ export const getStaticProps = async() => {
     		data_Amioides: data_Amioides.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Fowleria: data_Fowleria.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Nectamia: data_Nectamia.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Gymnapogon: data_Gymnapogon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Ostorhinchus, data_Pristiapogon, data_Cheilodipterus, data_Siphamia, data_Pristicon, data_Sphaeramia, data_Rhabdamia, data_Cercamia, data_Apogon, data_Pseudamia, data_Apogonichthyoides, data_Foa, data_Taeniamia, data_Amioides, data_Fowleria, data_Nectamia}) {
+export default function Home({data_num, data_Ostorhinchus, data_Pristiapogon, data_Cheilodipterus, data_Siphamia, data_Pristicon, data_Sphaeramia, data_Rhabdamia, data_Cercamia, data_Apogon, data_Pseudamia, data_Apogonichthyoides, data_Foa, data_Taeniamia, data_Amioides, data_Fowleria, data_Nectamia, data_Gymnapogon}) {
 
 	return (
 		<Layout title="テンジクダイの仲間">
@@ -62,6 +64,7 @@ export default function Home({data_num, data_Ostorhinchus, data_Pristiapogon, da
 				<Genus genus="ヤライイシモチ属 (Cheilodipterus)" data={data_Cheilodipterus}></Genus>
 				<Genus genus="タイワンマトイシモチ属 (Foa)" data={data_Foa}></Genus>
 				<Genus genus="シボリ属 (Fowleria)" data={data_Fowleria}></Genus>
+				<Genus genus="クダリボウズギス属 (Gymnapogon)" data={data_Gymnapogon}></Genus>
 				<Genus genus="ナミダテンジクダイ属 (Nectamia)" data={data_Nectamia}></Genus>
 				<Genus genus="スジイシモチ属 (Ostorhinchus)" data={data_Ostorhinchus}></Genus>
 				<Genus genus="ヒトスジイシモチ属 (Pristiapogon)" data={data_Pristiapogon}></Genus>
