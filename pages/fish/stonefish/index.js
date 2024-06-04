@@ -11,7 +11,7 @@ export const getStaticProps = async() => {
 	const data_Erosa = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ダルマオコゼ属` , limit: 100 }});
 	const data_Synanceia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]オニダルマオコゼ属` , limit: 100 }});
 	const data_Paraploactis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カゴシマオコゼ属` , limit: 100 }});
-	const data_indet = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イボオコゼ科属不明` , limit: 100 }});
+	const data_Acanthosphex = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]Acanthosphex` , limit: 100 }});
 
 	return {
     	props: {
@@ -22,12 +22,12 @@ export const getStaticProps = async() => {
     		data_Erosa: data_Erosa.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Synanceia: data_Synanceia.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Paraploactis: data_Paraploactis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
-    		data_indet: data_indet.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Acanthosphex: data_Acanthosphex.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Paracentropogon, data_Ablabys, data_Inimicus, data_Erosa, data_Synanceia, data_Paraploactis, data_indet}) {
+export default function Home({data_num, data_Paracentropogon, data_Ablabys, data_Inimicus, data_Erosa, data_Synanceia, data_Paraploactis, data_Acanthosphex}) {
 
 	return (
 		<Layout title="オコゼの仲間">
@@ -46,8 +46,8 @@ export default function Home({data_num, data_Paracentropogon, data_Ablabys, data
 				<Genus genus="ハオコゼ属 (Paracentropogon)" data={data_Paracentropogon}></Genus>
 
 				<Family family="イボオコゼ科"></Family>
+				<Genus genus="Acanthosphex属" data={data_Acanthosphex}></Genus>
 				<Genus genus="カゴシマオコゼ属 (Paraploactis)" data={data_Paraploactis}></Genus>
-				<Genus genus="属不明 (Aploactinidae, indet. gen.)" data={data_indet}></Genus>
 
 			</div>
 		</Layout>
