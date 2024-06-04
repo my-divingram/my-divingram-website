@@ -17,10 +17,16 @@ export const getStaticProps = async() => {
 
     const data_fish = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚`, orders: `-updatedAt`, limit: 1}});
     const data_fish_ja = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]isOversea[equals]false`, orders: `-updatedAt`, limit: 1}});
-    const data_fish_1stLast = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]updatedAt[begins_with]${month_1stLast}`, orders: `-updatedAt`, limit: 100}});
-    const data_fish_2ndLast = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]updatedAt[begins_with]${month_2ndLast}`, orders: `-updatedAt`, limit: 100}});
-    const data_fish_3rdLast = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]updatedAt[begins_with]${month_3rdLast}`, orders: `-updatedAt`, limit: 100}});
     const data_fish_slider = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]isSpotlight[equals]true`, orders: `-updatedAt`, limit: 40}});
+
+    const data_fish_1stLast_100 = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]updatedAt[begins_with]${month_1stLast}`, orders: `-updatedAt`, limit: 100}});
+    const data_fish_1stLast_200 = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]updatedAt[begins_with]${month_1stLast}`, orders: `-updatedAt`, limit: 100, offset: 100}});
+
+    const data_fish_2ndLast_100 = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]updatedAt[begins_with]${month_2ndLast}`, orders: `-updatedAt`, limit: 100}});
+    const data_fish_2ndLast_200 = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]updatedAt[begins_with]${month_2ndLast}`, orders: `-updatedAt`, limit: 100, offset: 100}});
+
+    const data_fish_3rdLast_100 = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]updatedAt[begins_with]${month_3rdLast}`, orders: `-updatedAt`, limit: 100}});
+    const data_fish_3rdLast_200 = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]updatedAt[begins_with]${month_3rdLast}`, orders: `-updatedAt`, limit: 100, offset: 100}});
 
     const shuffleArray = (array) => {
         const cloneArray = [...array];
@@ -35,15 +41,15 @@ export const getStaticProps = async() => {
 
     return {
         props: {
-            data_fish_1stLast: data_fish_1stLast.contents,
-            data_fish_2ndLast: data_fish_2ndLast.contents,
-            data_fish_3rdLast: data_fish_3rdLast.contents,
+            data_fish_1stLast: data_fish_1stLast_100.contents.concat(data_fish_1stLast_200.contents),
+            data_fish_2ndLast: data_fish_2ndLast_100.contents.concat(data_fish_2ndLast_200.contents),
+            data_fish_3rdLast: data_fish_3rdLast_100.contents.concat(data_fish_3rdLast_200.contents),
             data_fish_slider: shuffleArray(data_fish_slider.contents),
             data_num: data_fish.totalCount,
             data_num_ja: data_fish_ja.totalCount,
-            data_num_1stLast: data_fish_1stLast.totalCount,
-            data_num_2ndLast: data_fish_2ndLast.totalCount,
-            data_num_3rdLast: data_fish_3rdLast.totalCount,
+            data_num_1stLast: data_fish_1stLast_100.totalCount,
+            data_num_2ndLast: data_fish_2ndLast_100.totalCount,
+            data_num_3rdLast: data_fish_3rdLast_100.totalCount,
             month_1stLast: month_1stLast,
             month_2ndLast: month_2ndLast,
             month_3rdLast: month_3rdLast,
