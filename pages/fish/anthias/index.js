@@ -21,6 +21,7 @@ export const getStaticProps = async() => {
 	const data_Symphysanodon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カワリハナダイ属`, limit: 100 }});
 	const data_Callanthias = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]シキシマハナダイ属`, limit: 100 }});
 	const data_Tosana = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒメハナダイ属`, limit: 100 }});
+	const data_Compsanthias = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]Compsanthias`, limit: 100 }});
 
 	return {
     	props: {
@@ -41,11 +42,12 @@ export const getStaticProps = async() => {
     		data_Symphysanodon: data_Symphysanodon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Callanthias: data_Callanthias.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Tosana: data_Tosana.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Compsanthias: data_Compsanthias.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Caprodon, data_Nemanthias, data_Pyronotanthias, data_Plectranthias, data_Odontanthias, data_Tosanoides, data_Sacura, data_Selenanthias, data_Pseudanthias, data_Tosana, data_Mirolabrichthys, data_Serranocirrhitus, data_Rabaulichthys, data_Luzonichthys, data_Symphysanodon, data_Callanthias}) {
+export default function Home({data_num, data_Caprodon, data_Nemanthias, data_Pyronotanthias, data_Plectranthias, data_Odontanthias, data_Tosanoides, data_Sacura, data_Selenanthias, data_Pseudanthias, data_Tosana, data_Mirolabrichthys, data_Serranocirrhitus, data_Rabaulichthys, data_Luzonichthys, data_Symphysanodon, data_Callanthias, data_Compsanthias}) {
 
 	return (
 		<Layout title="ハナダイの仲間">
@@ -56,6 +58,7 @@ export default function Home({data_num, data_Caprodon, data_Nemanthias, data_Pyr
 
 				<Family family="ハナダイ科"></Family>
 				<Genus genus="アカイサキ属 (Caprodon)" data={data_Caprodon}></Genus>
+				<Genus genus="Compsanthias属" data={data_Compsanthias}></Genus>
 				<Genus genus="ミナミハナダイ属 (Luzonichthys)" data={data_Luzonichthys}></Genus>
 				<Genus genus="ハナゴイ属 (Mirolabrichthys)" data={data_Mirolabrichthys}></Genus>
 				<Genus genus="アカネハナゴイ属 (Nemanthias)" data={data_Nemanthias}></Genus>
