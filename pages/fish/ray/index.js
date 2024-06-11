@@ -16,6 +16,7 @@ export const getStaticProps = async() => {
 	const data_Myliobatis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]トビエイ属` , limit: 100 }});
 	const data_Urolophus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒラタエイ属` , limit: 100 }});
 	const data_Taeniura = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]Taeniura` , limit: 100 }});
+	const data_Rhinobatos = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]サカタザメ属` , limit: 100 }});
 
 
 	return {
@@ -32,11 +33,12 @@ export const getStaticProps = async() => {
 			data_Myliobatis: data_Myliobatis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Urolophus: data_Urolophus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Taeniura: data_Taeniura.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+			data_Rhinobatos: data_Rhinobatos.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Hemitrygon, data_Pateobatis, data_Pastinachus, data_Taeniurops, data_Neotrygon, data_Rhinoptera, data_Aetobatus, data_Mobula, data_Myliobatis, data_Urolophus, data_Taeniura}) {
+export default function Home({data_num, data_Hemitrygon, data_Pateobatis, data_Pastinachus, data_Taeniurops, data_Neotrygon, data_Rhinoptera, data_Aetobatus, data_Mobula, data_Myliobatis, data_Urolophus, data_Taeniura, data_Rhinobatos}) {
 
 	return (
 		<Layout title="エイの仲間">
@@ -44,6 +46,9 @@ export default function Home({data_num, data_Hemitrygon, data_Pateobatis, data_P
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">エイの仲間</h1>
 				<p className="pt-2 text-xs md:text-sm text-center text-gray-700 font-medium">掲載種 : {data_num}種</p>
+
+				<Family family="サカタザメ科"></Family>
+				<Genus genus="サカタザメ属 (Rhinobatos)" data={data_Rhinobatos}></Genus>
 
 				<Family family="ヒラタエイ科"></Family>
 				<Genus genus="ヒラタエイ属 (Urolophus)" data={data_Urolophus}></Genus>
