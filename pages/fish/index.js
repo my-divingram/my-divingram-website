@@ -57,7 +57,7 @@ function Home({data_fish, data_fish_slider, data_num, data_num_ja}) {
                             <div className="hover:opacity-80">
                                 <Link href={`/fish/${data.class}/${data.latinName}`.replace(" ", "_")}>
                                     <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                    <h2 className="pt-3 pb-5 text-xs md:text-sm text-center text-gray-700 font-medium"><a>{getJapaneseName(data)}</a></h2>
+                                    <h2 className="pt-3 pb-5 text-xs md:text-sm text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                                 </Link>
                             </div>
                         </SplideSlide>
@@ -85,289 +85,289 @@ function Home({data_fish, data_fish_slider, data_num, data_num_ja}) {
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/shark">
                             <Image src="/img/class/shark.jpeg" alt="shark" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>サメの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">サメの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/ray">
                             <Image src="/img/class/ray.png" alt="ray" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>エイの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">エイの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/moray">
                             <Image src="/img/class/moray.jpeg" alt="moray" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>ウツボの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">ウツボの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/seasnake">
                             <Image src="/img/class/seasnake.jpeg" alt="seasnake" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>ウミヘビの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">ウミヘビの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/eel">
                             <Image src="/img/class/eel.jpeg" alt="eel" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>アナゴの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">アナゴの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/lizardfish">
                             <Image src="/img/class/lizardfish.jpeg" alt="lizardfish" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>エソの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">エソの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/monkfish">
                             <Image src="/img/class/monkfish.jpeg" alt="monkfish" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>アンコウの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">アンコウの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/squirrelfish">
                             <Image src="/img/class/squirrelfish.jpeg" alt="squirrelfish" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>イットウダイの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">イットウダイの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/seahorse">
                             <Image src="/img/class/seahorse.jpeg" alt="seahorse" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>トゲウオの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">トゲウオの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/rockfish">
                             <Image src="/img/class/rockfish.jpeg" alt="rockfish" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>カサゴ・メバルの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">カサゴ・メバルの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/stonefish">
                             <Image src="/img/class/stonefish.jpeg" alt="stonefish" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>オコゼの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">オコゼの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/grouper">
                             <Image src="/img/class/grouper.jpeg" alt="grouper" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>ハタの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">ハタの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/anthias">
                             <Image src="/img/class/anthias.jpeg" alt="anthias" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>ハナダイの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">ハナダイの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/dottyback">
                             <Image src="/img/class/dottyback.jpeg" alt="dottyback" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>メギスの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">メギスの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/cardinalfish">
                             <Image src="/img/class/cardinalfish.png" alt="cardinalfish" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>テンジクダイの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">テンジクダイの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/tilefish">
                             <Image src="/img/class/tilefish.jpeg" alt="tilefish" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>アマダイの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">アマダイの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/horsemackerel">
                             <Image src="/img/class/horsemackerel.png" alt="anthias" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>アジの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">アジの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/snapper">
                             <Image src="/img/class/snapper.jpeg" alt="snapper" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>フエダイの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">フエダイの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/fusilier">
                             <Image src="/img/class/fusilier.png" alt="fusilier" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>タカサゴの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">タカサゴの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/sweetlips">
                             <Image src="/img/class/sweetlips.jpeg" alt="sweetlips" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>イサキの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">イサキの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/threadfinbream">
                             <Image src="/img/class/threadfinbream.jpeg" alt="threadfinbream" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>イトヨリダイの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">イトヨリダイの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/seabream">
                             <Image src="/img/class/seabream.jpeg" alt="seabream" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>タイの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">タイの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/emperor">
                             <Image src="/img/class/emperor.jpeg" alt="emperor" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>フエフキダイの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">フエフキダイの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/goatfish">
                             <Image src="/img/class/goatfish.jpeg" alt="goatfish" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>ヒメジの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">ヒメジの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/sweeper">
                             <Image src="/img/class/sweeper.jpeg" alt="sweeper" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>ハタンポの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">ハタンポの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/butterflyfish">
                             <Image src="/img/class/butterflyfish.jpeg" alt="butterflyfish" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>チョウチョウウオの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">チョウチョウウオの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/angelfish">
                             <Image src="/img/class/angelfish.jpeg" alt="angelfish" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>キンチャクダイの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">キンチャクダイの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/hawkfish">
                             <Image src="/img/class/hawkfish.jpeg" alt="hawkfish" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>ゴンべの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">ゴンべの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/trumpeter">
                             <Image src="/img/class/trumpeter.jpeg" alt="trumpeter" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>タカノハダイの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">タカノハダイの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/damselfish">
                             <Image src="/img/class/damselfish.jpeg" alt="damselfish" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>スズメダイの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">スズメダイの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/seachub">
                             <Image src="/img/class/seachub.jpeg" alt="seachub" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>イスズミ・メジナの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">イスズミ・メジナの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/wrasse">
                             <Image src="/img/class/wrasse.jpeg" alt="wrasse" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>ベラの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">ベラの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/parrotfish">
                             <Image src="/img/class/parrotfish.png" alt="parrotfish" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>ブダイの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">ブダイの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/sandperch">
                             <Image src="/img/class/sandperch.jpeg" alt="sandperch" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>トラギスの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">トラギスの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/blenny">
                             <Image src="/img/class/blenny.png" alt="blenny" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>ギンポの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">ギンポの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/clingfish">
                             <Image src="/img/class/clingfish.jpeg" alt="clingfish" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>ウバウオの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">ウバウオの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/dragonet">
                             <Image src="/img/class/dragonet.jpeg" alt="dragonet" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>ネズッポの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">ネズッポの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/goby">
                             <Image src="/img/class/goby.jpeg" alt="goby" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>ハゼの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">ハゼの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/batfish">
                             <Image src="/img/class/batfish.jpeg" alt="batfish" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>ツバメウオの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">ツバメウオの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/rabbitfish">
                             <Image src="/img/class/rabbitfish.jpeg" alt="rabbitfish" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>アイゴの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">アイゴの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/surgeonfish">
                             <Image src="/img/class/surgeonfish.png" alt="surgeonfish" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>ニザダイの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">ニザダイの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/barracuda">
                             <Image src="/img/class/barracuda.jpeg" alt="barracuda" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>カマスの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">カマスの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/mackerel">
                             <Image src="/img/class/mackerel.png" alt="mackerel" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>サバの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">サバの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/flatfish">
                             <Image src="/img/class/flatfish.jpeg" alt="flatfish" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>カレイの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">カレイの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/filefish">
                             <Image src="/img/class/filefish.jpeg" alt="filefish" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>カワハギの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">カワハギの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/puffer">
                             <Image src="/img/class/puffer.jpeg" alt="puffer" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>フグの仲間</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">フグの仲間</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/others">
                             <Image src="/img/class/others.jpeg" alt="others" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>その他の海水魚</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">その他の海水魚</h2>
                         </Link>
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/freshwaterfish">
                             <Image src="/img/class/freshwaterfish.jpeg" alt="freshwaterfish" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium"><a>淡水魚</a></h2>
+                            <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">淡水魚</h2>
                         </Link>
                     </div>
                 </div>

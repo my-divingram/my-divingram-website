@@ -40,7 +40,7 @@ function Home({data_fish, data_blog}) {
                             <div className="hover:opacity-80">
                                 <Link href={`/fish/${data.class}/${data.latinName}`.replace(" ", "_")}>
                                     <Image src={data.thumbImg.url} alt="thumbnail" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                    <h2 className="pt-3 pb-5 text-xs md:text-sm text-center text-gray-700 font-medium"><a>{data.japaneseName}</a></h2>
+                                    <h2 className="pt-3 pb-5 text-xs md:text-sm text-center text-gray-700 font-medium">{data.japaneseName}</h2>
                                 </Link>
                             </div>
                         </SplideSlide>
@@ -54,7 +54,7 @@ function Home({data_fish, data_blog}) {
                     <div className="px-10 md:px-0 flex justify-center items-center hover:opacity-80">
                         <Link href="fish">
                             <Image src="/img/book/fish.jpeg" alt="fish" width={360} height={240} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-lg md:text-xl text-center text-gray-700 font-medium"><a>魚図鑑</a></h2>
+                            <h2 className="py-3 text-lg md:text-xl text-center text-gray-700 font-medium">魚図鑑</h2>
                         </Link>
                     </div>
                     {/* <div className="px-10 md:px-0 flex justify-center items-center hover:opacity-80">

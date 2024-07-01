@@ -31,7 +31,7 @@ function Home({data_blog}) {
                                     <div className="flex justify-center items-center">
                                         <Image src={data.thumbnail.url} alt="thumbnail" width={360} height={240} style={{objectFit:"contain"}}/>
                                     </div>
-                                    <p className="pt-3 pb-1 text-base md:text-xl text-center text-gray-700 font-black"><a>{data.title}</a></p>
+                                    <p className="pt-3 pb-1 text-base md:text-xl text-center text-gray-700 font-black">{data.title}</p>
                                     <p className="pb-1 text-sm md:text-base text-center text-gray-700">{data.publishedAt.substr(0,10)}</p>
                                     <p className="text-xs md:text-sm text-center text-gray-700">{data.abstruct.substr(0,130)}…</p>
                                 </div>
