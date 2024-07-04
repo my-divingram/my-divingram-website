@@ -25,9 +25,10 @@ export const getStaticProps = async() => {
 
 
 function Home({data_fish, data_blog}) {
+    const description = '伊豆を中心に国内外を問わず魚を求めて潜っているトラベルダイバーの"僕のだいびんぐらむ"です。個人で撮影した生態写真で魚図鑑を制作しています。'
 
     return (
-        <Layout title="僕のだいびんぐらむ">
+        <Layout title="僕のだいびんぐらむ" description={description} url="https://my-divingram-website.vercel.app/" imageUrl="https://my-divingram-website.vercel.app/img/logo/ornate.png">
 
             <div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100">
 

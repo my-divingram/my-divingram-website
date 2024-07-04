@@ -3,11 +3,19 @@ import Link from "next/link";
 import Image from "next/image";
 import { Link as Scroll } from "react-scroll";
 
-export default function Layout({children, title="僕のだいびんぐらむ", bg_color_to="bg-sky-100"}) {
+export default function Layout({children, title, description, url, imageUrl, bg_color_to="bg-sky-100"}) {
     return (
         <div>
             <Head>
                 <title>{title}</title>
+                <meta name="description" content={description} />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta property="og:title" content={title} />
+                <meta property="og:description" content={description} />
+                <meta property="og:url" content={url} />
+                <meta property="og:site_name" content="僕のだいびんぐらむ" />
+                <meta property="og:type" content="website" />
+                <meta property="og:image" content={imageUrl} />
             </Head>
             <header id="header">
                 <nav className="bg-sky-800">
