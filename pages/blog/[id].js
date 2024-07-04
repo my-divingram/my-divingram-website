@@ -25,7 +25,7 @@ export default function BlogId({ data_blog }) {
     const url = `https://my-divingram-website.vercel.app/blog/${data_blog.id}`
 
     return (
-      <Layout title={title} description={data_blog.abstruct} url={url} imageUrl={data.thumbnail.url}>
+      <Layout title={title} description={data_blog.abstruct} url={url} imageUrl={data_blog.thumbnail.url}>
 
             <div className="px-3 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
