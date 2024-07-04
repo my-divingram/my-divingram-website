@@ -27,7 +27,7 @@ export const getStaticPaths = async() => {
 
 export default function IndividualPage({pagedata}){
     const title = `${pagedata.japaneseName} | 僕らむの魚図鑑`
-    const description = `${pagedata.japaneseName}の生態写真`
+    const description = `${pagedata.japaneseName}の生態写真です`
     const url = `https://my-divingram-website.vercel.app/fish/${pagedata.class}/${pagedata.latinName}`.replace(" ", "_")
 
     return (
