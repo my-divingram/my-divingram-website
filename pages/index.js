@@ -49,13 +49,13 @@ function Home({data_fish, data_blog}) {
                 </Splide>
 
 
-                <h1 className="pt-10 pb-6 text-xl md:text-2xl text-center text-sky-800 font-black">僕らむの水中生物図鑑</h1>
+                <h1 className="pt-10 pb-6 text-xl md:text-2xl text-center text-sky-800 font-black">水中生物図鑑</h1>
 
                 <div className="md:flex md:space-x-5 justify-center">
                     <div className="px-10 md:px-0 flex justify-center items-center hover:opacity-80">
                         <Link href="fish">
                             <Image src="/img/book/fish.jpeg" alt="fish" width={360} height={240} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-lg md:text-xl text-center text-gray-700 font-medium">魚図鑑</h2>
+                            <h2 className="py-3 text-lg md:text-xl text-center text-gray-700 font-medium">僕らむの魚図鑑</h2>
                         </Link>
                     </div>
                     {/* <div className="px-10 md:px-0 flex justify-center items-center hover:opacity-80">
