@@ -40,7 +40,7 @@ export const getStaticProps = async() => {
 export default function Home({data_num, data_Seriola, data_Caranx, data_Craterognathus, data_Flavocaranx, data_Trachurus, data_Decapterus, data_Ferdaiua, data_Pseudocaranx, data_Alectis, data_Uraspis, data_Trachinotus, data_Atule}) {
 
 	return (
-		<Layout title="アジの仲間">
+		<Layout title="アジの仲間 | 僕らむの魚図鑑" description="アジの仲間の一覧です" url="https://my-divingram-website.vercel.app/fish/horsemackerel" imageUrl="https://my-divingram-website.vercel.app/img/class/horsemackerel.png">
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">アジの仲間</h1>

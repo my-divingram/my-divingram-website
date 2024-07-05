@@ -22,7 +22,7 @@ export const getStaticProps = async() => {
 export default function Home({data_num, data_Pagrus, data_Acanthopagrus, data_Evynnis}) {
 
 	return (
-		<Layout title="タイの仲間">
+		<Layout title="タイの仲間 | 僕らむの魚図鑑" description="タイの仲間の一覧です" url="https://my-divingram-website.vercel.app/fish/seabream" imageUrl="https://my-divingram-website.vercel.app/img/class/seabream.jpeg">
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">タイの仲間</h1>

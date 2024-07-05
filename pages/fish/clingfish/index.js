@@ -28,7 +28,7 @@ export const getStaticProps = async() => {
 export default function Home({data_num, data_Propherallodus, data_Lepadichthys, data_Conidens, data_Diademichthys, data_Discotrema, data_Pherallodichthys}) {
 
 	return (
-		<Layout title="ウバウオの仲間">
+		<Layout title="ウバウオの仲間 | 僕らむの魚図鑑" description="ウバウオの仲間の一覧です" url="https://my-divingram-website.vercel.app/fish/clingfish" imageUrl="https://my-divingram-website.vercel.app/img/class/clingfish.jpeg">
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">ウバウオの仲間</h1>

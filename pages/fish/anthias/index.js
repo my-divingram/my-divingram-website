@@ -51,7 +51,6 @@ export default function Home({data_num, data_Caprodon, data_Nemanthias, data_Pyr
 
 	return (
 		<Layout title="ハナダイの仲間 | 僕らむの魚図鑑" description="ハナダイの仲間の一覧です" url="https://my-divingram-website.vercel.app/fish/anthias" imageUrl="https://my-divingram-website.vercel.app/img/class/anthias.jpeg">
-
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">ハナダイの仲間</h1>

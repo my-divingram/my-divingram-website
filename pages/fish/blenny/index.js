@@ -68,7 +68,7 @@ export const getStaticProps = async() => {
 export default function Home({data_num, data_Blenniella, data_Petroscirtes, data_Salarias, data_Mimoblennius, data_Helcogramma, data_Plagiotremus, data_Meiacanthus, data_Springerichthys, data_Exallias, data_Crossosalarias, data_Cirripectes, data_Ecsenius, data_Aspidontus, data_Limnichthys, data_Neoclinus, data_Trichonotus, data_Istiblennius, data_Enneapterygius, data_Ucla, data_Norfolkia, data_Omobranchus, data_Entomacrodus, data_Cirrisalarias, data_Alticus, data_Rhabdoblennius, data_Andamia}) {
 
 	return (
-		<Layout title="ギンポの仲間">
+		<Layout title="ギンポの仲間 | 僕らむの魚図鑑" description="ギンポの仲間の一覧です" url="https://my-divingram-website.vercel.app/fish/blenny" imageUrl="https://my-divingram-website.vercel.app/img/class/blenny.png">
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">ギンポの仲間</h1>

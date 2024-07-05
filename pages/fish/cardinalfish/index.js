@@ -50,7 +50,7 @@ export const getStaticProps = async() => {
 export default function Home({data_num, data_Ostorhinchus, data_Pristiapogon, data_Cheilodipterus, data_Siphamia, data_Pristicon, data_Sphaeramia, data_Rhabdamia, data_Cercamia, data_Apogon, data_Pseudamia, data_Apogonichthyoides, data_Foa, data_Taeniamia, data_Amioides, data_Fowleria, data_Nectamia, data_Gymnapogon}) {
 
 	return (
-		<Layout title="テンジクダイの仲間">
+		<Layout title="テンジクダイの仲間 | 僕らむの魚図鑑" description="テンジクダイの仲間の一覧です" url="https://my-divingram-website.vercel.app/fish/cardinalfish" imageUrl="https://my-divingram-website.vercel.app/img/class/cardinalfish.png">
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">テンジクダイの仲間</h1>

@@ -56,7 +56,7 @@ export const getStaticProps = async() => {
 export default function Home({data_num, data_Oxymonacanthus, data_Xanthichthys, data_Pseudobalistes, data_Rhinecanthus, data_Thamnaconus, data_Melichthys, data_Balistoides, data_Stephanolepis, data_Balistapus, data_Paraluteres, data_Pervagor, data_Cantherhines, data_Sufflamen, data_Rudarius, data_Acreichthys, data_Brachaluteres, data_Paramonacanthus, data_Aluterus, data_Odonus, data_Pseudalutarius}) {
 
 	return (
-		<Layout title="カワハギの仲間">
+		<Layout title="カワハギの仲間 | 僕らむの魚図鑑" description="カワハギの仲間の一覧です" url="https://my-divingram-website.vercel.app/fish/filefish" imageUrl="https://my-divingram-website.vercel.app/img/class/filefish.jpeg">
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">カワハギの仲間</h1>
