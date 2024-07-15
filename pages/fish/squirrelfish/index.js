@@ -10,6 +10,7 @@ export const getStaticProps = async() => {
 	const data_Myripristis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アカマツカサ属` , limit: 100 }});
 	const data_Monocentris = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]マツカサウオ属` , limit: 100 }});
 	const data_Pristilepis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヤセエビス属` , limit: 100 }});
+	const data_Aulotrachichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハリダシエビス属` , limit: 100 }});
 
 	return {
     	props: {
@@ -19,11 +20,12 @@ export const getStaticProps = async() => {
     		data_Myripristis: data_Myripristis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Monocentris: data_Monocentris.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Pristilepis: data_Pristilepis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Aulotrachichthys: data_Aulotrachichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Sargocentron, data_Neoniphon, data_Myripristis, data_Monocentris, data_Pristilepis}) {
+export default function Home({data_num, data_Sargocentron, data_Neoniphon, data_Myripristis, data_Monocentris, data_Pristilepis, data_Aulotrachichthys}) {
 
 	return (
 		<Layout title="イットウダイの仲間 | 僕らむの魚図鑑" description="イットウダイの仲間の一覧です" url="https://my-divingram-website.vercel.app/fish/squirrelfish" imageUrl="https://my-divingram-website.vercel.app/img/class/squirrelfish.jpeg">
@@ -37,6 +39,9 @@ export default function Home({data_num, data_Sargocentron, data_Neoniphon, data_
 				<Genus genus="ウケグチイットウダイ属 (Neoniphon)" data={data_Neoniphon}></Genus>
 				<Genus genus="ヤセエビス属 (Pristilepis)" data={data_Pristilepis}></Genus>
 				<Genus genus="イットウダイ属 (Sargocentron)" data={data_Sargocentron}></Genus>
+
+				<Family family="ヒウチダイ科"></Family>
+				<Genus genus="ハリダシエビス属 (Aulotrachichthys)" data={data_Aulotrachichthys}></Genus>
 
 				<Family family="マツカサウオ科"></Family>
 				<Genus genus="マツカサウオ属 (Monocentris)" data={data_Monocentris}></Genus>
