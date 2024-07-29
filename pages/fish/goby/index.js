@@ -53,6 +53,7 @@ export const getStaticProps = async() => {
 	const data_Inu = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]コマハゼ属` , limit: 100 }});
 	const data_Luciogobius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ミミズハゼ属` , limit: 100 }});
 	const data_Periophthalmus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]トビハゼ属` , limit: 100 }});
+	const data_Barbuligobius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒゲモジャハゼ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -105,11 +106,12 @@ export const getStaticProps = async() => {
     		data_Inu: data_Inu.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Luciogobius: data_Luciogobius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Periophthalmus: data_Periophthalmus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+			data_Barbuligobius: data_Barbuligobius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Oxyurichthys, data_Waitea, data_Discordipinna, data_Ptereleotris, data_Bryaninops, data_Lotilia, data_Myersina, data_Ancistrogobius, data_Pleurosicya, data_Asterropteryx, data_Gobiodon, data_Paragobiodon, data_Fusigobius, data_Lubricogobius, data_Nemateleotris, data_Trimma, data_Chaenogobius, data_Priolepis, data_Amblygobius, data_Valenciennea, data_Gnatholepis, data_Acentrogobius, data_Gunnellichthys, data_Istigobius, data_Stonogobiops, data_Amblyeleotris, data_Tomiyamichthys, data_Eviota, data_Tryssogobius, data_Signigobius, data_Vanderhorstia, data_Cryptocentrus, data_Ctenogobiops, data_Echinogobius, data_Hazeus, data_Koumansetta, data_Oplopomus, data_Trimmatom, data_Pterogobius, data_Oxymetopon, data_Yongeichthys, data_Psammogobius, data_Macrodontogobius, data_Bathygobius, data_Callogobius, data_Inu, data_Luciogobius, data_Periophthalmus}) {
+export default function Home({data_num, data_Oxyurichthys, data_Waitea, data_Discordipinna, data_Ptereleotris, data_Bryaninops, data_Lotilia, data_Myersina, data_Ancistrogobius, data_Pleurosicya, data_Asterropteryx, data_Gobiodon, data_Paragobiodon, data_Fusigobius, data_Lubricogobius, data_Nemateleotris, data_Trimma, data_Chaenogobius, data_Priolepis, data_Amblygobius, data_Valenciennea, data_Gnatholepis, data_Acentrogobius, data_Gunnellichthys, data_Istigobius, data_Stonogobiops, data_Amblyeleotris, data_Tomiyamichthys, data_Eviota, data_Tryssogobius, data_Signigobius, data_Vanderhorstia, data_Cryptocentrus, data_Ctenogobiops, data_Echinogobius, data_Hazeus, data_Koumansetta, data_Oplopomus, data_Trimmatom, data_Pterogobius, data_Oxymetopon, data_Yongeichthys, data_Psammogobius, data_Macrodontogobius, data_Bathygobius, data_Callogobius, data_Inu, data_Luciogobius, data_Periophthalmus, data_Barbuligobius}) {
 
 	return (
 		<Layout title="ハゼの仲間 | 僕らむの魚図鑑" description="ハゼの仲間の一覧です" url="https://my-divingram-website.vercel.app/fish/goby" imageUrl="https://my-divingram-website.vercel.app/img/class/goby.jpeg">
@@ -124,6 +126,7 @@ export default function Home({data_num, data_Oxyurichthys, data_Waitea, data_Dis
 				<Genus genus="サラサハゼ属 (Amblygobius)" data={data_Amblygobius}></Genus>
 				<Genus genus="ホオガキハゼ属 (Ancistrogobius)" data={data_Ancistrogobius}></Genus>
 				<Genus genus="ホシハゼ属 (Asterropteryx)" data={data_Asterropteryx}></Genus>
+				<Genus genus="ヒゲモジャハゼ属 (Barbuligobius)" data={data_Barbuligobius}></Genus>
 				<Genus genus="クモハゼ属 (Bathygobius)" data={data_Bathygobius}></Genus>
 				<Genus genus="ガラスハゼ属 (Bryaninops)" data={data_Bryaninops}></Genus>
 				<Genus genus="オキナワハゼ属 (Callogobius)" data={data_Callogobius}></Genus>
