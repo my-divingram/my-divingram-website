@@ -17,6 +17,7 @@ export const getStaticProps = async() => {
 	const data_Uraspis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]オキアジ属` , limit: 100 }});
 	const data_Trachinotus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]コバンアジ属` , limit: 100 }});
 	const data_Atule = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]マテアジ属` , limit: 100 }});
+	const data_Elagatis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ツムブリ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -33,11 +34,12 @@ export const getStaticProps = async() => {
     		data_Uraspis: data_Uraspis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Trachinotus: data_Trachinotus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Atule: data_Atule.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Elagatis: data_Elagatis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Seriola, data_Caranx, data_Craterognathus, data_Flavocaranx, data_Trachurus, data_Decapterus, data_Ferdaiua, data_Pseudocaranx, data_Alectis, data_Uraspis, data_Trachinotus, data_Atule}) {
+export default function Home({data_num, data_Seriola, data_Caranx, data_Craterognathus, data_Flavocaranx, data_Trachurus, data_Decapterus, data_Ferdaiua, data_Pseudocaranx, data_Alectis, data_Uraspis, data_Trachinotus, data_Atule, data_Elagatis}) {
 
 	return (
 		<Layout title="アジの仲間 | 僕らむの魚図鑑" description="アジの仲間の一覧です" url="https://my-divingram-website.vercel.app/fish/horsemackerel" imageUrl="https://my-divingram-website.vercel.app/img/class/horsemackerel.png">
@@ -52,6 +54,7 @@ export default function Home({data_num, data_Seriola, data_Caranx, data_Craterog
 				<Genus genus="ギンガメアジ属 (Caranx)" data={data_Caranx}></Genus>
 				<Genus genus="インドカイワリ属 (Craterognathus)" data={data_Craterognathus}></Genus>
 				<Genus genus="ムロアジ属 (Decapterus)" data={data_Decapterus}></Genus>
+				<Genus genus="ツムブリ属 (Elagatis)" data={data_Elagatis}></Genus>
 				<Genus genus="ナンヨウカイワリ属 (Ferdaiua)" data={data_Ferdaiua}></Genus>
 				<Genus genus="コガネアジ属 (Flavocaranx)" data={data_Flavocaranx}></Genus>
 				<Genus genus="シマアジ属 (Pseudocaranx)" data={data_Pseudocaranx}></Genus>
