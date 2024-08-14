@@ -291,7 +291,7 @@ function Home({data_fish, data_fish_slider, data_num, data_num_ja}) {
                     </div>
                     <div className="flex justify-center hover:opacity-80">
                         <Link href="fish/blenny">
-                            <Image src="/img/class/blenny.png" alt="blenny" width={300} height={200} style={{objectFit:"contain"}}/>
+                            <Image src="/img/class/blenny.jpeg" alt="blenny" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">ギンポの仲間</h2>
                         </Link>
                     </div>
