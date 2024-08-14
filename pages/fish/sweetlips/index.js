@@ -8,6 +8,7 @@ export const getStaticProps = async() => {
 	const data_Parapristipoma = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イサキ属` , limit: 100 }});
 	const data_Plectorhinchus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]コショウダイ属` , limit: 100 }});
 	const data_Diagramma = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]コロダイ属` , limit: 100 }});
+	const data_Hapalogenys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒゲダイ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -15,11 +16,12 @@ export const getStaticProps = async() => {
     		data_Parapristipoma: data_Parapristipoma.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Plectorhinchus: data_Plectorhinchus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Diagramma: data_Diagramma.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Hapalogenys: data_Hapalogenys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Parapristipoma, data_Plectorhinchus, data_Diagramma}) {
+export default function Home({data_num, data_Parapristipoma, data_Plectorhinchus, data_Diagramma, data_Hapalogenys}) {
 
 	return (
 		<Layout title="イサキの仲間 | 僕らむの魚図鑑" description="イサキの仲間の一覧です" url="https://my-divingram-website.vercel.app/fish/sweetlips" imageUrl="https://my-divingram-website.vercel.app/img/class/sweetlips.jpeg">
@@ -30,6 +32,7 @@ export default function Home({data_num, data_Parapristipoma, data_Plectorhinchus
 
 				<Family family="イサキ科"></Family>
 				<Genus genus="コロダイ属 (Diagramma)" data={data_Diagramma}></Genus>
+				<Genus genus="ヒゲダイ属 (Hapalogenys)" data={data_Hapalogenys}></Genus>
 				<Genus genus="イサキ属 (Parapristipoma)" data={data_Parapristipoma}></Genus>
 				<Genus genus="コショウダイ属 (Plectorhinchus)" data={data_Plectorhinchus}></Genus>
 
