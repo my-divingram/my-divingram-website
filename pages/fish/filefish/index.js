@@ -16,7 +16,7 @@ export const getStaticProps = async() => {
 	const data_Paraluteres = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ノコギリハギ属` , limit: 100 }});
 	const data_Oxymonacanthus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]テングカワハギ属` , limit: 100 }});
 	const data_Pervagor = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ニシキカワハギ属` , limit: 100 }});
-	const data_Cantherhines = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]センウマヅラハギ属` , limit: 100 }});
+	const data_Cantherhines = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハクセイハギ属` , limit: 100 }});
 	const data_Sufflamen = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]メガネハギ属` , limit: 100 }});
 	const data_Rudarius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アミメハギ属` , limit: 100 }});
 	const data_Acreichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]フチドリカワハギ属` , limit: 100 }});
@@ -76,7 +76,7 @@ export default function Home({data_num, data_Oxymonacanthus, data_Xanthichthys, 
 				<Genus genus="フチドリカワハギ属 (Acreichthys)" data={data_Acreichthys}></Genus>
 				<Genus genus="ウスバハギ属 (Aluterus)" data={data_Aluterus}></Genus>
 				<Genus genus="アオサハギ属 (Brachaluteres)" data={data_Brachaluteres}></Genus>
-				<Genus genus="センウマヅラハギ属 (Cantherhines)" data={data_Cantherhines}></Genus>
+				<Genus genus="ハクセイハギ属 (Cantherhines)" data={data_Cantherhines}></Genus>
 				<Genus genus="テングカワハギ属 (Oxymonacanthus)" data={data_Oxymonacanthus}></Genus>
 				<Genus genus="ノコギリハギ属 (Paraluteres)" data={data_Paraluteres}></Genus>
 				<Genus genus="ヨソギ属 (Paramonacanthus)" data={data_Paramonacanthus}></Genus>
