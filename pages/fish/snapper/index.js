@@ -10,6 +10,7 @@ export const getStaticProps = async() => {
 	const data_Macolor = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]マダラタルミ属` , limit: 100 }});
 	const data_Paracaesio = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アオダイ属` , limit: 100 }});
 	const data_Aprion = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アオチビキ属` , limit: 100 }});
+	const data_Symphorus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イトヒキフエダイ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -19,11 +20,12 @@ export const getStaticProps = async() => {
     		data_Macolor: data_Macolor.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Paracaesio: data_Paracaesio.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Aprion: data_Aprion.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Symphorus: data_Symphorus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Lutjanus, data_Aphareus, data_Macolor, data_Paracaesio, data_Aprion}) {
+export default function Home({data_num, data_Lutjanus, data_Aphareus, data_Macolor, data_Paracaesio, data_Aprion, data_Symphorus}) {
 
 	return (
 		<Layout title="フエダイの仲間 | 僕らむの魚図鑑" description="フエダイの仲間の一覧です" url="https://my-divingram-website.vercel.app/fish/snapper" imageUrl="https://my-divingram-website.vercel.app/img/class/snapper.jpeg">
@@ -38,6 +40,7 @@ export default function Home({data_num, data_Lutjanus, data_Aphareus, data_Macol
 				<Genus genus="フエダイ属 (Lutjanus)" data={data_Lutjanus}></Genus>
 				<Genus genus="マダラタルミ属 (Macolor)" data={data_Macolor}></Genus>
 				<Genus genus="アオダイ属 (Paracaesio)" data={data_Paracaesio}></Genus>
+				<Genus genus="イトヒキフエダイ属 (Symphorus)" data={data_Symphorus}></Genus>
 
 			</div>
 		</Layout>
