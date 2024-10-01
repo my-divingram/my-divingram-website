@@ -15,6 +15,7 @@ export const getStaticProps = async() => {
 	const data_Xiphophorus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ソードテール属` , limit: 100 }});
 	const data_Stiphodon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ナンヨウボウズハゼ属` , limit: 100 }});
 	const data_Sicyopterus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ボウズハゼ属` , limit: 100 }});
+	const data_Lentipes = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヨロイボウズハゼ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -29,11 +30,12 @@ export const getStaticProps = async() => {
     		data_Xiphophorus: data_Xiphophorus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Stiphodon: data_Stiphodon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Sicyopterus: data_Sicyopterus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Lentipes: data_Lentipes.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Candidia, data_Opsariichthys, data_Rhinogobius, data_Tridentiger, data_Sicyopus, data_Anguilla, data_Oreochromis, data_Xiphophorus, data_Stiphodon, data_Sicyopterus}) {
+export default function Home({data_num, data_Candidia, data_Opsariichthys, data_Rhinogobius, data_Tridentiger, data_Sicyopus, data_Anguilla, data_Oreochromis, data_Xiphophorus, data_Stiphodon, data_Sicyopterus, data_Lentipes}) {
 
 	return (
 		<Layout title="淡水魚 | 僕らむの魚図鑑" description="淡水魚の一覧です" url="https://my-divingram-website.vercel.app/fish/freshwaterfish" imageUrl="https://my-divingram-website.vercel.app/img/class/freshwaterfish.jpeg">
@@ -61,6 +63,8 @@ export default function Home({data_num, data_Candidia, data_Opsariichthys, data_
 				<Genus genus="カワスズメ属 (Oreochromis)" data={data_Oreochromis}></Genus>
 
 				<Family family="ハゼ科"></Family>
+				{/* 4031 */}
+				<Genus genus="ヨロイボウズハゼ属 (Lentipes)" data={data_Lentipes}></Genus>
 				{/* 4167 */}
 				<Genus genus="ヨシノボリ属 (Rhinogobius)" data={data_Rhinogobius}></Genus>
 				{/* 4190 */}
