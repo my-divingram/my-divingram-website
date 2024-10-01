@@ -14,6 +14,7 @@ export const getStaticProps = async() => {
 	const data_Oreochromis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カワスズメ属` , limit: 100 }});
 	const data_Xiphophorus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ソードテール属` , limit: 100 }});
 	const data_Stiphodon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ナンヨウボウズハゼ属` , limit: 100 }});
+	const data_Sicyopterus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ボウズハゼ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -27,11 +28,12 @@ export const getStaticProps = async() => {
     		data_Oreochromis: data_Oreochromis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Xiphophorus: data_Xiphophorus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Stiphodon: data_Stiphodon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Sicyopterus: data_Sicyopterus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Candidia, data_Opsariichthys, data_Rhinogobius, data_Tridentiger, data_Sicyopus, data_Anguilla, data_Oreochromis, data_Xiphophorus, data_Stiphodon}) {
+export default function Home({data_num, data_Candidia, data_Opsariichthys, data_Rhinogobius, data_Tridentiger, data_Sicyopus, data_Anguilla, data_Oreochromis, data_Xiphophorus, data_Stiphodon, data_Sicyopterus}) {
 
 	return (
 		<Layout title="淡水魚 | 僕らむの魚図鑑" description="淡水魚の一覧です" url="https://my-divingram-website.vercel.app/fish/freshwaterfish" imageUrl="https://my-divingram-website.vercel.app/img/class/freshwaterfish.jpeg">
@@ -61,6 +63,8 @@ export default function Home({data_num, data_Candidia, data_Opsariichthys, data_
 				<Family family="ハゼ科"></Family>
 				{/* 4167 */}
 				<Genus genus="ヨシノボリ属 (Rhinogobius)" data={data_Rhinogobius}></Genus>
+				{/* 4190 */}
+				<Genus genus="ボウズハゼ属 (Sicyopterus)" data={data_Sicyopterus}></Genus>
 				{/* 4194 */}
 				<Genus genus="アカボウズハゼ属 (Sicyopus)" data={data_Sicyopus}></Genus>
 				{/* 4207 */}
