@@ -9,6 +9,9 @@ export const getStaticProps = async() => {
 	const data_Opsariichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハス属` , limit: 100 }});
 	const data_Rhinogobius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヨシノボリ属` , limit: 100 }});
 	const data_Tridentiger = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]チチブ属` , limit: 100 }});
+	const data_Sicyopus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アカボウズハゼ属` , limit: 100 }});
+	const data_Anguilla = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ウナギ属` , limit: 100 }});
+	const data_Oreochromis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カワスズメ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -17,11 +20,14 @@ export const getStaticProps = async() => {
     		data_Opsariichthys: data_Opsariichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Rhinogobius: data_Rhinogobius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Tridentiger: data_Tridentiger.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Sicyopus: data_Sicyopus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Anguilla: data_Anguilla.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Oreochromis: data_Oreochromis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Candidia, data_Opsariichthys, data_Rhinogobius, data_Tridentiger}) {
+export default function Home({data_num, data_Candidia, data_Opsariichthys, data_Rhinogobius, data_Tridentiger, data_Sicyopus, data_Anguilla, data_Oreochromis}) {
 
 	return (
 		<Layout title="淡水魚 | 僕らむの魚図鑑" description="淡水魚の一覧です" url="https://my-divingram-website.vercel.app/fish/freshwaterfish" imageUrl="https://my-divingram-website.vercel.app/img/class/freshwaterfish.jpeg">
@@ -30,15 +36,25 @@ export default function Home({data_num, data_Candidia, data_Opsariichthys, data_
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">淡水魚</h1>
 				<p className="pt-2 text-xs md:text-sm text-center text-gray-700 font-medium">掲載種 : {data_num}種</p>
 
+				<Family family="ウナギ科"></Family>
+				{/* 267 */}
+				<Genus genus="ウナギ属 (Anguilla)" data={data_Anguilla}></Genus>
+
 				<Family family="コイ科"></Family>
 				{/* 589 */}
 				<Genus genus="カワムツ属 (Candidia)" data={data_Candidia}></Genus>
 				{/* 590 */}
 				<Genus genus="ハス属 (Opsariichthys)" data={data_Opsariichthys}></Genus>
 
+				<Family family="カワスズメ科"></Family>
+				{/* 2946 */}
+				<Genus genus="カワスズメ属 (Oreochromis)" data={data_Oreochromis}></Genus>
+
 				<Family family="ハゼ科"></Family>
 				{/* 4167 */}
 				<Genus genus="ヨシノボリ属 (Rhinogobius)" data={data_Rhinogobius}></Genus>
+				{/* 4194 */}
+				<Genus genus="アカボウズハゼ属 (Sicyopus)" data={data_Sicyopus}></Genus>
 				{/* 4230 */}
 				<Genus genus="チチブ属 (Tridentiger)" data={data_Tridentiger}></Genus>
 
