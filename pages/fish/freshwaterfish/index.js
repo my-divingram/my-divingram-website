@@ -12,6 +12,8 @@ export const getStaticProps = async() => {
 	const data_Sicyopus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アカボウズハゼ属` , limit: 100 }});
 	const data_Anguilla = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ウナギ属` , limit: 100 }});
 	const data_Oreochromis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カワスズメ属` , limit: 100 }});
+	const data_Xiphophorus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ソードテール属` , limit: 100 }});
+	const data_Stiphodon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ナンヨウボウズハゼ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -23,11 +25,13 @@ export const getStaticProps = async() => {
     		data_Sicyopus: data_Sicyopus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Anguilla: data_Anguilla.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Oreochromis: data_Oreochromis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Xiphophorus: data_Xiphophorus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Stiphodon: data_Stiphodon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Candidia, data_Opsariichthys, data_Rhinogobius, data_Tridentiger, data_Sicyopus, data_Anguilla, data_Oreochromis}) {
+export default function Home({data_num, data_Candidia, data_Opsariichthys, data_Rhinogobius, data_Tridentiger, data_Sicyopus, data_Anguilla, data_Oreochromis, data_Xiphophorus, data_Stiphodon}) {
 
 	return (
 		<Layout title="淡水魚 | 僕らむの魚図鑑" description="淡水魚の一覧です" url="https://my-divingram-website.vercel.app/fish/freshwaterfish" imageUrl="https://my-divingram-website.vercel.app/img/class/freshwaterfish.jpeg">
@@ -46,6 +50,10 @@ export default function Home({data_num, data_Candidia, data_Opsariichthys, data_
 				{/* 590 */}
 				<Genus genus="ハス属 (Opsariichthys)" data={data_Opsariichthys}></Genus>
 
+				<Family family="カダヤシ科"></Family>
+				{/* 1570 */}
+				<Genus genus="ソードテール属 (Xiphophorus)" data={data_Xiphophorus}></Genus>
+
 				<Family family="カワスズメ科"></Family>
 				{/* 2946 */}
 				<Genus genus="カワスズメ属 (Oreochromis)" data={data_Oreochromis}></Genus>
@@ -55,6 +63,8 @@ export default function Home({data_num, data_Candidia, data_Opsariichthys, data_
 				<Genus genus="ヨシノボリ属 (Rhinogobius)" data={data_Rhinogobius}></Genus>
 				{/* 4194 */}
 				<Genus genus="アカボウズハゼ属 (Sicyopus)" data={data_Sicyopus}></Genus>
+				{/* 4207 */}
+				<Genus genus="ナンヨウボウズハゼ属 (Stiphodon)" data={data_Stiphodon}></Genus>
 				{/* 4230 */}
 				<Genus genus="チチブ属 (Tridentiger)" data={data_Tridentiger}></Genus>
 
