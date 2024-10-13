@@ -177,7 +177,7 @@ export default function Home({data_num, data_Oxyurichthys, data_Waitea, data_Dis
 				<Genus genus="カスリハゼ属 (Waitea)" data={data_Waitea}></Genus>
 				<Genus genus="ツムギハゼ属 (Yongeichthys)" data={data_Yongeichthys}></Genus>
 				<Genus genus="Signigobius属" data={data_Signigobius}></Genus>
-				<Genus genus="未記載属" data={data_indet}></Genus>
+				<Genus genus="未記載属 (Gobiidae indet. gen.)" data={data_indet}></Genus>
 
 				<Family family="オオメワラスボ科"></Family>
 				<Genus genus="オオメワラスボ属 (Gunnellichthys)" data={data_Gunnellichthys}></Genus>
