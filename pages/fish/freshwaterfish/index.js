@@ -16,6 +16,8 @@ export const getStaticProps = async() => {
 	const data_Stiphodon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ナンヨウボウズハゼ属` , limit: 100 }});
 	const data_Sicyopterus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ボウズハゼ属` , limit: 100 }});
 	const data_Lentipes = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヨロイボウズハゼ属` , limit: 100 }});
+	const data_Micropterus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]オオクチバス属` , limit: 100 }});
+	const data_Lepomis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ブルーギル属` , limit: 100 }});
 
 	return {
     	props: {
@@ -31,11 +33,13 @@ export const getStaticProps = async() => {
     		data_Stiphodon: data_Stiphodon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Sicyopterus: data_Sicyopterus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Lentipes: data_Lentipes.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Micropterus: data_Micropterus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Lepomis: data_Lepomis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Candidia, data_Opsariichthys, data_Rhinogobius, data_Tridentiger, data_Sicyopus, data_Anguilla, data_Oreochromis, data_Xiphophorus, data_Stiphodon, data_Sicyopterus, data_Lentipes}) {
+export default function Home({data_num, data_Candidia, data_Opsariichthys, data_Rhinogobius, data_Tridentiger, data_Sicyopus, data_Anguilla, data_Oreochromis, data_Xiphophorus, data_Stiphodon, data_Sicyopterus, data_Lentipes, data_Micropterus, data_Lepomis}) {
 
 	return (
 		<Layout title="淡水魚 | 僕らむの魚図鑑" description="淡水魚の一覧です" url="https://my-divingram-website.vercel.app/fish/freshwaterfish" imageUrl="https://my-divingram-website.vercel.app/img/class/freshwaterfish.jpeg">
@@ -61,6 +65,12 @@ export default function Home({data_num, data_Candidia, data_Opsariichthys, data_
 				<Family family="カダヤシ科"></Family>
 				{/* 1570 */}
 				<Genus genus="ソードテール属 (Xiphophorus)" data={data_Xiphophorus}></Genus>
+
+				<Family family="サンフィッシュ科"></Family>
+				{/* 2330 */}
+				<Genus genus="ブルーギル属 (Lepomis)" data={data_Lepomis}></Genus>
+				{/* 2332 */}
+				<Genus genus="オオクチバス属 (Micropterus)" data={data_Micropterus}></Genus>
 
 				<Family family="カワスズメ科"></Family>
 				{/* 2946 */}
