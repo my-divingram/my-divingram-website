@@ -54,6 +54,10 @@ export default function Home({data_num, data_Candidia, data_Opsariichthys, data_
 				{/* 590 */}
 				<Genus genus="ハス属 (Opsariichthys)" data={data_Opsariichthys}></Genus>
 
+				{/* 710 */}
+				<Family family="サケ科"></Family>
+				<Genus genus="サケ属 (Oncorhynchus)" data={data_Oncorhynchus}></Genus>
+
 				<Family family="カダヤシ科"></Family>
 				{/* 1570 */}
 				<Genus genus="ソードテール属 (Xiphophorus)" data={data_Xiphophorus}></Genus>

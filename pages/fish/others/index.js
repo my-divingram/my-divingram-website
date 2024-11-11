@@ -138,10 +138,6 @@ export default function Home({data_num, data_Acanthocepola, data_Pseudoblennius,
 				<Family family="ゴンズイ科"></Family>
 				<Genus genus="ゴンズイ属 (Plotosus)" data={data_Plotosus}></Genus>
 
-				{/* 710 */}
-				<Family family="サケ科"></Family>
-				<Genus genus="サケ属 (Oncorhynchus)" data={data_Oncorhynchus}></Genus>
-
 				{/* 896 */}
 				<Family family="ミズウオ科"></Family>
 				<Genus genus="ミズウオ属 (Alepisaurus)" data={data_Alepisaurus}></Genus>
