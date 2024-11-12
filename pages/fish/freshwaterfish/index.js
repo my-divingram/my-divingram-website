@@ -19,6 +19,7 @@ export const getStaticProps = async() => {
 	const data_Micropterus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]オオクチバス属` , limit: 100 }});
 	const data_Lepomis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ブルーギル属` , limit: 100 }});
 	const data_Oncorhynchus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]サケ属` , limit: 100 }});
+	const data_Pseudaspius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ウグイ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -37,11 +38,12 @@ export const getStaticProps = async() => {
     		data_Micropterus: data_Micropterus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Lepomis: data_Lepomis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Oncorhynchus: data_Oncorhynchus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Pseudaspius: data_Pseudaspius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Candidia, data_Opsariichthys, data_Rhinogobius, data_Tridentiger, data_Sicyopus, data_Anguilla, data_Oreochromis, data_Xiphophorus, data_Stiphodon, data_Sicyopterus, data_Lentipes, data_Micropterus, data_Lepomis, data_Oncorhynchus}) {
+export default function Home({data_num, data_Candidia, data_Opsariichthys, data_Rhinogobius, data_Tridentiger, data_Sicyopus, data_Anguilla, data_Oreochromis, data_Xiphophorus, data_Stiphodon, data_Sicyopterus, data_Lentipes, data_Micropterus, data_Lepomis, data_Oncorhynchus, data_Pseudaspius}) {
 
 	return (
 		<Layout title="淡水魚 | 僕らむの魚図鑑" description="淡水魚の一覧です" url="https://my-divingram-website.vercel.app/fish/freshwaterfish" imageUrl="https://my-divingram-website.vercel.app/img/class/freshwaterfish.jpeg">
@@ -55,6 +57,8 @@ export default function Home({data_num, data_Candidia, data_Opsariichthys, data_
 				<Genus genus="ウナギ属 (Anguilla)" data={data_Anguilla}></Genus>
 
 				<Family family="コイ科"></Family>
+				{/* 572 */}
+				<Genus genus="ウグイ属 (Pseudaspius)" data={data_Pseudaspius}></Genus>
 				{/* 589 */}
 				<Genus genus="カワムツ属 (Candidia)" data={data_Candidia}></Genus>
 				{/* 590 */}
