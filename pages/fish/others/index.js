@@ -16,7 +16,6 @@ export const getStaticProps = async() => {
 	const data_Plotosus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ゴンズイ属` , limit: 100 }});
 	const data_Spratelloides = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]キビナゴ属` , limit: 100 }});
 	const data_Brotula = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イタチウオ属` , limit: 100 }});
-	const data_Oncorhynchus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]サケ属` , limit: 100 }});
 	const data_Cociella = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イネゴチ属` , limit: 100 }});
 	const data_Microcanthus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カゴカキダイ属` , limit: 100 }});
 	const data_Tylosurus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]テンジクダツ属` , limit: 100 }});
@@ -72,7 +71,6 @@ export const getStaticProps = async() => {
     		data_Plotosus: data_Plotosus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Spratelloides: data_Spratelloides.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Brotula: data_Brotula.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
-    		data_Oncorhynchus: data_Oncorhynchus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Cociella: data_Cociella.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Microcanthus: data_Microcanthus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Tylosurus: data_Tylosurus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
@@ -117,7 +115,7 @@ export const getStaticProps = async() => {
 	};
 };
 
-export default function Home({data_num, data_Acanthocepola, data_Pseudoblennius, data_Oplegnathus, data_Opistognathus, data_Hexagrammos, data_Phtheirichthys, data_Calloplesiops, data_Gerres, data_Plotosus, data_Spratelloides, data_Brotula, data_Oncorhynchus, data_Cociella, data_Microcanthus, data_Tylosurus, data_Trachipterus, data_Assessor, data_Dactyloptena, data_Labracoglossa, data_Lotella, data_Priacanthus, data_Chelidonichthys, data_Metavelifer, data_Scombrops, data_Mugil, data_Uranoscopus, data_Mola, data_Echeneis, data_Evistias, data_Platycephalus, data_Inegocia, data_Nemichthys, data_Trichiurus, data_Psenes, data_Zeus, data_Alepisaurus, data_Physiculus, data_Furcina, data_Kuhlia, data_Heteropriacanthus, data_Lepidotrigla, data_Zoarchias, data_Eumicrotremus, data_Liparis, data_Thysanophrys, data_Pholidichthys, data_Hypoatherina, data_Lateolabrax, data_Ditrema, data_Vellitor, data_Plesiops, data_Monodactylus}) {
+export default function Home({data_num, data_Acanthocepola, data_Pseudoblennius, data_Oplegnathus, data_Opistognathus, data_Hexagrammos, data_Phtheirichthys, data_Calloplesiops, data_Gerres, data_Plotosus, data_Spratelloides, data_Brotula, data_Cociella, data_Microcanthus, data_Tylosurus, data_Trachipterus, data_Assessor, data_Dactyloptena, data_Labracoglossa, data_Lotella, data_Priacanthus, data_Chelidonichthys, data_Metavelifer, data_Scombrops, data_Mugil, data_Uranoscopus, data_Mola, data_Echeneis, data_Evistias, data_Platycephalus, data_Inegocia, data_Nemichthys, data_Trichiurus, data_Psenes, data_Zeus, data_Alepisaurus, data_Physiculus, data_Furcina, data_Kuhlia, data_Heteropriacanthus, data_Lepidotrigla, data_Zoarchias, data_Eumicrotremus, data_Liparis, data_Thysanophrys, data_Pholidichthys, data_Hypoatherina, data_Lateolabrax, data_Ditrema, data_Vellitor, data_Plesiops, data_Monodactylus}) {
 
 	return (
 		<Layout title="その他の海水魚 | 僕らむの魚図鑑" description="その他の海水魚の一覧です" url="https://my-divingram-website.vercel.app/fish/others" imageUrl="https://my-divingram-website.vercel.app/img/class/others.jpeg">
