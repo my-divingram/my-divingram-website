@@ -15,11 +15,12 @@ export const getStaticProps = async (context) => {
 };
 
 export const getStaticPaths = async() => {
-    // 200件以上の場合は要対策
+    // 300件以上の場合は要対策
     const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]goby`, limit: 100 }});
     const data_ = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]goby`, limit: 100, offset: data.totalCount-100 }});
+    const data__ = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]goby`, limit: 100, offset: data.totalCount-200 }});
 
-    const paths = data.contents.concat(data_.contents).map((content) => `/fish/${content.class}/${content.latinName}`.replace(" ", "_"));
+    const paths = data.contents.concat(data_.contents).concat(data__.contents).map((content) => `/fish/${content.class}/${content.latinName}`.replace(" ", "_"));
 
     return {
         paths,
