@@ -22,6 +22,7 @@ export const getStaticProps = async() => {
 	const data_Fowleria = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]シボリ属` , limit: 100 }});
 	const data_Nectamia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ナミダテンジクダイ属` , limit: 100 }});
 	const data_Gymnapogon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]クダリボウズギス属` , limit: 100 }});
+	const data_Neamia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヤツトゲテンジクダイ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -43,11 +44,12 @@ export const getStaticProps = async() => {
     		data_Fowleria: data_Fowleria.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Nectamia: data_Nectamia.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Gymnapogon: data_Gymnapogon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Neamia: data_Neamia.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Ostorhinchus, data_Pristiapogon, data_Cheilodipterus, data_Siphamia, data_Pristicon, data_Sphaeramia, data_Rhabdamia, data_Cercamia, data_Apogon, data_Pseudamia, data_Apogonichthyoides, data_Foa, data_Taeniamia, data_Amioides, data_Fowleria, data_Nectamia, data_Gymnapogon}) {
+export default function Home({data_num, data_Ostorhinchus, data_Pristiapogon, data_Cheilodipterus, data_Siphamia, data_Pristicon, data_Sphaeramia, data_Rhabdamia, data_Cercamia, data_Apogon, data_Pseudamia, data_Apogonichthyoides, data_Foa, data_Taeniamia, data_Amioides, data_Fowleria, data_Nectamia, data_Gymnapogon, data_Neamia}) {
 
 	return (
 		<Layout title="テンジクダイの仲間 | 僕らむの魚図鑑" description="テンジクダイの仲間の一覧です" url="https://my-divingram-website.vercel.app/fish/cardinalfish" imageUrl="https://my-divingram-website.vercel.app/img/class/cardinalfish.png">
@@ -65,6 +67,7 @@ export default function Home({data_num, data_Ostorhinchus, data_Pristiapogon, da
 				<Genus genus="タイワンマトイシモチ属 (Foa)" data={data_Foa}></Genus>
 				<Genus genus="シボリ属 (Fowleria)" data={data_Fowleria}></Genus>
 				<Genus genus="クダリボウズギス属 (Gymnapogon)" data={data_Gymnapogon}></Genus>
+				<Genus genus="ヤツトゲテンジクダイ属 (Neamia)" data={data_Neamia}></Genus>
 				<Genus genus="ナミダテンジクダイ属 (Nectamia)" data={data_Nectamia}></Genus>
 				<Genus genus="スジイシモチ属 (Ostorhinchus)" data={data_Ostorhinchus}></Genus>
 				<Genus genus="ヒトスジイシモチ属 (Pristiapogon)" data={data_Pristiapogon}></Genus>
