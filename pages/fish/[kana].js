@@ -267,7 +267,7 @@ export default function kanaList({kana, data_kana_a, data_kana_i, data_kana_u, d
                     ))}
 
 				</div>
-                <p className="pt-8 text-xs md:text-sm text-center text-gray-700 font-medium">当サイトに掲載する魚種の同定にあたり，<Link href={"https://x.com/yuma_sakana"} className="underline hover:opacity-50">YUMA氏</Link>に多大なるご尽力を賜りました．ここに深謝いたします．</p>
+                <p className="pt-8 text-xs md:text-sm text-center text-gray-700 font-medium">当サイトに掲載する魚種の同定にあたり，<Link href={"https://x.com/yuma_sakana"} className="underline hover:opacity-50">YUMA氏</Link>に数多のご教示をを賜りました．ここに深謝いたします．</p>
             </div>
         </Layout>
     )

@@ -374,7 +374,7 @@ function Home({data_fish, data_fish_slider, data_num, data_num_ja}) {
                         </Link>
                     </div>
                 </div>
-                <p className="pt-8 text-xs md:text-sm text-center text-gray-700 font-medium">当サイトに掲載する魚種の同定にあたり，<Link href={"https://x.com/yuma_sakana"} className="underline hover:opacity-50">YUMA氏</Link>に多大なるご尽力を賜りました．ここに深謝いたします．</p>
+                <p className="pt-8 text-xs md:text-sm text-center text-gray-700 font-medium">当サイトに掲載する魚種の同定にあたり，<Link href={"https://x.com/yuma_sakana"} className="underline hover:opacity-50">YUMA氏</Link>に数多のご教示を賜りました．ここに深謝いたします．</p>
             </div>
         </Layout>
     )
