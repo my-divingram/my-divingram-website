@@ -52,7 +52,7 @@ export const getStaticProps = async() => {
 export default function Home({data_num, data_Sebastes, data_Sebastiscus, data_Pterois, data_Pteropterus, data_Parapterois, data_Dendrochirus, data_Nemapterois, data_Neochirus, data_Taenianotus, data_Rhinopias, data_Pteroidichthys, data_Scorpaenopsis, data_Scorpaena, data_Sebastapistes, data_Parascorpaena, data_Scorpaenodes, data_Caracanthus, data_Neosebastes}) {
 
 	return (
-		<Layout title="カサゴ・メバルの仲間 | 僕らむの魚図鑑" description="カサゴ・メバルの仲間の一覧です" url="https://my-divingram-website.vercel.app/fish/rockfish" imageUrl="https://my-divingram-website.vercel.app/img/class/rockfish.jpeg">
+		<Layout title="カサゴ・メバルの仲間 | 僕らむの魚図鑑" description="カサゴ・メバルの仲間の一覧です" url="https://www.my-divingram.com/fish/rockfish" imageUrl="https://www.my-divingram.com/img/class/rockfish.jpeg">
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">カサゴ・メバルの仲間</h1>

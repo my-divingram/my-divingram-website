@@ -124,7 +124,7 @@ export const getStaticProps = async() => {
 export default function Home({data_num, data_Oxyurichthys, data_Waitea, data_Discordipinna, data_Ptereleotris, data_Bryaninops, data_Lotilia, data_Myersina, data_Ancistrogobius, data_Pleurosicya, data_Asterropteryx, data_Gobiodon, data_Paragobiodon, data_Fusigobius, data_Lubricogobius, data_Nemateleotris, data_Trimma, data_Chaenogobius, data_Priolepis, data_Amblygobius, data_Valenciennea, data_Gnatholepis, data_Acentrogobius, data_Gunnellichthys, data_Istigobius, data_Stonogobiops, data_Amblyeleotris, data_Tomiyamichthys, data_Eviota, data_Tryssogobius, data_Signigobius, data_Vanderhorstia, data_Cryptocentrus, data_Ctenogobiops, data_Echinogobius, data_Hazeus, data_Koumansetta, data_Oplopomus, data_Trimmatom, data_Pterogobius, data_Oxymetopon, data_Yongeichthys, data_Psammogobius, data_Macrodontogobius, data_Bathygobius, data_Callogobius, data_Inu, data_Luciogobius, data_Periophthalmus, data_Barbuligobius, data_Sagamia, data_Cabillus, data_Sueviota, data_indet, data_Grallenia}) {
 
 	return (
-		<Layout title="ハゼの仲間 | 僕らむの魚図鑑" description="ハゼの仲間の一覧です" url="https://my-divingram-website.vercel.app/fish/goby" imageUrl="https://my-divingram-website.vercel.app/img/class/goby.jpeg">
+		<Layout title="ハゼの仲間 | 僕らむの魚図鑑" description="ハゼの仲間の一覧です" url="https://www.my-divingram.com/fish/goby" imageUrl="https://www.my-divingram.com/img/class/goby.jpeg">
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">ハゼの仲間</h1>

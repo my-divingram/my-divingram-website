@@ -90,7 +90,7 @@ export const getStaticProps = async() => {
 export default function Home({data_num, data_Pseudojuloides, data_Terelabrus, data_Pseudolabrus, data_Pteragogus, data_Halichoeres, data_Choerodon, data_Suezichthys, data_Novaculichthys, data_Oxycheilinus, data_Novaculoides, data_Cirrhilabrus, data_Stethojulis, data_Coris, data_Bodianus, data_Cheilinus, data_Cheilio, data_Thalassoma, data_Labroides, data_Hemigymnus, data_Parajulis, data_Cymolutes, data_Anampses, data_Pseudocoris, data_Labrichthys, data_Novaculops, data_Iniistius, data_Hologymnosus, data_Semicossyphus, data_Epibulus, data_Labropsis, data_Gomphosus, data_Paracheilinus, data_Pseudocheilinus, data_Macropharyngodon, data_Wetmorella, data_Xyrichtys, data_Pseudodax}) {
 
 	return (
-		<Layout title="ベラの仲間 | 僕らむの魚図鑑" description="ベラの仲間の一覧です" url="https://my-divingram-website.vercel.app/fish/wrasse" imageUrl="https://my-divingram-website.vercel.app/img/class/wrasse.jpeg">
+		<Layout title="ベラの仲間 | 僕らむの魚図鑑" description="ベラの仲間の一覧です" url="https://www.my-divingram.com/fish/wrasse" imageUrl="https://www.my-divingram.com/img/class/wrasse.jpeg">
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">ベラの仲間</h1>

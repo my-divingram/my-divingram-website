@@ -42,7 +42,7 @@ export const getStaticProps = async() => {
 export default function Home({data_num, data_Epinephelus, data_Cephalopholis, data_Aethaloperca, data_Plectropomus, data_Variola, data_Gracila, data_Chromileptes, data_Diploprion, data_Aulacocephalus, data_Liopropoma, data_Grammistes, data_Belonoperca, data_Anyperodon}) {
 
 	return (
-		<Layout title="ハタの仲間 | 僕らむの魚図鑑" description="ハタの仲間の一覧です" url="https://my-divingram-website.vercel.app/fish/grouper" imageUrl="https://my-divingram-website.vercel.app/img/class/grouper.jpeg">
+		<Layout title="ハタの仲間 | 僕らむの魚図鑑" description="ハタの仲間の一覧です" url="https://www.my-divingram.com/fish/grouper" imageUrl="https://www.my-divingram.com/img/class/grouper.jpeg">
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">ハタの仲間</h1>

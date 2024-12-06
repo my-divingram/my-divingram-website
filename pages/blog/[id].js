@@ -22,7 +22,7 @@ export const getStaticProps = async (context) => {
 
 export default function BlogId({ data_blog }) {
     const title = `${data_blog.title} | 僕らむのBLOG`
-    const url = `https://my-divingram-website.vercel.app/blog/${data_blog.id}`
+    const url = `https://www.my-divingram.com/blog/${data_blog.id}`
 
     return (
       <Layout title={title} description={data_blog.abstruct} url={url} imageUrl={data_blog.thumbnail.url}>

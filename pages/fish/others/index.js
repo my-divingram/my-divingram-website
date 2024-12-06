@@ -120,7 +120,7 @@ export const getStaticProps = async() => {
 export default function Home({data_num, data_Acanthocepola, data_Pseudoblennius, data_Oplegnathus, data_Opistognathus, data_Hexagrammos, data_Phtheirichthys, data_Calloplesiops, data_Gerres, data_Plotosus, data_Spratelloides, data_Brotula, data_Cociella, data_Microcanthus, data_Tylosurus, data_Trachipterus, data_Assessor, data_Dactyloptena, data_Labracoglossa, data_Lotella, data_Priacanthus, data_Chelidonichthys, data_Metavelifer, data_Scombrops, data_Mugil, data_Uranoscopus, data_Mola, data_Echeneis, data_Evistias, data_Platycephalus, data_Inegocia, data_Nemichthys, data_Trichiurus, data_Psenes, data_Zeus, data_Alepisaurus, data_Physiculus, data_Furcina, data_Kuhlia, data_Heteropriacanthus, data_Lepidotrigla, data_Zoarchias, data_Eumicrotremus, data_Liparis, data_Thysanophrys, data_Pholidichthys, data_Hypoatherina, data_Lateolabrax, data_Ditrema, data_Vellitor, data_Plesiops, data_Monodactylus, data_Onigocia}) {
 
 	return (
-		<Layout title="その他の海水魚 | 僕らむの魚図鑑" description="その他の海水魚の一覧です" url="https://my-divingram-website.vercel.app/fish/others" imageUrl="https://my-divingram-website.vercel.app/img/class/others.jpeg">
+		<Layout title="その他の海水魚 | 僕らむの魚図鑑" description="その他の海水魚の一覧です" url="https://www.my-divingram.com/fish/others" imageUrl="https://www.my-divingram.com/img/class/others.jpeg">
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">その他の海水魚</h1>
