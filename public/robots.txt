@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://my-divingram.com/
+Host: https://www.my-divingram.com/
 
 # Sitemaps
-Sitemap: https://my-divingram.com/sitemap.xml
+Sitemap: https://www.my-divingram.com/sitemap.xml
