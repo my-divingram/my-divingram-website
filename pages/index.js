@@ -25,7 +25,7 @@ export const getStaticProps = async() => {
 
 
 function Home({data_fish, data_blog}) {
-    const description = '伊豆を中心に国内外を問わず魚を求めて潜っているトラベルダイバーの"僕のだいびんぐらむ"です。個人で撮影した生態写真で魚図鑑を制作しています。'
+    const description = '伊豆を中心に国内外を問わず未だ見ぬ魚を探して潜っているトラベルダイバーの"僕のだいびんぐらむ"です。個人で撮影した生態写真で魚図鑑を制作しています。'
 
     return (
         <Layout title="僕のだいびんぐらむ" description={description} url="https://www.my-divingram.com/" imageUrl="https://www.my-divingram.com/img/logo/ornate.png">

@@ -10,6 +10,7 @@ import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 export const getStaticProps = async() => {
     const data_fish = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚`, orders: `-updatedAt`, limit: 1}});
     const data_fish_ja = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]isOversea[equals]false`, orders: `-updatedAt`, limit: 1}});
+    const data_fish_freshwater = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]freshwaterfish` , limit: 1 }});
     const data_fish_slider = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]isSpotlight[equals]true`, orders: `-updatedAt`, limit: 40}});
 
     const shuffleArray = (array) => {
@@ -28,7 +29,7 @@ export const getStaticProps = async() => {
             data_fish: data_fish.contents,
             data_fish_slider: shuffleArray(data_fish_slider.contents),
             data_num: data_fish.totalCount,
-            data_num_ja: data_fish_ja.totalCount,
+            data_num_ja: data_fish_ja.totalCount - data_fish_freshwater.totalCount,
         },
     };
 };
@@ -45,7 +46,7 @@ function Home({data_fish, data_fish_slider, data_num, data_num_ja}) {
 
     const kanaList = ["ア", "カ", "サ", "タ", "ナ", "ハ", "マ", "ヤ", "ラ", "ワ"];
 
-    const description = '伊豆を中心に国内外を問わず魚を求めて潜っているトラベルダイバーの"僕のだいびんぐらむ"です。個人で撮影した生態写真で魚図鑑を制作しています。'
+    const description = '伊豆を中心に国内外を問わず未だ見ぬ魚を探して潜っているトラベルダイバーの"僕のだいびんぐらむ"です。個人で撮影した生態写真で魚図鑑を制作しています。'
 
     return (
         <Layout title="僕らむの魚図鑑" description={description} url="https://www.my-divingram.com/fish" imageUrl="https://www.my-divingram.com/img/logo/ornate.png">
@@ -67,10 +68,10 @@ function Home({data_fish, data_fish_slider, data_num, data_num_ja}) {
                     ))}
                 </Splide>
 
-                <p className="text-sm md:text-lg text-center text-gray-700 font-medium">現在掲載種 (未記載種やハイブリッドを含む) : {data_num}種</p>
-                <p className="text-sm md:text-lg text-center text-gray-700 font-medium">うち国内種 : {data_num_ja}種</p>
+                <p className="text-sm md:text-lg text-center text-gray-700 font-medium">掲載種 (未記載種やハイブリッドを含む) : {data_num}種</p>
+                <p className="text-sm md:text-lg text-center text-gray-700 font-medium">うち日本産海水魚 : {data_num_ja}種</p>
                 <p className="pt-1 pb-1 text-xs md:text-sm text-center text-gray-700 font-medium">最近の更新一覧は<Link href={"/fish/recent_updates"} className="underline hover:opacity-50">こちら</Link> (最終更新 : {data_fish[0].updatedAt.substr(0,10)})</p>
-                <p className="pb-1 text-xs md:text-sm text-center text-gray-700 font-medium">学名および掲載順は「日本産魚類全種リスト(ver22)」に準拠する</p>
+                {/* <p className="pb-1 text-xs md:text-sm text-center text-gray-700 font-medium">学名および掲載順は「日本産魚類全種リスト(ver22)」に準拠する</p> */}
                 <p className="pb-10 text-xs md:text-sm text-center text-gray-700 font-medium">海外種は名称の末尾に*の注釈あり</p>
 
                 <p className="text-center text-sm md:text-lg text-gray-700 font-medium">索引</p>
@@ -375,6 +376,7 @@ function Home({data_fish, data_fish_slider, data_num, data_num_ja}) {
                     </div>
                 </div>
                 <p className="pt-8 text-xs md:text-sm text-center text-gray-700 font-medium">当サイトに掲載する魚種の同定にあたり，<Link href={"https://x.com/yuma_sakana"} className="underline hover:opacity-50">YUMA氏</Link>に数多のご教示を賜りました．ここに深謝いたします．</p>
+                <p className="pt-1 text-xs md:text-sm text-center text-gray-700 font-medium">写真提供依頼，誤同定のご指摘などは各SNSのDMまでお願いします．</p>
             </div>
         </Layout>
     )
