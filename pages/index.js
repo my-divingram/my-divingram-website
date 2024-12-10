@@ -131,7 +131,7 @@ function Home({data_fish, data_blog}) {
                     </div>
                 </div>
 
-                <p className="pb-5 text-xs md:text-base text-center text-gray-700 font-medium" id="contact">写真提供依頼，誤同定のご指摘などは各SNSのDMまでお願いします</p>
+                <p className="pb-5 text-xs md:text-base text-center text-gray-700 font-medium" id="contact">写真提供のご依頼，誤同定のご指摘などは各SNSのDMまでお願いします．</p>
 
 
                 {/* <h1 className="pt-10 pb-5 text-xl md:text-2xl text-center text-sky-800 font-black">Twitter</h1>

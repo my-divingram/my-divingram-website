@@ -131,8 +131,8 @@ function Home({data_fish_1stLast, data_fish_2ndLast, data_fish_3rdLast, data_fis
                         </div>
                     ))}
                 </div>
-                <p className="pt-8 text-xs md:text-sm text-center text-gray-700 font-medium">当サイトに掲載する魚種の同定にあたり，<Link href={"https://x.com/yuma_sakana"} className="underline hover:opacity-50">YUMA氏</Link>に数多のご教示を賜りました．ここに深謝いたします．</p>
-                <p className="pt-1 text-xs md:text-sm text-center text-gray-700 font-medium">写真提供依頼，誤同定のご指摘などは各SNSのDMまでお願いします．</p>
+                <p className="pt-8 text-xs md:text-sm text-center text-gray-700 font-medium">当サイトに掲載する魚種の同定にあたり，<Link href={"https://x.com/yuma_sakana"} className="underline hover:opacity-50">YUMA</Link>氏に数多のご教示を賜りました．ここに深謝いたします．</p>
+                <p className="pt-1 text-xs md:text-sm text-center text-gray-700 font-medium">写真提供のご依頼，誤同定のご指摘などは各SNSのDMまでお願いします．</p>
             </div>
         </Layout>
     )
