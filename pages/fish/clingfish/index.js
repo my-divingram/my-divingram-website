@@ -11,6 +11,7 @@ export const getStaticProps = async() => {
 	const data_Diademichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハシナガウバウオ属` , limit: 100 }});
 	const data_Discotrema = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ウミシダウバウオ属` , limit: 100 }});
 	const data_Pherallodichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]メシマウバウオ属` , limit: 100 }});
+	const data_Pherallodus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ホソウバウオ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -21,11 +22,12 @@ export const getStaticProps = async() => {
     		data_Diademichthys: data_Diademichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Discotrema: data_Discotrema.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Pherallodichthys: data_Pherallodichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+			data_Pherallodus: data_Pherallodus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Propherallodus, data_Lepadichthys, data_Conidens, data_Diademichthys, data_Discotrema, data_Pherallodichthys}) {
+export default function Home({data_num, data_Propherallodus, data_Lepadichthys, data_Conidens, data_Diademichthys, data_Discotrema, data_Pherallodichthys, data_Pherallodus}) {
 
 	return (
 		<Layout title="ウバウオの仲間 | 僕らむの魚図鑑" description="ウバウオの仲間の一覧です" url="https://www.my-divingram.com/fish/clingfish" imageUrl="https://www.my-divingram.com/img/class/clingfish.jpeg">
@@ -40,6 +42,7 @@ export default function Home({data_num, data_Propherallodus, data_Lepadichthys, 
 				<Genus genus="ウミシダウバウオ属 (Discotrema)" data={data_Discotrema}></Genus>
 				<Genus genus="ミサキウバウオ属 (Lepadichthys)" data={data_Lepadichthys}></Genus>
 				<Genus genus="メシマウバウオ属 (Pherallodichthys)" data={data_Pherallodichthys}></Genus>
+				<Genus genus="ホソウバウオ属 (Pherallodus)" data={data_Pherallodus}></Genus>
 				<Genus genus="ヒメウバウオ属 (Propherallodus)" data={data_Propherallodus}></Genus>
 
 			</div>
