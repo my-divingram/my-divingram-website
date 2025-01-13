@@ -108,7 +108,7 @@ export default function kanaList({kana, data_kana_a, data_kana_i, data_kana_u, d
     const url = `https://www.my-divingram.com/fish/${kana}`
 
     return (
-        <Layout title="僕らむの魚図鑑" description={description} url={url} imageUrl="https://www.my-divingram.com/img/logo/ornate.png">
+        <Layout title="僕らむの魚図鑑" description={description} url={url} imageUrl="https://www.my-divingram.com/img/logo/favicon.jpg">
 
             <div className="px-3 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
