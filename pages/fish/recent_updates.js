@@ -71,7 +71,7 @@ function Home({data_fish_1stLast, data_fish_2ndLast, data_fish_3rdLast, data_fis
     const description = '伊豆を中心に国内外を問わず未だ見ぬ魚を探して潜っているトラベルダイバーの"僕のだいびんぐらむ"です。個人で撮影した生態写真で魚図鑑を制作しています。'
 
     return (
-        <Layout title="僕らむの魚図鑑" description={description} url="https://www.my-divingram.com/fish/recent_updates" imageUrl="https://www.my-divingram.com/img/logo/favicon.jpg">
+        <Layout title="僕らむの魚図鑑" description={description} url="https://www.my-divingram.com/fish/recent_updates" imageUrl="https://www.my-divingram.com/img/logo/favicon_small.jpg">
 
             <div className="px-3 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 

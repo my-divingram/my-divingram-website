@@ -19,7 +19,7 @@ function Home({data_blog}) {
     const description = "僕らむが遠征の作戦会議や魚の見分け方、小ネタ等を綴るブログです。"
 
     return (
-        <Layout title="僕らむのBLOG" description={description} url="https://www.my-divingram.com/blog" imageUrl="https://www.my-divingram.com/img/logo/favicon.jpg">
+        <Layout title="僕らむのBLOG" description={description} url="https://www.my-divingram.com/blog" imageUrl="https://www.my-divingram.com/img/logo/favicon_small.jpg">
 
             <div className="px-3 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
