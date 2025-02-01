@@ -136,7 +136,7 @@ export default function Home({data_num, data_Oxyurichthys, data_Waitea, data_Dis
 				<Genus genus="キララハゼ属 (Acentrogobius)" data={data_Acentrogobius}></Genus>
 				<Genus genus="ダテハゼ属 (Amblyeleotris)" data={data_Amblyeleotris}></Genus>
 				<Genus genus="サラサハゼ属 (Amblygobius)" data={data_Amblygobius}></Genus>
-				<Genus genus="ホオガキハゼ属 (Ancistrogobius)" data={data_Ancistrogobius}></Genus>
+				<Genus genus="ホオカギハゼ属 (Ancistrogobius)" data={data_Ancistrogobius}></Genus>
 				<Genus genus="ホシハゼ属 (Asterropteryx)" data={data_Asterropteryx}></Genus>
 				<Genus genus="ヒゲモジャハゼ属 (Barbuligobius)" data={data_Barbuligobius}></Genus>
 				<Genus genus="クモハゼ属 (Bathygobius)" data={data_Bathygobius}></Genus>
