@@ -12,7 +12,7 @@ export const getStaticProps = async() => {
 	const data_Bryaninops = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ガラスハゼ属` , limit: 100 }});
 	const data_Lotilia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]オドリハゼ属` , limit: 100 }});
 	const data_Myersina = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハゴロモハゼ属` , limit: 100 }});
-	const data_Ancistrogobius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ホオガキハゼ属` , limit: 100 }});
+	const data_Ancistrogobius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ホオカギハゼ属` , limit: 100 }});
 	const data_Pleurosicya = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ウミショウブハゼ属` , limit: 100 }});
 	const data_Asterropteryx = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ホシハゼ属` , limit: 100 }});
 	const data_Gobiodon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]コバンハゼ属` , limit: 100 }});
