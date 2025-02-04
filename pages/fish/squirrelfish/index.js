@@ -11,6 +11,7 @@ export const getStaticProps = async() => {
 	const data_Monocentris = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]マツカサウオ属` , limit: 100 }});
 	const data_Pristilepis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヤセエビス属` , limit: 100 }});
 	const data_Aulotrachichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハリダシエビス属` , limit: 100 }});
+	const data_Anomalops = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒカリキンメダイ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -21,11 +22,12 @@ export const getStaticProps = async() => {
     		data_Monocentris: data_Monocentris.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Pristilepis: data_Pristilepis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Aulotrachichthys: data_Aulotrachichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Anomalops: data_Anomalops.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Sargocentron, data_Neoniphon, data_Myripristis, data_Monocentris, data_Pristilepis, data_Aulotrachichthys}) {
+export default function Home({data_num, data_Sargocentron, data_Neoniphon, data_Myripristis, data_Monocentris, data_Pristilepis, data_Aulotrachichthys, data_Anomalops}) {
 
 	return (
 		<Layout title="イットウダイの仲間 | 僕らむの魚図鑑" description="イットウダイの仲間の一覧です" url="https://www.my-divingram.com/fish/squirrelfish" imageUrl="https://www.my-divingram.com/img/class/squirrelfish.jpeg">
@@ -45,6 +47,9 @@ export default function Home({data_num, data_Sargocentron, data_Neoniphon, data_
 
 				<Family family="マツカサウオ科"></Family>
 				<Genus genus="マツカサウオ属 (Monocentris)" data={data_Monocentris}></Genus>
+
+				<Family family="ヒカリキンメダイ科"></Family>
+				<Genus genus="ヒカリキンメダイ属 (Anomalops)" data={data_Anomalops}></Genus>
 
 			</div>
 		</Layout>
