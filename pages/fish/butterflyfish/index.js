@@ -11,6 +11,7 @@ export const getStaticProps = async() => {
 	const data_Coradion = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]タキゲンロクダイ属` , limit: 100 }});
 	const data_Heniochus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハタタテダイ属` , limit: 100 }});
 	const data_Forcipiger = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]フエヤッコダイ属` , limit: 100 }});
+	const data_Chelmon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハシナガチョウチョウウオ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -21,11 +22,12 @@ export const getStaticProps = async() => {
     		data_Coradion: data_Coradion.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Heniochus: data_Heniochus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Forcipiger: data_Forcipiger.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Chelmon: data_Chelmon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Chaetodon, data_Hemitaurichthys, data_Roa, data_Coradion, data_Heniochus, data_Forcipiger}) {
+export default function Home({data_num, data_Chaetodon, data_Hemitaurichthys, data_Roa, data_Coradion, data_Heniochus, data_Forcipiger, data_Chelmon}) {
 
 	return (
 		<Layout title="チョウチョウウオの仲間 | 僕らむの魚図鑑" description="チョウチョウウオの仲間の一覧です" url="https://www.my-divingram.com/fish/butterflyfish" imageUrl="https://www.my-divingram.com/img/class/butterflyfish.jpeg">
@@ -36,6 +38,7 @@ export default function Home({data_num, data_Chaetodon, data_Hemitaurichthys, da
 
 				<Family family="チョウチョウウオ科"></Family>
 				<Genus genus="チョウチョウウオ属 (Chaetodon)" data={data_Chaetodon}></Genus>
+				<Genus genus="ハシナガチョウチョウウオ属 (Chelmon)" data={data_Chelmon}></Genus>
 				<Genus genus="タキゲンロクダイ属 (Coradion)" data={data_Coradion}></Genus>
 				<Genus genus="フエヤッコダイ属 (Forcipiger)" data={data_Forcipiger}></Genus>
 				<Genus genus="カスミチョウチョウウオ属 (Hemitaurichthys)" data={data_Hemitaurichthys}></Genus>
