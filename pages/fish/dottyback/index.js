@@ -9,6 +9,7 @@ export const getStaticProps = async() => {
 	const data_Pictichromis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]クレナイニセスズメ属` , limit: 100 }});
 	const data_Pseudochromis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ニセスズメ属` , limit: 100 }});
 	const data_Pseudoplesiops = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]タナバタメギス属` , limit: 100 }});
+	const data_Lubbockichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]Lubbockichthys` , limit: 100 }});
 
 	return {
     	props: {
@@ -17,11 +18,12 @@ export const getStaticProps = async() => {
 			data_Pictichromis: data_Pictichromis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Labracinus: data_Labracinus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Pseudoplesiops: data_Pseudoplesiops.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+			data_Lubbockichthys: data_Lubbockichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Labracinus, data_Pictichromis, data_Pseudochromis, data_Pseudoplesiops}) {
+export default function Home({data_num, data_Labracinus, data_Pictichromis, data_Pseudochromis, data_Pseudoplesiops, data_Lubbockichthys}) {
 
 	return (
 		<Layout title="メギスの仲間 | 僕らむの魚図鑑" description="メギスの仲間の一覧です" url="https://www.my-divingram.com/fish/dottyback" imageUrl="https://www.my-divingram.com/img/class/dottyback.jpeg">
@@ -32,6 +34,7 @@ export default function Home({data_num, data_Labracinus, data_Pictichromis, data
 
 				<Family family="メギス科"></Family>
 				<Genus genus="メギス属 (Labracinus)" data={data_Labracinus}></Genus>
+				<Genus genus="Lubbockichthys属" data={data_Lubbockichthys}></Genus>
 				<Genus genus="クレナイニセスズメ属 (Pictichromis)" data={data_Pictichromis}></Genus>
 				<Genus genus="ニセスズメ属 (Pseudochromis)" data={data_Pseudochromis}></Genus>
 				<Genus genus="タナバタメギス属 (Pseudoplesiops)" data={data_Pseudoplesiops}></Genus>
