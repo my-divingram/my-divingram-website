@@ -22,6 +22,7 @@ export const getStaticProps = async() => {
 	const data_Centriscus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヨロイウオ属` , limit: 100 }});
 	const data_Bulbonaricus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]チンヨウジウオ属` , limit: 100 }});
 	const data_Siokunichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]Siokunichthys` , limit: 100 }});
+	const data_Pegasus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]テングノオトシゴ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -43,11 +44,12 @@ export const getStaticProps = async() => {
     		data_Centriscus: data_Centriscus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Bulbonaricus: data_Bulbonaricus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Siokunichthys: data_Siokunichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Pegasus: data_Pegasus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Eurypegasus, data_Fistularia, data_Aulostomus, data_Solenostomus, data_Festucalex, data_Halicampus, data_Corythoichthys, data_Trachyrhamphus, data_Doryrhamphus, data_Maroubra, data_Phoxocampus, data_Acentronura, data_Hippocampus, data_Aeoliscus, data_Centriscus, data_Bulbonaricus, data_Siokunichthys}) {
+export default function Home({data_num, data_Eurypegasus, data_Fistularia, data_Aulostomus, data_Solenostomus, data_Festucalex, data_Halicampus, data_Corythoichthys, data_Trachyrhamphus, data_Doryrhamphus, data_Maroubra, data_Phoxocampus, data_Acentronura, data_Hippocampus, data_Aeoliscus, data_Centriscus, data_Bulbonaricus, data_Siokunichthys, data_Pegasus}) {
 
 	return (
 		<Layout title="トゲウオの仲間 | 僕らむの魚図鑑" description="トゲウオの仲間の一覧です" url="https://www.my-divingram.com/fish/seahorse" imageUrl="https://www.my-divingram.com/img/class/seahorse.jpeg">
@@ -58,6 +60,7 @@ export default function Home({data_num, data_Eurypegasus, data_Fistularia, data_
 
 				<Family family="ウミテング科"></Family>
 				<Genus genus="ウミテング属 (Eurypegasus)" data={data_Eurypegasus}></Genus>
+				<Genus genus="テングノオトシゴ属 (Pegasus)" data={data_Pegasus}></Genus>
 
 				<Family family="ヘラヤガラ科"></Family>
 				<Genus genus="ヘラヤガラ属 (Aulostomus)" data={data_Aulostomus}></Genus>
