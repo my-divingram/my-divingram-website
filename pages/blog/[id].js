@@ -1,17 +1,9 @@
 import { client } from "/libs/client";
 import Layout from "/components/Layout";
 
-
-export const getStaticPaths = async () => {
-  const data_blog = await client.get({ endpoint: "blog" });
-
-  const paths = data_blog.contents.map((content) => `/blog/${content.id}`);
-  return { paths, fallback: false };
-};
-
 export const getStaticProps = async (context) => {
   const id = context.params.id;
-  const data_blog = await client.get({ endpoint: "blog", contentId: id , queries: {limit: 100}});
+  const data_blog = await client.get({ endpoint: "blog", contentId: id });
 
   return {
     props: {
@@ -19,6 +11,14 @@ export const getStaticProps = async (context) => {
     },
   };
 };
+
+export const getStaticPaths = async () => {
+  const data_blog = await client.get({ endpoint: "blog", queries: {limit: 100}});
+
+  const paths = data_blog.contents.map((content) => `/blog/${content.id}`);
+  return { paths, fallback: false };
+};
+
 
 export default function BlogId({ data_blog }) {
     const title = `${data_blog.title} | 僕らむのBLOG`
