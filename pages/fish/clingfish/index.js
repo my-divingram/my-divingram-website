@@ -46,7 +46,7 @@ export default function Home({data_num, data_Propherallodus, data_Lepadichthys, 
 				<Genus genus="メシマウバウオ属 (Pherallodichthys)" data={data_Pherallodichthys}></Genus>
 				<Genus genus="ホソウバウオ属 (Pherallodus)" data={data_Pherallodus}></Genus>
 				<Genus genus="ヒメウバウオ属 (Propherallodus)" data={data_Propherallodus}></Genus>
-				<Genus genus="Rhinolepadichthys属" data={data_Propherallodus}></Genus>
+				<Genus genus="Rhinolepadichthys属" data={data_Rhinolepadichthys}></Genus>
 
 			</div>
 		</Layout>
