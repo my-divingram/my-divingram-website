@@ -9,6 +9,7 @@ export const getStaticProps = async() => {
 	const data_Echidna = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アラシウツボ属` , limit: 100 }});
 	const data_Enchelycore = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]コケウツボ属` , limit: 100 }});
 	const data_Rhinomuraena = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハナヒゲウツボ属` , limit: 100 }});
+	const data_Anarchias = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]タカマユウツボ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -17,11 +18,12 @@ export const getStaticProps = async() => {
     		data_Echidna: data_Echidna.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Enchelycore: data_Enchelycore.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Rhinomuraena: data_Rhinomuraena.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Anarchias: data_Anarchias.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Gymnothorax, data_Echidna, data_Enchelycore, data_Rhinomuraena}) {
+export default function Home({data_num, data_Gymnothorax, data_Echidna, data_Enchelycore, data_Rhinomuraena, data_Anarchias}) {
 
 	return (
 		<Layout title="ウツボの仲間 | 僕らむの魚図鑑" description="ウツボの仲間の一覧です" url="https://www.my-divingram.com/fish/moray" imageUrl="https://www.my-divingram.com/img/class/moray.jpeg">
@@ -31,6 +33,7 @@ export default function Home({data_num, data_Gymnothorax, data_Echidna, data_Enc
 				<p className="pt-2 text-xs md:text-sm text-center text-gray-700 font-medium">掲載種 (未記載種を含む) : {data_num}種</p>
 
 				<Family family="ウツボ科"></Family>
+				<Genus genus="タカマユウツボ属 (Anarchias)" data={data_Anarchias}></Genus>
 				<Genus genus="アラシウツボ属 (Echidna)" data={data_Echidna}></Genus>
 				<Genus genus="コケウツボ属 (Enchelycore)" data={data_Enchelycore}></Genus>
 				<Genus genus="ウツボ属 (Gymnothorax)" data={data_Gymnothorax}></Genus>
