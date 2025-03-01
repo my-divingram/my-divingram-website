@@ -31,7 +31,7 @@ export function Species({classes, pagedata}) {
 
             <div className="md:px-3 flex justify-center items-center">
                 <Link href={pagedata.thumbImg.url}>
-                    <Image src={pagedata.thumbImg.url} alt="thumbnail" width={600} height={400} style={{objectFit:"contain"}} unoptimized/>
+                    <Image src={pagedata.thumbImg.url} alt={pagedata.japaneseName} width={600} height={400} style={{objectFit:"contain"}} unoptimized/>
                 </Link>
             </div>
 
