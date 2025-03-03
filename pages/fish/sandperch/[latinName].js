@@ -32,7 +32,7 @@ export default function IndividualPage({pagedata}){
 
     return (
         <Layout title={title} description={description} url={url} imageUrl={pagedata.thumbImg.url}>
-            <Species classes="トラギスの仲間" pagedata={pagedata}></Species>
+            <Species classes="ワニギスの仲間" pagedata={pagedata}></Species>
         </Layout>
     )
 }
