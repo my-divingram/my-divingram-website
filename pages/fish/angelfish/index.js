@@ -37,13 +37,13 @@ export default function Home({data_num, data_Chaetodontoplus, data_Genicanthus, 
 				<p className="pt-2 text-xs md:text-sm text-center text-gray-700 font-medium">掲載種 (ハイブリッドを含む) : {data_num}種</p>
 
 				<Family family="キンチャクダイ科"></Family>
-				<Genus genus="シテンヤッコ属 (Apolemichthys)" data={data_Apolemichthys}></Genus>
 				<Genus genus="アブラヤッコ属 (Centropyge)" data={data_Centropyge}></Genus>
 				<Genus genus="キンチャクダイ属 (Chaetodontoplus)" data={data_Chaetodontoplus}></Genus>
 				<Genus genus="タテジマヤッコ属 (Genicanthus)" data={data_Genicanthus}></Genus>
 				<Genus genus="シマヤッコ属 (Paracentropyge)" data={data_Paracentropyge}></Genus>
 				<Genus genus="サザナミヤッコ属 (Pomacanthus)" data={data_Pomacanthus}></Genus>
 				<Genus genus="ニシキヤッコ属 (Pygoplites)" data={data_Pygoplites}></Genus>
+				<Genus genus="シテンヤッコ属 (Apolemichthys)" data={data_Apolemichthys}></Genus>
 
 			</div>
 		</Layout>
