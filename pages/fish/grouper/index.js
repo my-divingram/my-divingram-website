@@ -18,6 +18,7 @@ export const getStaticProps = async() => {
 	const data_Grammistes = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヌノサラシ属` , limit: 100 }});
 	const data_Belonoperca = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヤミスズキ属` , limit: 100 }});
 	const data_Anyperodon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アズキハタ属` , limit: 100 }});
+	const data_Pogonoperca = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アゴハタ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -35,11 +36,12 @@ export const getStaticProps = async() => {
     		data_Grammistes: data_Grammistes.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Belonoperca: data_Belonoperca.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Anyperodon: data_Anyperodon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Pogonoperca: data_Pogonoperca.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Epinephelus, data_Cephalopholis, data_Aethaloperca, data_Plectropomus, data_Variola, data_Gracila, data_Chromileptes, data_Diploprion, data_Aulacocephalus, data_Liopropoma, data_Grammistes, data_Belonoperca, data_Anyperodon}) {
+export default function Home({data_num, data_Epinephelus, data_Cephalopholis, data_Aethaloperca, data_Plectropomus, data_Variola, data_Gracila, data_Chromileptes, data_Diploprion, data_Aulacocephalus, data_Liopropoma, data_Grammistes, data_Belonoperca, data_Anyperodon, data_Pogonoperca}) {
 
 	return (
 		<Layout title="ハタの仲間 | 僕らむの魚図鑑" description="ハタの仲間の一覧です" url="https://www.my-divingram.com/fish/grouper" imageUrl="https://www.my-divingram.com/img/class/grouper.jpeg">
@@ -59,6 +61,7 @@ export default function Home({data_num, data_Epinephelus, data_Cephalopholis, da
 				<Genus genus="アカハタ属 (Epinephelus)" data={data_Epinephelus}></Genus>
 				<Genus genus="タテスジハタ属 (Gracila)" data={data_Gracila}></Genus>
 				<Genus genus="スジアラ属 (Plectropomus)" data={data_Plectropomus}></Genus>
+				<Genus genus="アゴハタ属 (Pogonoperca)" data={data_Pogonoperca}></Genus>
 				<Genus genus="バラハタ属 (Variola)" data={data_Variola}></Genus>
 				<Genus genus="ヌノサラシ属 (Grammistes)" data={data_Grammistes}></Genus>
 				<Genus genus="ハナスズキ属 (Liopropoma)" data={data_Liopropoma}></Genus>
