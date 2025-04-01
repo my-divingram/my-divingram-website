@@ -6,16 +6,18 @@ import {Family, Genus} from "/components/Class";
 export const getStaticProps = async() => {
 	const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]batfish` , limit: 1 }});
 	const data_Platax = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ツバメウオ属` , limit: 100 }});
+	const data_Scatophagus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]クロホシマンジュウダイ属` , limit: 100 }});
 
 	return {
     	props: {
 			data_num: data.totalCount,
     		data_Platax: data_Platax.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Scatophagus: data_Scatophagus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Platax}) {
+export default function Home({data_num, data_Platax, data_Scatophagus}) {
 
 	return (
 		<Layout title="ツバメウオの仲間 | 僕らむの魚図鑑" description="ツバメウオの仲間の一覧です" url="https://www.my-divingram.com/fish/batfish" imageUrl="https://www.my-divingram.com/img/class/batfish.jpeg">
@@ -26,6 +28,9 @@ export default function Home({data_num, data_Platax}) {
 
 				<Family family="マンジュウダイ科"></Family>
 				<Genus genus="ツバメウオ属 (Platax)" data={data_Platax}></Genus>
+
+				<Family family="クロホシマンジュウダイ科"></Family>
+				<Genus genus="クロホシマンジュウダイ属 (Scatophagus)" data={data_Scatophagus}></Genus>
 
 			</div>
 		</Layout>
