@@ -24,6 +24,7 @@ export const getStaticProps = async() => {
 	const data_Gymnapogon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]クダリボウズギス属` , limit: 100 }});
 	const data_Neamia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヤツトゲテンジクダイ属` , limit: 100 }});
 	const data_Zapogon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]トマリヒイロテンジクダイ属` , limit: 100 }});
+	const data_Fibramia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]サンギルイシモチ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -47,11 +48,12 @@ export const getStaticProps = async() => {
     		data_Gymnapogon: data_Gymnapogon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Neamia: data_Neamia.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Zapogon: data_Zapogon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Fibramia: data_Fibramia.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Ostorhinchus, data_Pristiapogon, data_Cheilodipterus, data_Siphamia, data_Pristicon, data_Sphaeramia, data_Rhabdamia, data_Cercamia, data_Apogon, data_Pseudamia, data_Apogonichthyoides, data_Foa, data_Taeniamia, data_Amioides, data_Fowleria, data_Nectamia, data_Gymnapogon, data_Neamia, data_Zapogon}) {
+export default function Home({data_num, data_Ostorhinchus, data_Pristiapogon, data_Cheilodipterus, data_Siphamia, data_Pristicon, data_Sphaeramia, data_Rhabdamia, data_Cercamia, data_Apogon, data_Pseudamia, data_Apogonichthyoides, data_Foa, data_Taeniamia, data_Amioides, data_Fowleria, data_Nectamia, data_Gymnapogon, data_Neamia, data_Zapogon, data_Fibramia}) {
 
 	return (
 		<Layout title="テンジクダイの仲間 | 僕らむの魚図鑑" description="テンジクダイの仲間の一覧です" url="https://www.my-divingram.com/fish/cardinalfish" imageUrl="https://www.my-divingram.com/img/class/cardinalfish.png">
@@ -66,6 +68,7 @@ export default function Home({data_num, data_Ostorhinchus, data_Pristiapogon, da
 				<Genus genus="カクレテンジクダイ属 (Apogonichthyoides)" data={data_Apogonichthyoides}></Genus>
 				<Genus genus="サクラテンジクダイ属 (Cercamia)" data={data_Cercamia}></Genus>
 				<Genus genus="ヤライイシモチ属 (Cheilodipterus)" data={data_Cheilodipterus}></Genus>
+				<Genus genus="サンギルイシモチ属 (Fibramia)" data={data_Fibramia}></Genus>
 				<Genus genus="タイワンマトイシモチ属 (Foa)" data={data_Foa}></Genus>
 				<Genus genus="シボリ属 (Fowleria)" data={data_Fowleria}></Genus>
 				<Genus genus="クダリボウズギス属 (Gymnapogon)" data={data_Gymnapogon}></Genus>
