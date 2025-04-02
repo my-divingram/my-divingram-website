@@ -11,6 +11,7 @@ export const getStaticProps = async() => {
 	const data_Fowlerichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ソウシカエルアンコウ属` , limit: 100 }});
 	const data_Nudiantennarius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]Nudiantennarius` , limit: 100 }});
 	const data_Lophiocharon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]Lophiocharon` , limit: 100 }});
+	const data_Histrio = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハナオコゼ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -21,11 +22,12 @@ export const getStaticProps = async() => {
     		data_Fowlerichthys: data_Fowlerichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Nudiantennarius: data_Nudiantennarius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Lophiocharon: data_Lophiocharon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Histrio: data_Histrio.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Lophiomus, data_Abantennarius, data_Antennarius, data_Fowlerichthys, data_Nudiantennarius, data_Lophiocharon}) {
+export default function Home({data_num, data_Lophiomus, data_Abantennarius, data_Antennarius, data_Fowlerichthys, data_Nudiantennarius, data_Lophiocharon, data_Histrio}) {
 
 	return (
 		<Layout title="アンコウの仲間 | 僕らむの魚図鑑" description="アンコウの仲間の一覧です" url="https://www.my-divingram.com/fish/monkfish" imageUrl="https://www.my-divingram.com/img/class/monkfish.jpeg">
@@ -41,6 +43,7 @@ export default function Home({data_num, data_Lophiomus, data_Abantennarius, data
 				<Genus genus="ベニカエルアンコウ属 (Abantennarius)" data={data_Abantennarius}></Genus>
 				<Genus genus="カエルアンコウ属 (Antennarius)" data={data_Antennarius}></Genus>
 				<Genus genus="ソウシカエルアンコウ属 (Fowlerichthys)" data={data_Fowlerichthys}></Genus>
+				<Genus genus="ハナオコゼ属 (Histrio)" data={data_Histrio}></Genus>
 				<Genus genus="Lophiocharon属" data={data_Lophiocharon}></Genus>
 				<Genus genus="Nudiantennarius属" data={data_Nudiantennarius}></Genus>
 
