@@ -19,6 +19,7 @@ export const getStaticProps = async() => {
 	const data_Atule = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]マテアジ属` , limit: 100 }});
 	const data_Elagatis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ツムブリ属` , limit: 100 }});
 	const data_Gnathanodon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]コガネシマアジ属` , limit: 100 }});
+	const data_Turrum = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ホシカイワリ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -37,11 +38,12 @@ export const getStaticProps = async() => {
     		data_Atule: data_Atule.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Elagatis: data_Elagatis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Gnathanodon: data_Gnathanodon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Turrum: data_Turrum.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Seriola, data_Caranx, data_Craterognathus, data_Flavocaranx, data_Trachurus, data_Decapterus, data_Ferdaiua, data_Pseudocaranx, data_Alectis, data_Uraspis, data_Trachinotus, data_Atule, data_Elagatis, data_Gnathanodon}) {
+export default function Home({data_num, data_Seriola, data_Caranx, data_Craterognathus, data_Flavocaranx, data_Trachurus, data_Decapterus, data_Ferdaiua, data_Pseudocaranx, data_Alectis, data_Uraspis, data_Trachinotus, data_Atule, data_Elagatis, data_Gnathanodon, data_Turrum}) {
 
 	return (
 		<Layout title="アジの仲間 | 僕らむの魚図鑑" description="アジの仲間の一覧です" url="https://www.my-divingram.com/fish/horsemackerel" imageUrl="https://www.my-divingram.com/img/class/horsemackerel.png">
@@ -64,6 +66,7 @@ export default function Home({data_num, data_Seriola, data_Caranx, data_Craterog
 				<Genus genus="ブリ属 (Seriola)" data={data_Seriola}></Genus>
 				<Genus genus="コバンアジ属 (Trachinotus)" data={data_Trachinotus}></Genus>
 				<Genus genus="マアジ属 (Trachurus)" data={data_Trachurus}></Genus>
+				<Genus genus="ホシカイワリ属 (Turrum)" data={data_Turrum}></Genus>
 				<Genus genus="オキアジ属 (Uraspis)" data={data_Uraspis}></Genus>
 
 			</div>
