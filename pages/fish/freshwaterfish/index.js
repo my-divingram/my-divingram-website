@@ -21,6 +21,7 @@ export const getStaticProps = async() => {
 	const data_Oncorhynchus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]サケ属` , limit: 100 }});
 	const data_Pseudaspius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ウグイ属` , limit: 100 }});
 	const data_Gymnogobius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ウキゴリ属` , limit: 100 }});
+	const data_Cottus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カジカ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -41,11 +42,12 @@ export const getStaticProps = async() => {
     		data_Oncorhynchus: data_Oncorhynchus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Pseudaspius: data_Pseudaspius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Gymnogobius: data_Gymnogobius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Cottus: data_Cottus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Candidia, data_Opsariichthys, data_Rhinogobius, data_Tridentiger, data_Sicyopus, data_Anguilla, data_Oreochromis, data_Xiphophorus, data_Stiphodon, data_Sicyopterus, data_Lentipes, data_Micropterus, data_Lepomis, data_Oncorhynchus, data_Pseudaspius, data_Gymnogobius}) {
+export default function Home({data_num, data_Candidia, data_Opsariichthys, data_Rhinogobius, data_Tridentiger, data_Sicyopus, data_Anguilla, data_Oreochromis, data_Xiphophorus, data_Stiphodon, data_Sicyopterus, data_Lentipes, data_Micropterus, data_Lepomis, data_Oncorhynchus, data_Pseudaspius, data_Gymnogobius, data_Cottus}) {
 
 	return (
 		<Layout title="淡水魚 | 僕らむの魚図鑑" description="淡水魚の一覧です" url="https://www.my-divingram.com/fish/freshwaterfish" imageUrl="https://www.my-divingram.com/img/class/freshwaterfish.jpeg">
@@ -73,6 +75,10 @@ export default function Home({data_num, data_Candidia, data_Opsariichthys, data_
 				<Family family="カダヤシ科"></Family>
 				{/* 1570 */}
 				<Genus genus="ソードテール属 (Xiphophorus)" data={data_Xiphophorus}></Genus>
+
+				<Family family="カジカ科"></Family>
+				{/* 1888 */}
+				<Genus genus="カジカ属 (Cottus)" data={data_Cottus}></Genus>
 
 				<Family family="サンフィッシュ科"></Family>
 				{/* 2330 */}
