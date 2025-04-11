@@ -20,6 +20,7 @@ export const getStaticProps = async() => {
 	const data_Lepomis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ブルーギル属` , limit: 100 }});
 	const data_Oncorhynchus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]サケ属` , limit: 100 }});
 	const data_Pseudaspius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ウグイ属` , limit: 100 }});
+	const data_Gymnogobius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ウキゴリ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -39,11 +40,12 @@ export const getStaticProps = async() => {
     		data_Lepomis: data_Lepomis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Oncorhynchus: data_Oncorhynchus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Pseudaspius: data_Pseudaspius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Gymnogobius: data_Gymnogobius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Candidia, data_Opsariichthys, data_Rhinogobius, data_Tridentiger, data_Sicyopus, data_Anguilla, data_Oreochromis, data_Xiphophorus, data_Stiphodon, data_Sicyopterus, data_Lentipes, data_Micropterus, data_Lepomis, data_Oncorhynchus, data_Pseudaspius}) {
+export default function Home({data_num, data_Candidia, data_Opsariichthys, data_Rhinogobius, data_Tridentiger, data_Sicyopus, data_Anguilla, data_Oreochromis, data_Xiphophorus, data_Stiphodon, data_Sicyopterus, data_Lentipes, data_Micropterus, data_Lepomis, data_Oncorhynchus, data_Pseudaspius, data_Gymnogobius}) {
 
 	return (
 		<Layout title="淡水魚 | 僕らむの魚図鑑" description="淡水魚の一覧です" url="https://www.my-divingram.com/fish/freshwaterfish" imageUrl="https://www.my-divingram.com/img/class/freshwaterfish.jpeg">
@@ -83,6 +85,8 @@ export default function Home({data_num, data_Candidia, data_Opsariichthys, data_
 				<Genus genus="カワスズメ属 (Oreochromis)" data={data_Oreochromis}></Genus>
 
 				<Family family="ハゼ科"></Family>
+				{/* 3995 */}
+				<Genus genus="ウキゴリ属 (Gymnogobius)" data={data_Gymnogobius}></Genus>
 				{/* 4031 */}
 				<Genus genus="ヨロイボウズハゼ属 (Lentipes)" data={data_Lentipes}></Genus>
 				{/* 4167 */}
