@@ -24,6 +24,8 @@ export const getStaticProps = async() => {
 	const data_Cottus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カジカ属` , limit: 100 }});
 	const data_Lethenteron = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カワヤツメ属` , limit: 100 }});
 	const data_Gasterosteus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イトヨ属` , limit: 100 }});
+	const data_Sarcocheilichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒガイ属` , limit: 100 }});
+	const data_Gnathopogon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]タモロコ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -47,11 +49,13 @@ export const getStaticProps = async() => {
     		data_Cottus: data_Cottus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Lethenteron: data_Lethenteron.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Gasterosteus: data_Gasterosteus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Sarcocheilichthys: data_Sarcocheilichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Gnathopogon: data_Gnathopogon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Candidia, data_Opsariichthys, data_Rhinogobius, data_Tridentiger, data_Sicyopus, data_Anguilla, data_Oreochromis, data_Xiphophorus, data_Stiphodon, data_Sicyopterus, data_Lentipes, data_Micropterus, data_Lepomis, data_Oncorhynchus, data_Pseudaspius, data_Gymnogobius, data_Cottus, data_Lethenteron, data_Gasterosteus}) {
+export default function Home({data_num, data_Candidia, data_Opsariichthys, data_Rhinogobius, data_Tridentiger, data_Sicyopus, data_Anguilla, data_Oreochromis, data_Xiphophorus, data_Stiphodon, data_Sicyopterus, data_Lentipes, data_Micropterus, data_Lepomis, data_Oncorhynchus, data_Pseudaspius, data_Gymnogobius, data_Cottus, data_Lethenteron, data_Gasterosteus, data_Sarcocheilichthys, data_Gnathopogon}) {
 
 	return (
 		<Layout title="淡水魚 | 僕らむの魚図鑑" description="淡水魚の一覧です" url="https://www.my-divingram.com/fish/freshwaterfish" imageUrl="https://www.my-divingram.com/img/class/freshwaterfish.jpeg">
@@ -69,6 +73,10 @@ export default function Home({data_num, data_Candidia, data_Opsariichthys, data_
 				<Genus genus="ウナギ属 (Anguilla)" data={data_Anguilla}></Genus>
 
 				<Family family="コイ科"></Family>
+				{/* 550 */}
+				<Genus genus="タモロコ属 (Gnathopogon)" data={data_Gnathopogon}></Genus>
+				{/* 564 */}
+				<Genus genus="ヒガイ属 (Sarcocheilichthys)" data={data_Sarcocheilichthys}></Genus>
 				{/* 572 */}
 				<Genus genus="ウグイ属 (Pseudaspius)" data={data_Pseudaspius}></Genus>
 				{/* 589 */}
