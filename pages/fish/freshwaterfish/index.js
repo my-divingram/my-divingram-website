@@ -23,6 +23,7 @@ export const getStaticProps = async() => {
 	const data_Gymnogobius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ウキゴリ属` , limit: 100 }});
 	const data_Cottus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カジカ属` , limit: 100 }});
 	const data_Lethenteron = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カワヤツメ属` , limit: 100 }});
+	const data_Gasterosteus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イトヨ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -45,11 +46,12 @@ export const getStaticProps = async() => {
     		data_Gymnogobius: data_Gymnogobius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Cottus: data_Cottus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Lethenteron: data_Lethenteron.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Gasterosteus: data_Gasterosteus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Candidia, data_Opsariichthys, data_Rhinogobius, data_Tridentiger, data_Sicyopus, data_Anguilla, data_Oreochromis, data_Xiphophorus, data_Stiphodon, data_Sicyopterus, data_Lentipes, data_Micropterus, data_Lepomis, data_Oncorhynchus, data_Pseudaspius, data_Gymnogobius, data_Cottus, data_Lethenteron}) {
+export default function Home({data_num, data_Candidia, data_Opsariichthys, data_Rhinogobius, data_Tridentiger, data_Sicyopus, data_Anguilla, data_Oreochromis, data_Xiphophorus, data_Stiphodon, data_Sicyopterus, data_Lentipes, data_Micropterus, data_Lepomis, data_Oncorhynchus, data_Pseudaspius, data_Gymnogobius, data_Cottus, data_Lethenteron, data_Gasterosteus}) {
 
 	return (
 		<Layout title="淡水魚 | 僕らむの魚図鑑" description="淡水魚の一覧です" url="https://www.my-divingram.com/fish/freshwaterfish" imageUrl="https://www.my-divingram.com/img/class/freshwaterfish.jpeg">
@@ -77,6 +79,10 @@ export default function Home({data_num, data_Candidia, data_Opsariichthys, data_
 				{/* 710 */}
 				<Family family="サケ科"></Family>
 				<Genus genus="サケ属 (Oncorhynchus)" data={data_Oncorhynchus}></Genus>
+
+				<Family family="トゲウオ科"></Family>
+				{/* 1446 */}
+				<Genus genus="イトヨ属 (Gasterosteus)" data={data_Gasterosteus}></Genus>
 
 				<Family family="カダヤシ科"></Family>
 				{/* 1570 */}
