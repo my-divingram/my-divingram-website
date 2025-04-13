@@ -14,6 +14,7 @@ export const getStaticProps = async() => {
 	const data_Paradiplogrammus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハナビヌメリ属` , limit: 100 }});
 	const data_Calliurichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヨメゴチ属` , limit: 100 }});
 	const data_Repomucenus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ネズッポ属` , limit: 100 }});
+	const data_Pseudocalliurichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イトヒキヌメリ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -27,11 +28,12 @@ export const getStaticProps = async() => {
 			data_Paradiplogrammus: data_Paradiplogrammus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Calliurichthys: data_Calliurichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Repomucenus: data_Repomucenus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+			data_Pseudocalliurichthys: data_Pseudocalliurichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Minysynchiropus, data_Diplogrammus, data_Neosynchiropus, data_Dactylopus, data_indet, data_Pterosynchiropus, data_Paradiplogrammus, data_Calliurichthys, data_Repomucenus}) {
+export default function Home({data_num, data_Minysynchiropus, data_Diplogrammus, data_Neosynchiropus, data_Dactylopus, data_indet, data_Pterosynchiropus, data_Paradiplogrammus, data_Calliurichthys, data_Repomucenus, data_Pseudocalliurichthys}) {
 
 	return (
 		<Layout title="ネズッポの仲間 | 僕らむの魚図鑑" description="ネズッポの仲間の一覧です" url="https://www.my-divingram.com/fish/dragonet" imageUrl="https://www.my-divingram.com/img/class/dragonet.jpeg">
@@ -47,6 +49,7 @@ export default function Home({data_num, data_Minysynchiropus, data_Diplogrammus,
 				<Genus genus="ヒメテグリ属 (Minysynchiropus)" data={data_Minysynchiropus}></Genus>
 				<Genus genus="コウワンテグリ属 (Neosynchiropus)" data={data_Neosynchiropus}></Genus>
 				<Genus genus="ハナビヌメリ属 (Paradiplogrammus)" data={data_Paradiplogrammus}></Genus>
+				<Genus genus="イトヒキヌメリ属 (Pseudocalliurichthys)" data={data_Pseudocalliurichthys}></Genus>
 				<Genus genus="ニシキテグリ属 (Pterosynchiropus)" data={data_Pterosynchiropus}></Genus>
 				<Genus genus="ネズッポ属 (Repomucenus)" data={data_Repomucenus}></Genus>
 				<Genus genus="属不明 (Callionymidae, indet. gen.)" data={data_indet}></Genus>
