@@ -23,6 +23,7 @@ export const getStaticProps = async() => {
 	const data_Scorpaenodes = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イソカサゴ属` , limit: 100 }});
 	const data_Caracanthus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ダンゴオコゼ属` , limit: 100 }});
 	const data_Neosebastes = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒレナガカサゴ属` , limit: 100 }});
+	const data_Apistus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハチ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -45,11 +46,12 @@ export const getStaticProps = async() => {
     		data_Scorpaenodes: data_Scorpaenodes.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Caracanthus: data_Caracanthus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Neosebastes: data_Neosebastes.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Apistus: data_Apistus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Sebastes, data_Sebastiscus, data_Pterois, data_Pteropterus, data_Parapterois, data_Dendrochirus, data_Nemapterois, data_Neochirus, data_Taenianotus, data_Rhinopias, data_Pteroidichthys, data_Scorpaenopsis, data_Scorpaena, data_Sebastapistes, data_Parascorpaena, data_Scorpaenodes, data_Caracanthus, data_Neosebastes}) {
+export default function Home({data_num, data_Sebastes, data_Sebastiscus, data_Pterois, data_Pteropterus, data_Parapterois, data_Dendrochirus, data_Nemapterois, data_Neochirus, data_Taenianotus, data_Rhinopias, data_Pteroidichthys, data_Scorpaenopsis, data_Scorpaena, data_Sebastapistes, data_Parascorpaena, data_Scorpaenodes, data_Caracanthus, data_Neosebastes, data_Apistus}) {
 
 	return (
 		<Layout title="カサゴ・メバルの仲間 | 僕らむの魚図鑑" description="カサゴ・メバルの仲間の一覧です" url="https://www.my-divingram.com/fish/rockfish" imageUrl="https://www.my-divingram.com/img/class/rockfish.jpeg">
@@ -74,6 +76,9 @@ export default function Home({data_num, data_Sebastes, data_Sebastiscus, data_Pt
 				<Genus genus="オニカサゴ属 (Scorpaenopsis)" data={data_Scorpaenopsis}></Genus>
 				<Genus genus="マダラフサカサゴ属 (Sebastapistes)" data={data_Sebastapistes}></Genus>
 				<Genus genus="ハダカハオコゼ属 (Taenianotus)" data={data_Taenianotus}></Genus>
+
+				<Family family="ハチ科"></Family>
+				<Genus genus="ハチ属 (Apistus)" data={data_Apistus}></Genus>
 
 				<Family family="ヒレナガカサゴ科"></Family>
 				<Genus genus="ヒレナガカサゴ属 (Neosebastes)" data={data_Neosebastes}></Genus>
