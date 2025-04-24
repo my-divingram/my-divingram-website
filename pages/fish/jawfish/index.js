@@ -6,16 +6,18 @@ import {Family, Genus} from "/components/Class";
 export const getStaticProps = async() => {
 	const data = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]jawfish` , limit: 1 }});
 	const data_Opistognathus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アゴアマダイ属` , limit: 100 }});
+	const data_Stalix = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カエルアマダイ属` , limit: 100 }});
 
 	return {
     	props: {
 			data_num: data.totalCount,
     		data_Opistognathus: data_Opistognathus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Stalix: data_Stalix.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Opistognathus}) {
+export default function Home({data_num, data_Opistognathus, data_Stalix}) {
 
 	return (
 		<Layout title="アゴアマダイの仲間 | 僕らむの魚図鑑" description="アゴアマダイの仲間の一覧です" url="https://www.my-divingram.com/fish/jawfish" imageUrl="https://www.my-divingram.com/img/class/jawfish.jpeg">
@@ -26,6 +28,7 @@ export default function Home({data_num, data_Opistognathus}) {
 
 				<Family family="アゴアマダイ科"></Family>
 				<Genus genus="アゴアマダイ属 (Opistognathus)" data={data_Opistognathus}></Genus>
+				<Genus genus="カエルアマダイ属 (Stalix)" data={data_Stalix}></Genus>
 
 			</div>
 		</Layout>
