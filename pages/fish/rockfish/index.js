@@ -8,11 +8,11 @@ export const getStaticProps = async() => {
 	const data_Sebastes = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]メバル属` , limit: 100 }});
 	const data_Sebastiscus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カサゴ属` , limit: 100 }});
 	const data_Pterois = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ミノカサゴ属` , limit: 100 }});
-	const data_Pteropterus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]Pteropterus` , limit: 100 }});
+	const data_Pteropterus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]キミオコゼ属` , limit: 100 }});
 	const data_Parapterois = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]セトミノカサゴ属` , limit: 100 }});
-	const data_Dendrochirus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]Dendrochirus` , limit: 100 }});
-	const data_Nemapterois = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]Nemapterois` , limit: 100 }});
-	const data_Neochirus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]Neochirus` , limit: 100 }});
+	const data_Dendrochirus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒメヤマノカミ属` , limit: 100 }});
+	const data_Nemapterois = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒレボシミノカサゴ属` , limit: 100 }});
+	const data_Neochirus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]シマヒメヤマノカミ属` , limit: 100 }});
 	const data_Taenianotus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハダカハオコゼ属` , limit: 100 }});
 	const data_Rhinopias = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ボロカサゴ属` , limit: 100 }});
 	const data_Pteroidichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ツノカサゴ属` , limit: 100 }});
@@ -62,14 +62,14 @@ export default function Home({data_num, data_Sebastes, data_Sebastiscus, data_Pt
 
 				<Family family="フサカサゴ科"></Family>
 				<Genus genus="ダンゴオコゼ属 (Caracanthus)" data={data_Caracanthus}></Genus>
-				<Genus genus="Dendrochirus属" data={data_Dendrochirus}></Genus>
-				<Genus genus="Nemapterois属" data={data_Nemapterois}></Genus>
-				<Genus genus="Neochirus属" data={data_Neochirus}></Genus>
+				<Genus genus="ヒメヤマノカミ属 (Dendrochirus)" data={data_Dendrochirus}></Genus>
+				<Genus genus="ヒレボシミノカサゴ属 (Nemapterois)" data={data_Nemapterois}></Genus>
+				<Genus genus="シマヒメヤマノカミ属 (Neochirus)" data={data_Neochirus}></Genus>
 				<Genus genus="セトミノカサゴ属 (Parapterois)" data={data_Parapterois}></Genus>
 				<Genus genus="ネッタイフサカサゴ属 (Parascorpaena)" data={data_Parascorpaena}></Genus>
 				<Genus genus="ツノカサゴ属 (Pteroidichthys)" data={data_Pteroidichthys}></Genus>
 				<Genus genus="ミノカサゴ属 (Pterois)" data={data_Pterois}></Genus>
-				<Genus genus="Pteropterus属" data={data_Pteropterus}></Genus>
+				<Genus genus="キミオコゼ属 (Pteropterus)" data={data_Pteropterus}></Genus>
 				<Genus genus="ボロカサゴ属 (Rhinopias)" data={data_Rhinopias}></Genus>
 				<Genus genus="フサカサゴ属 (Scorpaena)" data={data_Scorpaena}></Genus>
 				<Genus genus="イソカサゴ属 (Scorpaenodes)" data={data_Scorpaenodes}></Genus>
