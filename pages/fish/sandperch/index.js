@@ -10,6 +10,7 @@ export const getStaticProps = async() => {
 	const data_Trichonotus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ベラギンポ属` , limit: 100 }});
 	const data_Limnichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]トビギンポ属` , limit: 100 }});
 	const data_Uranoscopus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ミシマオコゼ属` , limit: 100 }});
+	const data_Pteropsaron = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ホカケトラギス属` , limit: 100 }});
 
 	return {
     	props: {
@@ -19,11 +20,12 @@ export const getStaticProps = async() => {
 			data_Trichonotus: data_Trichonotus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Limnichthys: data_Limnichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Uranoscopus: data_Uranoscopus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+			data_Pteropsaron: data_Pteropsaron.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Parapercis, data_Osopsaron, data_Trichonotus, data_Limnichthys, data_Uranoscopus}) {
+export default function Home({data_num, data_Parapercis, data_Osopsaron, data_Trichonotus, data_Limnichthys, data_Uranoscopus, data_Pteropsaron}) {
 
 	return (
 		<Layout title="ワニギスの仲間 | 僕らむの魚図鑑" description="ワニギスの仲間の一覧です" url="https://www.my-divingram.com/fish/sandperch" imageUrl="https://www.my-divingram.com/img/class/sandperch.jpeg">
@@ -37,6 +39,7 @@ export default function Home({data_num, data_Parapercis, data_Osopsaron, data_Tr
 
 				<Family family="ホカケトラギス科"></Family>
 				<Genus genus="ヒメトラギス属 (Osopsaron)" data={data_Osopsaron}></Genus>
+				<Genus genus="ホカケトラギス属 (Pteropsaron)" data={data_Pteropsaron}></Genus>
 
 				<Family family="ベラギンポ科"></Family>
 				<Genus genus="ベラギンポ属 (Trichonotus)" data={data_Trichonotus}></Genus>
