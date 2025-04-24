@@ -47,6 +47,7 @@ export const getStaticProps = async() => {
 	const data_Halophryne = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]Halophryne` , limit: 100 }});
 	const data_Herklotsichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ミズン属` , limit: 100 }});
 	const data_Strongylura = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ダツ属` , limit: 100 }});
+	const data_Cepola = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]スミツキアカタチ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -93,11 +94,12 @@ export const getStaticProps = async() => {
     		data_Halophryne: data_Halophryne.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Herklotsichthys: data_Herklotsichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Strongylura: data_Strongylura.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Cepola: data_Cepola.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Acanthocepola, data_Oplegnathus, data_Hexagrammos, data_Phtheirichthys, data_Gerres, data_Plotosus, data_Spratelloides, data_Brotula, data_Microcanthus, data_Tylosurus, data_Trachipterus, data_Dactyloptena, data_Labracoglossa, data_Lotella, data_Chelidonichthys, data_Metavelifer, data_Scombrops, data_Mugil, data_Mola, data_Echeneis, data_Evistias, data_Nemichthys, data_Trichiurus, data_Psenes, data_Zeus, data_Alepisaurus, data_Physiculus, data_Kuhlia, data_Lepidotrigla, data_Zoarchias, data_Eumicrotremus, data_Liparis, data_Pholidichthys, data_Hypoatherina, data_Lateolabrax, data_Ditrema, data_Monodactylus, data_Diaphus, data_Muraenesox, data_Halophryne, data_Herklotsichthys, data_Strongylura}) {
+export default function Home({data_num, data_Acanthocepola, data_Oplegnathus, data_Hexagrammos, data_Phtheirichthys, data_Gerres, data_Plotosus, data_Spratelloides, data_Brotula, data_Microcanthus, data_Tylosurus, data_Trachipterus, data_Dactyloptena, data_Labracoglossa, data_Lotella, data_Chelidonichthys, data_Metavelifer, data_Scombrops, data_Mugil, data_Mola, data_Echeneis, data_Evistias, data_Nemichthys, data_Trichiurus, data_Psenes, data_Zeus, data_Alepisaurus, data_Physiculus, data_Kuhlia, data_Lepidotrigla, data_Zoarchias, data_Eumicrotremus, data_Liparis, data_Pholidichthys, data_Hypoatherina, data_Lateolabrax, data_Ditrema, data_Monodactylus, data_Diaphus, data_Muraenesox, data_Halophryne, data_Herklotsichthys, data_Strongylura, data_Cepola}) {
 
 	return (
 		<Layout title="その他の海水魚 | 僕らむの魚図鑑" description="その他の海水魚の一覧です" url="https://www.my-divingram.com/fish/others" imageUrl="https://www.my-divingram.com/img/class/others.jpeg">
@@ -221,6 +223,7 @@ export default function Home({data_num, data_Acanthocepola, data_Oplegnathus, da
 				{/* 2937 */}
 				<Family family="アカタチ科"></Family>
 				<Genus genus="アカタチ属 (Acanthocepola)" data={data_Acanthocepola}></Genus>
+				<Genus genus="スミツキアカタチ属 (Cepola)" data={data_Cepola}></Genus>
 
 				{/* 2950 */}
 				<Family family="ウミタナゴ科"></Family>
