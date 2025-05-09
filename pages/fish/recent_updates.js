@@ -93,7 +93,7 @@ function Home({data_fish_1stLast, data_fish_2ndLast, data_fish_3rdLast, data_fis
                 <p className="text-sm md:text-lg text-center text-gray-700 font-medium">掲載種 (海外種や淡水魚を含む) : {data_num}種</p>
                 <p className="text-sm md:text-lg text-center text-gray-700 font-medium">うち日本産海水魚 : {data_num_ja}種</p>
                 {/* <p className="pt-1 text-xs md:text-sm text-center text-gray-700 font-medium">学名および掲載順は「日本産魚類全種リスト(ver22)」に準拠する</p> */}
-                <p className="pb-10 text-xs md:text-sm text-center text-gray-700 font-medium">周縁性淡水魚は海水魚に含める</p>
+                <p className="pb-1 text-xs md:text-sm text-center text-gray-700 font-medium">周縁性淡水魚は海水魚とみなす</p>
                 <p className="pb-10 text-xs md:text-sm text-center text-gray-700 font-medium">海外種は名称の末尾に*の注釈あり</p>
 
                 <h1 className="pb-3 text-center text-xl md:text-2xl text-sky-800 font-black">{month_1stLast}</h1>
