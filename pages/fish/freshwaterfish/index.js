@@ -27,6 +27,7 @@ export const getStaticProps = async() => {
 	const data_Sarcocheilichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒガイ属` , limit: 100 }});
 	const data_Gnathopogon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]タモロコ属` , limit: 100 }});
 	const data_Rhynchocypris = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アブラハヤ属` , limit: 100 }});
+	const data_Eleotris = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カワアナゴ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -53,11 +54,12 @@ export const getStaticProps = async() => {
     		data_Sarcocheilichthys: data_Sarcocheilichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Gnathopogon: data_Gnathopogon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Rhynchocypris: data_Rhynchocypris.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Eleotris: data_Eleotris.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Candidia, data_Opsariichthys, data_Rhinogobius, data_Tridentiger, data_Sicyopus, data_Anguilla, data_Oreochromis, data_Xiphophorus, data_Stiphodon, data_Sicyopterus, data_Lentipes, data_Micropterus, data_Lepomis, data_Oncorhynchus, data_Pseudaspius, data_Gymnogobius, data_Cottus, data_Lethenteron, data_Gasterosteus, data_Sarcocheilichthys, data_Gnathopogon, data_Rhynchocypris}) {
+export default function Home({data_num, data_Candidia, data_Opsariichthys, data_Rhinogobius, data_Tridentiger, data_Sicyopus, data_Anguilla, data_Oreochromis, data_Xiphophorus, data_Stiphodon, data_Sicyopterus, data_Lentipes, data_Micropterus, data_Lepomis, data_Oncorhynchus, data_Pseudaspius, data_Gymnogobius, data_Cottus, data_Lethenteron, data_Gasterosteus, data_Sarcocheilichthys, data_Gnathopogon, data_Rhynchocypris, data_Eleotris}) {
 
 	return (
 		<Layout title="淡水魚 | 僕らむの魚図鑑" description="淡水魚の一覧です" url="https://www.my-divingram.com/fish/freshwaterfish" imageUrl="https://www.my-divingram.com/img/class/freshwaterfish.jpeg">
@@ -113,6 +115,10 @@ export default function Home({data_num, data_Candidia, data_Opsariichthys, data_
 				<Family family="カワスズメ科"></Family>
 				{/* 2946 */}
 				<Genus genus="カワスズメ属 (Oreochromis)" data={data_Oreochromis}></Genus>
+
+				<Family family="カワアナゴ科"></Family>
+				{/* 3723 */}
+				<Genus genus="カワアナゴ属 (Eleotris)" data={data_Eleotris}></Genus>
 
 				<Family family="ハゼ科"></Family>
 				{/* 3995 */}
