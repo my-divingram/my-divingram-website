@@ -23,6 +23,7 @@ export const getStaticProps = async() => {
 	const data_Bulbonaricus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]チンヨウジウオ属` , limit: 100 }});
 	const data_Siokunichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]Siokunichthys` , limit: 100 }});
 	const data_Pegasus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]テングノオトシゴ属` , limit: 100 }});
+	const data_Kyonemichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]Kyonemichthys` , limit: 100 }});
 
 	return {
     	props: {
@@ -45,11 +46,12 @@ export const getStaticProps = async() => {
     		data_Bulbonaricus: data_Bulbonaricus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Siokunichthys: data_Siokunichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Pegasus: data_Pegasus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Kyonemichthys: data_Kyonemichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Eurypegasus, data_Fistularia, data_Aulostomus, data_Solenostomus, data_Festucalex, data_Halicampus, data_Corythoichthys, data_Trachyrhamphus, data_Doryrhamphus, data_Maroubra, data_Phoxocampus, data_Acentronura, data_Hippocampus, data_Aeoliscus, data_Centriscus, data_Bulbonaricus, data_Siokunichthys, data_Pegasus}) {
+export default function Home({data_num, data_Eurypegasus, data_Fistularia, data_Aulostomus, data_Solenostomus, data_Festucalex, data_Halicampus, data_Corythoichthys, data_Trachyrhamphus, data_Doryrhamphus, data_Maroubra, data_Phoxocampus, data_Acentronura, data_Hippocampus, data_Aeoliscus, data_Centriscus, data_Bulbonaricus, data_Siokunichthys, data_Pegasus, data_Kyonemichthys}) {
 
 	return (
 		<Layout title="トゲウオの仲間 | 僕らむの魚図鑑" description="トゲウオの仲間の一覧です" url="https://www.my-divingram.com/fish/seahorse" imageUrl="https://www.my-divingram.com/img/class/seahorse.jpeg">
@@ -84,6 +86,7 @@ export default function Home({data_num, data_Eurypegasus, data_Fistularia, data_
 				<Genus genus="アマクサヨウジ属 (Festucalex)" data={data_Festucalex}></Genus>
 				<Genus genus="ウミヤッコ属 (Halicampus)" data={data_Halicampus}></Genus>
 				<Genus genus="タツノオトシゴ属 (Hippocampus)" data={data_Hippocampus}></Genus>
+				<Genus genus="Kyonemichthys属" data={data_Kyonemichthys}></Genus>
 				<Genus genus="ダイダイヨウジ属 (Maroubra)" data={data_Maroubra}></Genus>
 				<Genus genus="ボウヨウジ属 (Phoxocampus)" data={data_Phoxocampus}></Genus>
 				<Genus genus="Siokunichthys属" data={data_Siokunichthys}></Genus>
