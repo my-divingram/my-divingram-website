@@ -28,6 +28,7 @@ export const getStaticProps = async() => {
 	const data_Laiphognathus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]マダラギンポ属` , limit: 100 }});
 	const data_Nannosalarias = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒナギンポ属` , limit: 100 }});
 	const data_Atrosalarias = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]インドカエルウオ属` , limit: 100 }});
+	const data_Omox = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒルギギンポ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -55,11 +56,12 @@ export const getStaticProps = async() => {
     		data_Laiphognathus: data_Laiphognathus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Nannosalarias: data_Nannosalarias.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Atrosalarias: data_Atrosalarias.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Omox: data_Omox.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Blenniella, data_Petroscirtes, data_Salarias, data_Mimoblennius, data_Plagiotremus, data_Meiacanthus, data_Exallias, data_Crossosalarias, data_Cirripectes, data_Ecsenius, data_Aspidontus, data_Neoclinus, data_Istiblennius, data_Omobranchus, data_Entomacrodus, data_Cirrisalarias, data_Alticus, data_Rhabdoblennius, data_Andamia, data_Parablennius, data_Laiphognathus, data_Nannosalarias, data_Atrosalarias}) {
+export default function Home({data_num, data_Blenniella, data_Petroscirtes, data_Salarias, data_Mimoblennius, data_Plagiotremus, data_Meiacanthus, data_Exallias, data_Crossosalarias, data_Cirripectes, data_Ecsenius, data_Aspidontus, data_Neoclinus, data_Istiblennius, data_Omobranchus, data_Entomacrodus, data_Cirrisalarias, data_Alticus, data_Rhabdoblennius, data_Andamia, data_Parablennius, data_Laiphognathus, data_Nannosalarias, data_Atrosalarias, data_Omox}) {
 
 	return (
 		<Layout title="コケギンポ・イソギンポの仲間 | 僕らむの魚図鑑" description="コケギンポ・イソギンポの仲間の一覧です" url="https://www.my-divingram.com/fish/blenny" imageUrl="https://www.my-divingram.com/img/class/blenny.jpeg">
@@ -89,6 +91,7 @@ export default function Home({data_num, data_Blenniella, data_Petroscirtes, data
 				<Genus genus="マツバギンポ属 (Mimoblennius)" data={data_Mimoblennius}></Genus>
 				<Genus genus="ヒナギンポ属 (Nannosalarias)" data={data_Nannosalarias}></Genus>
 				<Genus genus="ナベカ属 (Omobranchus)" data={data_Omobranchus}></Genus>
+				<Genus genus="ヒルギギンポ属 (Omox)" data={data_Omox}></Genus>
 				<Genus genus="イソギンポ属 (Parablennius)" data={data_Parablennius}></Genus>
 				<Genus genus="ハタタテギンポ属 (Petroscirtes)" data={data_Petroscirtes}></Genus>
 				<Genus genus="テンクロスジギンポ属 (Plagiotremus)" data={data_Plagiotremus}></Genus>
