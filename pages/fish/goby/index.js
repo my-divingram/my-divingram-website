@@ -65,6 +65,8 @@ export const getStaticProps = async() => {
 	const data_Silhouettea = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]シラヌイハゼ属` , limit: 100 }});
 	const data_Exyrias = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]インコハゼ属` , limit: 100 }});
 	const data_Navigobius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カグヤハゼ属` , limit: 100 }});
+	const data_Cristatogobius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]トサカハゼ属` , limit: 100 }});
+	const data_Butis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ノコギリハゼ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -129,11 +131,13 @@ export const getStaticProps = async() => {
 			data_Silhouettea: data_Silhouettea.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Exyrias: data_Exyrias.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Navigobius: data_Navigobius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+			data_Cristatogobius: data_Cristatogobius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+			data_Butis: data_Butis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Oxyurichthys, data_Waitea, data_Discordipinna, data_Ptereleotris, data_Bryaninops, data_Lotilia, data_Myersina, data_Ancistrogobius, data_Pleurosicya, data_Asterropteryx, data_Gobiodon, data_Paragobiodon, data_Fusigobius, data_Lubricogobius, data_Nemateleotris, data_Trimma, data_Chaenogobius, data_Priolepis, data_Amblygobius, data_Valenciennea, data_Gnatholepis, data_Acentrogobius, data_Gunnellichthys, data_Istigobius, data_Stonogobiops, data_Amblyeleotris, data_Tomiyamichthys, data_Eviota, data_Tryssogobius, data_Signigobius, data_Vanderhorstia, data_Cryptocentrus, data_Ctenogobiops, data_Echinogobius, data_Hazeus, data_Koumansetta, data_Oplopomus, data_Trimmatom, data_Pterogobius, data_Oxymetopon, data_Yongeichthys, data_Psammogobius, data_Macrodontogobius, data_Bathygobius, data_Callogobius, data_Inu, data_Luciogobius, data_Periophthalmus, data_Barbuligobius, data_Sagamia, data_Cabillus, data_Sueviota, data_indet, data_Grallenia, data_Favonigobius, data_Heteroplopomus, data_Parioglossus, data_Silhouettea, data_Exyrias, data_Navigobius}) {
+export default function Home({data_num, data_Oxyurichthys, data_Waitea, data_Discordipinna, data_Ptereleotris, data_Bryaninops, data_Lotilia, data_Myersina, data_Ancistrogobius, data_Pleurosicya, data_Asterropteryx, data_Gobiodon, data_Paragobiodon, data_Fusigobius, data_Lubricogobius, data_Nemateleotris, data_Trimma, data_Chaenogobius, data_Priolepis, data_Amblygobius, data_Valenciennea, data_Gnatholepis, data_Acentrogobius, data_Gunnellichthys, data_Istigobius, data_Stonogobiops, data_Amblyeleotris, data_Tomiyamichthys, data_Eviota, data_Tryssogobius, data_Signigobius, data_Vanderhorstia, data_Cryptocentrus, data_Ctenogobiops, data_Echinogobius, data_Hazeus, data_Koumansetta, data_Oplopomus, data_Trimmatom, data_Pterogobius, data_Oxymetopon, data_Yongeichthys, data_Psammogobius, data_Macrodontogobius, data_Bathygobius, data_Callogobius, data_Inu, data_Luciogobius, data_Periophthalmus, data_Barbuligobius, data_Sagamia, data_Cabillus, data_Sueviota, data_indet, data_Grallenia, data_Favonigobius, data_Heteroplopomus, data_Parioglossus, data_Silhouettea, data_Exyrias, data_Navigobius, data_Cristatogobius, data_Butis}) {
 
 	return (
 		<Layout title="ハゼの仲間 | 僕らむの魚図鑑" description="ハゼの仲間の一覧です" url="https://www.my-divingram.com/fish/goby" imageUrl="https://www.my-divingram.com/img/class/goby.jpeg">
@@ -154,6 +158,7 @@ export default function Home({data_num, data_Oxyurichthys, data_Waitea, data_Dis
 				<Genus genus="ヨリメハゼ属 (Cabillus)" data={data_Cabillus}></Genus>
 				<Genus genus="オキナワハゼ属 (Callogobius)" data={data_Callogobius}></Genus>
 				<Genus genus="アゴハゼ属 (Chaenogobius)" data={data_Chaenogobius}></Genus>
+				<Genus genus="トサカハゼ属 (Cristatogobius)" data={data_Cristatogobius}></Genus>
 				<Genus genus="イトヒキハゼ属 (Cryptocentrus)" data={data_Cryptocentrus}></Genus>
 				<Genus genus="シノビハゼ属 (Ctenogobiops)" data={data_Ctenogobiops}></Genus>
 				<Genus genus="ホムラハゼ属 (Discordipinna)" data={data_Discordipinna}></Genus>
@@ -207,6 +212,9 @@ export default function Home({data_num, data_Oxyurichthys, data_Waitea, data_Dis
 				<Genus genus="タンザクハゼ属 (Oxymetopon)" data={data_Oxymetopon}></Genus>
 				<Genus genus="サツキハゼ属 (Parioglossus)" data={data_Parioglossus}></Genus>
 				<Genus genus="クロユリハゼ属 (Ptereleotris)" data={data_Ptereleotris}></Genus>
+
+				<Family family="カワアナゴ科"></Family>
+				<Genus genus="ノコギリハゼ属 (Butis)" data={data_Butis}></Genus>
 			</div>
 		</Layout>
   	);
