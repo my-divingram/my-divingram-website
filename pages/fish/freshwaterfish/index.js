@@ -26,8 +26,8 @@ export const getStaticProps = async() => {
 	const data_Gasterosteus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イトヨ属` , limit: 100 }});
 	const data_Sarcocheilichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒガイ属` , limit: 100 }});
 	const data_Gnathopogon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]タモロコ属` , limit: 100 }});
+	const data_Eleotris = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カワアナゴ属[and]class[equals]freshwaterfish` , limit: 100 }});
 	const data_Rhynchocypris = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アブラハヤ属` , limit: 100 }});
-	const data_Eleotris = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]カワアナゴ属` , limit: 100 }});
 
 	return {
     	props: {
