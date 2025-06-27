@@ -8,6 +8,7 @@ export const getStaticProps = async() => {
 	const data_Furcina = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]サラサカジカ属` , limit: 100 }});
 	const data_Pseudoblennius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アナハゼ属` , limit: 100 }});
 	const data_Vellitor = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]スイ属` , limit: 100 }});
+	const data_Ocynectes = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イダテンカジカ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -15,11 +16,12 @@ export const getStaticProps = async() => {
     		data_Pseudoblennius: data_Pseudoblennius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Furcina: data_Furcina.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Vellitor: data_Vellitor.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Ocynectes: data_Ocynectes.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Furcina, data_Vellitor, data_Pseudoblennius}) {
+export default function Home({data_num, data_Furcina, data_Vellitor, data_Pseudoblennius, data_Ocynectes}) {
 
 	return (
 		<Layout title="カジカの仲間 | 僕らむの魚図鑑" description="カジカの仲間の一覧です" url="https://www.my-divingram.com/fish/sculpin" imageUrl="https://www.my-divingram.com/img/class/sculpin.jpeg">
@@ -30,6 +32,7 @@ export default function Home({data_num, data_Furcina, data_Vellitor, data_Pseudo
 
 				<Family family="カジカ科"></Family>
 				<Genus genus="サラサカジカ属 (Furcina)" data={data_Furcina}></Genus>
+				<Genus genus="イダテンカジカ属 (Ocynectes)" data={data_Ocynectes}></Genus>
 				<Genus genus="アナハゼ属 (Pseudoblennius)" data={data_Pseudoblennius}></Genus>
 				<Genus genus="スイ属 (Vellitor)" data={data_Vellitor}></Genus>
 
