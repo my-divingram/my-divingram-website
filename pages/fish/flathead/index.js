@@ -10,6 +10,7 @@ export const getStaticProps = async() => {
 	const data_Platycephalus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]コチ属` , limit: 100 }});
 	const data_Inegocia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]トカゲゴチ属` , limit: 100 }});
 	const data_Thysanophrys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]クロシマゴチ属` , limit: 100 }});
+	const data_Hoplichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハリゴチ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -19,11 +20,12 @@ export const getStaticProps = async() => {
     		data_Platycephalus: data_Platycephalus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Inegocia: data_Inegocia.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Onigocia: data_Onigocia.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Hoplichthys: data_Hoplichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Onigocia, data_Thysanophrys, data_Platycephalus, data_Inegocia, data_Cociella}) {
+export default function Home({data_num, data_Onigocia, data_Thysanophrys, data_Platycephalus, data_Inegocia, data_Cociella, data_Hoplichthys}) {
 
 	return (
 		<Layout title="コチの仲間 | 僕らむの魚図鑑" description="コチの仲間の一覧です" url="https://www.my-divingram.com/fish/flathead" imageUrl="https://www.my-divingram.com/img/class/flathead.jpeg">
@@ -38,6 +40,9 @@ export default function Home({data_num, data_Onigocia, data_Thysanophrys, data_P
 				<Genus genus="アネサゴチ属 (Onigocia)" data={data_Onigocia}></Genus>
 				<Genus genus="コチ属 (Platycephalus)" data={data_Platycephalus}></Genus>
 				<Genus genus="クロシマゴチ属 (Thysanophrys)" data={data_Thysanophrys}></Genus>
+
+				<Family family="ハリゴチ科"></Family>
+				<Genus genus="ハリゴチ属 (Hoplichthys)" data={data_Hoplichthys}></Genus>
 
 			</div>
 		</Layout>
