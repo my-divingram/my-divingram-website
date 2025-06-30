@@ -8,6 +8,7 @@ export const getStaticProps = async() => {
 	const data_Ariosoma = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ゴテンアナゴ属` , limit: 100 }});
 	const data_Heteroconger = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]チンアナゴ属` , limit: 100 }});
 	const data_Gorgasia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]シンジュアナゴ属` , limit: 100 }});
+	const data_Conger = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]クロアナゴ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -15,11 +16,12 @@ export const getStaticProps = async() => {
     		data_Ariosoma: data_Ariosoma.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Heteroconger: data_Heteroconger.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Gorgasia: data_Gorgasia.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Conger: data_Conger.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Ariosoma, data_Heteroconger, data_Gorgasia}) {
+export default function Home({data_num, data_Ariosoma, data_Heteroconger, data_Gorgasia, data_Conger}) {
 
 	return (
 		<Layout title="アナゴの仲間 | 僕らむの魚図鑑" description="アナゴの仲間の一覧です" url="https://www.my-divingram.com/fish/eel" imageUrl="https://www.my-divingram.com/img/class/eel.jpeg">
@@ -30,6 +32,7 @@ export default function Home({data_num, data_Ariosoma, data_Heteroconger, data_G
 
 				<Family family="アナゴ科"></Family>
 				<Genus genus="ゴテンアナゴ属 (Ariosoma)" data={data_Ariosoma}></Genus>
+				<Genus genus="クロアナゴ属 (Conger)" data={data_Conger}></Genus>
 				<Genus genus="シンジュアナゴ属 (Gorgasia)" data={data_Gorgasia}></Genus>
 				<Genus genus="チンアナゴ属 (Heteroconger)" data={data_Heteroconger}></Genus>
 
