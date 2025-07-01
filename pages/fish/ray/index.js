@@ -18,6 +18,7 @@ export const getStaticProps = async() => {
 	const data_Taeniura = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]Taeniura` , limit: 100 }});
 	const data_Rhinobatos = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]サカタザメ属` , limit: 100 }});
 	const data_Narke = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]シビレエイ属` , limit: 100 }});
+	const data_Urobatis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]Urobatis` , limit: 100 }});
 
 
 	return {
@@ -36,11 +37,12 @@ export const getStaticProps = async() => {
 			data_Taeniura: data_Taeniura.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Rhinobatos: data_Rhinobatos.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Narke: data_Narke.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+			data_Urobatis: data_Urobatis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Hemitrygon, data_Pateobatis, data_Pastinachus, data_Taeniurops, data_Neotrygon, data_Rhinoptera, data_Aetobatus, data_Mobula, data_Myliobatis, data_Urolophus, data_Taeniura, data_Rhinobatos, data_Narke}) {
+export default function Home({data_num, data_Hemitrygon, data_Pateobatis, data_Pastinachus, data_Taeniurops, data_Neotrygon, data_Rhinoptera, data_Aetobatus, data_Mobula, data_Myliobatis, data_Urolophus, data_Taeniura, data_Rhinobatos, data_Narke, data_Urobatis}) {
 
 	return (
 		<Layout title="エイの仲間 | 僕らむの魚図鑑" description="エイの仲間の一覧です" url="https://www.my-divingram.com/fish/ray" imageUrl="https://www.my-divingram.com/img/class/ray.png">
@@ -71,6 +73,9 @@ export default function Home({data_num, data_Hemitrygon, data_Pateobatis, data_P
 				<Genus genus="マダラトビエイ属 (Aetobatus)" data={data_Aetobatus}></Genus>
 				<Genus genus="ウシバナトビエイ属 (Rhinoptera)" data={data_Rhinoptera}></Genus>
 				<Genus genus="イトマキエイ属 (Mobula)" data={data_Mobula}></Genus>
+
+				<Family family="Urotrygonidae科"></Family>
+				<Genus genus="Urobatis属" data={data_Urobatis}></Genus>
 
 			</div>
 		</Layout>
