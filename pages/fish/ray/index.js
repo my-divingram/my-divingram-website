@@ -19,6 +19,7 @@ export const getStaticProps = async() => {
 	const data_Rhinobatos = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]サカタザメ属` , limit: 100 }});
 	const data_Narke = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]シビレエイ属` , limit: 100 }});
 	const data_Urobatis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]Urobatis` , limit: 100 }});
+	const data_Gymnura = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ツバクロエイ属` , limit: 100 }});
 
 
 	return {
@@ -38,11 +39,12 @@ export const getStaticProps = async() => {
 			data_Rhinobatos: data_Rhinobatos.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Narke: data_Narke.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Urobatis: data_Urobatis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+			data_Gymnura: data_Gymnura.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Hemitrygon, data_Pateobatis, data_Pastinachus, data_Taeniurops, data_Neotrygon, data_Rhinoptera, data_Aetobatus, data_Mobula, data_Myliobatis, data_Urolophus, data_Taeniura, data_Rhinobatos, data_Narke, data_Urobatis}) {
+export default function Home({data_num, data_Hemitrygon, data_Pateobatis, data_Pastinachus, data_Taeniurops, data_Neotrygon, data_Rhinoptera, data_Aetobatus, data_Mobula, data_Myliobatis, data_Urolophus, data_Taeniura, data_Rhinobatos, data_Narke, data_Urobatis, data_Gymnura}) {
 
 	return (
 		<Layout title="エイの仲間 | 僕らむの魚図鑑" description="エイの仲間の一覧です" url="https://www.my-divingram.com/fish/ray" imageUrl="https://www.my-divingram.com/img/class/ray.png">
@@ -67,6 +69,9 @@ export default function Home({data_num, data_Hemitrygon, data_Pateobatis, data_P
 				<Genus genus="オグロオトメエイ属 (Pateobatis)" data={data_Pateobatis}></Genus>
 				<Genus genus="マダラエイ属 (Taeniurops)" data={data_Taeniurops}></Genus>
 				<Genus genus="Taeniura属" data={data_Taeniura}></Genus>
+
+				<Family family="ツバクロエイ科"></Family>
+				<Genus genus="ツバクロエイ属 (Gymnura)" data={data_Gymnura}></Genus>
 
 				<Family family="トビエイ科"></Family>
 				<Genus genus="トビエイ属 (Myliobatis)" data={data_Myliobatis}></Genus>
