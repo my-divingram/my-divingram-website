@@ -18,6 +18,7 @@ export const getStaticProps = async() => {
 	const data_Cynoglossus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]オオシタビラメ属` , limit: 100 }});
 	const data_Pseudorhombus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ガンゾウビラメ属` , limit: 100 }});
 	const data_Tarphops = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アラメガレイ属` , limit: 100 }});
+	const data_Zebrias = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]シマウシノシタ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -35,11 +36,12 @@ export const getStaticProps = async() => {
     		data_Cynoglossus: data_Cynoglossus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Pseudorhombus: data_Pseudorhombus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Tarphops: data_Tarphops.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Zebrias: data_Zebrias.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Paralichthys, data_Asterorhombus, data_Bothus, data_Crossorhombus, data_Engyprosopon, data_Pleuronichthys, data_Aseraggodes, data_Brachirus, data_Pardachirus, data_Soleichthys, data_Cynoglossus, data_Pseudorhombus, data_Tarphops}) {
+export default function Home({data_num, data_Paralichthys, data_Asterorhombus, data_Bothus, data_Crossorhombus, data_Engyprosopon, data_Pleuronichthys, data_Aseraggodes, data_Brachirus, data_Pardachirus, data_Soleichthys, data_Cynoglossus, data_Pseudorhombus, data_Tarphops, data_Zebrias}) {
 
 	return (
 		<Layout title="カレイの仲間 | 僕らむの魚図鑑" description="カレイの仲間の一覧です" url="https://www.my-divingram.com/fish/flatfish" imageUrl="https://www.my-divingram.com/img/class/flatfish.jpeg">
@@ -67,6 +69,7 @@ export default function Home({data_num, data_Paralichthys, data_Asterorhombus, d
 				<Genus genus="ミナミシマウシノシタ属 (Brachirus)" data={data_Brachirus}></Genus>
 				<Genus genus="ミナミウシノシタ属 (Pardachirus)" data={data_Pardachirus}></Genus>
 				<Genus genus="サザナミウシノシタ属 (Soleichthys)" data={data_Soleichthys}></Genus>
+				<Genus genus="シマウシノシタ属 (Zebrias)" data={data_Zebrias}></Genus>
 
 				<Family family="ウシノシタ科"></Family>
 				<Genus genus="オオシタビラメ属 (Cynoglossus)" data={data_Cynoglossus}></Genus>
