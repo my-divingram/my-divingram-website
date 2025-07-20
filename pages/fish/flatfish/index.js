@@ -15,7 +15,7 @@ export const getStaticProps = async() => {
 	const data_Brachirus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ミナミシマウシノシタ属` , limit: 100 }});
 	const data_Pardachirus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ミナミウシノシタ属` , limit: 100 }});
 	const data_Soleichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]サザナミウシノシタ属` , limit: 100 }});
-	const data_Cynoglossus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]オオシタビラメ属` , limit: 100 }});
+	const data_Cynoglossus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イヌノシタ属` , limit: 100 }});
 	const data_Pseudorhombus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ガンゾウビラメ属` , limit: 100 }});
 	const data_Tarphops = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アラメガレイ属` , limit: 100 }});
 	const data_Zebrias = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]シマウシノシタ属` , limit: 100 }});
@@ -72,7 +72,7 @@ export default function Home({data_num, data_Paralichthys, data_Asterorhombus, d
 				<Genus genus="シマウシノシタ属 (Zebrias)" data={data_Zebrias}></Genus>
 
 				<Family family="ウシノシタ科"></Family>
-				<Genus genus="オオシタビラメ属 (Cynoglossus)" data={data_Cynoglossus}></Genus>
+				<Genus genus="イヌノシタ属 (Cynoglossus)" data={data_Cynoglossus}></Genus>
 
 			</div>
 		</Layout>
