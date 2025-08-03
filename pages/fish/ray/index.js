@@ -20,6 +20,7 @@ export const getStaticProps = async() => {
 	const data_Narke = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]シビレエイ属` , limit: 100 }});
 	const data_Urobatis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]Urobatis` , limit: 100 }});
 	const data_Gymnura = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ツバクロエイ属` , limit: 100 }});
+	const data_Bathytoshia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ホシエイ属` , limit: 100 }});
 
 
 	return {
@@ -40,11 +41,12 @@ export const getStaticProps = async() => {
 			data_Narke: data_Narke.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Urobatis: data_Urobatis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Gymnura: data_Gymnura.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+			data_Bathytoshia: data_Bathytoshia.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Hemitrygon, data_Pateobatis, data_Pastinachus, data_Taeniurops, data_Neotrygon, data_Rhinoptera, data_Aetobatus, data_Mobula, data_Myliobatis, data_Urolophus, data_Taeniura, data_Rhinobatos, data_Narke, data_Urobatis, data_Gymnura}) {
+export default function Home({data_num, data_Hemitrygon, data_Pateobatis, data_Pastinachus, data_Taeniurops, data_Neotrygon, data_Rhinoptera, data_Aetobatus, data_Mobula, data_Myliobatis, data_Urolophus, data_Taeniura, data_Rhinobatos, data_Narke, data_Urobatis, data_Gymnura, data_Bathytoshia}) {
 
 	return (
 		<Layout title="エイの仲間 | 僕らむの魚図鑑" description="エイの仲間の一覧です" url="https://www.my-divingram.com/fish/ray" imageUrl="https://www.my-divingram.com/img/class/ray.png">
@@ -63,6 +65,7 @@ export default function Home({data_num, data_Hemitrygon, data_Pateobatis, data_P
 				<Genus genus="ヒラタエイ属 (Urolophus)" data={data_Urolophus}></Genus>
 
 				<Family family="アカエイ科"></Family>
+				<Genus genus="ホシエイ属 (Bathytoshia)" data={data_Bathytoshia}></Genus>
 				<Genus genus="アカエイ属 (Hemitrygon)" data={data_Hemitrygon}></Genus>
 				<Genus genus="ヤッコエイ属 (Neotrygon)" data={data_Neotrygon}></Genus>
 				<Genus genus="ツカエイ属 (Pastinachus)" data={data_Pastinachus}></Genus>
