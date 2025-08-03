@@ -19,7 +19,7 @@ export const getStaticProps = async() => {
 	};
 };
 
-export default function Home({data_num, data_Pentapodus, data_Scolopsis}) {
+export default function Home({data_num, data_Pentapodus, data_Scolopsis, data_Parascolopsis}) {
 
 	return (
 		<Layout title="イトヨリダイの仲間 | 僕らむの魚図鑑" description="イトヨリダイの仲間の一覧です" url="https://www.my-divingram.com/fish/threadfinbream" imageUrl="https://www.my-divingram.com/img/class/threadfinbream.jpeg">
