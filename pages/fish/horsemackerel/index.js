@@ -20,6 +20,7 @@ export const getStaticProps = async() => {
 	const data_Elagatis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ツムブリ属` , limit: 100 }});
 	const data_Gnathanodon = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]コガネシマアジ属` , limit: 100 }});
 	const data_Turrum = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ホシカイワリ属` , limit: 100 }});
+	const data_Scomberoides = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イケカツオ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -39,11 +40,12 @@ export const getStaticProps = async() => {
     		data_Elagatis: data_Elagatis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Gnathanodon: data_Gnathanodon.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Turrum: data_Turrum.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Scomberoides: data_Scomberoides.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Seriola, data_Caranx, data_Craterognathus, data_Flavocaranx, data_Trachurus, data_Decapterus, data_Ferdaiua, data_Pseudocaranx, data_Alectis, data_Uraspis, data_Trachinotus, data_Atule, data_Elagatis, data_Gnathanodon, data_Turrum}) {
+export default function Home({data_num, data_Seriola, data_Caranx, data_Craterognathus, data_Flavocaranx, data_Trachurus, data_Decapterus, data_Ferdaiua, data_Pseudocaranx, data_Alectis, data_Uraspis, data_Trachinotus, data_Atule, data_Elagatis, data_Gnathanodon, data_Turrum, data_Scomberoides}) {
 
 	return (
 		<Layout title="アジの仲間 | 僕らむの魚図鑑" description="アジの仲間の一覧です" url="https://www.my-divingram.com/fish/horsemackerel" imageUrl="https://www.my-divingram.com/img/class/horsemackerel.png">
@@ -63,6 +65,7 @@ export default function Home({data_num, data_Seriola, data_Caranx, data_Craterog
 				<Genus genus="コガネアジ属 (Flavocaranx)" data={data_Flavocaranx}></Genus>
 				<Genus genus="コガネシマアジ属 (Gnathanodon)" data={data_Gnathanodon}></Genus>
 				<Genus genus="シマアジ属 (Pseudocaranx)" data={data_Pseudocaranx}></Genus>
+				<Genus genus="イケカツオ属 (Scomberoides)" data={data_Scomberoides}></Genus>
 				<Genus genus="ブリ属 (Seriola)" data={data_Seriola}></Genus>
 				<Genus genus="コバンアジ属 (Trachinotus)" data={data_Trachinotus}></Genus>
 				<Genus genus="マアジ属 (Trachurus)" data={data_Trachurus}></Genus>
