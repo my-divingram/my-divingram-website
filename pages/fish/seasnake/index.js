@@ -11,6 +11,7 @@ export const getStaticProps = async() => {
 	const data_Ophisurus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ダイナンウミヘビ属` , limit: 100 }});
 	const data_Brachysomophis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]タツウミヘビ属` , limit: 100 }});
 	const data_Callechelys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒモウミヘビ属` , limit: 100 }});
+	const data_Mystriophis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ムラサキウミヘビ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -21,11 +22,12 @@ export const getStaticProps = async() => {
     		data_Ophisurus: data_Ophisurus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Brachysomophis: data_Brachysomophis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
 			data_Callechelys: data_Callechelys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+			data_Mystriophis: data_Mystriophis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Ophichthus, data_Myrichthys, data_Apterichtus, data_Ophisurus, data_Brachysomophis, data_Callechelys}) {
+export default function Home({data_num, data_Ophichthus, data_Myrichthys, data_Apterichtus, data_Ophisurus, data_Brachysomophis, data_Callechelys, data_Mystriophis}) {
 
 	return (
 		<Layout title="ウミヘビの仲間 | 僕らむの魚図鑑" description="ウミヘビの仲間の一覧です" url="https://www.my-divingram.com/fish/seasnake" imageUrl="https://www.my-divingram.com/img/class/seasnake.jpeg">
@@ -39,6 +41,7 @@ export default function Home({data_num, data_Ophichthus, data_Myrichthys, data_A
 				<Genus genus="タツウミヘビ属 (Brachysomophis)" data={data_Brachysomophis}></Genus>
 				<Genus genus="ヒモウミヘビ属 (Callechelys)" data={data_Callechelys}></Genus>
 				<Genus genus="ゴイシウミヘビ属 (Myrichthys)" data={data_Myrichthys}></Genus>
+				<Genus genus="ムラサキウミヘビ属 (Mystriophis)" data={data_Mystriophis}></Genus>
 				<Genus genus="ウミヘビ属 (Ophichthus)" data={data_Ophichthus}></Genus>
 				<Genus genus="ダイナンウミヘビ属 (Ophisurus)" data={data_Ophisurus}></Genus>
 
