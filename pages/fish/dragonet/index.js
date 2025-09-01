@@ -52,7 +52,7 @@ export default function Home({data_num, data_Minysynchiropus, data_Diplogrammus,
 				<Genus genus="イトヒキヌメリ属 (Pseudocalliurichthys)" data={data_Pseudocalliurichthys}></Genus>
 				<Genus genus="ニシキテグリ属 (Pterosynchiropus)" data={data_Pterosynchiropus}></Genus>
 				<Genus genus="ネズッポ属 (Repomucenus)" data={data_Repomucenus}></Genus>
-				<Genus genus="属不明 (Callionymidae, indet. gen.)" data={data_indet}></Genus>
+				<Genus genus="未同定属 (Callionymidae, indet. gen.)" data={data_indet}></Genus>
 
 			</div>
 		</Layout>
