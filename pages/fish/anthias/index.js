@@ -22,6 +22,7 @@ export const getStaticProps = async() => {
 	const data_Callanthias = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]シキシマハナダイ属`, limit: 100 }});
 	const data_Tosana = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒメハナダイ属`, limit: 100 }});
 	const data_Compsanthias = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]Compsanthias`, limit: 100 }});
+	const data_Chelidoperca = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ヒメコダイ属`, limit: 100 }});
 
 	return {
     	props: {
@@ -43,11 +44,12 @@ export const getStaticProps = async() => {
     		data_Callanthias: data_Callanthias.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Tosana: data_Tosana.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Compsanthias: data_Compsanthias.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Chelidoperca: data_Chelidoperca.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Caprodon, data_Nemanthias, data_Pyronotanthias, data_Plectranthias, data_Odontanthias, data_Tosanoides, data_Sacura, data_Selenanthias, data_Pseudanthias, data_Tosana, data_Mirolabrichthys, data_Serranocirrhitus, data_Rabaulichthys, data_Luzonichthys, data_Symphysanodon, data_Callanthias, data_Compsanthias}) {
+export default function Home({data_num, data_Caprodon, data_Nemanthias, data_Pyronotanthias, data_Plectranthias, data_Odontanthias, data_Tosanoides, data_Sacura, data_Selenanthias, data_Pseudanthias, data_Tosana, data_Mirolabrichthys, data_Serranocirrhitus, data_Rabaulichthys, data_Luzonichthys, data_Symphysanodon, data_Callanthias, data_Compsanthias, data_Chelidoperca}) {
 
 	return (
 		<Layout title="ハナダイの仲間 | 僕らむの魚図鑑" description="ハナダイの仲間の一覧です" url="https://www.my-divingram.com/fish/anthias" imageUrl="https://www.my-divingram.com/img/class/anthias.jpeg">
@@ -72,6 +74,7 @@ export default function Home({data_num, data_Caprodon, data_Nemanthias, data_Pyr
 				<Genus genus="ハナゴンベ属 (Serranocirrhitus)" data={data_Serranocirrhitus}></Genus>
 				<Genus genus="ヒメハナダイ属 (Tosana)" data={data_Tosana}></Genus>
 				<Genus genus="イトヒキハナダイ属 (Tosanoides)" data={data_Tosanoides}></Genus>
+				<Genus genus="ヒメコダイ属 (Chelidoperca)" data={data_Chelidoperca}></Genus>
 
 				<Family family="シキシマハナダイ科"></Family>
 				<Genus genus="シキシマハナダイ属 (Callanthias)" data={data_Callanthias}></Genus>
