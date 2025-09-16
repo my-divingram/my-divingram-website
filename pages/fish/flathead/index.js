@@ -11,6 +11,8 @@ export const getStaticProps = async() => {
 	const data_Inegocia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]トカゲゴチ属` , limit: 100 }});
 	const data_Thysanophrys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]クロシマゴチ属` , limit: 100 }});
 	const data_Hoplichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハリゴチ属` , limit: 100 }});
+	const data_Insidiator = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]メゴチ属` , limit: 100 }});
+	const data_Kumococcius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]クモゴチ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -21,11 +23,13 @@ export const getStaticProps = async() => {
     		data_Inegocia: data_Inegocia.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Onigocia: data_Onigocia.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Hoplichthys: data_Hoplichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Insidiator: data_Insidiator.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Kumococcius: data_Kumococcius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Onigocia, data_Thysanophrys, data_Platycephalus, data_Inegocia, data_Cociella, data_Hoplichthys}) {
+export default function Home({data_num, data_Onigocia, data_Thysanophrys, data_Platycephalus, data_Inegocia, data_Cociella, data_Hoplichthys, data_Insidiator, data_Kumococcius}) {
 
 	return (
 		<Layout title="コチの仲間 | 僕らむの魚図鑑" description="コチの仲間の一覧です" url="https://www.my-divingram.com/fish/flathead" imageUrl="https://www.my-divingram.com/img/class/flathead.jpeg">
@@ -37,6 +41,8 @@ export default function Home({data_num, data_Onigocia, data_Thysanophrys, data_P
 				<Family family="コチ科"></Family>
 				<Genus genus="イネゴチ属 (Cociella)" data={data_Cociella}></Genus>
 				<Genus genus="トカゲゴチ属 (Inegocia)" data={data_Inegocia}></Genus>
+				<Genus genus="メゴチ属 (Insidiator)" data={data_Insidiator}></Genus>
+				<Genus genus="クモゴチ属 (Kumococcius)" data={data_Kumococcius}></Genus>
 				<Genus genus="アネサゴチ属 (Onigocia)" data={data_Onigocia}></Genus>
 				<Genus genus="コチ属 (Platycephalus)" data={data_Platycephalus}></Genus>
 				<Genus genus="クロシマゴチ属 (Thysanophrys)" data={data_Thysanophrys}></Genus>
