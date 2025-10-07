@@ -35,6 +35,7 @@ export const getStaticProps = async() => {
 	const data_Cobitis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]シマドジョウ属` , limit: 100 }});
 	const data_Pungtungia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ムギツク属` , limit: 100 }});
 	const data_Microphis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]テングヨウジ属` , limit: 100 }});
+	const data_Poecilia = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]グッピー属` , limit: 100 }});
 
 	return {
     	props: {
@@ -69,11 +70,12 @@ export const getStaticProps = async() => {
     		data_Cobitis: data_Cobitis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Pungtungia: data_Pungtungia.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Microphis: data_Microphis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Poecilia: data_Poecilia.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Candidia, data_Opsariichthys, data_Rhinogobius, data_Tridentiger, data_Sicyopus, data_Anguilla, data_Oreochromis, data_Xiphophorus, data_Stiphodon, data_Sicyopterus, data_Lentipes, data_Micropterus, data_Lepomis, data_Oncorhynchus, data_Pseudaspius, data_Gymnogobius, data_Cottus, data_Lethenteron, data_Gasterosteus, data_Sarcocheilichthys, data_Gnathopogon, data_Rhynchocypris, data_Eleotris, data_Plecoglossus, data_Tachysurus, data_Pseudogobio, data_Silurus, data_Cobitis, data_Pungtungia, data_Microphis}) {
+export default function Home({data_num, data_Candidia, data_Opsariichthys, data_Rhinogobius, data_Tridentiger, data_Sicyopus, data_Anguilla, data_Oreochromis, data_Xiphophorus, data_Stiphodon, data_Sicyopterus, data_Lentipes, data_Micropterus, data_Lepomis, data_Oncorhynchus, data_Pseudaspius, data_Gymnogobius, data_Cottus, data_Lethenteron, data_Gasterosteus, data_Sarcocheilichthys, data_Gnathopogon, data_Rhynchocypris, data_Eleotris, data_Plecoglossus, data_Tachysurus, data_Pseudogobio, data_Silurus, data_Cobitis, data_Pungtungia, data_Microphis, data_Poecilia}) {
 
 	return (
 		<Layout title="淡水魚 | 僕らむの魚図鑑" description="淡水魚の一覧です" url="https://www.my-divingram.com/fish/freshwaterfish" imageUrl="https://www.my-divingram.com/img/class/freshwaterfish.jpeg">
@@ -137,6 +139,8 @@ export default function Home({data_num, data_Candidia, data_Opsariichthys, data_
 				<Genus genus="テングヨウジ属 (Microphis)" data={data_Microphis}></Genus>
 
 				<Family family="カダヤシ科"></Family>
+				{/* 1568 */}
+				<Genus genus="グッピー属 (Poecilia)" data={data_Poecilia}></Genus>
 				{/* 1570 */}
 				<Genus genus="ソードテール属 (Xiphophorus)" data={data_Xiphophorus}></Genus>
 
