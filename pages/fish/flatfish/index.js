@@ -20,6 +20,7 @@ export const getStaticProps = async() => {
 	const data_Tarphops = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]アラメガレイ属` , limit: 100 }});
 	const data_Zebrias = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]シマウシノシタ属` , limit: 100 }});
 	const data_Pseudopleuronectes = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]マガレイ属` , limit: 100 }});
+	const data_Limanda = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]スナガレイ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -39,11 +40,12 @@ export const getStaticProps = async() => {
     		data_Tarphops: data_Tarphops.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Zebrias: data_Zebrias.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Pseudopleuronectes: data_Pseudopleuronectes.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Limanda: data_Limanda.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Paralichthys, data_Asterorhombus, data_Bothus, data_Crossorhombus, data_Engyprosopon, data_Pleuronichthys, data_Aseraggodes, data_Brachirus, data_Pardachirus, data_Soleichthys, data_Cynoglossus, data_Pseudorhombus, data_Tarphops, data_Zebrias, data_Pseudopleuronectes}) {
+export default function Home({data_num, data_Paralichthys, data_Asterorhombus, data_Bothus, data_Crossorhombus, data_Engyprosopon, data_Pleuronichthys, data_Aseraggodes, data_Brachirus, data_Pardachirus, data_Soleichthys, data_Cynoglossus, data_Pseudorhombus, data_Tarphops, data_Zebrias, data_Pseudopleuronectes, data_Limanda}) {
 
 	return (
 		<Layout title="カレイの仲間 | 僕らむの魚図鑑" description="カレイの仲間の一覧です" url="https://www.my-divingram.com/fish/flatfish" imageUrl="https://www.my-divingram.com/img/class/flatfish.jpeg">
@@ -64,6 +66,7 @@ export default function Home({data_num, data_Paralichthys, data_Asterorhombus, d
 				<Genus genus="ダルマガレイ属 (Engyprosopon)" data={data_Engyprosopon}></Genus>
 
 				<Family family="カレイ科"></Family>
+				<Genus genus="スナガレイ属 (Limanda)" data={data_Limanda}></Genus>
 				<Genus genus="メイタガレイ属 (Pleuronichthys)" data={data_Pleuronichthys}></Genus>
 				<Genus genus="マガレイ属 (Pseudopleuronectes)" data={data_Pseudopleuronectes}></Genus>
 
