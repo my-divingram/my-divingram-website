@@ -66,6 +66,7 @@ export const getStaticProps = async() => {
 	const data_Rhodymenichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハコダテギンポ属` , limit: 100 }});
 	const data_Chirolophis = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]フサギンポ属` , limit: 100 }});
 	const data_Pleurogrammus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ホッケ属` , limit: 100 }});
+	const data_indet = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ニシキギンポ科未記載属` , limit: 100 }});
 
 	return {
     	props: {
@@ -131,11 +132,12 @@ export const getStaticProps = async() => {
     		data_Rhodymenichthys: data_Rhodymenichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Chirolophis: data_Chirolophis.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Pleurogrammus: data_Pleurogrammus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_indet: data_indet.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Acanthocepola, data_Oplegnathus, data_Hexagrammos, data_Phtheirichthys, data_Gerres, data_Plotosus, data_Spratelloides, data_Brotula, data_Microcanthus, data_Tylosurus, data_Trachipterus, data_Dactyloptena, data_Labracoglossa, data_Lotella, data_Chelidonichthys, data_Metavelifer, data_Scombrops, data_Mugil, data_Mola, data_Echeneis, data_Evistias, data_Nemichthys, data_Trichiurus, data_Psenes, data_Zeus, data_Alepisaurus, data_Physiculus, data_Kuhlia, data_Lepidotrigla, data_Zoarchias, data_Eumicrotremus, data_Liparis, data_Pholidichthys, data_Hypoatherina, data_Lateolabrax, data_Ditrema, data_Monodactylus, data_Diaphus, data_Muraenesox, data_Halophryne, data_Herklotsichthys, data_Strongylura, data_Cepola, data_Terapon, data_Plicomugil, data_Sardinops, data_Cheilotrema, data_Embiotoca, data_Oxylebius, data_Sillago, data_Dictyosoma, data_Planiliza, data_Sardinella, data_Moolgarda, data_Ammodytoides, data_Atherinomorus, data_Anarhichas, data_Opisthocentrus, data_Rhodymenichthys, data_Chirolophis, data_Pleurogrammus}) {
+export default function Home({data_num, data_Acanthocepola, data_Oplegnathus, data_Hexagrammos, data_Phtheirichthys, data_Gerres, data_Plotosus, data_Spratelloides, data_Brotula, data_Microcanthus, data_Tylosurus, data_Trachipterus, data_Dactyloptena, data_Labracoglossa, data_Lotella, data_Chelidonichthys, data_Metavelifer, data_Scombrops, data_Mugil, data_Mola, data_Echeneis, data_Evistias, data_Nemichthys, data_Trichiurus, data_Psenes, data_Zeus, data_Alepisaurus, data_Physiculus, data_Kuhlia, data_Lepidotrigla, data_Zoarchias, data_Eumicrotremus, data_Liparis, data_Pholidichthys, data_Hypoatherina, data_Lateolabrax, data_Ditrema, data_Monodactylus, data_Diaphus, data_Muraenesox, data_Halophryne, data_Herklotsichthys, data_Strongylura, data_Cepola, data_Terapon, data_Plicomugil, data_Sardinops, data_Cheilotrema, data_Embiotoca, data_Oxylebius, data_Sillago, data_Dictyosoma, data_Planiliza, data_Sardinella, data_Moolgarda, data_Ammodytoides, data_Atherinomorus, data_Anarhichas, data_Opisthocentrus, data_Rhodymenichthys, data_Chirolophis, data_Pleurogrammus, data_indet}) {
 
 	return (
 		<Layout title="その他の海水魚 | 僕らむの魚図鑑" description="その他の海水魚の一覧です" url="https://www.my-divingram.com/fish/others" imageUrl="https://www.my-divingram.com/img/class/others.jpeg">
@@ -316,6 +318,7 @@ export default function Home({data_num, data_Acanthocepola, data_Oplegnathus, da
 				{/* 3438 */}
 				<Family family="ニシキギンポ科"></Family>
 				<Genus genus="ハコダテギンポ属 (Rhodymenichthys)" data={data_Rhodymenichthys}></Genus>
+				<Genus genus="未記載属 (Pholidae, indet. gen.)" data={data_indet}></Genus>
 
 				{/* 3439 */}
 				<Family family="オオカミウオ科"></Family>
