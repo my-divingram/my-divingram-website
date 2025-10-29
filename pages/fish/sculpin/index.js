@@ -10,6 +10,7 @@ export const getStaticProps = async() => {
 	const data_Vellitor = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]スイ属` , limit: 100 }});
 	const data_Ocynectes = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]イダテンカジカ属` , limit: 100 }});
 	const data_Gymnocanthus = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ツマグロカジカ属` , limit: 100 }});
+	const data_Alcichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ニジカジカ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -19,11 +20,12 @@ export const getStaticProps = async() => {
     		data_Vellitor: data_Vellitor.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Ocynectes: data_Ocynectes.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Gymnocanthus: data_Gymnocanthus.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Alcichthys: data_Alcichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Furcina, data_Vellitor, data_Pseudoblennius, data_Ocynectes, data_Gymnocanthus}) {
+export default function Home({data_num, data_Furcina, data_Vellitor, data_Pseudoblennius, data_Ocynectes, data_Gymnocanthus, data_Alcichthys}) {
 
 	return (
 		<Layout title="カジカの仲間 | 僕らむの魚図鑑" description="カジカの仲間の一覧です" url="https://www.my-divingram.com/fish/sculpin" imageUrl="https://www.my-divingram.com/img/class/sculpin.jpeg">
@@ -33,6 +35,7 @@ export default function Home({data_num, data_Furcina, data_Vellitor, data_Pseudo
 				<p className="pt-2 text-xs md:text-sm text-center text-gray-700 font-medium">掲載種 : {data_num}種</p>
 
 				<Family family="カジカ科"></Family>
+				<Genus genus="ニジカジカ属 (Alcichthys)" data={data_Alcichthys}></Genus>
 				<Genus genus="サラサカジカ属 (Furcina)" data={data_Furcina}></Genus>
 				<Genus genus="ツマグロカジカ属 (Gymnocanthus)" data={data_Gymnocanthus}></Genus>
 				<Genus genus="イダテンカジカ属 (Ocynectes)" data={data_Ocynectes}></Genus>
