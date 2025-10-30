@@ -13,6 +13,7 @@ export const getStaticProps = async() => {
 	const data_Hoplichthys = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]ハリゴチ属` , limit: 100 }});
 	const data_Insidiator = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]メゴチ属` , limit: 100 }});
 	const data_Kumococcius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]クモゴチ属` , limit: 100 }});
+	const data_Rogadius = await client.get({ endpoint: "uwphoto", queries: { filters: `genus[equals]マツバゴチ属` , limit: 100 }});
 
 	return {
     	props: {
@@ -25,11 +26,12 @@ export const getStaticProps = async() => {
     		data_Hoplichthys: data_Hoplichthys.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Insidiator: data_Insidiator.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     		data_Kumococcius: data_Kumococcius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
+    		data_Rogadius: data_Rogadius.contents.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName), "ja"),
     	},
 	};
 };
 
-export default function Home({data_num, data_Onigocia, data_Thysanophrys, data_Platycephalus, data_Inegocia, data_Cociella, data_Hoplichthys, data_Insidiator, data_Kumococcius}) {
+export default function Home({data_num, data_Onigocia, data_Thysanophrys, data_Platycephalus, data_Inegocia, data_Cociella, data_Hoplichthys, data_Insidiator, data_Kumococcius, data_Rogadius}) {
 
 	return (
 		<Layout title="コチの仲間 | 僕らむの魚図鑑" description="コチの仲間の一覧です" url="https://www.my-divingram.com/fish/flathead" imageUrl="https://www.my-divingram.com/img/class/flathead.jpeg">
@@ -45,6 +47,7 @@ export default function Home({data_num, data_Onigocia, data_Thysanophrys, data_P
 				<Genus genus="クモゴチ属 (Kumococcius)" data={data_Kumococcius}></Genus>
 				<Genus genus="アネサゴチ属 (Onigocia)" data={data_Onigocia}></Genus>
 				<Genus genus="コチ属 (Platycephalus)" data={data_Platycephalus}></Genus>
+				<Genus genus="マツバゴチ属 (Rogadius)" data={data_Rogadius}></Genus>
 				<Genus genus="クロシマゴチ属 (Thysanophrys)" data={data_Thysanophrys}></Genus>
 
 				<Family family="ハリゴチ科"></Family>
