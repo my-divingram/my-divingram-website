@@ -34,7 +34,7 @@ export default function Home({data_num, data_Chaetodontoplus, data_Genicanthus, 
 			<div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">キンチャクダイの仲間</h1>
-				<p className="pt-2 text-xs md:text-sm text-center text-gray-700 font-medium">掲載種 (ハイブリッドを含む) : {data_num}種</p>
+				<p className="pt-2 text-xs md:text-sm text-center text-gray-700 font-medium">掲載種 : {data_num}種</p>
 
 				<Family family="キンチャクダイ科"></Family>
 				<Genus genus="アブラヤッコ属 (Centropyge)" data={data_Centropyge}></Genus>
