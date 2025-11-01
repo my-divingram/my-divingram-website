@@ -221,7 +221,7 @@ export default function KanaList({
                 <p className="pb-10 text-xs md:text-sm text-center text-gray-700 font-medium">海外種は名称の末尾に*の注釈あり</p>
 
                 {/* --- ★検索ボックスと結果表示を追加 --- */}
-                <div className="pb-10 max-w-xs md:max-w-sm mx-auto relative">
+                <div className="pb-5 max-w-xs md:max-w-sm mx-auto relative">
                     <p className="pb-2 text-center text-sm md:text-lg text-gray-700 font-medium">検索</p>
                     <input
                         type="search"
