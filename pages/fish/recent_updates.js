@@ -2,65 +2,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { client } from "/libs/client";
 import Layout from "/components/Layout";
-import { Splide, SplideSlide } from "@splidejs/react-splide";
-import "@splidejs/react-splide/css";
-import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
-
-/**
- * microCMSから全ページのデータを取得する（汎用版）
- * @param {string} endpoint - エンドポイント名
- * @param {object} baseQueries - 基本となるクエリ（fields, filtersなど）
- */
-const fetchAllPages = async (endpoint, baseQueries = {}) => {
-    const limit = 100; // 1リクエストの最大件数
-    let allContents = [];
-
-    // 1. 最初のページを取得
-    const firstQueries = { ...baseQueries, limit: limit, offset: 0 };
-    const firstResponse = await client.get({
-        endpoint: endpoint,
-        queries: firstQueries
-    });
-
-    allContents = firstResponse.contents;
-    const totalCount = firstResponse.totalCount;
-
-    // 2. 2ページ目以降を取得
-    if (totalCount > limit) {
-        const remainingRequests = [];
-        for (let offset = limit; offset < totalCount; offset += limit) {
-            const queries = { ...baseQueries, limit: limit, offset: offset };
-            remainingRequests.push(
-                client.get({ endpoint: endpoint, queries: queries })
-            );
-        }
-
-        // 3. 残りのリクエストを並列で実行
-        const additionalResponses = await Promise.all(remainingRequests);
-        additionalResponses.forEach(response => {
-            allContents.push(...response.contents);
-        });
-    }
-
-    return allContents;
-};
-
-const shuffleArray = (array) => {
-    const cloneArray = [...array];
-    for (let i = cloneArray.length - 1; 0 <= i; i--) {
-        let randomNum = Math.floor(Math.random() * (i + 1));
-        let tmpStorage = cloneArray[i];
-        cloneArray[i] = cloneArray[randomNum];
-        cloneArray[randomNum] = tmpStorage;
-    }
-    return cloneArray;
-};
+import FishPageHeader from "/components/FishPageHeader";
+import { fetchAllPages } from "/libs/fetch_all_pages"; // サーバー用
+import { shuffleArray, getJapaneseName } from "/libs/utils"; // クライアント安全
 
 // SSG
 export const getStaticProps = async() => {
-
-    const NUM_MONTHS_TO_FETCH = 6; // ここを「3」に変えれば3ヶ月分取得できる
-    const months = []; // 月文字列 (YYYY-MM) を格納する配列
+    const NUM_MONTHS_TO_FETCH = 6; //ここを変更
+    const months = [];
     const today = new Date();
 
     for (let i = 0; i < NUM_MONTHS_TO_FETCH; i++) {
@@ -86,15 +35,8 @@ export const getStaticProps = async() => {
     });
 
     const [
-        data_fish,
-        data_fish_ja,
-        data_fish_freshwater,
-        data_fish_slider,
-        ...monthlyData
-    ] = await Promise.all([
-        ...commonRequests,
-        ...monthlyRequests
-    ]);
+        data_fish, data_fish_ja, data_fish_freshwater, data_fish_slider, ...monthlyData
+    ] = await Promise.all([...commonRequests, ...monthlyRequests]);
 
     const monthsDataForProps = months.map((month, index) => {
         const items = monthlyData[index];
@@ -111,22 +53,12 @@ export const getStaticProps = async() => {
     return {
         props: {
             monthsData: monthsDataForProps,
-
-            // 共通データ
-            data_fish_slider: shuffleArray(data_fish_slider.contents),
+            data_fish_slider: shuffleArray(data_fish_slider.contents), // 共通関数
             data_num: data_fish.totalCount,
             data_num_ja: data_fish_ja.totalCount - data_fish_freshwater.totalCount,
         },
     };
 };
-
-function getJapaneseName(data) {
-    if (data.isOversea){
-        return `${data.japaneseName}*`
-    } else {
-        return data.japaneseName;
-    }
-}
 
 function Home({monthsData, data_fish_slider, data_num, data_num_ja}) {
 
@@ -134,34 +66,21 @@ function Home({monthsData, data_fish_slider, data_num, data_num_ja}) {
 
     return (
         <Layout title="僕らむの魚図鑑" description={description} url="https://www.my-divingram.com/fish/recent_updates" imageUrl="https://www.my-divingram.com/img/logo/favicon_small.jpg">
-
             <div className="px-3 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
 
-                <h1 className="pt-10 pb-5 text-xl md:text-2xl text-center text-sky-800 font-black">僕らむの魚図鑑</h1>
+                <FishPageHeader
+                    data_fish_slider={data_fish_slider}
+                    data_num={data_num}
+                    data_num_ja={data_num_ja}
+                    data_fish={null} // 最終更新日 (不要)
+                    allFishList={null} // 検索 (不要)
+                    showSearch={false} // 検索を非表示
+                    showIndex={false}  // 索引を非表示
+                />
 
-                <Splide options={{type:"loop", gap:"24px", drag:"free", perPage:10, breakpoints:{640:{perPage:3}}, autoScroll:{pauseOnHover:true, pauseOnFocus:false, rewind:false, speed:0.3}}} extensions={{AutoScroll}}>
-                    {data_fish_slider.map((data) => (
-                        <SplideSlide key={data.id}>
-                            <div className="hover:opacity-80">
-                                <Link href={`/fish/${data.class}/${data.latinName}`.replace(" ", "_")}>
-                                    <Image src={data.thumbImg.url} alt={data.japaneseName} width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                    <h2 className="pt-3 pb-5 text-xs md:text-sm text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
-                                </Link>
-                            </div>
-                        </SplideSlide>
-                    ))}
-                </Splide>
-
-                <p className="text-sm md:text-lg text-center text-gray-700 font-medium">掲載種 (海外種や淡水魚を含む) : {data_num}種</p>
-                <p className="text-sm md:text-lg text-center text-gray-700 font-medium">うち日本産海水魚 : {data_num_ja}種</p>
-                {/* <p className="pt-1 text-xs md:text-sm text-center text-gray-700 font-medium">学名および掲載順は「日本産魚類全種リスト(ver22)」に準拠する</p> */}
-                <p className="pb-1 text-xs md:text-sm text-center text-gray-700 font-medium">周縁性淡水魚は海水魚とみなす</p>
-                <p className="pb-10 text-xs md:text-sm text-center text-gray-700 font-medium">海外種は名称の末尾に*の注釈あり</p>
-
-                {monthsData.map((monthData) => (
-                    // `key` を指定することが重要
+                {monthsData?.map((monthData) => (
                     <div key={monthData.month}>
-                        <h1 className="pt-10 pb-3 text-center text-xl md:text-2xl text-sky-800 font-black">
+                        <h1 className="pt-5 pb-3 text-center text-xl md:text-2xl text-sky-800 font-black">
                             {monthData.month}
                         </h1>
                         <p className="pb-10 text-sm md:text-lg text-center text-gray-700 font-medium">
@@ -170,7 +89,7 @@ function Home({monthsData, data_fish_slider, data_num, data_num_ja}) {
                         <div className="flex flex-wrap justify-center">
                             {monthData.items.map((data) => (
                                 <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
-                                    <Link href={`${data.class}/${data.latinName}`.replace(" ", "_")}>
+                                    <Link href={`/fish/${data.class}/${data.latinName}`.replace(" ", "_")}>
                                         <Image src={data.thumbImg.url} alt={data.japaneseName} width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
                                         <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                                     </Link>
