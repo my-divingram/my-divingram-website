@@ -23,7 +23,7 @@ function record(pagedata) {
 
 export function Species({classes, pagedata}) {
     return (
-        <div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
+        <div className="px-5 md:px-20 font-sans">
             <p className="pt-5 text-xs md:text-sm text-left text-gray-700 font-medium"><Link href={"../"} className="underline hover:opacity-50">魚図鑑</Link> {">"} <Link href={"./"} className="underline hover:opacity-50">{classes}</Link> {">"} {pagedata.genus}</p>
 
             <h1 className="pt-5 text-xl md:text-2xl text-center text-gray-700 font-black">{pagedata.japaneseName}</h1>
@@ -38,6 +38,7 @@ export function Species({classes, pagedata}) {
             <p className="pt-2 text-sm md:text-base text-center text-gray-700">{pagedata.thumbInfo}</p>
 
             {pagedata.comment && <div dangerouslySetInnerHTML={{__html: `${pagedata.comment}`}} className="prose pt-10 prose-figure:flex prose-figure:justify-center prose-figure:m-0 prose-figure:pt-8 prose-figure:pb-2 prose-p:text-gray-700 prose-p:m-0 prose-p:py-1 text-sm md:text-base text-center max-w-none"></div>}
+
             <div className="h-10"></div>
 
 
