@@ -113,7 +113,7 @@ function Home({data_fish, data_fish_slider, data_num, data_num_ja, allFishList})
         });
     };
 
-    // 検索結果を計算（useMemoで入力時のみ再計算）
+    // 検索結果を計算（useMemoで入力時のみ再計算
     const searchResults = useMemo(() => {
         if (!searchTerm) {
             return []; // 検索語がなければ空
@@ -121,21 +121,20 @@ function Home({data_fish, data_fish_slider, data_num, data_num_ja, allFishList})
 
         // 1. 検索語を各比較用に準備
         const termHira = katakanaToHiragana(searchTerm.toLowerCase()); // 和名比較用 (ひらがな)
-        const termLower = searchTerm.toLowerCase();                 // 学名比較用 (小文字)
+        const termLower = searchTerm.toLowerCase(); // 学名比較用 (小文字)
 
-        return allFishList.filter(fish => {
-            // 2. 和名での一致を確認
+        // 2. フィルター処理
+        const filteredList = allFishList.filter(fish => {
+            // 和名での一致を確認
             const nameHira = katakanaToHiragana(fish.japaneseName.toLowerCase());
             const matchJapanese = nameHira.includes(termHira);
-
-            // 3. 学名での一致を確認
-            // (latinName が null や undefined の場合も考慮して ?. を使う)
+            // 学名での一致を確認
             const nameLatin = fish.latinName?.toLowerCase() || ""; 
             const matchLatin = nameLatin.includes(termLower);
-
-            // 4. どちらかが一致すれば true
+            // どちらかが一致すれば true
             return matchJapanese || matchLatin;
         });
+        return filteredList.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName, "ja"));
 
     }, [searchTerm, allFishList]);
 
