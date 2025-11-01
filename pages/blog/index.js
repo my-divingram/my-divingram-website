@@ -21,7 +21,7 @@ function Home({data_blog}) {
     return (
         <Layout title="僕らむのBLOG" description={description} url="https://www.my-divingram.com/blog" imageUrl="https://www.my-divingram.com/img/logo/favicon_small.jpg">
 
-            <div className="px-3 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
+            <div className="px-3 md:px-20 font-sans">
 
                 <h1 className="pt-10 pb-5 text-xl md:text-2xl text-center text-sky-800 font-black">BLOG</h1>
 

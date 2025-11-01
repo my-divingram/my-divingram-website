@@ -59,7 +59,7 @@ export default function FishPageHeader({
                     <div className="pt-2 pb-10 flex justify-center space-x-3 text-gray-700 font-medium">
                         {kanaList.map((data) => (
                             <p key={data} className="text-xs md:text-base underline hover:opacity-50">
-                                <Link href={`/fish/${data}`}>
+                                <Link href={`/fish/kana/${data}`}>
                                     {data}
                                 </Link>
                             </p>

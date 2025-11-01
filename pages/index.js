@@ -30,7 +30,7 @@ function Home({data_fish, data_blog}) {
     return (
         <Layout title="僕のだいびんぐらむ" description={description} url="https://www.my-divingram.com/" imageUrl="https://www.my-divingram.com/img/logo/favicon_small.jpg">
 
-            <div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100">
+            <div className="px-5 md:px-20">
 
                 <h1 className="pt-10 pb-3 text-xl md:text-2xl text-center text-sky-800 font-black">Recent Updates</h1>
                 <p className="pb-5 text-sm md:text-lg text-center text-gray-700 font-medium">Last Updated : {data_fish[0].updatedAt.substr(0,10)}</p>

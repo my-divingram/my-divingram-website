@@ -5,7 +5,7 @@ import { Link as Scroll } from "react-scroll";
 
 export default function Layout({children, title, description, url, imageUrl, bg_color_to="bg-sky-100"}) {
     return (
-        <div>
+        <div className="min-h-screen flex flex-col">
             <Head>
                 <title>{title}</title>
                 <meta name="description" content={description} />
@@ -17,7 +17,7 @@ export default function Layout({children, title, description, url, imageUrl, bg_
                 <meta property="og:type" content="website" />
                 <meta property="og:image" content={imageUrl} />
             </Head>
-            <header id="header">
+            <header id="header" className="flex-shrink-0">
                 <nav className="bg-sky-800">
                     <div className="h-5"></div>
                     <div className="flex justify-center">
@@ -47,7 +47,7 @@ export default function Layout({children, title, description, url, imageUrl, bg_
                     <div className="h-1"></div>
                 </nav>
             </header>
-            <main>
+            <main className="flex-grow bg-gradient-to-b from-white to-sky-100">
                 { children }
             </main>
             <footer className={`pt-6 pb-2 ${bg_color_to}`}>

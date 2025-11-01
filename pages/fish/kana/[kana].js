@@ -66,7 +66,7 @@ export const getStaticProps = async (context) => {
 
 export const getStaticPaths = async() => {
     const kanaList = ["ア", "カ", "サ", "タ", "ナ", "ハ", "マ", "ヤ", "ラ", "ワ"];
-    const paths = kanaList.map((data) => `/fish/${data}`);
+    const paths = kanaList.map((data) => ({params: { kana: data },}));
     return {
         paths,
         fallback: false,
@@ -87,7 +87,7 @@ export default function KanaList({
 
     return (
         <Layout title="僕らむの魚図鑑" description={description} url={url} imageUrl="https://www.my-divingram.com/img/logo/favicon_small.jpg">
-            <div className="px-3 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
+            <div className="px-3 md:px-20 font-sans">
 
                 <Head>
                     <meta name="robots" content="noindex" />
@@ -107,7 +107,7 @@ export default function KanaList({
                 <div className="flex flex-wrap justify-center">
 					{kanaData.map((data) => (
                         <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
-                            <Link href={`${data.class}/${data.latinName}`.replace(" ", "_")}>
+                            <Link href={`/fish/${data.class}/${data.latinName}`.replace(" ", "_")}>
                                 <Image src={data.thumbImg.url} alt={data.japaneseName} width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
                                 <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                             </Link>
