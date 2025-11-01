@@ -129,7 +129,7 @@ function Home({data_fish, data_fish_slider, data_num, data_num_ja, allFishList})
             const nameHira = katakanaToHiragana(fish.japaneseName.toLowerCase());
             const matchJapanese = nameHira.includes(termHira);
             // 学名での一致を確認
-            const nameLatin = fish.latinName?.toLowerCase() || ""; 
+            const nameLatin = fish.latinName?.toLowerCase() || "";
             const matchLatin = nameLatin.includes(termLower);
             // どちらかが一致すれば true
             return matchJapanese || matchLatin;
