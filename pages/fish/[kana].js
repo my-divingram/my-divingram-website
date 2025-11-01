@@ -144,7 +144,7 @@ function getJapaneseName(data) {
 }
 
 // --- Reactコンポーネント (propsとmap処理を修正) ---
-export default function kanaList({
+export default function KanaList({
     kana,
     kanaData, // <-- 15個のpropsをこれ1つに集約
     data_fish,
