@@ -6,54 +6,116 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 
+/**
+ * microCMSから全ページのデータを取得する（汎用版）
+ * @param {string} endpoint - エンドポイント名
+ * @param {object} baseQueries - 基本となるクエリ（fields, filtersなど）
+ */
+const fetchAllPages = async (endpoint, baseQueries = {}) => {
+    const limit = 100; // 1リクエストの最大件数
+    let allContents = [];
+
+    // 1. 最初のページを取得
+    const firstQueries = { ...baseQueries, limit: limit, offset: 0 };
+    const firstResponse = await client.get({
+        endpoint: endpoint,
+        queries: firstQueries
+    });
+
+    allContents = firstResponse.contents;
+    const totalCount = firstResponse.totalCount;
+
+    // 2. 2ページ目以降を取得
+    if (totalCount > limit) {
+        const remainingRequests = [];
+        for (let offset = limit; offset < totalCount; offset += limit) {
+            const queries = { ...baseQueries, limit: limit, offset: offset };
+            remainingRequests.push(
+                client.get({ endpoint: endpoint, queries: queries })
+            );
+        }
+
+        // 3. 残りのリクエストを並列で実行
+        const additionalResponses = await Promise.all(remainingRequests);
+        additionalResponses.forEach(response => {
+            allContents.push(...response.contents);
+        });
+    }
+
+    return allContents;
+};
+
+const shuffleArray = (array) => {
+    const cloneArray = [...array];
+    for (let i = cloneArray.length - 1; 0 <= i; i--) {
+        let randomNum = Math.floor(Math.random() * (i + 1));
+        let tmpStorage = cloneArray[i];
+        cloneArray[i] = cloneArray[randomNum];
+        cloneArray[randomNum] = tmpStorage;
+    }
+    return cloneArray;
+};
+
 // SSG
 export const getStaticProps = async() => {
-    const today = new Date()
-    const month_1stLast = today.toLocaleDateString('sv-SE').substring(0,7)
-    today.setMonth(today.getMonth() - 1)
-    const month_2ndLast = today.toLocaleDateString('sv-SE').substring(0,7)
-    today.setMonth(today.getMonth() - 1)
-    const month_3rdLast = today.toLocaleDateString('sv-SE').substring(0,7)
 
-    const data_fish = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚`, orders: `-updatedAt`, limit: 1}});
-    const data_fish_ja = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]isOversea[equals]false`, orders: `-updatedAt`, limit: 1}});
-    const data_fish_freshwater = await client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]freshwaterfish` , limit: 1 }});
-    const data_fish_slider = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]isSpotlight[equals]true`, orders: `-updatedAt`, limit: 40}});
+    const NUM_MONTHS_TO_FETCH = 6; // ここを「3」に変えれば3ヶ月分取得できる
+    const months = []; // 月文字列 (YYYY-MM) を格納する配列
+    const today = new Date();
 
-    const data_fish_1stLast_100 = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]updatedAt[begins_with]${month_1stLast}`, orders: `-updatedAt`, limit: 100}});
-    const data_fish_1stLast_200 = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]updatedAt[begins_with]${month_1stLast}`, orders: `-updatedAt`, limit: 100, offset: 100}});
+    for (let i = 0; i < NUM_MONTHS_TO_FETCH; i++) {
+        const targetDate = new Date(today.getFullYear(), today.getMonth() - i, 1);
+        const monthString = targetDate.toLocaleDateString('sv-SE').substring(0, 7); // "YYYY-MM"
+        months.push(monthString);
+    }
 
-    const data_fish_2ndLast_100 = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]updatedAt[begins_with]${month_2ndLast}`, orders: `-updatedAt`, limit: 100}});
-    const data_fish_2ndLast_200 = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]updatedAt[begins_with]${month_2ndLast}`, orders: `-updatedAt`, limit: 100, offset: 100}});
+    // 月別リクエストを動的に生成 ---
+    const commonRequests = [
+        client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚`, orders: `-updatedAt`, limit: 1}}),
+        client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]isOversea[equals]false`, orders: `-updatedAt`, limit: 1}}),
+        client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]freshwaterfish` , limit: 1 }}),
+        client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]isSpotlight[equals]true`, orders: `-updatedAt`, limit: 40}}),
+    ];
 
-    const data_fish_3rdLast_100 = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]updatedAt[begins_with]${month_3rdLast}`, orders: `-updatedAt`, limit: 100}});
-    const data_fish_3rdLast_200 = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]updatedAt[begins_with]${month_3rdLast}`, orders: `-updatedAt`, limit: 100, offset: 100}});
+    // `months` 配列から `fetchAllPages` のリクエスト配列を作る
+    const monthlyRequests = months.map(month => {
+        return fetchAllPages("uwphoto", {
+            filters: `book[contains]魚[and]updatedAt[begins_with]${month}`,
+            orders: `-updatedAt`
+        });
+    });
 
-    const shuffleArray = (array) => {
-        const cloneArray = [...array];
-        for (let i = cloneArray.length - 1; 0 <= i; i--) {
-            let randomNum = Math.floor(Math.random() * (i + 1));
-            let tmpStorage = cloneArray[i];
-            cloneArray[i] = cloneArray[randomNum];
-            cloneArray[randomNum] = tmpStorage;
-        }
-        return cloneArray;
-    };
+    const [
+        data_fish,
+        data_fish_ja,
+        data_fish_freshwater,
+        data_fish_slider,
+        ...monthlyData
+    ] = await Promise.all([
+        ...commonRequests,
+        ...monthlyRequests
+    ]);
+
+    const monthsDataForProps = months.map((month, index) => {
+        const items = monthlyData[index];
+        const [year, monthNum] = month.split('-');
+        const displayString = `${year}年${parseInt(monthNum, 10)}月`;
+
+        return {
+            month: displayString, // 例: "2025年 11月"
+            items: items,         // アイテムの配列
+            count: items.length   // 件数
+        };
+    });
 
     return {
         props: {
-            data_fish_1stLast: data_fish_1stLast_100.contents.concat(data_fish_1stLast_200.contents),
-            data_fish_2ndLast: data_fish_2ndLast_100.contents.concat(data_fish_2ndLast_200.contents),
-            data_fish_3rdLast: data_fish_3rdLast_100.contents.concat(data_fish_3rdLast_200.contents),
+            monthsData: monthsDataForProps,
+
+            // 共通データ
             data_fish_slider: shuffleArray(data_fish_slider.contents),
             data_num: data_fish.totalCount,
             data_num_ja: data_fish_ja.totalCount - data_fish_freshwater.totalCount,
-            data_num_1stLast: data_fish_1stLast_100.totalCount,
-            data_num_2ndLast: data_fish_2ndLast_100.totalCount,
-            data_num_3rdLast: data_fish_3rdLast_100.totalCount,
-            month_1stLast: month_1stLast,
-            month_2ndLast: month_2ndLast,
-            month_3rdLast: month_3rdLast,
         },
     };
 };
@@ -66,7 +128,7 @@ function getJapaneseName(data) {
     }
 }
 
-function Home({data_fish_1stLast, data_fish_2ndLast, data_fish_3rdLast, data_fish_slider, data_num, data_num_ja, data_num_1stLast, data_num_2ndLast, data_num_3rdLast, month_1stLast, month_2ndLast, month_3rdLast}) {
+function Home({monthsData, data_fish_slider, data_num, data_num_ja}) {
 
     const description = '伊豆を中心に国内外を問わず未だ見ぬ魚を探して潜っているトラベルダイバーの"僕のだいびんぐらむ"です。個人で撮影した生態写真で魚図鑑を制作しています。'
 
@@ -96,42 +158,28 @@ function Home({data_fish_1stLast, data_fish_2ndLast, data_fish_3rdLast, data_fis
                 <p className="pb-1 text-xs md:text-sm text-center text-gray-700 font-medium">周縁性淡水魚は海水魚とみなす</p>
                 <p className="pb-10 text-xs md:text-sm text-center text-gray-700 font-medium">海外種は名称の末尾に*の注釈あり</p>
 
-                <h1 className="pb-3 text-center text-xl md:text-2xl text-sky-800 font-black">{month_1stLast}</h1>
-                <p className="pb-10 text-sm md:text-lg text-center text-gray-700 font-medium">更新数 : {data_num_1stLast}種</p>
-                <div className="flex flex-wrap justify-center">
-					{data_fish_1stLast.map((data) => (
-                        <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
-                            <Link href={`${data.class}/${data.latinName}`.replace(" ", "_")}>
-                                <Image src={data.thumbImg.url} alt={data.japaneseName} width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
-                            </Link>
+                {monthsData.map((monthData) => (
+                    // `key` を指定することが重要
+                    <div key={monthData.month}>
+                        <h1 className="pt-10 pb-3 text-center text-xl md:text-2xl text-sky-800 font-black">
+                            {monthData.month}
+                        </h1>
+                        <p className="pb-10 text-sm md:text-lg text-center text-gray-700 font-medium">
+                            更新数 : {monthData.count}種
+                        </p>
+                        <div className="flex flex-wrap justify-center">
+                            {monthData.items.map((data) => (
+                                <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
+                                    <Link href={`${data.class}/${data.latinName}`.replace(" ", "_")}>
+                                        <Image src={data.thumbImg.url} alt={data.japaneseName} width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
+                                        <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
+                                    </Link>
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
-                <h1 className="pt-10 pb-3 text-center text-xl md:text-2xl text-sky-800 font-black">{month_2ndLast}</h1>
-                <p className="pb-10 text-sm md:text-lg text-center text-gray-700 font-medium">更新数 : {data_num_2ndLast}種</p>
-                <div className="flex flex-wrap justify-center">
-					{data_fish_2ndLast.map((data) => (
-                        <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
-                            <Link href={`${data.class}/${data.latinName}`.replace(" ", "_")}>
-                                <Image src={data.thumbImg.url} alt={data.japaneseName} width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
-                            </Link>
-                        </div>
-                    ))}
-                </div>
-                <h1 className="pt-10 pb-3 text-center text-xl md:text-2xl text-sky-800 font-black">{month_3rdLast}</h1>
-                <p className="pb-10 text-sm md:text-lg text-center text-gray-700 font-medium">更新数 : {data_num_3rdLast}種</p>
-                <div className="flex flex-wrap justify-center">
-					{data_fish_3rdLast.map((data) => (
-                        <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
-                            <Link href={`${data.class}/${data.latinName}`.replace(" ", "_")}>
-                                <Image src={data.thumbImg.url} alt={data.japaneseName} width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
-                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
-                            </Link>
-                        </div>
-                    ))}
-                </div>
+                    </div>
+                ))}
+
                 <p className="pt-8 text-xs md:text-sm text-center text-gray-700 font-medium">当サイトに掲載する魚種の同定にあたり，<Link href={"https://x.com/yuma_sakana"} className="underline hover:opacity-50">YUMA</Link>氏に数多のご教示を賜りました．ここに深謝いたします．</p>
                 <p className="pt-1 text-xs md:text-sm text-center text-gray-700 font-medium">写真提供のご依頼，誤同定のご指摘などは各SNSのDMまでお願いします．</p>
             </div>
