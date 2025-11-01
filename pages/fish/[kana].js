@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import Head from "next/head";
 import { client } from "/libs/client";
 import Layout from "/components/Layout";
 // 共通コンポーネントと関数をインポート
@@ -87,6 +88,10 @@ export default function KanaList({
     return (
         <Layout title="僕らむの魚図鑑" description={description} url={url} imageUrl="https://www.my-divingram.com/img/logo/favicon_small.jpg">
             <div className="px-3 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans">
+
+                <Head>
+                    <meta name="robots" content="noindex" />
+                </Head>
 
                 <FishPageHeader
                     data_fish_slider={data_fish_slider}
