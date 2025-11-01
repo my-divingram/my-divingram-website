@@ -3,6 +3,7 @@ import Image from "next/image";
 import { client } from "/libs/client";
 import Layout from "/components/Layout";
 import FishPageHeader from "/components/FishPageHeader";
+import FishPageFooter from "/components/FishPageFooter";
 import { fetchAllPages } from "/libs/fetch_all_pages"; // サーバー用
 import { shuffleArray, getJapaneseName } from "/libs/utils"; // クライアント安全
 
@@ -99,8 +100,7 @@ function Home({monthsData, data_fish_slider, data_num, data_num_ja}) {
                     </div>
                 ))}
 
-                <p className="pt-8 text-xs md:text-sm text-center text-gray-700 font-medium">当サイトに掲載する魚種の同定にあたり，<Link href={"https://x.com/yuma_sakana"} className="underline hover:opacity-50">YUMA</Link>氏に数多のご教示を賜りました．ここに深謝いたします．</p>
-                <p className="pt-1 text-xs md:text-sm text-center text-gray-700 font-medium">写真提供のご依頼，誤同定のご指摘などは各SNSのDMまでお願いします．</p>
+                <FishPageFooter />
             </div>
         </Layout>
     )
