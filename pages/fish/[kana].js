@@ -225,8 +225,8 @@ export default function KanaList({
                     <p className="pb-2 text-center text-sm md:text-lg text-gray-700 font-medium">検索</p>
                     <input
                         type="search"
-                        placeholder="和名 / 学名を入力"
-                        className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
+                        placeholder="和名 または 学名 を入力"
+                        className="w-full p-3 text-xs md:text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
@@ -241,7 +241,7 @@ export default function KanaList({
                                         <li key={fish.id} className="border-b last:border-b-0">
                                             <Link
                                                 href={`/fish/${fish.class}/${fish.latinName}`.replace(" ", "_")}
-                                                className="block px-4 py-3 text-gray-700 hover:bg-sky-50 transition-colors"
+                                                className="block px-4 py-3 text-sm text-gray-700 hover:bg-sky-50 transition-colors"
                                                 // リンククリックで検索ボックスを閉じる
                                                 onClick={() => setSearchTerm("")}
                                             >
@@ -257,7 +257,7 @@ export default function KanaList({
                                     )}
                                 </ul>
                             ) : (
-                                <p className="p-4 text-center text-gray-500">not found</p>
+                                <p className="p-4 text-center text-sm text-gray-500">Not Found</p>
                             )}
                         </div>
                     )}
