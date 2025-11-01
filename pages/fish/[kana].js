@@ -5,42 +5,39 @@ import Layout from "/components/Layout";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
+import { useState, useMemo } from "react";
 
 /**
- * microCMSから全ページのデータを取得する
- * @param {string} filters - microCMSに渡すfilterクエリ
+ * microCMSから全ページのデータを取得する（汎用版）
+ * @param {string} endpoint - エンドポイント名
+ * @param {object} baseQueries - 基本となるクエリ（fields, filtersなど）
  */
-
-const fetchAllPages = async (filters) => {
-    const limit = 100; // microCMSの1リクエストあたりの最大取得件数
+const fetchAllPages = async (endpoint, baseQueries = {}) => {
+    const limit = 100; // 1リクエストの最大件数
     let allContents = [];
 
-    // 1. 最初のページを取得（totalCountを得るため）
+    // 1. 最初のページを取得
+    const firstQueries = { ...baseQueries, limit: limit, offset: 0 };
     const firstResponse = await client.get({
-        endpoint: "uwphoto",
-        queries: { filters: filters, limit: limit, offset: 0 }
+        endpoint: endpoint,
+        queries: firstQueries
     });
 
     allContents = firstResponse.contents;
     const totalCount = firstResponse.totalCount;
 
-    // 2. totalCountがlimitを超える場合、残りのページを取得
+    // 2. 2ページ目以降を取得
     if (totalCount > limit) {
         const remainingRequests = [];
-        // 2ページ目（offset=limit）から最後のページまでループ
         for (let offset = limit; offset < totalCount; offset += limit) {
+            const queries = { ...baseQueries, limit: limit, offset: offset };
             remainingRequests.push(
-                client.get({
-                    endpoint: "uwphoto",
-                    queries: { filters: filters, limit: limit, offset: offset }
-                })
+                client.get({ endpoint: endpoint, queries: queries })
             );
         }
 
         // 3. 残りのリクエストを並列で実行
         const additionalResponses = await Promise.all(remainingRequests);
-
-        // 4. 並列実行した結果をallContentsに追加
         additionalResponses.forEach(response => {
             allContents.push(...response.contents);
         });
@@ -49,9 +46,7 @@ const fetchAllPages = async (filters) => {
     return allContents;
 };
 
-
 // --- SSG (getStaticProps) ---
-// 15回のAPI呼び出しを、ページネーション対応の1回に集約
 export const getStaticProps = async (context) => {
     const kana = context.params.kana;
 
@@ -94,13 +89,21 @@ export const getStaticProps = async (context) => {
         data_fish,
         data_fish_ja,
         data_fish_freshwater,
-        data_fish_slider
+        data_fish_slider,
+        allFishList
     ] = await Promise.all([
-        fetchAllPages(kanaFilters), // <-- 効率化 + ページネーション対応
+        fetchAllPages("uwphoto", { filters: kanaFilters }),
+
         client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚`, orders: `-updatedAt`, limit: 1}}),
         client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]isOversea[equals]false`, orders: `-updatedAt`, limit: 1}}),
         client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]freshwaterfish` , limit: 1 }}),
         client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]isSpotlight[equals]true`, orders: `-updatedAt`, limit: 40}}),
+
+        // ★全魚リストを取得（魚図鑑データのみ、かつ必要最小限のフィールド）
+        fetchAllPages("uwphoto", {
+            filters: `book[contains]魚`,
+            fields: 'id,japaneseName,class,latinName,isOversea'
+        })
     ]);
 
     // 4. すべて取得した後に、一度だけソートを実行
@@ -117,6 +120,7 @@ export const getStaticProps = async (context) => {
             data_fish_slider: shuffleArray(data_fish_slider.contents),
             data_num: data_fish.totalCount,
             data_num_ja: data_fish_ja.totalCount - data_fish_freshwater.totalCount,
+            allFishList: allFishList,
         },
     };
 };
@@ -146,13 +150,49 @@ export default function kanaList({
     data_fish,
     data_fish_slider,
     data_num,
-    data_num_ja
+    data_num_ja,
+    allFishList
 }){
 
     const kanaList = ["ア", "カ", "サ", "タ", "ナ", "ハ", "マ", "ヤ", "ラ", "ワ"];
 
     const description = '伊豆を中心に国内外を問わず未だ見ぬ魚を探して潜っているトラベルダイバーの"僕のだいびんぐらむ"です。個人で撮影した生態写真で魚図鑑を制作しています。'
     const url = `https://www.my-divingram.com/fish/${kana}`
+
+    const [searchTerm, setSearchTerm] = useState("");
+
+    // ひらがな・カタカナを区別せずに検索するためのヘルパー関数
+    const katakanaToHiragana = (str) => {
+        return str.replace(/[\u30a1-\u30f6]/g, (match) => {
+            return String.fromCharCode(match.charCodeAt(0) - 0x60);
+        });
+    };
+
+    // 検索結果を計算（useMemoで入力時のみ再計算）
+    const searchResults = useMemo(() => {
+        if (!searchTerm) {
+            return []; // 検索語がなければ空
+        }
+
+        // 1. 検索語を各比較用に準備
+        const termHira = katakanaToHiragana(searchTerm.toLowerCase()); // 和名比較用 (ひらがな)
+        const termLower = searchTerm.toLowerCase();                 // 学名比較用 (小文字)
+
+        return allFishList.filter(fish => {
+            // 2. 和名での一致を確認
+            const nameHira = katakanaToHiragana(fish.japaneseName.toLowerCase());
+            const matchJapanese = nameHira.includes(termHira);
+
+            // 3. 学名での一致を確認
+            // (latinName が null や undefined の場合も考慮して ?. を使う)
+            const nameLatin = fish.latinName?.toLowerCase() || ""; 
+            const matchLatin = nameLatin.includes(termLower);
+
+            // 4. どちらかが一致すれば true
+            return matchJapanese || matchLatin;
+        });
+
+    }, [searchTerm, allFishList]);
 
     return (
         <Layout title="僕らむの魚図鑑" description={description} url={url} imageUrl="https://www.my-divingram.com/img/logo/favicon_small.jpg">
@@ -179,6 +219,49 @@ export default function kanaList({
                 <p className="pt-1 pb-1 text-xs md:text-sm text-center text-gray-700 font-medium">最近の更新一覧は<Link href={"/fish/recent_updates"} className="underline hover:opacity-50">こちら</Link> (最終更新 : {data_fish[0].updatedAt.substr(0,10)})</p>
                 <p className="pb-1 text-xs md:text-sm text-center text-gray-700 font-medium">周縁性淡水魚は海水魚とみなす</p>
                 <p className="pb-10 text-xs md:text-sm text-center text-gray-700 font-medium">海外種は名称の末尾に*の注釈あり</p>
+
+                {/* --- ★検索ボックスと結果表示を追加 --- */}
+                <div className="pb-10 max-w-xs md:max-w-sm mx-auto relative">
+                    <p className="pb-2 text-center text-sm md:text-lg text-gray-700 font-medium">検索</p>
+                    <input
+                        type="search"
+                        placeholder="和名 / 学名を入力"
+                        className="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-500"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+
+                    {/* --- 検索結果表示（入力がある場合のみ） --- */}
+                    {searchTerm && (
+                        <div className="absolute w-full mt-1 bg-white border border-gray-300 rounded-lg shadow-lg max-h-80 overflow-y-auto z-10">
+                            {searchResults.length > 0 ? (
+                                <ul>
+                                    {/* 検索結果が多すぎても重くならないよう、例えば50件に制限 */}
+                                    {searchResults.slice(0, 50).map((fish) => (
+                                        <li key={fish.id} className="border-b last:border-b-0">
+                                            <Link
+                                                href={`/fish/${fish.class}/${fish.latinName}`.replace(" ", "_")}
+                                                className="block px-4 py-3 text-gray-700 hover:bg-sky-50 transition-colors"
+                                                // リンククリックで検索ボックスを閉じる
+                                                onClick={() => setSearchTerm("")}
+                                            >
+                                                {getJapaneseName(fish)}
+                                                <span className="block text-xs text-gray-500 italic">{fish.latinName}</span>
+                                            </Link>
+                                        </li>
+                                    ))}
+                                    {searchResults.length > 50 && (
+                                        <li className="px-4 py-3 text-center text-sm text-gray-500 italic">
+                                            ...
+                                        </li>
+                                    )}
+                                </ul>
+                            ) : (
+                                <p className="p-4 text-center text-gray-500">not found</p>
+                            )}
+                        </div>
+                    )}
+                </div>
 
                 <p className="text-center text-sm md:text-lg text-gray-700 font-medium">索引</p>
                 <div className="pt-2 pb-10 flex justify-center space-x-3 text-gray-700 font-medium">
