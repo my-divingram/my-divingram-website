@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import { client } from "/libs/client";
@@ -41,9 +42,35 @@ export const getStaticProps = async() => {
 
 function Home({data_fish, data_fish_slider, data_num, data_num_ja, allFishList}) {
     const description = '伊豆を中心に国内外を問わず未だ見ぬ魚を探して潜っているトラベルダイバーの"僕のだいびんぐらむ"です。個人で撮影した生態写真で魚図鑑を制作しています。'
+    // 構造化データ(JSON-LD)の作成
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home", // 1階層目 (サイトのトップページ)
+                "item": "https://www.my-divingram.com"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "僕らむの魚図鑑", // 2階層目 (このページ)
+                "item": "https://www.my-divingram.com/fish"
+            }
+        ]
+    };
 
     return (
         <Layout title="僕らむの魚図鑑" description={description} url="https://www.my-divingram.com/fish" imageUrl="https://www.my-divingram.com/img/logo/favicon_small.jpg">
+            <Head>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+                />
+            </Head>
+
             <div className="px-3 md:px-20 font-sans">
 
                 <FishPageHeader

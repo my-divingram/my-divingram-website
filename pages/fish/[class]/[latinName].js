@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { client } from "/libs/client";
 import Layout from "/components/Layout";
 import { Species } from "@/components/Species";
@@ -25,7 +26,6 @@ export const getStaticProps = async (context) => {
 export const getStaticPaths = async() => {
 
     // "全カテゴリ" の "全魚種" の `class` と `latinName` をfetchAllPages を使って、件数上限なく取得する
-
     const allFish = await fetchAllPages("uwphoto", {
         filters: `book[contains]魚`,
         fields: 'class,latinName'
@@ -54,9 +54,43 @@ export default function IndividualPage({pagedata}){
 
     // オブジェクトから ".name" (文字列) を取り出す。もし category が見つからなければ、pagedata.class をフォールバックとして使用
     const className = category ? category.name : pagedata.class;
+    const categoryUrl = `https://www.my-divingram.com/fish/${pagedata.class}`;
+
+    // 構造化データ(JSON-LD)の作成 (パンくずリスト用)
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "僕らむの魚図鑑", // 1階層目
+                "item": "https://www.my-divingram.com/fish"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": className, // 2階層目 (例: "ハゼの仲間")
+                "item": categoryUrl
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": pagedata.japaneseName, // 3階層目 (例: "アカハチハゼ")
+                "item": url // このページのURL
+            }
+        ]
+    };
 
     return (
         <Layout title={title} description={description} url={url} imageUrl={pagedata.thumbImg.url}>
+            {/* 構造化データを <Head> に挿入 */}
+            <Head>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+                />
+            </Head>
             <Species classes={className} pagedata={pagedata}></Species>
         </Layout>
     )

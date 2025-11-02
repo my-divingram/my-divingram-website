@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Layout from "/components/Layout";
 import { Family, Genus } from "/components/Class";
 import { fetchAllPages } from "/libs/fetch_all_pages";
@@ -70,8 +71,35 @@ export default function CategoryPage({ pageData, categoryInfo, data_num, classPa
         ? `https://www.my-divingram.com${categoryInfo.img}`
         : "https://www.my-divingram.com/img/logo/favicon_small.jpg";
 
+    // 構造化データ(JSON-LD)の作成
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "僕らむの魚図鑑", // 1階層目
+                "item": "https://www.my-divingram.com/fish"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": categoryInfo.name, // 2階層目 (例: "ハゼの仲間")
+                "item": url // このページのURL
+            }
+        ]
+    };
+
 	return (
 		<Layout title={title} description={description} url={url} imageUrl={imageUrl}>
+            <Head>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+                />
+            </Head>
+
 			<div className="px-5 md:px-20 font-sans">
 
 				<h1 className="pt-10 text-xl md:text-2xl text-center text-sky-800 font-black">
