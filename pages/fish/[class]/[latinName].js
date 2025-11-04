@@ -5,6 +5,29 @@ import { Species } from "@/components/Species";
 import { fetchAllPages } from "/libs/fetch_all_pages";
 import { categoryList } from "/constants/categories";
 
+/**
+ * microCMSから取得した latinName を表示用に整形する
+ * (ルール1: "sp" で終わる場合は "sp." にする)
+ * (ルール2: "sp.-1" などを "sp.1" にする)
+ */
+function formatLatinNameForDisplay(latinName) {
+    if (!latinName) return "";
+
+    let display = latinName;
+
+    // ルール2: "sp.-1" -> "sp.1" (ハイフンを削除)
+    // (例: "Abc sp.-1" -> "Abc sp.1")
+    display = display.replace(/(sp\.)-(\d+)/g, 'sp.$2');
+
+    // ルール1: "sp" で終わる -> "sp." (ドットを追加)
+    // (例: "Abc sp" -> "Abc sp.")
+    // (注: 既に "sp." の場合は何もしない)
+    if (display.endsWith('sp') && !display.endsWith('.sp')) {
+        display = display + '.';
+    }
+    return display;
+}
+
 // SSG
 export const getStaticProps = async (context) => {
     const latinName = context.params.latinName;
@@ -55,6 +78,7 @@ export default function IndividualPage({pagedata}){
     // オブジェクトから ".name" (文字列) を取り出す。もし category が見つからなければ、pagedata.class をフォールバックとして使用
     const className = category ? category.name : pagedata.class;
     const categoryUrl = `https://www.my-divingram.com/fish/${pagedata.class}`;
+    const displayLatinName = formatLatinNameForDisplay(pagedata.latinName);
 
     // 構造化データ(JSON-LD)の作成 (パンくずリスト用)
     const structuredData = {
@@ -91,7 +115,13 @@ export default function IndividualPage({pagedata}){
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
                 />
             </Head>
-            <Species classes={className} pagedata={pagedata}></Species>
+            <Species
+                classes={className}
+                pagedata={{
+                    ...pagedata,
+                    latinName: displayLatinName
+                }}
+            />
         </Layout>
     )
 }
