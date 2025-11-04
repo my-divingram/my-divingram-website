@@ -5,6 +5,7 @@ import "@splidejs/react-splide/css";
 import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 import { getJapaneseName } from "/libs/utils"; // 共通関数
 import FishSearch from "./FishSearch"; // 検索コンポーネント
+import { getOptimizedMicroCMSImage } from "/libs/utils";
 
 const kanaList = ["ア", "カ", "サ", "タ", "ナ", "ハ", "マ", "ヤ", "ラ", "ワ"];
 
@@ -26,7 +27,7 @@ export default function FishPageHeader({
                     <SplideSlide key={data.id}>
                         <div className="hover:opacity-80">
                             <Link href={`/fish/${data.class}/${data.latinName}`.replace(" ", "_")}>
-                                <Image src={data.thumbImg.url} alt={data.japaneseName} width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
+                                <Image src={getOptimizedMicroCMSImage(data.thumbImg.url, 300)} alt={data.japaneseName} width={300} height={200} style={{objectFit:"contain"}} unoptimized={true} priority={true}/>
                                 <h2 className="py-3 mb-2 text-xs md:text-sm text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                             </Link>
                         </div>

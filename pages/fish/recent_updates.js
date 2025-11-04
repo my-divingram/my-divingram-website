@@ -6,6 +6,7 @@ import FishPageHeader from "/components/FishPageHeader";
 import FishPageFooter from "/components/FishPageFooter";
 import { fetchAllPages } from "/libs/fetch_all_pages"; // サーバー用
 import { shuffleArray, getJapaneseName } from "/libs/utils"; // クライアント安全
+import { getOptimizedMicroCMSImage } from "/libs/utils";
 
 // SSG
 export const getStaticProps = async() => {
@@ -91,7 +92,7 @@ function Home({monthsData, data_fish_slider, data_num, data_num_ja}) {
                             {monthData.items.map((data) => (
                                 <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
                                     <Link href={`/fish/${data.class}/${data.latinName}`.replace(" ", "_")}>
-                                        <Image src={data.thumbImg.url} alt={data.japaneseName} width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
+                                        <Image src={getOptimizedMicroCMSImage(data.thumbImg.url, 300)} alt={data.japaneseName} width={300} height={200} style={{objectFit:"contain"}} unoptimized={true} priority={true}/>
                                         <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
                                     </Link>
                                 </div>

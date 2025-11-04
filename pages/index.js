@@ -7,6 +7,7 @@ import "@splidejs/react-splide/css";
 import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 import YouTube from "react-youtube";
 // import { Timeline } from "react-twitter-widgets"
+import { getOptimizedMicroCMSImage } from "/libs/utils";
 
 // SSG
 export const getStaticProps = async() => {
@@ -40,7 +41,7 @@ function Home({data_fish, data_blog}) {
                         <SplideSlide key={data.id}>
                             <div className="hover:opacity-80">
                                 <Link href={`/fish/${data.class}/${data.latinName}`.replace(" ", "_")}>
-                                    <Image src={data.thumbImg.url} alt={data.japaneseName} width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
+                                    <Image src={getOptimizedMicroCMSImage(data.thumbImg.url, 300)} alt={data.japaneseName} width={300} height={200} style={{objectFit:"contain"}} unoptimized={true} priority={true}/>
                                     <h2 className="pt-3 pb-5 text-xs md:text-sm text-center text-gray-700 font-medium">{data.japaneseName}</h2>
                                 </Link>
                             </div>
@@ -83,7 +84,7 @@ function Home({data_fish, data_blog}) {
                                     <p className="pt-1 pb-1 text-base md:text-xl text-center text-gray-700 font-black">{data.title}</p>
                                     <p className="pb-2 text-sm md:text-base text-center text-gray-700">{data.publishedAt.substr(0,10)}</p>
                                     <div className="flex space-x-3 justify-center items-center">
-                                        <Image src={data.thumbnail.url} alt={data.title} width={120} height={80} style={{objectFit:"contain"}}/>
+                                        <Image src={getOptimizedMicroCMSImage(data.thumbnail.url, 120)} alt={data.title} width={120} height={80} style={{objectFit:"contain"}}/>
                                         <p className="text-xs md:text-sm text-center text-gray-700">{data.abstruct.substr(0,75)}…</p>
                                     </div>
                                 </div>

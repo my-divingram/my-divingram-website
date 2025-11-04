@@ -31,3 +31,26 @@ export const katakanaToHiragana = (str) => {
         return String.fromCharCode(match.charCodeAt(0) - 0x60);
     });
 };
+
+/**
+ * microCMSの画像URLを、指定した幅のWebPに変換するURL文字列を返す
+ * (unoptimized={true} と併用するための手動ローダー)
+ * @param {string} src - microCMSのオリジナル画像URL
+ * @param {number} width - 必要な画像の幅 (ピクセル)
+ */
+export function getOptimizedMicroCMSImage(src, width) {
+  if (!src) {
+    return null; // src がない場合は null を返す
+  }
+
+  try {
+    const url = new URL(src);
+    url.searchParams.set('w', width.toString());
+    url.searchParams.set('q', '75'); // 品質を75に設定
+    url.searchParams.set('fm', 'webp'); // WebP形式に強制変換
+    return url.href;
+  } catch (error) {
+    console.error("Invalid image src for optimization:", src, error);
+    return src; // エラーの場合は元のURLを返す
+  }
+}

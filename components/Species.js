@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { getOptimizedMicroCMSImage } from "/libs/utils";
 
 
 function record(pagedata) {
@@ -9,7 +10,7 @@ function record(pagedata) {
                         <div key={data.fieldId} className="px-3 w-1/3 md:w-1/5">
                             <div>
                                 <Link href={data.image.url}>
-                                    <Image src={data.image.url} alt="image" width={300} height={200} style={{objectFit:"contain"}} unoptimized/>
+                                    <Image src={getOptimizedMicroCMSImage(data.image.url, 300)} alt="image" width={300} height={200} style={{objectFit:"contain"}} unoptimized={true}/>
                                 </Link>
                                 <p className="py-1 text-xs md:text-sm text-center text-black">{data.info}</p>
                             </div>
@@ -31,7 +32,7 @@ export function Species({classes, pagedata}) {
 
             <div className="md:px-3 flex justify-center items-center">
                 <Link href={pagedata.thumbImg.url}>
-                    <Image src={pagedata.thumbImg.url} alt={pagedata.japaneseName} width={600} height={400} style={{objectFit:"contain"}} unoptimized/>
+                    <Image src={getOptimizedMicroCMSImage(pagedata.thumbImg.url, 600)} alt={pagedata.japaneseName} width={600} height={400} style={{objectFit:"contain"}} unoptimized={true} priority={true}/>
                 </Link>
             </div>
 

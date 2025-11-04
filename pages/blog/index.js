@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { client } from "/libs/client";
 import Layout from "/components/Layout";
+import { getOptimizedMicroCMSImage } from "/libs/utils";
 
 // SSG
 export const getStaticProps = async() => {
@@ -31,7 +32,7 @@ function Home({data_blog}) {
                             <div className="px-5 py-5">
                                 <div className="hover:opacity-80 text-center items-center bg-white px-5 py-5 rounded-xl">
                                     <div className="flex justify-center items-center">
-                                        <Image src={data.thumbnail.url} alt={data.title} width={360} height={240} style={{objectFit:"contain"}}/>
+                                        <Image src={getOptimizedMicroCMSImage(data.thumbnail.url, 360)} alt={data.title} width={360} height={240} style={{objectFit:"contain"}}/>
                                     </div>
                                     <p className="pt-3 pb-1 text-base md:text-xl text-center text-gray-700 font-black">{data.title}</p>
                                     <p className="pb-1 text-sm md:text-base text-center text-gray-700">{data.publishedAt.substr(0,10)}</p>
