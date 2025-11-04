@@ -25,3 +25,58 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+/* --- クラスターピン (マージ時) --- */
+.marker-cluster-small { background-color: rgba(255, 255, 255, 0.85); }
+.marker-cluster-small div { background-color: rgba(240, 249, 255, 0.9); } /* sky-50 */
+.marker-cluster-medium { background-color: rgba(255, 255, 255, 0.85); }
+.marker-cluster-medium div { background-color: rgba(224, 242, 254, 0.9); } /* sky-100 */
+.marker-cluster-large { background-color: rgba(255, 255, 255, 0.85); }
+.marker-cluster-large div { background-color: rgba(186, 230, 253, 0.9); } /* sky-200 */
+
+.marker-cluster div {
+  width: 30px;
+  height: 30px;
+  margin-left: 5px;
+  margin-top: 5px;
+  color: #0c4a6e; /* サイトのテーマカラー (sky-900) */
+  font-weight: 900; /* extra-bold */
+  text-align: center;
+  border-radius: 50%;
+  font-size: 12px;
+  line-height: 30px;
+}
+.marker-cluster {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-clip: padding-box; /* 枠線が角丸になるように */
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3); /* 影を強めにつける */
+}
+
+/* --- 個別ピン (場所名＋種数) --- */
+.custom-single-pin {
+  background: #ffffff;
+  border: 1px solid #cbd5e1; /* gray-300 */
+  border-radius: 20px; /* ピル形状 */
+  
+  padding: 5px 12px;
+  text-align: center;
+  white-space: nowrap;
+
+  color: #1e293b; /* gray-800 */
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3); /* 影を強めにつける */
+}
+
+/* 種数の部分だけサイトのテーマカラーにする */
+.custom-single-pin span {
+  font-size: 11px;
+  font-weight: 500;
+  opacity: 1;
+  display: block;
+  color: #0284c7; /* sky-600 */
+}

@@ -2,6 +2,9 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import { Link as Scroll } from "react-scroll";
+import 'leaflet/dist/leaflet.css';
+import 'leaflet.markercluster/dist/MarkerCluster.css';
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 
 export default function Layout({children, title, description, url, imageUrl, bg_color_to="bg-sky-100"}) {
     return (
