@@ -3,6 +3,7 @@ import Script from "next/script";
 import * as gtag from "/libs/gtag";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function App({ Component, pageProps }) {
 
@@ -37,5 +38,7 @@ export default function App({ Component, pageProps }) {
       }}
     />
     <Component {...pageProps} />
+
+    <Analytics />
   </>)
 }
