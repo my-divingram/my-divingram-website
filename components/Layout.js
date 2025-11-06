@@ -31,14 +31,14 @@ export default function Layout({children, title, description, url, imageUrl, bg_
                     <div className="h-1"></div>
 
                     <div className="flex justify-center space-x-10">
-                        <Link href="/">
-                            <p className="text-white hover:bg-sky-700 px-3 py-2 rounded">
-                                TOP
-                            </p>
-                        </Link>
                         <Link href="/fish">
                             <p className="text-white hover:bg-sky-700 px-3 py-2 rounded">
                                 魚図鑑
+                            </p>
+                        </Link>
+                        <Link href="/">
+                            <p className="text-white hover:bg-sky-700 px-3 py-2 rounded">
+                                SEARCH
                             </p>
                         </Link>
                         <Link href="/blog">
