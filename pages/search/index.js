@@ -126,7 +126,7 @@ export const getStaticProps = async () => {
     return {
         props: {
             allRecords: allRecords,
-            locationMap: finalLocationMap,
+            // locationMap: finalLocationMap,
             speciesLookup: allFishData.map(f => ({
                 id: f.id,
                 japaneseName: f.japaneseName,
@@ -149,7 +149,8 @@ const LocationMap = dynamic(
   }
 );
 
-export default function LocationSearchPage({ allRecords, locationMap, speciesLookup, mapMarkers }) {
+export default function LocationSearchPage({ allRecords, speciesLookup, mapMarkers }) {
+// export default function LocationSearchPage({ allRecords, locationMap, speciesLookup, mapMarkers }) {
     // --- パスワード認証 State ---
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [inputPassword, setInputPassword] = useState("");
@@ -160,6 +161,7 @@ export default function LocationSearchPage({ allRecords, locationMap, speciesLoo
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedMonth, setSelectedMonth] = useState([]);
     const [selectedDepth, setSelectedDepth] = useState([]);
+    const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
     // --- 認証チェック (SessionStorage) ---
     useEffect(() => {
@@ -173,7 +175,7 @@ export default function LocationSearchPage({ allRecords, locationMap, speciesLoo
     const depthRanges = [
         { key: 'depth1', label: '超浅場 (1m以浅)' },
         { key: 'depth2', label: '浅場 (1-10m)' },
-        { key: 'depth3', label: '普通 (10-30m)' },
+        { key: 'depth3', label: '標準 (10-30m)' },
         { key: 'depth4', label: '深場 (30-40m+)' },
         { key: 'depth5', label: '超深場 (40m+以深)' },
     ];
@@ -356,7 +358,7 @@ export default function LocationSearchPage({ allRecords, locationMap, speciesLoo
                             <input
                                 id="location-search"
                                 type="search"
-                                placeholder="ポイント名を入力 または 地図から選択"
+                                placeholder="ポイント名を入力 または マップから選択"
                                 className="w-full p-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -375,67 +377,86 @@ export default function LocationSearchPage({ allRecords, locationMap, speciesLoo
 
                     {/* --- 右カラム (月 + 水深) --- */}
                     <div className="flex flex-col">
-                        {/* 2. 撮影月 (複数選択) */}
-                        <div className="mb-6">
-                            <label className="block text-sm font-medium text-gray-700 mb-2">撮影月</label>
-                            <div className="flex flex-wrap gap-2">
-                                <button
-                                    type="button"
-                                    onClick={() => handleFilterToggle("All", selectedMonth, setSelectedMonth)}
-                                    className={`px-3 py-2 text-sm font-medium rounded-full shadow-sm ${
-                                        selectedMonth.length === 0
-                                            ? 'bg-sky-600 text-white'
-                                            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
-                                    }`}
-                                >
-                                    All
-                                </button>
-                                {months.map(m => (
-                                    <button
-                                        key={m}
-                                        type="button"
-                                        onClick={() => handleFilterToggle(m, selectedMonth, setSelectedMonth)}
-                                        className={`px-3 py-2 text-sm font-medium rounded-full shadow-sm ${
-                                            selectedMonth.includes(m)
-                                                ? 'bg-sky-600 text-white'
-                                                : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
-                                        }`}
-                                    >
-                                        {m}月
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
+                        <button
+                            type="button"
+                            onClick={() => setIsMobileFilterOpen(!isMobileFilterOpen)}
+                            className="md:hidden w-full p-3 mb-4 text-sm font-medium text-gray-600 rounded-lg flex justify-start items-center hover:bg-gray-100 transition-colors"
+                        >
+                            <svg
+                                className={`w-5 h-5 transition-transform ${isMobileFilterOpen ? 'rotate-180' : ''}`}
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                            >
+                                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                            </svg>
+                            <span className="ml-2">撮影月・水深でフィルタリング</span>
+                        </button>
 
-                        {/* 3. 水深 (複数選択) */}
-                        <div className="mb-6">
-                            <label className="block text-sm font-medium text-gray-700 mb-2">水深</label>
-                            <div className="flex flex-wrap gap-2">
-                                <button
-                                    type="button"
-                                    onClick={() => handleFilterToggle("All", selectedDepth, setSelectedDepth)}
-                                    className={`px-4 py-2 text-sm font-medium rounded-full shadow-sm ${
-                                        selectedDepth.length === 0
-                                            ? 'bg-sky-600 text-white'
-                                            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
-                                    }`}
-                                >
-                                    All
-                                </button>
-                                {depthRanges.map(range => (
+                        {/* フィルターのラッパー (折りたたみ対応) */}
+                        <div className={`${isMobileFilterOpen ? 'block' : 'hidden'} md:block`}>
+                            {/* 2. 撮影月 (複数選択) */}
+                            <div className="mb-6">
+                                <label className="block text-sm font-medium text-gray-700 mb-2">撮影月</label>
+                                <div className="flex flex-wrap gap-2">
                                     <button
-                                        key={range.key}
                                         type="button"
-                                        onClick={() => handleFilterToggle(range.key, selectedDepth, setSelectedDepth)}
-                                        className={`px-4 py-2 text-sm font-medium rounded-full shadow-sm ${
-                                            selectedDepth.includes(range.key)
+                                        onClick={() => handleFilterToggle("All", selectedMonth, setSelectedMonth)}
+                                        className={`px-3 py-2 text-sm font-medium rounded-full shadow-sm ${
+                                            selectedMonth.length === 0
                                                 ? 'bg-sky-600 text-white'
                                                 : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
                                         }`}
                                     >
-                                        {range.label}
+                                        All
                                     </button>
-                                ))}
+                                    {months.map(m => (
+                                        <button
+                                            key={m}
+                                            type="button"
+                                            onClick={() => handleFilterToggle(m, selectedMonth, setSelectedMonth)}
+                                            className={`px-3 py-2 text-sm font-medium rounded-full shadow-sm ${
+                                                selectedMonth.includes(m)
+                                                    ? 'bg-sky-600 text-white'
+                                                    : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                                            }`}
+                                        >
+                                            {m}月
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* 3. 水深 (複数選択) */}
+                            <div className="mb-6">
+                                <label className="block text-sm font-medium text-gray-700 mb-2">水深</label>
+                                <div className="flex flex-wrap gap-2">
+                                    <button
+                                        type="button"
+                                        onClick={() => handleFilterToggle("All", selectedDepth, setSelectedDepth)}
+                                        className={`px-4 py-2 text-sm font-medium rounded-full shadow-sm ${
+                                            selectedDepth.length === 0
+                                                ? 'bg-sky-600 text-white'
+                                                : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                                        }`}
+                                    >
+                                        All
+                                    </button>
+                                    {depthRanges.map(range => (
+                                        <button
+                                            key={range.key}
+                                            type="button"
+                                            onClick={() => handleFilterToggle(range.key, selectedDepth, setSelectedDepth)}
+                                            className={`px-4 py-2 text-sm font-medium rounded-full shadow-sm ${
+                                                selectedDepth.includes(range.key)
+                                                    ? 'bg-sky-600 text-white'
+                                                    : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                                            }`}
+                                        >
+                                            {range.label}
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </div>
