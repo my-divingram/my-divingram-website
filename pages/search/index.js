@@ -110,10 +110,15 @@ export const getStaticProps = async () => {
     // mapMarkers の生成
     const mapMarkers = Object.keys(finalLocationMap).map(locationName => {
         const latLng = locationData[locationName];
+        const speciesIds = finalLocationMap[locationName];
         if (!latLng) {
+            // 緯度経度データ(locations.js)に見つからなかった場所をログに出力
+            // (locationName === "某所" など、意図的に除外するものは除く)
+            if (locationName !== "某所") {
+                console.warn(`[Location Mismatch] 緯度経度が見つかりません: "${locationName}" "${speciesIds}"`);
+            }
             return null;
         }
-        const speciesIds = finalLocationMap[locationName];
         return {
             location: locationName,
             lat: latLng.lat,
@@ -390,7 +395,7 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                             >
                                 <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                             </svg>
-                            <span className="ml-2">撮影月・水深でフィルタリング</span>
+                            <span className="ml-2">撮影月 または 水深 でフィルタリング</span>
                         </button>
 
                         {/* フィルターのラッパー (折りたたみ対応) */}
