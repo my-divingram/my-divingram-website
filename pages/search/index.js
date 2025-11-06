@@ -469,8 +469,8 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
 
                 {/* 検索結果 (サムネイル付き) */}
                 {(searchTerm || selectedMonth.length > 0 || selectedDepth.length > 0) && (
-                    <div className="pt-5">
-                        <h2 className="text-lg font-bold text-gray-700 mb-4 text-center">
+                    <div className="pt-2">
+                        <h2 className="pb-2 text-lg font-bold text-gray-700 mb-4 text-center">
                             検索結果: {searchResults.length}種
                         </h2>
 
