@@ -1072,6 +1072,7 @@ export const categoryStructure = {
                 { key: "サンカクハゼ属", displayName: "サンカクハゼ属 (Fusigobius)" },
                 { key: "オオモンハゼ属", displayName: "オオモンハゼ属 (Gnatholepis)" },
                 { key: "コバンハゼ属", displayName: "コバンハゼ属 (Gobiodon)" },
+                { key: "イサゴハゼ属", displayName: "イサゴハゼ属 (Gobiopsis)" },
                 { key: "サザレハゼ属", displayName: "サザレハゼ属 (Grallenia)" },
                 { key: "ユカタハゼ属", displayName: "ユカタハゼ属 (Hazeus)" },
                 { key: "ニラミハゼ属", displayName: "ニラミハゼ属 (Heteroplopomus)" },
