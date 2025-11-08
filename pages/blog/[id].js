@@ -39,7 +39,6 @@ export default function BlogId({ data_blog }) {
                         prose-p:leading-relaxed
                         max-w-4xl
                         mx-auto
-                        pt-10
                         prose-a:text-sky-600
                         prose-figcaption:text-sm
                         md:prose-figcaption:text-base
@@ -48,7 +47,7 @@ export default function BlogId({ data_blog }) {
                         prose-figcaption:mt-2
                         prose-strong:font-extrabold
 
-                        prose-h1:bg-sky-800/70
+                        prose-h1:bg-sky-800/80
                         prose-h1:text-white
                         prose-h1:font-bold
                         prose-h1:px-6
