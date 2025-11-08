@@ -22,10 +22,16 @@ function record(pagedata) {
     }
 }
 
-export function Species({classes, pagedata}) {
+export function Species({classes, categoryUrl, pagedata}) {
     return (
         <div className="px-5 md:px-20 font-sans">
-            <p className="pt-5 text-xs md:text-sm text-left text-gray-700 font-medium"><Link href={"../"} className="underline hover:opacity-50">魚図鑑</Link> {">"} <Link href={"./"} className="underline hover:opacity-50">{classes}</Link> {">"} {pagedata.genus}</p>
+            <p className="pt-5 text-xs md:text-sm text-left text-gray-700 font-medium">
+                <Link href={"/fish"} className="underline hover:opacity-50">魚図鑑</Link>
+                {" > "}
+                <Link href={categoryUrl} className="underline hover:opacity-50">{classes}</Link>
+                {" > "}
+                {pagedata.genus}
+            </p>
 
             <h1 className="pt-5 text-xl md:text-2xl text-center text-gray-700 font-black">{pagedata.japaneseName}</h1>
             <h2 className="pt-2 pb-5 text-xs md:text-lg text-center text-gray-700 font-medium italic">{pagedata.latinName}</h2>

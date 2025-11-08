@@ -77,7 +77,7 @@ export default function IndividualPage({pagedata}){
 
     // オブジェクトから ".name" (文字列) を取り出す。もし category が見つからなければ、pagedata.class をフォールバックとして使用
     const className = category ? category.name : pagedata.class;
-    const categoryUrl = `https://www.my-divingram.com/fish/${pagedata.class}`;
+    const categoryUrl = `/fish/${pagedata.class}`;
     const displayLatinName = formatLatinNameForDisplay(pagedata.latinName);
 
     // 構造化データ(JSON-LD)の作成 (パンくずリスト用)
@@ -117,6 +117,7 @@ export default function IndividualPage({pagedata}){
             </Head>
             <Species
                 classes={className}
+                categoryUrl={categoryUrl}
                 pagedata={{
                     ...pagedata,
                     latinName: displayLatinName
