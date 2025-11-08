@@ -9,10 +9,10 @@ function record(pagedata) {
                     {pagedata.record.map((data) => (
                         <div key={data.fieldId} className="px-3 w-1/3 md:w-1/5">
                             <div>
-                                <Link href={data.image.url}>
-                                    <Image src={getOptimizedMicroCMSImage(data.image.url, 300)} alt="image" width={300} height={200} style={{objectFit:"contain"}} unoptimized={true}/>
+                                <Link href={data.image.url} className="block">
+                                    <Image src={getOptimizedMicroCMSImage(data.image.url, 300)} alt="image" width={300} height={200} style={{objectFit:"contain"}} unoptimized={true} className="mx-auto"/>
                                 </Link>
-                                <p className="py-1 text-xs md:text-sm text-center text-black">{data.info}</p>
+                                <p className="py-1 text-xs md:text-sm text-center text-gray-700">{data.info}</p>
                             </div>
                         </div>
                     ))}
@@ -24,7 +24,7 @@ function record(pagedata) {
 
 export function Species({classes, categoryUrl, pagedata}) {
     return (
-        <div className="px-5 md:px-20 font-sans">
+        <div className="px-10 md:px-20 font-sans">
             <p className="pt-5 text-xs md:text-sm text-left text-gray-700 font-medium">
                 <Link href={"/fish"} className="underline hover:opacity-50">魚図鑑</Link>
                 {" > "}
@@ -44,7 +44,23 @@ export function Species({classes, categoryUrl, pagedata}) {
 
             <p className="pt-2 text-sm md:text-base text-center text-gray-700">{pagedata.thumbInfo}</p>
 
-            {pagedata.comment && <div dangerouslySetInnerHTML={{__html: `${pagedata.comment}`}} className="prose pt-10 prose-figure:flex prose-figure:justify-center prose-figure:m-0 prose-figure:pt-8 prose-figure:pb-2 prose-p:text-gray-700 prose-p:m-0 prose-p:py-1 text-sm md:text-base text-center max-w-none"></div>}
+            {pagedata.comment && <div
+                dangerouslySetInnerHTML={{__html: `${pagedata.comment}`}}
+                className="
+                    prose prose-sm md:prose-base
+                    prose-p:leading-snug
+                    max-w-4xl
+                    mx-auto
+                    pt-10
+                    prose-headings:text-sky-800
+                    prose-a:text-sky-600
+                    prose-figcaption:text-sm
+                    md:prose-figcaption:text-base
+                    prose-figcaption:text-gray-700
+                    prose-figcaption:text-center
+                    prose-figcaption:mt-2
+                "
+            />}
 
             <div className="h-10"></div>
 
