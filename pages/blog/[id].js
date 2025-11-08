@@ -27,7 +27,7 @@ export default function BlogId({ data_blog }) {
     return (
       <Layout title={title} description={data_blog.abstruct} url={url} imageUrl={data_blog.thumbnail.url}>
 
-            <div className="px-10 md:px-20 font-sans">
+            <div className="px-8 md:px-20 font-sans">
 
                 <h1 className="pt-10 pb-5 text-xl md:text-2xl text-center text-sky-800 font-black">{data_blog.title}</h1>
                 <p className="text-sm md:text-base text-center text-gray-700">{data_blog.publishedAt.substr(0,10)}</p>

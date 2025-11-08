@@ -7,12 +7,12 @@ function record(pagedata) {
     if (pagedata.record){
         return <div className="flex flex-wrap justify-center">
                     {pagedata.record.map((data) => (
-                        <div key={data.fieldId} className="px-3 w-1/3 md:w-1/5">
+                        <div key={data.fieldId} className="px-1 w-1/3 md:w-1/5">
                             <div>
                                 <Link href={data.image.url} className="block">
                                     <Image src={getOptimizedMicroCMSImage(data.image.url, 300)} alt="image" width={300} height={200} style={{objectFit:"contain"}} unoptimized={true} className="mx-auto"/>
                                 </Link>
-                                <p className="py-1 text-[10px] md:text-[11px] text-center text-gray-700">{data.info}</p>
+                                <p className="pt-1 pb-2 text-[10px] md:text-[11px] text-center text-gray-700">{data.info}</p>
                             </div>
                         </div>
                     ))}
