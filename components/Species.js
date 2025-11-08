@@ -48,17 +48,17 @@ export function Species({classes, categoryUrl, pagedata}) {
                 dangerouslySetInnerHTML={{__html: `${pagedata.comment}`}}
                 className="
                     prose prose-sm md:prose-base
-                    prose-p:leading-snug
+                    prose-p:leading-relaxed
                     max-w-4xl
                     mx-auto
                     pt-10
-                    prose-headings:text-sky-800
                     prose-a:text-sky-600
                     prose-figcaption:text-sm
                     md:prose-figcaption:text-base
                     prose-figcaption:text-gray-700
                     prose-figcaption:text-center
                     prose-figcaption:mt-2
+                    prose-strong:font-extrabold
                 "
             />}
 

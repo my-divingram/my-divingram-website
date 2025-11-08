@@ -27,12 +27,40 @@ export default function BlogId({ data_blog }) {
     return (
       <Layout title={title} description={data_blog.abstruct} url={url} imageUrl={data_blog.thumbnail.url}>
 
-            <div className="px-3 md:px-20 font-sans">
+            <div className="px-10 md:px-20 font-sans">
 
                 <h1 className="pt-10 pb-5 text-xl md:text-2xl text-center text-sky-800 font-black">{data_blog.title}</h1>
                 <p className="text-sm md:text-base text-center text-gray-700">{data_blog.publishedAt.substr(0,10)}</p>
 
-                <div dangerouslySetInnerHTML={{__html: `${data_blog.article}`,}} className="px-10 md:px-20 prose prose-figure:flex prose-figure:justify-center prose-figure:m-0 prose-figure:pt-8 prose-figure:pb-2 prose-p:text-gray-700 prose-h1:m-0 prose-h1:pt-10 prose-h1:pb-2 prose-h1:text-lg prose-h1:md:text-xl prose-h1:text-gray-700 prose-h1:font-medium prose-h1:border-b-4 prose-h1:border-dotted prose-h1:border-gray-500 prose-p:m-0 prose-p:pt-7 prose-p:text-sm prose-p:md:text-base text-center max-w-none"></div>
+                <div
+                    dangerouslySetInnerHTML={{__html: `${data_blog.article}`,}} 
+                    className="
+                        prose prose-sm md:prose-base
+                        prose-p:leading-relaxed
+                        max-w-4xl
+                        mx-auto
+                        pt-10
+                        prose-a:text-sky-600
+                        prose-figcaption:text-sm
+                        md:prose-figcaption:text-base
+                        prose-figcaption:text-gray-700
+                        prose-figcaption:text-center
+                        prose-figcaption:mt-2
+                        prose-strong:font-extrabold
+
+                        prose-h1:bg-sky-800/70
+                        prose-h1:text-white
+                        prose-h1:font-bold
+                        prose-h1:px-6
+                        prose-h1:py-3
+                        prose-h1:rounded-lg
+                        prose-h1:shadow-md
+                        prose-h1:mt-12
+                        prose-h1:mb-6
+                        prose-h1:text-lg
+                        prose-h1:md:text-xl
+                    "
+                />
 
             </div>
         </Layout>
