@@ -48,11 +48,11 @@ export function Species({classes, categoryUrl, pagedata}) {
                 {pagedata.comment && <div
                     dangerouslySetInnerHTML={{__html: `${pagedata.comment}`}}
                     className="
+                        pt-5
                         prose prose-sm md:prose-base
                         prose-p:leading-relaxed
                         max-w-4xl
                         mx-auto
-                        pt-10
                         prose-a:text-sky-600
                         prose-figcaption:text-xs
                         md:prose-figcaption:text-sm
