@@ -68,7 +68,7 @@ export const getStaticPaths = async() => {
 export default function IndividualPage({pagedata}){
     const title = `${pagedata.japaneseName} | 僕らむの魚図鑑`
     const description = `${pagedata.japaneseName}の生態写真です`
-    const url = `https.www.my-divingram.com/fish/${pagedata.class}/${pagedata.latinName}`.replace(" ", "_")
+    const url = `https://www.my-divingram.com/fish/${pagedata.class}/${pagedata.latinName}`.replace(" ", "_")
 
     // pagedata.class (例: "goby") から、categoryList (例: { name: "ハゼの仲間", href: "fish/goby", ... }) を探す
     const category = categoryList.find(
