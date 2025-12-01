@@ -97,8 +97,8 @@ export default function BlogId({ data_blog }) {
                 max-w-4xl
                 mx-auto
                 prose-a:text-sky-600
-                prose-figcaption:text-sm
-                md:prose-figcaption:text-base
+                prose-figcaption:text-xs
+                md:prose-figcaption:text-sm
                 prose-figcaption:text-gray-700
                 prose-figcaption:text-center
                 prose-figcaption:mt-2
