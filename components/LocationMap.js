@@ -55,9 +55,9 @@ export default function LocationMap({ markers, onMarkerClick, center, zoom }) {
         return L.divIcon({
             html: `
                 <div>
-                    <span style="font-size: 13px; font-weight: 800; display: block;">${totalCount}</span>
-                    <span style="font-size: 10px; font-weight: 600; margin-top: 0px; display: block; white-space: nowrap; max-width: 100px; overflow: hidden; text-overflow: ellipsis;">
-                        ${displayName}${totalCount > 1 ? 'など' : ''}
+                    <span>${totalCount}<span style="font-size: 10px; font-weight: 600; margin-left: 1px; display: inline !important;"> 種</span></span>
+                    <span>
+                        ${topLocation}${totalCount > 1 ? 'など' : ''}
                     </span>
                 </div>
             `,
