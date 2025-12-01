@@ -349,9 +349,12 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                 zoom: isMapClick ? null : 13
             };
         }
+        if (isMapClick) {
+            return { center: null, zoom: null };
+        }
         return {
-            center: null,
-            zoom: null
+            center: defaultCenter,
+            zoom: defaultZoom
         };
     }, [searchTerm, isMapClick]);
 
@@ -444,7 +447,10 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                                 {searchTerm && (
                                     <button
                                         type="button"
-                                        onClick={() => setSearchTerm("")}
+                                        onClick={() => {
+                                            setIsMapClick(false);
+                                            setSearchTerm("");
+                                        }}
                                         className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-400 hover:text-gray-600 transition-colors"
                                     >
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
