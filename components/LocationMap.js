@@ -24,12 +24,25 @@ export default function LocationMap({ markers, onMarkerClick, center, zoom }) {
     }
 
     const markersByLocation = new Map(markers.map(m => [m.location, m]));
+    const isFiltering = markers.some(m => m.isDimmed);
+    const clusterRefreshKey = isFiltering
+        ? markers.filter(m => !m.isDimmed).map(m => m.location).join(',')
+        : 'all-visible';
 
     const createClusterCustomIcon = (cluster) => {
         const childMarkers = cluster.getAllChildMarkers();
         const uniqueSpecies = new Set();
         let maxCount = -1;
         let topLocation = "";
+        let isClusterDimmed = false;
+
+        if (isFiltering) {
+            isClusterDimmed = childMarkers.every(marker => {
+                const locationName = marker.options.title;
+                const data = markersByLocation.get(locationName);
+                return data ? data.isDimmed : true;
+            });
+        }
 
         childMarkers.forEach(marker => {
             const locationName = marker.options.title;
@@ -51,9 +64,11 @@ export default function LocationMap({ markers, onMarkerClick, center, zoom }) {
         else if (totalCount < 500) { c += 'medium'; }
         else { c += 'large'; }
 
+        const opacityStyle = isClusterDimmed ? 'opacity: 0.6;' : 'opacity: 1;';
+
         return L.divIcon({
             html: `
-                <div>
+                <div style="${opacityStyle}">
                     <span>${totalCount}<span style="font-size: 10px; font-weight: 600; margin-left: 1px; display: inline !important;"> 種</span></span>
                     <span>
                         ${topLocation}${totalCount > 1 ? 'など' : ''}
@@ -90,6 +105,7 @@ export default function LocationMap({ markers, onMarkerClick, center, zoom }) {
                 attribution='&copy; CARTO'
             />
             <MarkerClusterGroup
+                key={clusterRefreshKey}
                 spiderfyOnMaxZoom={true}
                 showCoverageOnHover={false}
                 iconCreateFunction={createClusterCustomIcon}
