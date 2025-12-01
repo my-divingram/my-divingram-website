@@ -25,9 +25,9 @@ export default function LocationMap({ markers, onMarkerClick, center, zoom }) {
 
     const markersByLocation = new Map(markers.map(m => [m.location, m]));
     const isFiltering = markers.some(m => m.isDimmed);
-    const clusterRefreshKey = isFiltering
-        ? markers.filter(m => !m.isDimmed).map(m => m.location).join(',')
-        : 'all-visible';
+    const totalSpeciesCount = markers.reduce((sum, m) => sum + m.speciesCount, 0);
+    const visibleLocationString = markers.filter(m => !m.isDimmed).map(m => m.location).join(',');
+    const clusterRefreshKey = `count-${totalSpeciesCount}-locs-${visibleLocationString}`;
 
     const createClusterCustomIcon = (cluster) => {
         const childMarkers = cluster.getAllChildMarkers();
