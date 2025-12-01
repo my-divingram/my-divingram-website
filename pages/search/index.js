@@ -166,6 +166,7 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
     const [selectedMonth, setSelectedMonth] = useState([]);
     const [selectedDepth, setSelectedDepth] = useState([]);
     const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
+    const [isMapClick, setIsMapClick] = useState(false);
 
     // --- 認証チェック (SessionStorage) ---
     // useEffect(() => {
@@ -285,14 +286,11 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
 
     // --- マップの動的フィルタリング (useMemo) - allRecords を使用 ---
     const filteredMapMarkers = useMemo(() => {
-        const isFilterApplied = searchTerm || selectedMonth.length > 0 || selectedDepth.length > 0;
+        const isDateDepthFilterApplied = selectedMonth.length > 0 || selectedDepth.length > 0;
         const dynamicLocationMap = {};
         const lowerTerm = searchTerm.toLowerCase();
 
         allRecords.forEach(record => {
-            if (searchTerm && !record.loc.includes(lowerTerm)) {
-                return;
-            }
             if (selectedMonth.length > 0 && !selectedMonth.includes(record.month)) {
                 return;
             }
@@ -312,47 +310,54 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
         for (const marker of mapMarkers) {
              const locationNameLower = marker.location.toLowerCase();
 
-             if (isFilterApplied) {
+             let speciesCount = marker.speciesCount;
+             let speciesIds = marker.speciesIds;
+
+             if (isDateDepthFilterApplied) {
                  if (dynamicLocationMap[locationNameLower]) {
-                     const speciesIds = Array.from(dynamicLocationMap[locationNameLower]);
-                     newMapMarkers.push({
-                        ...marker,
-                        speciesCount: speciesIds.length,
-                        speciesIds: speciesIds,
-                    });
+                     const ids = Array.from(dynamicLocationMap[locationNameLower]);
+                     speciesCount = ids.length;
+                     speciesIds = ids;
+                 } else {
+                     continue;
                  }
-             } else {
-                 newMapMarkers.push(marker);
              }
+             const isMatch = !searchTerm || locationNameLower.includes(lowerTerm);
+
+             newMapMarkers.push({
+                ...marker,
+                speciesCount: speciesCount,
+                speciesIds: speciesIds,
+                isDimmed: !isMatch
+            });
         }
         return newMapMarkers;
 
     }, [searchTerm, selectedMonth, selectedDepth, allRecords, mapMarkers]);
 
     const mapKey = useMemo(() => {
-        return searchTerm + selectedMonth.join(',') + selectedDepth.join(',') + Math.random();
-    }, [searchTerm, selectedMonth, selectedDepth]);
+        return "map-view";
+    }, []);
 
     const defaultCenter = [35.6809591, 139.7673068]; // 日本の中心（初期値）
-    const defaultZoom = 5;
+    const defaultZoom = 4;
 
     const mapConfig = useMemo(() => {
-        // ポイント(searchTerm)が選択されており、かつ座標データが存在する場合
         if (searchTerm && locationData[searchTerm]) {
             return {
                 center: [locationData[searchTerm].lat, locationData[searchTerm].lng],
-                zoom: 10 // 選択時はその場所にズームインする (要調整)
+                zoom: isMapClick ? null : 13
             };
         }
-        // 選択されていない場合
         return {
-            center: defaultCenter,
-            zoom: defaultZoom
+            center: null,
+            zoom: null
         };
-    }, [searchTerm]);
+    }, [searchTerm, isMapClick]);
 
     // --- イベントハンドラ ---
     const handleMarkerClick = (locationName) => {
+        setIsMapClick(true);
         if (searchTerm === locationName) {
             setSearchTerm("");
         } else {
@@ -360,16 +365,16 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
         }
     };
 
-    const handlePasswordSubmit = (e) => {
-        e.preventDefault();
-        if (inputPassword === CORRECT_PASSWORD) {
-            setIsAuthenticated(true);
-            sessionStorage.setItem("search-auth", "true");
-            setError("");
-        } else {
-            setError("パスワードが違います。");
-        }
-    };
+    // const handlePasswordSubmit = (e) => {
+    //     e.preventDefault();
+    //     if (inputPassword === CORRECT_PASSWORD) {
+    //         setIsAuthenticated(true);
+    //         sessionStorage.setItem("search-auth", "true");
+    //         setError("");
+    //     } else {
+    //         setError("パスワードが違います。");
+    //     }
+    // };
 
 
     // --- パスワード認証前の表示 ---
@@ -427,17 +432,19 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                                     id="location-search"
                                     type="text"
                                     placeholder="ポイント名を入力 または マップから選択"
-                                    /* pr-10 (右パディング) を追加して文字がボタンに被らないようにする */
                                     className="w-full p-3 pr-10 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
                                     value={searchTerm}
-                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                    onChange={(e) => {
+                                        setIsMapClick(false);
+                                        setSearchTerm(e.target.value);
+                                    }}
                                 />
 
                                 {/* 入力がある時だけ ×ボタン を表示 */}
                                 {searchTerm && (
                                     <button
                                         type="button"
-                                        onClick={() => setSearchTerm("")} // クリックでクリア
+                                        onClick={() => setSearchTerm("")}
                                         className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-400 hover:text-gray-600 transition-colors"
                                     >
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
