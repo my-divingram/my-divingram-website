@@ -3,13 +3,10 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
 
-export default function LocationMap({ markers, onMarkerClick }) {
+export default function LocationMap({ markers, onMarkerClick, center = [35.6809591, 139.7673068], zoom = 5 }) {
     if (!markers || markers.length === 0) {
         return <p>地図データを読み込めません。</p>;
     }
-
-    // 地図の中心を計算（ここでは日本の中心あたりを仮置き）
-    const center = [35.6809591, 139.7673068];
 
     const createClusterCustomIcon = (cluster) => {
         const childMarkers = cluster.getAllChildMarkers();
@@ -51,7 +48,7 @@ export default function LocationMap({ markers, onMarkerClick }) {
     };
 
     return (
-        <MapContainer center={center} zoom={5} className="w-full h-[300px] md:h-[400px]" worldCopyJump={true}>
+        <MapContainer center={center} zoom={zoom} className="w-full h-[300px] md:h-[400px]" worldCopyJump={true}>
            <TileLayer
                 url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'

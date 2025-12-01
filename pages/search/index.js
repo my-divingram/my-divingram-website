@@ -16,7 +16,7 @@ const classifyDepth = (depthValue) => {
         return null;
     }
     const depth = parseFloat(numericMatch[0]);
-    // 3. 数値で分類 ( + がない場合)
+    // 数値で分類 ( + がない場合)
     if (depth >= 30 && depth <= 40) return 'depth4';
     if (depth > 40) return null;
     if (depth > 10) return 'depth3';
@@ -31,11 +31,11 @@ const classifyDepth = (depthValue) => {
 const parseInfo = (info, speciesId, locationMap, allRecords) => {
     if (!info) return;
 
-    // 1. 月の抽出
+    // 月の抽出
     const dateMatch = info.match(/\d{4}\.(\d{1,2})\./);
     let monthKey = dateMatch ? parseInt(dateMatch[1], 10).toString() : null;
 
-    // 2. 場所の抽出
+    // 場所の抽出
     const dateEndIndex = info.indexOf('. ') + 2;
     let locationPart = dateEndIndex > 1 ? info.substring(dateEndIndex).trim() : info.trim();
     const depthRegex = /\s(-?\d+\.?\d*m\+*)$/i;
@@ -52,14 +52,14 @@ const parseInfo = (info, speciesId, locationMap, allRecords) => {
          location = null;
     }
 
-    // 3. 水深の抽出と分類
+    // 水深の抽出と分類
     const depthMatch = info.match(depthRegex);
     let depthRangeKey = null;
     if (depthMatch) {
         depthRangeKey = classifyDepth(depthMatch[1].trim());
     }
 
-    // 4. マップとレコードの更新 (場所)
+    // マップとレコードの更新 (場所)
     if (location && location.length > 1) {
         if (!locationMap[location]) {
             locationMap[location] = new Set();
@@ -333,6 +333,24 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
         return searchTerm + selectedMonth.join(',') + selectedDepth.join(',') + Math.random();
     }, [searchTerm, selectedMonth, selectedDepth]);
 
+    const defaultCenter = [35.6809591, 139.7673068]; // 日本の中心（初期値）
+    const defaultZoom = 5;
+
+    const mapConfig = useMemo(() => {
+        // ポイント(searchTerm)が選択されており、かつ座標データが存在する場合
+        if (searchTerm && locationData[searchTerm]) {
+            return {
+                center: [locationData[searchTerm].lat, locationData[searchTerm].lng],
+                zoom: 10 // 選択時はその場所にズームインする (要調整)
+            };
+        }
+        // 選択されていない場合
+        return {
+            center: defaultCenter,
+            zoom: defaultZoom
+        };
+    }, [searchTerm]);
+
     // --- イベントハンドラ ---
     const handleMarkerClick = (locationName) => {
         if (searchTerm === locationName) {
@@ -354,7 +372,7 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
     };
 
 
-    // --- 1. パスワード認証前の表示 ---
+    // --- パスワード認証前の表示 ---
     // if (!isAuthenticated) {
     //     return (
     //         <Layout title="認証 | 僕らむの魚図鑑" description="アクセスが制限されています" url="https://www.my-divingram.com/search" imageUrl="https://www.my-divingram.com/img/logo/favicon_small.jpg">
@@ -386,7 +404,7 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
     //     );
     // }
 
-    // --- 2. 認証後の通常のページ表示 ---
+    // --- 認証後の通常のページ表示 ---
     return (
         <Layout title="Search | 僕らむの魚図鑑" description="撮影場所・水深から魚種を検索できます" url="https://www.my-divingram.com/search" imageUrl="https://www.my-divingram.com/img/logo/favicon_small.jpg">
 
@@ -401,7 +419,7 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                     {/* --- 左カラム (ポイント + 地図) --- */}
                     <div className="md:col-span-2 flex flex-col">
 
-                        {/* 1. ポイント (場所名) */}
+                        {/* ポイント (場所名) */}
                         <div className="mb-6">
                             <label htmlFor="location-search" className="block text-sm font-medium text-gray-700 mb-2">ポイント</label>
                             <div className="relative">
@@ -436,6 +454,8 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                                 key={mapKey}
                                 markers={filteredMapMarkers}
                                 onMarkerClick={handleMarkerClick}
+                                center={mapConfig.center}
+                                zoom={mapConfig.zoom}
                             />
                         </div>
                     </div>
@@ -460,7 +480,7 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
 
                         {/* フィルターのラッパー (折りたたみ対応) */}
                         <div className={`${isMobileFilterOpen ? 'block' : 'hidden'} md:block`}>
-                            {/* 2. 撮影月 (複数選択) */}
+                            {/* 撮影月 (複数選択) */}
                             <div className="mb-6">
                                 <label className="block text-sm font-medium text-gray-700 mb-2">撮影月</label>
                                 <div className="flex flex-wrap gap-2">
@@ -492,7 +512,7 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                                 </div>
                             </div>
 
-                            {/* 3. 水深 (複数選択) */}
+                            {/* 水深 (複数選択) */}
                             <div className="mb-6">
                                 <label className="block text-sm font-medium text-gray-700 mb-2">水深</label>
                                 <div className="flex flex-wrap gap-2">
