@@ -170,10 +170,31 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
 
     // --- 認証チェック (SessionStorage) ---
     useEffect(() => {
-        if (sessionStorage.getItem("search-auth") === "true") {
-            setIsAuthenticated(true);
+        // 認証チェックが通った後、保存されたフィルターを読み込む
+        if (isAuthenticated) {
+            const savedTerm = sessionStorage.getItem('searchTerm');
+            const savedMonth = sessionStorage.getItem('selectedMonth');
+            const savedDepth = sessionStorage.getItem('selectedDepth');
+
+            if (savedTerm) {
+                setSearchTerm(savedTerm);
+            }
+            if (savedMonth) {
+                setSelectedMonth(JSON.parse(savedMonth)); // 配列はJSONとして保存されている
+            }
+            if (savedDepth) {
+                setSelectedDepth(JSON.parse(savedDepth)); // 配列はJSONとして保存されている
+            }
         }
-    }, []);
+    }, [isAuthenticated]); // 認証が完了した時に一度だけ実行
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            sessionStorage.setItem('searchTerm', searchTerm);
+            sessionStorage.setItem('selectedMonth', JSON.stringify(selectedMonth));
+            sessionStorage.setItem('selectedDepth', JSON.stringify(selectedDepth));
+        }
+    }, [searchTerm, selectedMonth, selectedDepth, isAuthenticated]); // フィルター値が変わるたびに実行
 
     // --- フィルター用データ ---
     const months = useMemo(() => Array.from({ length: 12 }, (_, i) => (i + 1).toString()), []);
