@@ -42,12 +42,11 @@ export default function LocationMap({ markers, onMarkerClick }) {
     };
 
     const createSinglePinIcon = (location, count) => {
-        // 新しいCSSクラス（.custom-single-pin）を使用
-        return L.divIcon({
-            html: `${location}<span>${count}種</span>`, // 場所名と種数を表示
-            className: 'custom-single-pin',
-            // iconSize: null を指定すると Leaflet が自動調整します
-            iconSize: null
+       return L.divIcon({
+            html: `<div class="custom-single-pin" style="transform: translate(-50%, -50%);">${location}<span>${count}種</span></div>`,
+            className: '', // Leafletのデフォルトスタイルを無効化
+            iconSize: [0, 0], // 親コンテナはサイズ0
+            iconAnchor: [0, 0] // 座標の位置を基準にする
         });
     };
 
@@ -66,7 +65,7 @@ export default function LocationMap({ markers, onMarkerClick }) {
 
                 {markers.map(marker => (
                     <Marker
-                        key={marker.location} 
+                        key={marker.location}
                         position={[marker.lat, marker.lng]}
                         // --- ピンクリック時のイベントハンドラ ---
                         eventHandlers={{
