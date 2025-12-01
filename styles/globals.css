@@ -34,25 +34,68 @@ body {
 .marker-cluster-large { background-color: rgba(255, 255, 255, 0.85); }
 .marker-cluster-large div { background-color: rgba(186, 230, 253, 0.9); } /* sky-200 */
 
-.marker-cluster div {
-  width: 30px;
-  height: 30px;
-  margin-left: 5px;
-  margin-top: 5px;
-  color: #0c4a6e; /* サイトのテーマカラー (sky-900) */
-  font-weight: 900; /* extra-bold */
-  text-align: center;
-  border-radius: 50%;
-  font-size: 12px;
-  line-height: 30px;
+/* 1. 外側の半透明リング */
+.leaflet-marker-icon.marker-cluster {
+  width: max-content !important;
+  height: max-content !important;
+  padding: 4px !important;
+  border-radius: 18px !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2) !important;
 }
+
+/* 2. 内側の色付きボックス */
+.marker-cluster div {
+  /* 余計なマージンを完全削除 */
+  margin: 0 !important;
+  /* 幅・高さの自動調整 */
+  width: auto !important;
+  height: auto !important;
+  padding: 2px 8px !important;
+  /* 最低限の横幅 */
+  min-width: 30px;
+  /* フレックス配置 */
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  /* スタイル */
+  color: #1e293b;
+  text-align: center;
+  border-radius: 14px !important;
+}
+
+/* 3. テキストの行間設定 */
+.marker-cluster div span {
+  display: block;
+  line-height: 1 !important;
+  margin: 0 !important;
+}
+
+/* 数字部分 */
+.marker-cluster div span:first-child {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  padding-bottom: 3px !important;
+}
+
+/* 場所名部分 */
+.marker-cluster div span:last-child {
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  white-space: nowrap;
+}
+
+.marker-cluster-small { background-color: rgba(255, 255, 255, 0.6); }
+.marker-cluster-small div { background-color: rgba(240, 249, 255, 0.9); }
+
+.marker-cluster-medium { background-color: rgba(255, 255, 255, 0.6); }
+.marker-cluster-medium div { background-color: rgba(224, 242, 254, 0.9); }
+
+.marker-cluster-large { background-color: rgba(255, 255, 255, 0.6); }
+.marker-cluster-large div { background-color: rgba(253, 186, 116, 0.9); }
+
 .marker-cluster {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-clip: padding-box; /* 枠線が角丸になるように */
-  border: 2px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3); /* 影を強めにつける */
+  transform: translate(-50%, -50%);
 }
 
 /* --- 個別ピン (場所名＋種数) --- */
