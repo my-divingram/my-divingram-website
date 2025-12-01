@@ -38,7 +38,7 @@ export default function Layout({children, title, description, url, imageUrl, bg_
                         </Link>
                         <Link href="/search">
                             <p className="text-white hover:bg-sky-700 px-3 py-2 rounded">
-                                SEARCH
+                                MAP
                             </p>
                         </Link>
                         <Link href="/blog">
