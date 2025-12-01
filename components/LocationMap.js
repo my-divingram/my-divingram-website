@@ -45,7 +45,6 @@ export default function LocationMap({ markers, onMarkerClick, center, zoom }) {
         });
 
         const totalCount = uniqueSpecies.size;
-        const displayName = topLocation || "Area";
 
         let c = ' marker-cluster-';
         if (totalCount < 100) { c += 'small'; }
