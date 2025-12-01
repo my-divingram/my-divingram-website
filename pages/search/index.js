@@ -155,12 +155,11 @@ const LocationMap = dynamic(
 );
 
 export default function LocationSearchPage({ allRecords, speciesLookup, mapMarkers }) {
-// export default function LocationSearchPage({ allRecords, locationMap, speciesLookup, mapMarkers }) {
     // --- パスワード認証 State ---
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [inputPassword, setInputPassword] = useState("");
-    const [error, setError] = useState("");
-    const CORRECT_PASSWORD = "genicanthus";
+    // const [isAuthenticated, setIsAuthenticated] = useState(false);
+    // const [inputPassword, setInputPassword] = useState("");
+    // const [error, setError] = useState("");
+    // const CORRECT_PASSWORD = "genicanthus";
 
     // --- 検索フィルター State (複数選択対応) ---
     const [searchTerm, setSearchTerm] = useState("");
@@ -169,32 +168,56 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
     const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 
     // --- 認証チェック (SessionStorage) ---
-    useEffect(() => {
-        // 認証チェックが通った後、保存されたフィルターを読み込む
-        if (isAuthenticated) {
-            const savedTerm = sessionStorage.getItem('searchTerm');
-            const savedMonth = sessionStorage.getItem('selectedMonth');
-            const savedDepth = sessionStorage.getItem('selectedDepth');
+    // useEffect(() => {
+    //     // 認証チェックが通った後、保存されたフィルターを読み込む
+    //     if (isAuthenticated) {
+    //         const savedTerm = sessionStorage.getItem('searchTerm');
+    //         const savedMonth = sessionStorage.getItem('selectedMonth');
+    //         const savedDepth = sessionStorage.getItem('selectedDepth');
 
-            if (savedTerm) {
-                setSearchTerm(savedTerm);
-            }
-            if (savedMonth) {
-                setSelectedMonth(JSON.parse(savedMonth)); // 配列はJSONとして保存されている
-            }
-            if (savedDepth) {
-                setSelectedDepth(JSON.parse(savedDepth)); // 配列はJSONとして保存されている
-            }
-        }
-    }, [isAuthenticated]); // 認証が完了した時に一度だけ実行
+    //         if (savedTerm) {
+    //             setSearchTerm(savedTerm);
+    //         }
+    //         if (savedMonth) {
+    //             setSelectedMonth(JSON.parse(savedMonth)); // 配列はJSONとして保存されている
+    //         }
+    //         if (savedDepth) {
+    //             setSelectedDepth(JSON.parse(savedDepth)); // 配列はJSONとして保存されている
+    //         }
+    //     }
+    // }, [isAuthenticated]); // 認証が完了した時に一度だけ実行
+
+    // useEffect(() => {
+    //     if (isAuthenticated) {
+    //         sessionStorage.setItem('searchTerm', searchTerm);
+    //         sessionStorage.setItem('selectedMonth', JSON.stringify(selectedMonth));
+    //         sessionStorage.setItem('selectedDepth', JSON.stringify(selectedDepth));
+    //     }
+    // }, [searchTerm, selectedMonth, selectedDepth, isAuthenticated]); // フィルター値が変わるたびに実行
 
     useEffect(() => {
-        if (isAuthenticated) {
-            sessionStorage.setItem('searchTerm', searchTerm);
-            sessionStorage.setItem('selectedMonth', JSON.stringify(selectedMonth));
-            sessionStorage.setItem('selectedDepth', JSON.stringify(selectedDepth));
+        // (認証チェック削除) 無条件で復元を試みる
+        const savedTerm = sessionStorage.getItem('searchTerm');
+        const savedMonth = sessionStorage.getItem('selectedMonth');
+        const savedDepth = sessionStorage.getItem('selectedDepth');
+
+        if (savedTerm) {
+            setSearchTerm(savedTerm);
         }
-    }, [searchTerm, selectedMonth, selectedDepth, isAuthenticated]); // フィルター値が変わるたびに実行
+        if (savedMonth) {
+            setSelectedMonth(JSON.parse(savedMonth));
+        }
+        if (savedDepth) {
+            setSelectedDepth(JSON.parse(savedDepth));
+        }
+    }, []);
+
+    useEffect(() => {
+        // (認証チェック削除) 無条件で保存
+        sessionStorage.setItem('searchTerm', searchTerm);
+        sessionStorage.setItem('selectedMonth', JSON.stringify(selectedMonth));
+        sessionStorage.setItem('selectedDepth', JSON.stringify(selectedDepth));
+    }, [searchTerm, selectedMonth, selectedDepth]);
 
     // --- フィルター用データ ---
     const months = useMemo(() => Array.from({ length: 12 }, (_, i) => (i + 1).toString()), []);
@@ -332,36 +355,36 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
 
 
     // --- 1. パスワード認証前の表示 ---
-    if (!isAuthenticated) {
-        return (
-            <Layout title="認証 | 僕らむの魚図鑑" description="アクセスが制限されています" url="https://www.my-divingram.com/search" imageUrl="https://www.my-divingram.com/img/logo/favicon_small.jpg">
-                <Head>
-                    <meta name="robots" content="noindex" />
-                </Head>
-                <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-white to-sky-100">
-                    <form
-                        onSubmit={handlePasswordSubmit}
-                        className="p-8 bg-white rounded-lg shadow-xl"
-                    >
-                        <h1 className="text-lg font-bold text-gray-700 mb-4">パスワードを入力してください</h1>
-                        <input
-                            type="password"
-                            value={inputPassword}
-                            onChange={(e) => setInputPassword(e.target.value)}
-                            className="w-full p-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
-                        />
-                        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
-                        <button
-                            type="submit"
-                            className="w-full mt-4 px-4 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition-colors"
-                        >
-                            認証
-                        </button>
-                    </form>
-                </div>
-            </Layout>
-        );
-    }
+    // if (!isAuthenticated) {
+    //     return (
+    //         <Layout title="認証 | 僕らむの魚図鑑" description="アクセスが制限されています" url="https://www.my-divingram.com/search" imageUrl="https://www.my-divingram.com/img/logo/favicon_small.jpg">
+    //             <Head>
+    //                 <meta name="robots" content="noindex" />
+    //             </Head>
+    //             <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-white to-sky-100">
+    //                 <form
+    //                     onSubmit={handlePasswordSubmit}
+    //                     className="p-8 bg-white rounded-lg shadow-xl"
+    //                 >
+    //                     <h1 className="text-lg font-bold text-gray-700 mb-4">パスワードを入力してください</h1>
+    //                     <input
+    //                         type="password"
+    //                         value={inputPassword}
+    //                         onChange={(e) => setInputPassword(e.target.value)}
+    //                         className="w-full p-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
+    //                     />
+    //                     {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+    //                     <button
+    //                         type="submit"
+    //                         className="w-full mt-4 px-4 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition-colors"
+    //                     >
+    //                         認証
+    //                     </button>
+    //                 </form>
+    //             </div>
+    //         </Layout>
+    //     );
+    // }
 
     // --- 2. 認証後の通常のページ表示 ---
     return (
@@ -381,14 +404,30 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                         {/* 1. ポイント (場所名) */}
                         <div className="mb-6">
                             <label htmlFor="location-search" className="block text-sm font-medium text-gray-700 mb-2">ポイント</label>
-                            <input
-                                id="location-search"
-                                type="search"
-                                placeholder="ポイント名を入力 または マップから選択"
-                                className="w-full p-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                            />
+                            <div className="relative">
+                                <input
+                                    id="location-search"
+                                    type="text"
+                                    placeholder="ポイント名を入力 または マップから選択"
+                                    /* pr-10 (右パディング) を追加して文字がボタンに被らないようにする */
+                                    className="w-full p-3 pr-10 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                />
+
+                                {/* 入力がある時だけ ×ボタン を表示 */}
+                                {searchTerm && (
+                                    <button
+                                        type="button"
+                                        onClick={() => setSearchTerm("")} // クリックでクリア
+                                        className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-400 hover:text-gray-600 transition-colors"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                                            <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clipRule="evenodd" />
+                                        </svg>
+                                    </button>
+                                )}
+                            </div>
                         </div>
 
                         {/* 地図 */}
