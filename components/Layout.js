@@ -36,7 +36,7 @@ export default function Layout({children, title, description, url, imageUrl, bg_
                                 魚図鑑
                             </p>
                         </Link>
-                        <Link href="/search">
+                        <Link href="/map">
                             <p className="text-white hover:bg-sky-700 px-3 py-2 rounded">
                                 MAP
                             </p>

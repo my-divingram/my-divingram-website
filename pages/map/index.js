@@ -309,10 +309,13 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
 
     // --- 選択された場所の統計データ計算 (グラフ用) ---
     const locationStats = useMemo(() => {
-        if (!searchTerm) return null;
+        let locRecords = allRecords;
 
-        const lowerTerm = searchTerm.toLowerCase();
-        const locRecords = allRecords.filter(record => record.loc && record.loc.includes(lowerTerm));
+        // 検索ワードがある場合のみ場所で絞り込む
+        if (searchTerm) {
+            const lowerTerm = searchTerm.toLowerCase();
+            locRecords = allRecords.filter(record => record.loc && record.loc.includes(lowerTerm));
+        }
 
         if (locRecords.length === 0) return null;
 
@@ -611,71 +614,74 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                 </div>
 
                 {/* 検索結果 (サムネイル付き) */}
-                {(searchTerm || selectedMonth.length > 0 || selectedDepth.length > 0) && (
-                    <div className="pt-2">
+                <div className="pt-2">
 
-                        {/* グラフ表示エリア (ポイント選択時のみ) */}
-                        {locationStats && (
-                            <div className="max-w-xl mx-auto md:max-w-5xl mb-8">
-                                <h2 className="text-lg font-bold text-gray-700 mb-7 text-center">
-                                    {searchTerm}の撮影魚種分布
-                                </h2>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <SimpleBarChart
-                                        data={locationStats.monthData}
-                                        title="撮影月"
-                                        yKey="count"
-                                        labelKey="label"
-                                        barWidth="w-3 md:w-5"
-                                        onBarClick={(val) => handleFilterToggle(val, selectedMonth, setSelectedMonth)}
-                                        selectedValues={selectedMonth}
-                                    />
-                                    <SimpleBarChart
-                                        data={locationStats.depthData}
-                                        title="水深"
-                                        yKey="count"
-                                        labelKey="label"
-                                        barWidth="w-8 md:w-12"
-                                        onBarClick={(val) => handleFilterToggle(val, selectedDepth, setSelectedDepth)}
-                                        selectedValues={selectedDepth}
-                                    />
-                                </div>
+                    {/* グラフ表示エリア (データがあれば常に表示) */}
+                    {locationStats && (
+                        <div className="max-w-xl mx-auto md:max-w-5xl mb-8">
+                            <h2 className="text-lg font-bold text-gray-700 mb-7 text-center">
+                                {searchTerm ? `${searchTerm}の撮影魚種分布` : "撮影魚種分布"}
+                            </h2>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <SimpleBarChart
+                                    data={locationStats.monthData}
+                                    title="撮影月"
+                                    yKey="count"
+                                    labelKey="label"
+                                    barWidth="w-3 md:w-5"
+                                    onBarClick={(val) => handleFilterToggle(val, selectedMonth, setSelectedMonth)}
+                                    selectedValues={selectedMonth}
+                                />
+                                <SimpleBarChart
+                                    data={locationStats.depthData}
+                                    title="水深"
+                                    yKey="count"
+                                    labelKey="label"
+                                    barWidth="w-8 md:w-12"
+                                    onBarClick={(val) => handleFilterToggle(val, selectedDepth, setSelectedDepth)}
+                                    selectedValues={selectedDepth}
+                                />
                             </div>
-                        )}
-
-                        <h2 className="pb-2 text-lg font-bold text-gray-700 mb-4 text-center">
-                            検索結果 : {searchResults.length}種
-                        </h2>
-
-                        <div className="flex flex-wrap justify-center">
-                            {searchResults.length > 0 ? (
-                                searchResults.map(fish => (
-                                    <div key={fish.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
-                                        <Link href={`/fish/${fish.class}/${fish.latinName}`.replace(" ", "_")}>
-                                            {fish.thumbImgUrl ? (
-                                                <Image
-                                                    src={getOptimizedMicroCMSImage(fish.thumbImgUrl, 300)}
-                                                    alt={fish.japaneseName}
-                                                    width={300}
-                                                    height={200}
-                                                    style={{objectFit:"contain"}}
-                                                    unoptimized
-                                                />
-                                            ) : (
-                                                <div className="bg-gray-200 rounded" style={{width: '300px', height: '200px'}}></div>
-                                            )}
-                                            <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">
-                                                {getJapaneseName(fish)}
-                                            </h2>
-                                        </Link>
-                                    </div>
-                                ))
-                            ) : (
-                                <p className="p-4 text-center text-sm text-gray-500">該当する魚種は見つかりませんでした。</p>
-                            )}
                         </div>
-                    </div>
-                )}
+                    )}
+
+                    {/* 検索結果リスト (検索ワード または フィルターがある時のみ表示) */}
+                    {(searchTerm || selectedMonth.length > 0 || selectedDepth.length > 0) && (
+                        <>
+                            <h2 className="pb-2 text-lg font-bold text-gray-700 mb-4 text-center">
+                                検索結果 : {searchResults.length}種
+                            </h2>
+
+                            <div className="flex flex-wrap justify-center">
+                                {searchResults.length > 0 ? (
+                                    searchResults.map(fish => (
+                                        <div key={fish.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
+                                            <Link href={`/fish/${fish.class}/${fish.latinName}`.replace(" ", "_")}>
+                                                {fish.thumbImgUrl ? (
+                                                    <Image
+                                                        src={getOptimizedMicroCMSImage(fish.thumbImgUrl, 300)}
+                                                        alt={fish.japaneseName}
+                                                        width={300}
+                                                        height={200}
+                                                        style={{ objectFit: "contain" }}
+                                                        unoptimized
+                                                    />
+                                                ) : (
+                                                    <div className="bg-gray-200 rounded" style={{ width: '300px', height: '200px' }}></div>
+                                                )}
+                                                <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">
+                                                    {getJapaneseName(fish)}
+                                                </h2>
+                                            </Link>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <p className="p-4 text-center text-sm text-gray-500">該当する魚種は見つかりませんでした。</p>
+                                )}
+                            </div>
+                        </>
+                    )}
+                </div>
             </div>
         </Layout>
     );
