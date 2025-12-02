@@ -518,7 +518,7 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                 </h1>
 
                 <p className="pb-8 text-sm text-center text-gray-500 font-medium">
-                    現在のデータ数: {allRecords.length}件
+                    現在のデータ数 : {allRecords.length}件
                 </p>
 
                 <div className="max-w-xl mx-auto md:max-w-5xl mb-10 p-5 bg-white rounded-lg shadow-xl md:grid md:grid-cols-3 md:gap-8">                    {/* --- 左カラム (ポイント + 地図) --- */}
