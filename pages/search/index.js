@@ -517,7 +517,7 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                     データベースから検索
                 </h1>
 
-                <p className="pb-8 text-sm text-center text-gray-500 font-medium">
+                <p className="pb-8 text-sm text-center text-gray-700 font-medium">
                     現在のデータ数 : {allRecords.length}件
                 </p>
 
