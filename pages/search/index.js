@@ -131,7 +131,6 @@ export const getStaticProps = async () => {
     return {
         props: {
             allRecords: allRecords,
-            // locationMap: finalLocationMap,
             speciesLookup: allFishData.map(f => ({
                 id: f.id,
                 japaneseName: f.japaneseName,
@@ -153,6 +152,62 @@ const LocationMap = dynamic(
     ssr: false
   }
 );
+
+// --- グラフ表示用のシンプルコンポーネント ---
+const SimpleBarChart = ({
+    data, title, xKey, yKey, labelKey,
+    height = 150, barWidth = "w-3 md:w-5",
+    onBarClick, selectedValues = []
+}) => {
+    if (!data || data.length === 0) return null;
+    const maxVal = Math.max(...data.map(d => d[yKey])) || 1;
+
+    return (
+        <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 w-full">
+            <h3 className="text-sm font-bold text-gray-700 mb-4 text-center">{title}</h3>
+
+            <div className="flex items-end justify-between gap-1 border-b border-gray-300 pb-0 pt-5" style={{ height: `${height}px` }}>
+                {data.map((d, i) => {
+                    const barHeight = Math.max((d[yKey] / maxVal) * 100, 0);
+                    const isSelected = selectedValues.length === 0 || selectedValues.includes(d.value);
+                    const opacityClass = isSelected ? 'opacity-100 hover:opacity-80' : 'opacity-30 hover:opacity-60';
+
+                    return (
+                        <div
+                            key={i}
+                            className="flex flex-col items-center justify-end flex-1 h-full min-w-0 cursor-pointer"
+                            onClick={() => onBarClick && onBarClick(d.value)}
+                        >
+                            <div
+                                className={`${barWidth} bg-sky-400 rounded-t-md transition-all duration-200 ${opacityClass} relative`}
+                                style={{ height: `${barHeight}%` }}
+                            >
+                                {d[yKey] > 0 && (
+                                    <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-0.5 text-[9px] text-gray-500 font-medium whitespace-nowrap">
+                                        {d[yKey]}
+                                    </span>
+                                )}
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
+
+            <div className="flex justify-between gap-1 mt-2">
+                 {data.map((d, i) => {
+                    const isSelected = selectedValues.length === 0 || selectedValues.includes(d.value);
+                    return (
+                        <div key={i} className={`flex-1 flex justify-center min-w-0 cursor-pointer ${isSelected ? 'opacity-100' : 'opacity-50'}`} onClick={() => onBarClick && onBarClick(d.value)}>
+                            <div className="text-[9px] md:text-[10px] text-gray-500 font-medium whitespace-nowrap w-full text-center">
+                                {d[labelKey]}
+                            </div>
+                        </div>
+                    );
+                 })}
+            </div>
+        </div>
+    );
+};
 
 export default function LocationSearchPage({ allRecords, speciesLookup, mapMarkers }) {
     // --- パスワード認証 State ---
@@ -197,7 +252,6 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
     // }, [searchTerm, selectedMonth, selectedDepth, isAuthenticated]); // フィルター値が変わるたびに実行
 
     useEffect(() => {
-        // (認証チェック削除) 無条件で復元を試みる
         const savedTerm = sessionStorage.getItem('searchTerm');
         const savedMonth = sessionStorage.getItem('selectedMonth');
         const savedDepth = sessionStorage.getItem('selectedDepth');
@@ -214,7 +268,6 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
     }, []);
 
     useEffect(() => {
-        // (認証チェック削除) 無条件で保存
         sessionStorage.setItem('searchTerm', searchTerm);
         sessionStorage.setItem('selectedMonth', JSON.stringify(selectedMonth));
         sessionStorage.setItem('selectedDepth', JSON.stringify(selectedDepth));
@@ -222,15 +275,15 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
 
     // --- フィルター用データ ---
     const months = useMemo(() => Array.from({ length: 12 }, (_, i) => (i + 1).toString()), []);
-    const depthRanges = [
-        { key: 'depth1', label: '超浅場 (1m以浅)' },
-        { key: 'depth2', label: '浅場 (1-10m)' },
-        { key: 'depth3', label: '標準 (10-30m)' },
-        { key: 'depth4', label: '深場 (30-40m+)' },
-        { key: 'depth5', label: '超深場 (40m+以深)' },
-    ];
+    const depthRanges = useMemo(() => [
+        { key: 'depth1', label: '超浅場', fullLabel: '超浅場 (1m以浅)' },
+        { key: 'depth2', label: '浅場', fullLabel: '浅場 (1-10m)' },
+        { key: 'depth3', label: '標準', fullLabel: '標準 (10-30m)' },
+        { key: 'depth4', label: '深場', fullLabel: '深場 (30-40m+)' },
+        { key: 'depth5', label: '超深場', fullLabel: '超深場 (40m+以深)' },
+    ], []);
 
-    // --- 種IDと種名のマッピング (高速化用) ---
+    // --- 種IDと種名のマッピング ---
     const speciesMap = useMemo(() => {
         return speciesLookup.reduce((acc, species) => {
             acc[species.id] = species;
@@ -254,7 +307,48 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
         setState(newSelection);
     };
 
-    // --- 検索ロジック (useMemo) - allRecords を使用 ---
+    // --- 選択された場所の統計データ計算 (グラフ用) ---
+    const locationStats = useMemo(() => {
+        if (!searchTerm) return null;
+
+        const lowerTerm = searchTerm.toLowerCase();
+        const locRecords = allRecords.filter(record => record.loc && record.loc.includes(lowerTerm));
+
+        if (locRecords.length === 0) return null;
+
+        const monthMap = {};
+        months.forEach(m => monthMap[m] = new Set());
+
+        const depthMap = {};
+        depthRanges.forEach(d => depthMap[d.key] = new Set());
+
+        locRecords.forEach(r => {
+            if (r.month && monthMap[r.month]) {
+                monthMap[r.month].add(r.id);
+            }
+            if (r.depth && depthMap[r.depth]) {
+                depthMap[r.depth].add(r.id);
+            }
+        });
+
+        const monthData = months.map(m => ({
+            label: `${m}月`,
+            count: monthMap[m].size,
+            value: m
+        }));
+
+        const depthData = depthRanges.map(d => ({
+            label: d.label,
+            count: depthMap[d.key].size,
+            value: d.key
+        }));
+
+        return { monthData, depthData };
+
+    }, [searchTerm, allRecords, months, depthRanges]);
+
+
+    // --- 検索ロジック ---
     const searchResults = useMemo(() => {
         const isFilterApplied = searchTerm || selectedMonth.length > 0 || selectedDepth.length > 0;
         if (!isFilterApplied) return [];
@@ -275,16 +369,14 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
         });
 
         const finalIds = new Set(filteredRecords.map(record => record.id));
-
         const results = Array.from(finalIds)
             .map(id => speciesMap[id])
             .filter(Boolean);
 
         return results.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName, "ja"));
-
     }, [searchTerm, selectedMonth, selectedDepth, allRecords, speciesMap]);
 
-    // --- マップの動的フィルタリング (useMemo) - allRecords を使用 ---
+    // --- マップ用データ生成 ---
     const filteredMapMarkers = useMemo(() => {
         const isDateDepthFilterApplied = selectedMonth.length > 0 || selectedDepth.length > 0;
         const dynamicLocationMap = {};
@@ -309,7 +401,6 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
         const newMapMarkers = [];
         for (const marker of mapMarkers) {
              const locationNameLower = marker.location.toLowerCase();
-
              let speciesCount = marker.speciesCount;
              let speciesIds = marker.speciesIds;
 
@@ -319,9 +410,13 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                      speciesCount = ids.length;
                      speciesIds = ids;
                  } else {
-                     continue;
+                     speciesCount = 0; // 0件の場合は表示しない、あるいは0として扱う
                  }
              }
+
+             // isDateDepthFilterAppliedがtrueでcount0なら、ピン自体を表示しないロジックの場合
+             if (isDateDepthFilterApplied && speciesCount === 0) continue;
+
              const isMatch = !searchTerm || locationNameLower.includes(lowerTerm);
 
              newMapMarkers.push({
@@ -335,9 +430,7 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
 
     }, [searchTerm, selectedMonth, selectedDepth, allRecords, mapMarkers]);
 
-    const mapKey = useMemo(() => {
-        return "map-view";
-    }, []);
+    const mapKey = useMemo(() => "map-view", []);
 
     const defaultCenter = [35.6809591, 139.7673068]; // 日本の中心（初期値）
     const defaultZoom = 4;
@@ -358,7 +451,7 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
         };
     }, [searchTerm, isMapClick]);
 
-    // --- イベントハンドラ ---
+        // --- イベントハンドラ ---
     const handleMarkerClick = (locationName) => {
         setIsMapClick(true);
         if (searchTerm === locationName) {
@@ -415,7 +508,6 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
     // --- 認証後の通常のページ表示 ---
     return (
         <Layout title="Map | 僕らむの魚図鑑" description="撮影場所・水深から魚種を検索できます" url="https://www.my-divingram.com/search" imageUrl="https://www.my-divingram.com/img/logo/favicon_small.jpg">
-
             <Head>
                 <meta name="robots" content="noindex" />
             </Head>
@@ -480,12 +572,7 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                             onClick={() => setIsMobileFilterOpen(!isMobileFilterOpen)}
                             className="md:hidden w-full p-3 mb-4 text-sm font-medium text-gray-600 rounded-lg flex justify-start items-center hover:bg-gray-100 transition-colors"
                         >
-                            <svg
-                                className={`w-5 h-5 transition-transform ${isMobileFilterOpen ? 'rotate-180' : ''}`}
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                            >
+                            <svg className={`w-5 h-5 transition-transform ${isMobileFilterOpen ? 'rotate-180' : ''}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                 <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                             </svg>
                             <span className="ml-2">撮影月 または 水深 でフィルタリング</span>
@@ -497,30 +584,9 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                             <div className="mb-6">
                                 <label className="block text-sm font-medium text-gray-700 mb-2">撮影月</label>
                                 <div className="flex flex-wrap gap-2">
-                                    <button
-                                        type="button"
-                                        onClick={() => handleFilterToggle("All", selectedMonth, setSelectedMonth)}
-                                        className={`px-3 py-2 text-sm font-medium rounded-full shadow-sm ${
-                                            selectedMonth.length === 0
-                                                ? 'bg-sky-600 text-white'
-                                                : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
-                                        }`}
-                                    >
-                                        All
-                                    </button>
+                                    <button type="button" onClick={() => handleFilterToggle("All", selectedMonth, setSelectedMonth)} className={`px-3 py-2 text-sm font-medium rounded-full shadow-sm ${selectedMonth.length === 0 ? 'bg-sky-600 text-white' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'}`}>All</button>
                                     {months.map(m => (
-                                        <button
-                                            key={m}
-                                            type="button"
-                                            onClick={() => handleFilterToggle(m, selectedMonth, setSelectedMonth)}
-                                            className={`px-3 py-2 text-sm font-medium rounded-full shadow-sm ${
-                                                selectedMonth.includes(m)
-                                                    ? 'bg-sky-600 text-white'
-                                                    : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
-                                            }`}
-                                        >
-                                            {m}月
-                                        </button>
+                                        <button key={m} type="button" onClick={() => handleFilterToggle(m, selectedMonth, setSelectedMonth)} className={`px-3 py-2 text-sm font-medium rounded-full shadow-sm ${selectedMonth.includes(m) ? 'bg-sky-600 text-white' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'}`}>{m}月</button>
                                     ))}
                                 </div>
                             </div>
@@ -529,30 +595,9 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                             <div className="mb-6">
                                 <label className="block text-sm font-medium text-gray-700 mb-2">水深</label>
                                 <div className="flex flex-wrap gap-2">
-                                    <button
-                                        type="button"
-                                        onClick={() => handleFilterToggle("All", selectedDepth, setSelectedDepth)}
-                                        className={`px-4 py-2 text-sm font-medium rounded-full shadow-sm ${
-                                            selectedDepth.length === 0
-                                                ? 'bg-sky-600 text-white'
-                                                : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
-                                        }`}
-                                    >
-                                        All
-                                    </button>
+                                    <button type="button" onClick={() => handleFilterToggle("All", selectedDepth, setSelectedDepth)} className={`px-4 py-2 text-sm font-medium rounded-full shadow-sm ${selectedDepth.length === 0 ? 'bg-sky-600 text-white' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'}`}>All</button>
                                     {depthRanges.map(range => (
-                                        <button
-                                            key={range.key}
-                                            type="button"
-                                            onClick={() => handleFilterToggle(range.key, selectedDepth, setSelectedDepth)}
-                                            className={`px-4 py-2 text-sm font-medium rounded-full shadow-sm ${
-                                                selectedDepth.includes(range.key)
-                                                    ? 'bg-sky-600 text-white'
-                                                    : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
-                                            }`}
-                                        >
-                                            {range.label}
-                                        </button>
+                                        <button key={range.key} type="button" onClick={() => handleFilterToggle(range.key, selectedDepth, setSelectedDepth)} className={`px-4 py-2 text-sm font-medium rounded-full shadow-sm ${selectedDepth.includes(range.key) ? 'bg-sky-600 text-white' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'}`}>{range.fullLabel}</button>
                                     ))}
                                 </div>
                             </div>
@@ -563,17 +608,45 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                 {/* 検索結果 (サムネイル付き) */}
                 {(searchTerm || selectedMonth.length > 0 || selectedDepth.length > 0) && (
                     <div className="pt-2">
+
+                        {/* グラフ表示エリア (ポイント選択時のみ) */}
+                        {locationStats && (
+                            <div className="max-w-xl mx-auto md:max-w-5xl mb-8">
+                                <h2 className="text-lg font-bold text-gray-700 mb-7 text-center">
+                                    {searchTerm}の撮影魚種分布
+                                </h2>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <SimpleBarChart
+                                        data={locationStats.monthData}
+                                        title="撮影月"
+                                        yKey="count"
+                                        labelKey="label"
+                                        barWidth="w-3 md:w-5"
+                                        onBarClick={(val) => handleFilterToggle(val, selectedMonth, setSelectedMonth)}
+                                        selectedValues={selectedMonth}
+                                    />
+                                    <SimpleBarChart
+                                        data={locationStats.depthData}
+                                        title="水深"
+                                        yKey="count"
+                                        labelKey="label"
+                                        barWidth="w-8 md:w-12"
+                                        onBarClick={(val) => handleFilterToggle(val, selectedDepth, setSelectedDepth)}
+                                        selectedValues={selectedDepth}
+                                    />
+                                </div>
+                            </div>
+                        )}
+
                         <h2 className="pb-2 text-lg font-bold text-gray-700 mb-4 text-center">
-                            検索結果: {searchResults.length}種
+                            検索結果 : {searchResults.length}種
                         </h2>
 
                         <div className="flex flex-wrap justify-center">
                             {searchResults.length > 0 ? (
                                 searchResults.map(fish => (
                                     <div key={fish.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
-                                        <Link
-                                            href={`/fish/${fish.class}/${fish.latinName}`.replace(" ", "_")}
-                                        >
+                                        <Link href={`/fish/${fish.class}/${fish.latinName}`.replace(" ", "_")}>
                                             {fish.thumbImgUrl ? (
                                                 <Image
                                                     src={getOptimizedMicroCMSImage(fish.thumbImgUrl, 300)}
@@ -584,10 +657,7 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                                                     unoptimized
                                                 />
                                             ) : (
-                                                <div
-                                                    className="bg-gray-200 rounded"
-                                                    style={{width: '300px', height: '200px'}}
-                                                ></div>
+                                                <div className="bg-gray-200 rounded" style={{width: '300px', height: '200px'}}></div>
                                             )}
                                             <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">
                                                 {getJapaneseName(fish)}
