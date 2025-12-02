@@ -513,10 +513,15 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
             </Head>
 
             <div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans min-h-screen">
-                <h1 className="pt-10 pb-5 text-xl md:text-2xl text-center text-sky-800 font-black">データベースから検索</h1>
+                <h1 className="pt-10 pb-2 text-xl md:text-2xl text-center text-sky-800 font-black">
+                    データベースから検索
+                </h1>
 
-                <div className="max-w-xl mx-auto md:max-w-5xl mb-10 p-5 bg-white rounded-lg shadow-xl md:grid md:grid-cols-3 md:gap-8">
-                    {/* --- 左カラム (ポイント + 地図) --- */}
+                <p className="pb-8 text-sm text-center text-gray-500 font-medium">
+                    現在のデータ数: {allRecords.length}件
+                </p>
+
+                <div className="max-w-xl mx-auto md:max-w-5xl mb-10 p-5 bg-white rounded-lg shadow-xl md:grid md:grid-cols-3 md:gap-8">                    {/* --- 左カラム (ポイント + 地図) --- */}
                     <div className="md:col-span-2 flex flex-col">
 
                         {/* ポイント (場所名) */}
