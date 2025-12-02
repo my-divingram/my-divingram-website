@@ -59,16 +59,16 @@ function Home({data_fish, data_blog}) {
                             <h2 className="py-3 text-lg md:text-xl text-center text-gray-700 font-medium">僕らむの魚図鑑</h2>
                         </Link>
                     </div>
+                    <div className="pt-5 px-10 md:px-0 flex justify-center items-center hover:opacity-80">
+                        <Link href="https://www.my-divingram.com/blog/ewm3zlrgu3h">
+                            <Image src="/img/book/seaslug.png" alt="seaslug" width={360} height={240} style={{objectFit:"contain"}}/>
+                            <h2 className="py-3 text-lg md:text-xl text-center text-gray-700 font-medium">僕らむのウミウシ図鑑</h2>
+                        </Link>
+                    </div>
                     {/* <div className="px-10 md:px-0 flex justify-center items-center hover:opacity-80">
                         <Link href="crustacean">
                             <Image src="/img/book/crustacean.png" alt="crustacean" width={300} height={200} style={{objectFit:"contain"}}/>
                             <h2 className="py-3 text-lg md:text-xl text-center text-gray-700 font-medium">甲殻類図鑑・その他</h2>
-                        </Link>
-                    </div>
-                    <div className="px-10 md:px-0 flex justify-center items-center hover:opacity-80">
-                        <Link href="seaslug">
-                            <Image src="/img/book/seaslug.png" alt="seaslug" width={300} height={200} style={{objectFit:"contain"}}/>
-                            <h2 className="py-3 text-lg md:text-xl text-center text-gray-700 font-medium">ウミウシ図鑑</h2>
                         </Link>
                     </div> */}
                 </div>
