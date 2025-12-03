@@ -110,7 +110,7 @@ function Home({data_fish, data_blog}) {
                     <h1 className="text-xl md:text-2xl text-center text-sky-800 font-black mb-2">BLOG</h1>
                     <p className="text-xs text-center text-gray-500 mb-8 tracking-wider">最新のダイビングログ・コラム</p>
 
-                    <div className="flex flex-col md:flex-row justify-center items-center gap-6 px-2 md:px-0">
+                    <div className="flex flex-col md:flex-row justify-center items-center gap-6 px-10 md:px-0">
                         {data_blog.map((data) => (
                             <Link key={data.id} href={`/blog/${data.id}`} className="group h-full w-full max-w-[360px]">
                                 <article className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 h-full flex flex-col border border-gray-100 transform hover:-translate-y-1">

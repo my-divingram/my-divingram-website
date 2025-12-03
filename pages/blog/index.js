@@ -29,7 +29,7 @@ function Home({data_blog}) {
                 </div>
 
                 {/* 記事一覧エリア */}
-                <div className="px-4 md:px-10 max-w-7xl mx-auto">
+                <div className="px-10 md:px-20 max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {data_blog.map((data) => (
                             <Link key={data.id} href={`/blog/${data.id}`} className="group h-full w-full max-w-[360px] mx-auto">
