@@ -64,8 +64,8 @@ function Home({data_fish, data_blog}) {
 
             <div className="px-5 md:px-20">
 
-                <h1 className="pt-10 pb-3 text-xl md:text-2xl text-center text-sky-800 font-black">Recent Updates</h1>
-                <p className="pb-5 text-sm md:text-lg text-center text-gray-700 font-medium">Last Updated : {data_fish[0].updatedAt.substr(0,10)}</p>
+                <h1 className="pt-10 mb-2 text-xl md:text-2xl text-center text-sky-800 font-black">Photo Gallery</h1>
+                <p className="text-xs text-center text-gray-500 mb-8 tracking-wider">Last Updated : {data_fish[0].updatedAt.substr(0,10)}</p>
 
                 <Splide options={{type:"loop", gap:"24px", drag:"free", perPage:10, breakpoints:{640:{perPage:3}}, autoScroll:{pauseOnHover:true, pauseOnFocus:false, rewind:false, speed:0.3}}} extensions={{AutoScroll}}>
                     {data_fish.map((data) => (
@@ -81,7 +81,8 @@ function Home({data_fish, data_blog}) {
                 </Splide>
 
 
-                <h1 className="pt-10 pb-6 text-xl md:text-2xl text-center text-sky-800 font-black">水中生物図鑑</h1>
+                <h1 className="pt-10 mb-2 text-xl md:text-2xl text-center text-sky-800 font-black">水中生物図鑑</h1>
+                <p className="text-xs text-center text-gray-500 mb-8 tracking-wider">海や河川で出会った生き物たち</p>
 
                 <div className="md:flex md:space-x-5 justify-center">
                     <div className="pb-2 px-10 md:px-0 flex justify-center items-center hover:opacity-80">
@@ -105,27 +106,57 @@ function Home({data_fish, data_blog}) {
                 </div>
 
 
-                <h1 className="pt-8 pb-6 text-xl md:text-2xl text-center text-sky-800 font-black">BLOG</h1>
-                <p className="mb-3 text-xs md:text-base text-center text-gray-700 font-medium">他の記事は<Link href="/blog" className="hover:opacity-50 underline">こちら</Link></p>
-                <div className="grid grid-cols-1 md:grid-cols-3 px-15">
-                    {data_blog.map((data) => (
-                        <Link key={data.id} href={`/blog/${data.id}`}>
-                            <div className="px-5 py-2">
-                                <div className="hover:opacity-80 text-center items-center bg-white px-5 py-5 rounded-xl">
-                                    <p className="pt-1 pb-1 text-base md:text-xl text-center text-gray-700 font-black">{data.title}</p>
-                                    <p className="pb-2 text-sm md:text-base text-center text-gray-700">{data.publishedAt.substr(0,10)}</p>
-                                    <div className="flex space-x-3 justify-center items-center">
-                                        <Image src={getOptimizedMicroCMSImage(data.thumbnail.url, 120)} alt={data.title} width={120} height={80} style={{objectFit:"contain"}}/>
-                                        <p className="text-xs md:text-sm text-center text-gray-700">{data.abstruct.substr(0,75)}…</p>
+                <div className="pt-10 pb-8">
+                    <h1 className="text-xl md:text-2xl text-center text-sky-800 font-black mb-2">BLOG</h1>
+                    <p className="text-xs text-center text-gray-500 mb-8 tracking-wider">最新のダイビングログ・コラム</p>
+
+                    <div className="flex flex-col md:flex-row justify-center items-center gap-6 px-2 md:px-0">
+                        {data_blog.map((data) => (
+                            <Link key={data.id} href={`/blog/${data.id}`} className="group h-full w-full max-w-[360px]">
+                                <article className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 h-full flex flex-col border border-gray-100 transform hover:-translate-y-1">
+                                    {/* サムネイル画像エリア */}
+                                    <div className="relative aspect-video overflow-hidden">
+                                        <Image
+                                            src={getOptimizedMicroCMSImage(data.thumbnail.url, 600)}
+                                            alt={data.title}
+                                            width={600}
+                                            height={400}
+                                            className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
+                                        />
+                                        {/* 日付バッジ */}
+                                        <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-sky-700 shadow-sm">
+                                            {data.publishedAt.substr(0,10).replace(/-/g, '.')}
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
+                                    {/* テキストエリア */}
+                                    <div className="p-5 flex flex-col flex-grow">
+                                        <h2 className="text-base md:text-lg font-bold text-gray-800 mb-3 line-clamp-2 group-hover:text-sky-700 transition-colors">
+                                            {data.title}
+                                        </h2>
+                                        <p className="text-xs md:text-sm text-gray-500 line-clamp-3 mb-4 flex-grow leading-relaxed">
+                                            {data.abstruct}
+                                        </p>
+                                        <div className="flex items-center text-sky-600 text-xs md:text-sm font-bold mt-auto group/btn">
+                                            <span>READ MORE</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 ml-1 transition-transform duration-300 group-hover/btn:translate-x-1">
+                                                <path fillRule="evenodd" d="M16.72 7.72a.75.75 0 011.06 0l3.75 3.75a.75.75 0 010 1.06l-3.75 3.75a.75.75 0 11-1.06-1.06l2.47-2.47H3a.75.75 0 010-1.5h16.19l-2.47-2.47a.75.75 0 010-1.06z" clipRule="evenodd" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </article>
+                            </Link>
+                        ))}
+                    </div>
+                    <div className="mt-10 text-center">
+                        <Link href="/blog" className="inline-block px-8 py-3 rounded-full border border-sky-600 text-sky-600 font-bold text-sm hover:bg-sky-600 hover:text-white transition-all duration-300">
+                            記事一覧を見る
                         </Link>
-                    ))}
+                    </div>
                 </div>
 
 
-                <h1 className="pt-10 pb-6 text-xl md:text-2xl text-center text-sky-800 font-black" id="youtube">YouTube</h1>
+                <h1 className="pt-6 mb-2 text-xl md:text-2xl text-center text-sky-800 font-black" id="youtube">YouTube</h1>
+                <p className="text-xs text-center text-gray-500 mb-8 tracking-wider">気まぐれで水中映像を紹介</p>
                 <div className="pb-2 flex justify-center">
                     <Splide options={{rewind:true, width:400, height:200, pagination:true,}}>
                         <SplideSlide>
@@ -142,7 +173,7 @@ function Home({data_fish, data_blog}) {
                 </div>
 
 
-                <h1 className="pt-6 pb-8 text-xl md:text-2xl text-center text-sky-800 font-black" id="contact">CONTACT</h1>
+                <h1 className="pt-6 pb-4 text-xl md:text-2xl text-center text-sky-800 font-black" id="contact">CONTACT</h1>
 
                 <div className="max-w-xl mx-auto mb-4">
                     <button
@@ -159,7 +190,7 @@ function Home({data_fish, data_blog}) {
                         </div>
 
                         <span className="pt-1 text-xs font-normal text-gray-700 text-center">
-                            写真提供のご依頼や誤同定のご指摘など，メールまたはSNSのDMでお気軽にご連絡ください
+                            写真提供のご依頼や誤同定のご指摘など，お気軽にご連絡ください
                         </span>
 
                         <svg
@@ -221,17 +252,22 @@ function Home({data_fish, data_blog}) {
                                     </button>
                                 </div>
 
-                                <div className="pt-6 border-t border-gray-100 flex justify-center space-x-8">
-                                    <Link href="https://www.instagram.com/my_divingram" className="group flex flex-col items-center">
-                                        <svg fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6 text-sky-600 group-hover:text-sky-800 transition-colors">
-                                            <path fillRule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.451 2.53c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clipRule="evenodd" />
-                                        </svg>
-                                    </Link>
-                                    <Link href="https://twitter.com/my_divingram" className="group flex flex-col items-center">
-                                        <svg fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6 text-sky-600 group-hover:text-sky-800 transition-colors">
-                                            <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                                        </svg>
-                                    </Link>
+                                <div className="pt-6 border-t border-gray-100">
+                                    <p className="text-xs text-center text-gray-700 mb-4">
+                                        SNS (Instagram, Twitter) のDirect Messageからもご連絡いただけます
+                                    </p>
+                                    <div className="flex justify-center space-x-8">
+                                        <Link href="https://www.instagram.com/my_divingram" className="group flex flex-col items-center">
+                                            <svg fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6 text-sky-600 group-hover:text-sky-800 transition-colors">
+                                                <path fillRule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.451 2.53c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clipRule="evenodd" />
+                                            </svg>
+                                        </Link>
+                                        <Link href="https://twitter.com/my_divingram" className="group flex flex-col items-center">
+                                            <svg fill="currentColor" viewBox="0 0 24 24" className="w-6 h-6 text-sky-600 group-hover:text-sky-800 transition-colors">
+                                                <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                                            </svg>
+                                        </Link>
+                                    </div>
                                 </div>
                             </form>
                         )}
