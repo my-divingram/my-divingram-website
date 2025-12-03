@@ -4,6 +4,8 @@ import Layout from "/components/Layout";
 import { Species } from "@/components/Species";
 import { fetchAllPages } from "/libs/fetch_all_pages";
 import { categoryList } from "/constants/categories";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 /**
  * microCMSから取得した latinName を表示用に整形する
@@ -12,16 +14,8 @@ import { categoryList } from "/constants/categories";
  */
 function formatLatinNameForDisplay(latinName) {
     if (!latinName) return "";
-
     let display = latinName;
-
-    // ルール2: "sp.-1" -> "sp.1" (ハイフンを削除)
-    // (例: "Abc sp.-1" -> "Abc sp.1")
     display = display.replace(/(sp\.)-(\d+)/g, 'sp.$2');
-
-    // ルール1: "sp" で終わる -> "sp." (ドットを追加)
-    // (例: "Abc sp" -> "Abc sp.")
-    // (注: 既に "sp." の場合は何もしない)
     if (display.endsWith('sp') && !display.endsWith('.sp')) {
         display = display + '.';
     }
@@ -105,6 +99,22 @@ export default function IndividualPage({pagedata}){
             }
         ]
     };
+
+    const router = useRouter();
+
+    useEffect(() => {
+        if (router.isReady) {
+            const currentPath = router.asPath.split('?')[0];
+            fetch('/api/view', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    path: currentPath,
+                    japaneseName: pagedata ? pagedata.japaneseName : null
+                }),
+            }).catch(err => console.error(err));
+        }
+    }, [router.isReady, router.asPath, pagedata]);
 
     return (
         <Layout title={title} description={description} url={url} imageUrl={pagedata.thumbImg.url}>

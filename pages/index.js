@@ -32,6 +32,25 @@ function Home({data_fish, data_blog}) {
     const [formStatus, setFormStatus] = useState('idle');
     const [isContactOpen, setIsContactOpen] = useState(false);
 
+    // ▼ 人気の魚データ用ステート
+    const [popularFish, setPopularFish] = useState([]);
+
+    // ▼ APIからデータを取得
+    useEffect(() => {
+        const fetchPopularFish = async () => {
+            try {
+                const res = await fetch('/api/popular-fish');
+                if (res.ok) {
+                    const data = await res.json();
+                    setPopularFish(data);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchPopularFish();
+    }, []);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setFormStatus('loading');
@@ -80,6 +99,62 @@ function Home({data_fish, data_blog}) {
                     ))}
                 </Splide>
 
+                {popularFish.length > 0 && (
+                    <div className="pt-10 mb-8">
+                        <h1 className="text-xl md:text-2xl text-center text-sky-800 font-black mb-2">TREND</h1>
+                        <p className="text-xs text-center text-gray-500 mb-6 tracking-wider">本日のアクセスランキング</p>
+
+                        <div className="flex flex-col md:flex-row justify-center items-center md:items-start gap-6 px-10 md:px-0">
+                            {[0, 1].map((colIndex) => {
+                                const half = Math.ceil(popularFish.length / 2);
+                                const columnData = colIndex === 0
+                                    ? popularFish.slice(0, half)
+                                    : popularFish.slice(half);
+
+                                return (
+                                    <div key={colIndex} className="flex flex-col gap-3 w-full max-w-[360px]">
+                                        {columnData.map((fish, i) => {
+                                            const rank = colIndex === 0 ? i + 1 : i + 1 + half;
+
+                                            let badgeColor = "bg-gray-100 text-gray-500 border-gray-100";
+                                            if (rank === 1) badgeColor = "bg-yellow-400 text-white border-yellow-400 shadow-sm"; 
+                                            if (rank === 2) badgeColor = "bg-gray-400 text-white border-gray-400 shadow-sm";
+                                            if (rank === 3) badgeColor = "bg-orange-400 text-white border-orange-400 shadow-sm";
+
+                                            return (
+                                                <Link key={fish.path} href={fish.path}>
+                                                    <div className="flex items-center justify-between p-3 bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-sky-200 transition-all group cursor-pointer h-full">
+                                                        <div className="flex items-center gap-3 overflow-hidden w-full">
+                                                            <span className={`
+                                                                flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full text-sm font-black border-2
+                                                                ${badgeColor}
+                                                            `}>
+                                                                {rank}
+                                                            </span>
+                                                            <div className="flex flex-col min-w-0 flex-1">
+                                                                <span className="text-sm font-bold text-gray-700 group-hover:text-sky-700 truncate block">
+                                                                    {fish.japaneseName || fish.latinName}
+                                                                </span>
+                                                                {fish.japaneseName && (
+                                                                    <span className="text-xs text-gray-400 italic font-mono truncate block">
+                                                                        {fish.latinName}
+                                                                    </span>
+                                                                )}
+                                                            </div>
+                                                        </div>
+                                                        <div className="text-xs text-gray-400 whitespace-nowrap ml-2 pl-2 border-l border-gray-100 flex-shrink-0">
+                                                            {fish.views} <span className="text-[10px]">views</span>
+                                                        </div>
+                                                    </div>
+                                                </Link>
+                                            );
+                                        })}
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </div>
+                )}
 
                 <h1 className="pt-10 mb-2 text-xl md:text-2xl text-center text-sky-800 font-black">水中生物図鑑</h1>
                 <p className="text-xs text-center text-gray-500 mb-8 tracking-wider">海や河川で出会った生き物たち</p>
