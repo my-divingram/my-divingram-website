@@ -157,13 +157,30 @@ const LocationMap = dynamic(
 const SimpleBarChart = ({
     data, title, xKey, yKey, labelKey,
     height = 150, barWidth = "w-3 md:w-5",
-    onBarClick, selectedValues = []
+    onBarClick, selectedValues = [],
+    onClear
 }) => {
     if (!data || data.length === 0) return null;
     const maxVal = Math.max(...data.map(d => d[yKey])) || 1;
 
     return (
-        <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 w-full">
+        <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 w-full relative">
+            {selectedValues.length > 0 && onClear && (
+                <button
+                    type="button"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onClear();
+                    }}
+                    className="absolute top-2 right-2 p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-full hover:bg-gray-50"
+                    title="選択を解除"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+                        <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clipRule="evenodd" />
+                    </svg>
+                </button>
+            )}
+
             <h3 className="text-sm font-bold text-gray-700 mb-4 text-center">{title}</h3>
 
             <div className="flex items-end justify-between gap-1 border-b border-gray-300 pb-0 pt-5" style={{ height: `${height}px` }}>
@@ -631,6 +648,7 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                                     barWidth="w-3 md:w-5"
                                     onBarClick={(val) => handleFilterToggle(val, selectedMonth, setSelectedMonth)}
                                     selectedValues={selectedMonth}
+                                    onClear={() => setSelectedMonth([])}
                                 />
                                 <SimpleBarChart
                                     data={locationStats.depthData}
@@ -640,6 +658,7 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                                     barWidth="w-8 md:w-12"
                                     onBarClick={(val) => handleFilterToggle(val, selectedDepth, setSelectedDepth)}
                                     selectedValues={selectedDepth}
+                                    onClear={() => setSelectedDepth([])}
                                 />
                             </div>
                         </div>
