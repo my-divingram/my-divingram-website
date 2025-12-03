@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useMemo, useEffect } from "react";
 import dynamic from 'next/dynamic';
+import { useRouter } from "next/router";
 import { locationData } from "/constants/locations";
 import { getOptimizedMicroCMSImage, getJapaneseName } from "/libs/utils";
 
@@ -239,6 +240,8 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
     // const [error, setError] = useState("");
     // const CORRECT_PASSWORD = "genicanthus";
 
+    const router = useRouter();
+
     // --- 検索フィルター State (複数選択対応) ---
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedMonth, setSelectedMonth] = useState([]);
@@ -289,6 +292,30 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
             setSelectedDepth(JSON.parse(savedDepth));
         }
     }, []);
+
+    useEffect(() => {
+        // ページ離脱時にスクロール位置を保存する関数
+        const saveScrollPosition = () => {
+            sessionStorage.setItem("scrollPosition", window.scrollY.toString());
+        };
+
+        // イベントリスナー登録 (ページ遷移開始時に実行)
+        router.events.on("routeChangeStart", saveScrollPosition);
+
+        // マウント時にスクロール位置を復元
+        const savedPosition = sessionStorage.getItem("scrollPosition");
+        if (savedPosition) {
+            // フィルター適用や描画の反映を待つため、わずかに遅延させる
+            setTimeout(() => {
+                window.scrollTo(0, parseFloat(savedPosition));
+            }, 100);
+        }
+
+        // クリーンアップ
+        return () => {
+            router.events.off("routeChangeStart", saveScrollPosition);
+        };
+    }, [router]);
 
     useEffect(() => {
         sessionStorage.setItem('searchTerm', searchTerm);
