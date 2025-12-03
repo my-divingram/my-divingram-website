@@ -117,7 +117,7 @@ function Home({data_fish, data_blog}) {
                                             const rank = colIndex === 0 ? i + 1 : i + 1 + half;
 
                                             let badgeColor = "bg-gray-100 text-gray-500 border-gray-100";
-                                            if (rank === 1) badgeColor = "bg-yellow-400 text-white border-yellow-400 shadow-sm"; 
+                                            if (rank === 1) badgeColor = "bg-yellow-400 text-white border-yellow-400 shadow-sm";
                                             if (rank === 2) badgeColor = "bg-gray-400 text-white border-gray-400 shadow-sm";
                                             if (rank === 3) badgeColor = "bg-orange-400 text-white border-orange-400 shadow-sm";
 
@@ -224,7 +224,7 @@ function Home({data_fish, data_blog}) {
                     </div>
                     <div className="mt-10 text-center">
                         <Link href="/blog" className="inline-block px-8 py-3 rounded-full border border-sky-600 text-sky-600 font-bold text-sm hover:bg-sky-600 hover:text-white transition-all duration-300">
-                            記事一覧を見る
+                            記事一覧へ
                         </Link>
                     </div>
                 </div>
