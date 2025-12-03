@@ -156,6 +156,7 @@ const LocationMap = dynamic(
 // --- グラフ表示用のシンプルコンポーネント ---
 const SimpleBarChart = ({
     data, title, xKey, yKey, labelKey,
+    subLabelKey, // 追加: 2行目のラベル用のキー
     height = 150, barWidth = "w-3 md:w-5",
     onBarClick, selectedValues = [],
     onClear
@@ -215,8 +216,13 @@ const SimpleBarChart = ({
                     const isSelected = selectedValues.length === 0 || selectedValues.includes(d.value);
                     return (
                         <div key={i} className={`flex-1 flex justify-center min-w-0 cursor-pointer ${isSelected ? 'opacity-100' : 'opacity-50'}`} onClick={() => onBarClick && onBarClick(d.value)}>
-                            <div className="text-[9px] md:text-[10px] text-gray-500 font-medium whitespace-nowrap w-full text-center">
-                                {d[labelKey]}
+                            <div className="text-[9px] md:text-[10px] text-gray-500 font-medium w-full text-center leading-tight">
+                                <span className="whitespace-nowrap">{d[labelKey]}</span>
+                                {subLabelKey && d[subLabelKey] && (
+                                    <span className="block text-[8px] md:text-[9px] text-gray-500 whitespace-nowrap mt-0.5">
+                                        {d[subLabelKey]}
+                                    </span>
+                                )}
                             </div>
                         </div>
                     );
@@ -293,11 +299,11 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
     // --- フィルター用データ ---
     const months = useMemo(() => Array.from({ length: 12 }, (_, i) => (i + 1).toString()), []);
     const depthRanges = useMemo(() => [
-        { key: 'depth1', label: '超浅場', fullLabel: '超浅場 (1m以浅)' },
-        { key: 'depth2', label: '浅場', fullLabel: '浅場 (1-10m)' },
-        { key: 'depth3', label: '標準', fullLabel: '標準 (10-30m)' },
-        { key: 'depth4', label: '深場', fullLabel: '深場 (30-40m+)' },
-        { key: 'depth5', label: '超深場', fullLabel: '超深場 (40m+以深)' },
+        { key: 'depth1', label: '超浅場', range: '(1m以浅)', fullLabel: '超浅場 (1m以浅)' },
+        { key: 'depth2', label: '浅場', range: '(1-10m)', fullLabel: '浅場 (1-10m)' },
+        { key: 'depth3', label: '標準', range: '(10-30m)', fullLabel: '標準 (10-30m)' },
+        { key: 'depth4', label: '深場', range: '(30-40m+)', fullLabel: '深場 (30-40m+)' },
+        { key: 'depth5', label: '超深場', range: '(40m+以深)', fullLabel: '超深場 (40m+以深)' },
     ], []);
 
     // --- 種IDと種名のマッピング ---
@@ -359,6 +365,7 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
 
         const depthData = depthRanges.map(d => ({
             label: d.label,
+            subLabel: d.range,
             count: depthMap[d.key].size,
             value: d.key
         }));
@@ -533,7 +540,7 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
             </Head>
 
             <div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans min-h-screen">
-                <h1 className="pt-10 pb-2 text-xl md:text-2xl text-center text-sky-800 font-black">
+                <h1 className="pt-10 pb-4 text-xl md:text-2xl text-center text-sky-800 font-black">
                     データベースから検索
                 </h1>
 
@@ -655,6 +662,7 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                                     title="水深"
                                     yKey="count"
                                     labelKey="label"
+                                    subLabelKey="subLabel"
                                     barWidth="w-8 md:w-12"
                                     onBarClick={(val) => handleFilterToggle(val, selectedDepth, setSelectedDepth)}
                                     selectedValues={selectedDepth}
