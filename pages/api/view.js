@@ -1,9 +1,5 @@
 import { Redis } from '@upstash/redis';
 
-console.log("--- DEBUG ENV VARS ---");
-console.log("KV_REST_API_URL:", process.env.KV_REST_API_URL ? "Exists (Length: " + process.env.KV_REST_API_URL.length + ")" : "UNDEFINED");
-console.log("KV_REST_API_TOKEN:", process.env.KV_REST_API_TOKEN ? "Exists" : "UNDEFINED");
-
 const redis = new Redis({
   url: process.env.KV_REST_API_URL,
   token: process.env.KV_REST_API_TOKEN,
