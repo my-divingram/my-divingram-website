@@ -104,7 +104,7 @@ function Home({data_fish, data_blog}) {
                         <h1 className="text-xl md:text-2xl text-center text-sky-800 font-black mb-2">TREND</h1>
                         <p className="text-xs text-center text-gray-500 mb-6 tracking-wider">本日のアクセスランキング</p>
 
-                        <div className="flex flex-col md:flex-row justify-center items-center md:items-start gap-6 px-10 md:px-0">
+                        <div className="flex flex-col md:flex-row justify-center items-center md:items-start gap-3 md:gap-6 px-10 md:px-0">
                             {[0, 1].map((colIndex) => {
                                 const half = Math.ceil(popularFish.length / 2);
                                 const columnData = colIndex === 0
@@ -265,7 +265,7 @@ function Home({data_fish, data_blog}) {
                         </div>
 
                         <span className="pt-1 text-xs font-normal text-gray-700 text-center">
-                            写真提供のご依頼や誤同定のご指摘など，お気軽にご連絡ください
+                            写真提供のご依頼や誤同定のご指摘など，<br className="md:hidden" />お気軽にご連絡ください
                         </span>
 
                         <svg
