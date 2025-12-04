@@ -1,6 +1,7 @@
 import { client } from "/libs/client";
 import Layout from "/components/Layout";
 import { useState, useEffect } from "react";
+import Head from "next/head";
 
 export const getStaticProps = async (context) => {
   const id = context.params.id;
@@ -30,6 +31,32 @@ export default function BlogId({ data_blog }) {
     const [error, setError] = useState("");
     const storageKey = `blog-auth-${data_blog.id}`;
 
+    const baseUrl = "https://www.my-divingram.com";
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "TOP",
+                "item": baseUrl
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "BLOG",
+                "item": `${baseUrl}/blog`
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": data_blog.title,
+                "item": url
+            }
+        ]
+    };
+
     useEffect(() => {
         if (hasPasswordProtection) {
             if (sessionStorage.getItem(storageKey) === "true") {
@@ -52,6 +79,14 @@ export default function BlogId({ data_blog }) {
     if (!isAuthenticated) {
         return (
             <Layout title={title} description="パスワードで保護された記事です" url={url} imageUrl={data_blog.thumbnail.url}>
+
+                <Head>
+                    <script
+                        type="application/ld+json"
+                        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+                    />
+                </Head>
+
                 <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-white to-sky-100 px-5">
                     <form
                         onSubmit={handlePasswordSubmit}

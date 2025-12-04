@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import Head from "next/head";
 import { client } from "/libs/client";
 import Layout from "/components/Layout";
 import { getOptimizedMicroCMSImage } from "/libs/utils";
@@ -18,10 +19,37 @@ export const getStaticProps = async() => {
 function Home({data_blog}) {
     const description = "僕らむが遠征の作戦会議や魚の見分け方，小ネタ等を綴るブログです"
 
+    const baseUrl = "https://www.my-divingram.com";
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "TOP",
+                "item": baseUrl
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "BLOG",
+                "item": `${baseUrl}/blog`
+            }
+        ]
+    };
+
     return (
         <Layout title="僕らむのBLOG" description={description} url="https://www.my-divingram.com/blog" imageUrl="https://www.my-divingram.com/img/logo/favicon_small.jpg">
 
             <div className="min-h-screen pb-20">
+
+                <Head>
+                    <script
+                        type="application/ld+json"
+                        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+                    />
+                </Head>
 
                 {/* ヘッダーエリア */}
                 <div className="pt-10 pb-6 px-5">

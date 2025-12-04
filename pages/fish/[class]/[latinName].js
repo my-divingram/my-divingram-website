@@ -71,10 +71,12 @@ export default function IndividualPage({pagedata}){
 
     // オブジェクトから ".name" (文字列) を取り出す。もし category が見つからなければ、pagedata.class をフォールバックとして使用
     const className = category ? category.name : pagedata.class;
-    const categoryUrl = `/fish/${pagedata.class}`;
     const displayLatinName = formatLatinNameForDisplay(pagedata.latinName);
 
     // 構造化データ(JSON-LD)の作成 (パンくずリスト用)
+    const baseUrl = "https://www.my-divingram.com";
+    const categoryUrl = `${baseUrl}/fish/${pagedata.class}`;
+    const currentUrl = `${baseUrl}/fish/${pagedata.class}/${pagedata.latinName}`.replace(" ", "_");
     const structuredData = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
@@ -82,20 +84,26 @@ export default function IndividualPage({pagedata}){
             {
                 "@type": "ListItem",
                 "position": 1,
-                "name": "僕らむの魚図鑑", // 1階層目
-                "item": "https://www.my-divingram.com/fish"
+                "name": "TOP",
+                "item": baseUrl
             },
             {
                 "@type": "ListItem",
                 "position": 2,
-                "name": className, // 2階層目 (例: "ハゼの仲間")
-                "item": categoryUrl
+                "name": "僕らむの魚図鑑",
+                "item": `${baseUrl}/fish`
             },
             {
                 "@type": "ListItem",
                 "position": 3,
-                "name": pagedata.japaneseName, // 3階層目 (例: "アカハチハゼ")
-                "item": url // このページのURL
+                "name": className,
+                "item": categoryUrl
+            },
+            {
+                "@type": "ListItem",
+                "position": 4,
+                "name": pagedata.japaneseName,
+                "item": currentUrl
             }
         ]
     };

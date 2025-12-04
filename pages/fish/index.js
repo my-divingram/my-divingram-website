@@ -50,13 +50,13 @@ function Home({data_fish, data_fish_slider, data_num, data_num_ja, allFishList})
             {
                 "@type": "ListItem",
                 "position": 1,
-                "name": "Home", // 1階層目 (サイトのトップページ)
+                "name": "TOP",
                 "item": "https://www.my-divingram.com"
             },
             {
                 "@type": "ListItem",
                 "position": 2,
-                "name": "僕らむの魚図鑑", // 2階層目 (このページ)
+                "name": "僕らむの魚図鑑",
                 "item": "https://www.my-divingram.com/fish"
             }
         ]

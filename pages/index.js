@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import Head from "next/head";
 import { client } from "/libs/client";
 import Layout from "/components/Layout";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
@@ -34,6 +35,13 @@ function Home({data_fish, data_blog}) {
 
     // ▼ 人気の魚データ用ステート
     const [popularFish, setPopularFish] = useState([]);
+
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "僕のだいびんぐらむ",
+        "url": "https://www.my-divingram.com/"
+    };
 
     // ▼ APIからデータを取得
     useEffect(() => {
@@ -80,6 +88,13 @@ function Home({data_fish, data_blog}) {
 
     return (
         <Layout title="僕のだいびんぐらむ" description={description} url="https://www.my-divingram.com/" imageUrl="https://www.my-divingram.com/img/logo/favicon_small.jpg">
+
+            <Head>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+                />
+            </Head>
 
             <div className="px-5 md:px-20">
 
