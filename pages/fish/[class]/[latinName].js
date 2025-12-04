@@ -61,7 +61,7 @@ export const getStaticPaths = async() => {
 
 export default function IndividualPage({pagedata}){
     const title = `${pagedata.japaneseName} | 僕らむの魚図鑑`
-    const description = `${pagedata.japaneseName}の生態写真です`
+    const description = `【水中写真】${pagedata.japaneseName}（学名：${pagedata.latinName}）の生態写真です。近似種との見分け方や生息域、生息水深などをダイビングで撮影した写真とともに紹介しています。`
     const url = `https://www.my-divingram.com/fish/${pagedata.class}/${pagedata.latinName}`.replace(" ", "_")
 
     // pagedata.class (例: "goby") から、categoryList (例: { name: "ハゼの仲間", href: "fish/goby", ... }) を探す
