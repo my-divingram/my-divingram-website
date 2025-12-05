@@ -18,7 +18,7 @@ const classifyDepth = (depthValue) => {
     }
     const depth = parseFloat(numericMatch[0]);
     // 数値で分類 ( + がない場合)
-    if (depth >= 30 && depth <= 40) return 'depth4';
+    if (depth > 30 && depth <= 40) return 'depth4';
     if (depth > 40) return null;
     if (depth > 10) return 'depth3';
     if (depth > 1) return 'depth2';
