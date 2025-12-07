@@ -7,6 +7,7 @@ import FishPageFooter from "/components/FishPageFooter";
 import { fetchAllPages } from "/libs/fetch_all_pages"; // サーバー用
 import { shuffleArray, getJapaneseName } from "/libs/utils"; // クライアント安全
 import { getOptimizedMicroCMSImage } from "/libs/utils";
+import Head from 'next/head';
 
 // SSG
 export const getStaticProps = async() => {
