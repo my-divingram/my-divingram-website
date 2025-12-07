@@ -3,7 +3,7 @@ module.exports = {
   siteUrl: 'https://www.my-divingram.com/',
   generateRobotsTxt: true,
   exclude: [
-      // '/search',
       '/fish/kana/*',
+      '/fish/recent_updates.js',
   ],
 };

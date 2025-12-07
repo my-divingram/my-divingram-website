@@ -68,6 +68,11 @@ function Home({monthsData, data_fish_slider, data_num, data_num_ja}) {
 
     return (
         <Layout title="僕らむの魚図鑑" description={description} url="https://www.my-divingram.com/fish/recent_updates" imageUrl="https://www.my-divingram.com/img/logo/favicon_small.jpg">
+
+            <Head>
+                <meta name="robots" content="noindex" />
+            </Head>
+
             <div className="px-3 md:px-20 font-sans">
 
                 <FishPageHeader

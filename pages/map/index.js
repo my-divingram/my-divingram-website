@@ -562,9 +562,6 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
     // --- 認証後の通常のページ表示 ---
     return (
         <Layout title="Map | 僕らむの魚図鑑" description="撮影場所・水深から魚種を検索できます" url="https://www.my-divingram.com/search" imageUrl="https://www.my-divingram.com/img/logo/favicon_small.jpg">
-            <Head>
-                <meta name="robots" content="noindex" />
-            </Head>
 
             <div className="px-5 md:px-20 bg-gradient-to-b from-white to-sky-100 font-sans min-h-screen">
                 <h1 className="pt-10 pb-4 text-xl md:text-2xl text-center text-sky-800 font-black">
