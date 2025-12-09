@@ -8,7 +8,7 @@ import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 
 export default function Layout({children, title, description, url, imageUrl, bg_color_to="bg-sky-100"}) {
     return (
-        <div className="min-h-screen flex flex-col">
+        <div className="min-h-screen min-h-[100dvh] flex flex-col">
             <Head>
                 <title>{title}</title>
                 <meta name="description" content={description} />
