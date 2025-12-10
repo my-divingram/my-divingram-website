@@ -2,7 +2,7 @@
 export const categoryList = [
     { name: "サメの仲間", href: "fish/shark", img: "/img/class/shark.jpeg", alt: "shark" },
     { name: "エイの仲間", href: "fish/ray", img: "/img/class/ray.png", alt: "ray" },
-    { name: "ウツボの仲間", href: "fish/moray", img: "/img/class/moray.jpeg", alt: "moray" },
+    { name: "ウナギ・ウツボの仲間", href: "fish/moray", img: "/img/class/moray.jpeg", alt: "moray" },
     { name: "ウミヘビの仲間", href: "fish/seasnake", img: "/img/class/seasnake.jpeg", alt: "seasnake" },
     { name: "アナゴの仲間", href: "fish/eel", img: "/img/class/eel.jpeg", alt: "eel" },
     { name: "コイの仲間", href: "fish/carp", img: "/img/class/carp.jpeg", alt: "carp" },

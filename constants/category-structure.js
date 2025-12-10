@@ -113,9 +113,15 @@ export const categoryStructure = {
     ],
 
     // ------------------------------------
-    // ウツボの仲間 (moray)
+    // ウナギ・ウツボの仲間 (moray)
     // ------------------------------------
     moray: [
+        {
+            familyName: "ウナギ科",
+            genusName: [
+                { key: "ウナギ属", displayName: "ウナギ属 (Anguilla)" },
+            ]
+        },
         {
             familyName: "ウツボ科",
             genusName: [
@@ -323,6 +329,13 @@ export const categoryStructure = {
     // ------------------------------------
     seahorse: [
         {
+            familyName: "トゲウオ科",
+            genusName: [
+                { key: "イトヨ属", displayName: "イトヨ属 (Gasterosteus)" },
+                { key: "トミヨ属", displayName: "トミヨ属 (Pungitius)" },
+            ]
+        },
+        {
             familyName: "ウミテング科",
             genusName: [
                 { key: "ウミテング属", displayName: "ウミテング属 (Eurypegasus)" },
@@ -367,6 +380,7 @@ export const categoryStructure = {
                 { key: "タツノオトシゴ属", displayName: "タツノオトシゴ属 (Hippocampus)" },
                 { key: "Kyonemichthys", displayName: "Kyonemichthys属" },
                 { key: "ダイダイヨウジ属", displayName: "ダイダイヨウジ属 (Maroubra)" },
+                { key: "テングヨウジ属", displayName: "テングヨウジ属 (Microphis)" },
                 { key: "ボウヨウジ属", displayName: "ボウヨウジ属 (Phoxocampus)" },
                 { key: "Siokunichthys", displayName: "Siokunichthys属" },
                 { key: "ヒフキヨウジ属", displayName: "ヒフキヨウジ属 (Trachyrhamphus)" },
@@ -508,6 +522,7 @@ export const categoryStructure = {
             familyName: "カジカ科",
             genusName: [
                 { key: "ニジカジカ属", displayName: "ニジカジカ属 (Alcichthys)" },
+                { key: "カジカ属", displayName: "カジカ属 (Cottus)" },
                 { key: "サラサカジカ属", displayName: "サラサカジカ属 (Furcina)" },
                 { key: "ツマグロカジカ属", displayName: "ツマグロカジカ属 (Gymnocanthus)" },
                 { key: "イダテンカジカ属", displayName: "イダテンカジカ属 (Ocynectes)" },
@@ -1184,6 +1199,19 @@ export const categoryStructure = {
     // ------------------------------------
     goby: [
         {
+            familyName: "ツバサハゼ科",
+            genusName: [
+                { key: "ツバサハゼ属", displayName: "ツバサハゼ属 (Rhyacichthys)" },
+            ]
+        },
+        {
+            familyName: "カワアナゴ科",
+            genusName: [
+                { key: "ノコギリハゼ属", displayName: "ノコギリハゼ属 (Butis)" },
+                { key: "カワアナゴ属", displayName: "カワアナゴ属 (Eleotris)" },
+            ]
+        },
+        {
             familyName: "ハゼ科",
             genusName: [
                 { key: "キララハゼ属", displayName: "キララハゼ属 (Acentrogobius)" },
@@ -1207,15 +1235,18 @@ export const categoryStructure = {
                 { key: "インコハゼ属", displayName: "インコハゼ属 (Exyrias)" },
                 { key: "ヒメハゼ属", displayName: "ヒメハゼ属 (Favonigobius)" },
                 { key: "サンカクハゼ属", displayName: "サンカクハゼ属 (Fusigobius)" },
+                { key: "ウロハゼ属", displayName: "ウロハゼ属 (Glossogobius)" },
                 { key: "オオモンハゼ属", displayName: "オオモンハゼ属 (Gnatholepis)" },
                 { key: "コバンハゼ属", displayName: "コバンハゼ属 (Gobiodon)" },
                 { key: "イサゴハゼ属", displayName: "イサゴハゼ属 (Gobiopsis)" },
                 { key: "サザレハゼ属", displayName: "サザレハゼ属 (Grallenia)" },
+                { key: "ウキゴリ属", displayName: "ウキゴリ属 (Gymnogobius)" },
                 { key: "ユカタハゼ属", displayName: "ユカタハゼ属 (Hazeus)" },
                 { key: "ニラミハゼ属", displayName: "ニラミハゼ属 (Heteroplopomus)" },
                 { key: "コマハゼ属", displayName: "コマハゼ属 (Inu)" },
                 { key: "クツワハゼ属", displayName: "クツワハゼ属 (Istigobius)" },
                 { key: "キンセンハゼ属", displayName: "キンセンハゼ属 (Koumansetta)" },
+                { key: "ヨロイボウズハゼ属", displayName: "ヨロイボウズハゼ属 (Lentipes)" },
                 { key: "Lobulogobius", displayName: "Lobulogobius属" },
                 { key: "オドリハゼ属", displayName: "オドリハゼ属 (Lotilia)" },
                 { key: "ミジンベニハゼ属", displayName: "ミジンベニハゼ属 (Lubricogobius)" },
@@ -1233,11 +1264,17 @@ export const categoryStructure = {
                 { key: "スナゴハゼ属", displayName: "スナゴハゼ属 (Pseudogobius)" },
                 { key: "キヌバリ属", displayName: "キヌバリ属 (Pterogobius)" },
                 { key: "Rhinogobiops", displayName: "Rhinogobiops属" },
+                { key: "ヨシノボリ属", displayName: "ヨシノボリ属 (Rhinogobius)" },
                 { key: "サビハゼ属", displayName: "サビハゼ属 (Sagamia)" },
+                { key: "ボウズハゼ属", displayName: "ボウズハゼ属 (Sicyopterus)" },
+                { key: "アカボウズハゼ属", displayName: "アカボウズハゼ属 (Sicyopus)" },
                 { key: "シラヌイハゼ属", displayName: "シラヌイハゼ属 (Silhouettea)" },
+                { key: "タネカワハゼ属", displayName: "タネカワハゼ属 (Stenogobius)" },
+                { key: "ナンヨウボウズハゼ属", displayName: "ナンヨウボウズハゼ属 (Stiphodon)" },
                 { key: "ネジリンボウ属", displayName: "ネジリンボウ属 (Stonogobiops)" },
                 { key: "アワセイソハゼ属", displayName: "アワセイソハゼ属 (Sueviota)" },
                 { key: "オニハゼ属", displayName: "オニハゼ属 (Tomiyamichthys)" },
+                { key: "チチブ属", displayName: "チチブ属 (Tridentiger)" },
                 { key: "ベニハゼ属", displayName: "ベニハゼ属 (Trimma)" },
                 { key: "シマイソハゼ属", displayName: "シマイソハゼ属 (Trimmatom)" },
                 { key: "モエギハゼ属", displayName: "モエギハゼ属 (Tryssogobius)" },
@@ -1456,9 +1493,15 @@ export const categoryStructure = {
     ],
 
     // ------------------------------------
-    // その他の海水魚 (others)
+    // その他 (others)
     // ------------------------------------
     others: [
+        {
+            familyName: "ヤツメウナギ科", // 14
+            genusName: [
+                { key: "カワヤツメ属", displayName: "カワヤツメ属 (Lethenteron)" },
+            ]
+        },
         {
             familyName: "ハモ科", // 463
             genusName: [
@@ -1542,6 +1585,13 @@ export const categoryStructure = {
             ]
         },
         {
+            familyName: "カダヤシ科", // 1568
+            genusName: [
+                { key: "グッピー属", displayName: "グッピー属 (Poecilia)" },
+                { key: "ソードテール属", displayName: "ソードテール属 (Xiphophorus)" },
+            ]
+        },
+        {
             familyName: "ダツ科", // 1622
             genusName: [
                 { key: "ダツ属", displayName: "ダツ属 (Strongylura)" },
@@ -1578,6 +1628,13 @@ export const categoryStructure = {
             familyName: "スズキ科", // 2089
             genusName: [
                 { key: "スズキ属", displayName: "スズキ属 (Lateolabrax)" },
+            ]
+        },
+        {
+            familyName: "サンフィッシュ科", // 2330
+            genusName: [
+                { key: "ブルーギル属", displayName: "ブルーギル属 (Lepomis)" },
+                { key: "オオクチバス属", displayName: "オオクチバス属 (Micropterus)" },
             ]
         },
         {
@@ -1628,6 +1685,12 @@ export const categoryStructure = {
             genusName: [
                 { key: "アカタチ属", displayName: "アカタチ属 (Acanthocepola)" },
                 { key: "スミツキアカタチ属", displayName: "スミツキアカタチ属 (Cepola)" },
+            ]
+        },
+        {
+            familyName: "カワスズメ科", // 2946
+            genusName: [
+                { key: "カワスズメ属", displayName: "カワスズメ属 (Oreochromis)" },
             ]
         },
         {
@@ -1698,89 +1761,4 @@ export const categoryStructure = {
             ]
         }
     ],
-
-    // ------------------------------------
-    // 淡水魚 (freshwaterfish)
-    // ------------------------------------
-    // freshwaterfish: [
-    //     {
-    //         familyName: "ヤツメウナギ科", // 14
-    //         genusName: [
-    //             { key: "カワヤツメ属", displayName: "カワヤツメ属 (Lethenteron)" },
-    //         ]
-    //     },
-    //     {
-    //         familyName: "ウナギ科", // 267
-    //         genusName: [
-    //             { key: "ウナギ属", displayName: "ウナギ属 (Anguilla)" },
-    //         ]
-    //     },
-    //     {
-    //         familyName: "トゲウオ科", // 1446
-    //         genusName: [
-    //             { key: "イトヨ属", displayName: "イトヨ属 (Gasterosteus)" },
-    //             { key: "トミヨ属", displayName: "トミヨ属 (Pungitius)" },
-    //         ]
-    //     },
-    //     {
-    //         familyName: "ヨウジウオ科", // 1542
-    //         genusName: [
-    //             { key: "テングヨウジ属", displayName: "テングヨウジ属 (Microphis)" },
-    //         ]
-    //     },
-    //     {
-    //         familyName: "カダヤシ科", // 1568
-    //         genusName: [
-    //             { key: "グッピー属", displayName: "グッピー属 (Poecilia)" },
-    //             { key: "ソードテール属", displayName: "ソードテール属 (Xiphophorus)" },
-    //         ]
-    //     },
-    //     {
-    //         familyName: "カジカ科", // 1888
-    //         genusName: [
-    //             { key: "カジカ属", displayName: "カジカ属 (Cottus)" },
-    //         ]
-    //     },
-    //     {
-    //         familyName: "サンフィッシュ科", // 2330
-    //         genusName: [
-    //             { key: "ブルーギル属", displayName: "ブルーギル属 (Lepomis)" },
-    //             { key: "オオクチバス属", displayName: "オオクチバス属 (Micropterus)" },
-    //         ]
-    //     },
-    //     {
-    //         familyName: "カワスズメ科", // 2946
-    //         genusName: [
-    //             { key: "カワスズメ属", displayName: "カワスズメ属 (Oreochromis)" },
-    //         ]
-    //     },
-    //     {
-    //         familyName: "ツバサハゼ科", // 3711
-    //         genusName: [
-    //             { key: "ツバサハゼ属", displayName: "ツバサハゼ属 (Rhyacichthys)" },
-    //         ]
-    //     },
-    //     {
-    //         familyName: "カワアナゴ科", // 3719
-    //         genusName: [
-    //             { key: "ノコギリハゼ属", displayName: "ノコギリハゼ属 (Butis)" },
-    //             { key: "カワアナゴ属", displayName: "カワアナゴ属 (Eleotris)" },
-    //         ]
-    //     },
-    //     {
-    //         familyName: "ハゼ科", // 3957
-    //         genusName: [
-    //             { key: "ウロハゼ属", displayName: "ウロハゼ属 (Glossogobius)" },
-    //             { key: "ウキゴリ属", displayName: "ウキゴリ属 (Gymnogobius)" },
-    //             { key: "ヨロイボウズハゼ属", displayName: "ヨロイボウズハゼ属 (Lentipes)" },
-    //             { key: "ヨシノボリ属", displayName: "ヨシノボリ属 (Rhinogobius)" },
-    //             { key: "ボウズハゼ属", displayName: "ボウズハゼ属 (Sicyopterus)" },
-    //             { key: "アカボウズハゼ属", displayName: "アカボウズハゼ属 (Sicyopus)" },
-    //             { key: "タネカワハゼ属", displayName: "タネカワハゼ属 (Stenogobius)" },
-    //             { key: "ナンヨウボウズハゼ属", displayName: "ナンヨウボウズハゼ属 (Stiphodon)" },
-    //             { key: "チチブ属", displayName: "チチブ属 (Tridentiger)" },
-    //         ]
-    //     }
-    // ],
-
 };
