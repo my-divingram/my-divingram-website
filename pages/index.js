@@ -16,7 +16,7 @@ export const getStaticProps = async() => {
     const data_fish = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚`, orders: `-updatedAt`, limit: 70}});
     // const data_crustacean = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚`, orders: `-updatedAt` }});
     // const data_seaslug = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚`, orders: `-updatedAt` }});
-    const data_blog = await client.get({ endpoint: "blog", queries: { filters: 'is_top[equals]true', orders: 'createdAt', limit: 3 }
+    const data_blog = await client.get({ endpoint: "blog", queries: { filters: 'is_top[equals]true', orders: 'updatedAt', limit: 3 }
     });
 
     return {
