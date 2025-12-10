@@ -2,6 +2,18 @@ import Link from "next/link";
 import Image from "next/image";
 import { getOptimizedMicroCMSImage } from "/libs/utils";
 
+const getHabitatColor = (habitatName) => {
+    switch (habitatName) {
+        case "海水":
+            return "bg-blue-200 text-blue-700 border-blue-700";
+        case "汽水":
+            return "bg-sky-100 text-sky-700 border-sky-700";
+        case "淡水":
+            return "bg-cyan-100 text-cyan-700 border-cyan-700";
+        default:
+            return "bg-gray-100 text-gray-700 border-gray-700";
+    }
+};
 
 function record(pagedata) {
     if (pagedata.record){
@@ -35,7 +47,29 @@ export function Species({classes, categoryUrl, pagedata}) {
                 </p>
 
                 <h1 className="pt-5 text-xl md:text-2xl text-center text-gray-700 font-black">{pagedata.japaneseName}</h1>
-                <h2 className="pt-2 pb-5 text-xs md:text-lg text-center text-gray-700 font-medium italic">{pagedata.latinName}</h2>
+                <h2 className="pt-2 pb-3 text-xs md:text-lg text-center text-gray-700 font-medium italic">{pagedata.latinName}</h2>
+
+                <div className="flex flex-wrap justify-center items-center gap-2 pb-5">
+
+                    {pagedata.isOversea ? (
+                        <span className="mr-3 px-3 py-1 text-[10px] md:text-xs font-bold text-sky-800 bg-white border border-sky-800 rounded-full shadow-sm">
+                            海外種
+                        </span>
+                    ) : (
+                        <span className="mr-3 px-3 py-1 text-[10px] md:text-xs font-bold text-sky-800 bg-white border border-sky-800 rounded-full shadow-sm">
+                            国内種
+                        </span>
+                    )}
+
+                    {pagedata.habitat && pagedata.habitat.map((h, index) => (
+                        <span
+                            key={index}
+                            className={`px-3 py-1 text-[10px] md:text-xs font-bold border rounded-full shadow-sm ${getHabitatColor(h)}`}
+                        >
+                            {h}
+                        </span>
+                    ))}
+                </div>
 
                 <div className="md:px-3 flex justify-center items-center">
                     <Link href={pagedata.thumbImg.url}>
