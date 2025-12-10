@@ -98,7 +98,7 @@ function Home({data_fish, data_blog}) {
 
             <div className="px-5 md:px-20">
 
-                <h1 className="pt-10 mb-2 text-xl md:text-2xl text-center text-sky-800 font-black">GALLERY</h1>
+                <h1 className="pt-10 mb-2 text-xl md:text-2xl text-center text-sky-800 font-black">RECORD</h1>
                 <p className="text-xs text-center text-gray-500 mb-8 tracking-wider">Last Updated : {data_fish[0].updatedAt.substr(0,10)}</p>
 
                 <Splide options={{type:"loop", gap:"24px", drag:"free", perPage:10, breakpoints:{640:{perPage:3}}, autoScroll:{pauseOnHover:true, pauseOnFocus:false, rewind:false, speed:0.3}}} extensions={{AutoScroll}}>
@@ -198,7 +198,7 @@ function Home({data_fish, data_blog}) {
 
                 <div className="pt-10 pb-8">
                     <h1 className="text-xl md:text-2xl text-center text-sky-800 font-black mb-2">BLOG</h1>
-                    <p className="text-xs text-center text-gray-500 mb-8 tracking-wider">最新のダイビングログ・コラム</p>
+                    <p className="text-xs text-center text-gray-500 mb-8 tracking-wider">僕らむののダイビングログ・コラム</p>
 
                     <div className="flex flex-col md:flex-row justify-center items-center gap-6 px-10 md:px-0">
                         {data_blog.map((data) => (
