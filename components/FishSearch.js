@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { katakanaToHiragana, getJapaneseName } from "/libs/utils";
+import { katakanaToHiragana } from "/libs/utils";
 
 export default function FishSearch({ allFishList }) {
     const [searchTerm, setSearchTerm] = useState("");
@@ -44,7 +44,7 @@ export default function FishSearch({ allFishList }) {
                                         className="block px-4 py-3 text-sm text-gray-700 hover:bg-sky-50 transition-colors"
                                         onClick={() => setSearchTerm("")}
                                     >
-                                        {getJapaneseName(fish)}
+                                        {fish.japaneseName}
                                         <span className="block text-xs text-gray-500 italic">{fish.latinName}</span>
                                     </Link>
                                 </li>

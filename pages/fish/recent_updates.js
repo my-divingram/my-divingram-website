@@ -5,7 +5,7 @@ import Layout from "/components/Layout";
 import FishPageHeader from "/components/FishPageHeader";
 import FishPageFooter from "/components/FishPageFooter";
 import { fetchAllPages } from "/libs/fetch_all_pages"; // サーバー用
-import { shuffleArray, getJapaneseName } from "/libs/utils"; // クライアント安全
+import { shuffleArray } from "/libs/utils"; // クライアント安全
 import { getOptimizedMicroCMSImage } from "/libs/utils";
 import Head from 'next/head';
 
@@ -97,16 +97,37 @@ function Home({monthsData, data_fish_slider, data_num, data_num_ja}) {
                         <div className="flex flex-wrap justify-center">
                             {monthData.items.map((data) => (
                                 <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
-                                    <Link href={`/fish/${data.class}/${data.latinName}`.replace(" ", "_")}>
-                                        <Image src={getOptimizedMicroCMSImage(data.thumbImg.url, 300)} alt={data.japaneseName} width={300} height={200} style={{objectFit:"contain"}} unoptimized={true} priority={true}/>
-                                        <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{getJapaneseName(data)}</h2>
+                                    <Link href={`/fish/${data.class}/${data.latinName}`.replace(" ", "_")} className="relative block">
+
+                                        {data.isOversea && (
+                                            <div className="absolute top-0 right-0 w-[25%] max-w-[60px] bg-sky-800/70 z-10 shadow-sm pointer-events-none">
+                                                <div className="w-full h-auto px-[10%] py-[10%]">
+                                                    <svg viewBox="0 0 30 10" className="w-full h-auto block fill-white">
+                                                        <text
+                                                            x="50%"
+                                                            y="50%"
+                                                            dy=".35em"
+                                                            textAnchor="middle"
+                                                            fontSize="9"
+                                                            fontWeight="bold"
+                                                            style={{dominantBaseline: "auto"}}
+                                                        >
+                                                            海外種
+                                                        </text>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        )}
+
+                                        <Image src={getOptimizedMicroCMSImage(data.thumbImg.url, 300)} alt={data.japaneseName} width={300} height={200} style={{objectFit:"contain"}} unoptimized={true} priority={true} className="w-full h-auto"/>
+
+                                        <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">{data.japaneseName}</h2>
                                     </Link>
                                 </div>
                             ))}
                         </div>
                     </div>
                 ))}
-
                 <FishPageFooter />
             </div>
         </Layout>

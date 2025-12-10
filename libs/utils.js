@@ -13,17 +13,6 @@ export const shuffleArray = (array) => {
 };
 
 /**
- * 海外種に * をつける
- */
-export function getJapaneseName(data) {
-    if (data.isOversea){
-        return `${data.japaneseName}*`
-    } else {
-        return data.japaneseName;
-    }
-}
-
-/**
  * カタカナをひらがなに変換する
  */
 export const katakanaToHiragana = (str) => {

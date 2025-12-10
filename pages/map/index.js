@@ -6,7 +6,7 @@ import { useState, useMemo, useEffect } from "react";
 import dynamic from 'next/dynamic';
 import { useRouter } from "next/router";
 import { locationData } from "/constants/locations";
-import { getOptimizedMicroCMSImage, getJapaneseName } from "/libs/utils";
+import { getOptimizedMicroCMSImage } from "/libs/utils";
 
 const classifyDepth = (depthValue) => {
     if (depthValue.includes('+')) {
@@ -707,7 +707,27 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                                 {searchResults.length > 0 ? (
                                     searchResults.map(fish => (
                                         <div key={fish.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
-                                            <Link href={`/fish/${fish.class}/${fish.latinName}`.replace(" ", "_")}>
+                                            <Link href={`/fish/${fish.class}/${fish.latinName}`.replace(" ", "_")} className="relative block">
+                                                {fish.isOversea && (
+                                                    <div className="absolute top-0 right-0 w-[25%] max-w-[60px] bg-sky-800/70 z-10 shadow-sm pointer-events-none">
+                                                        <div className="w-full h-auto px-[10%] py-[10%]">
+                                                            <svg viewBox="0 0 30 10" className="w-full h-auto block fill-white">
+                                                                <text
+                                                                    x="50%"
+                                                                    y="50%"
+                                                                    dy=".35em"
+                                                                    textAnchor="middle"
+                                                                    fontSize="9"
+                                                                    fontWeight="bold"
+                                                                    style={{dominantBaseline: "auto"}}
+                                                                >
+                                                                    海外種
+                                                                </text>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                )}
+
                                                 {fish.thumbImgUrl ? (
                                                     <Image
                                                         src={getOptimizedMicroCMSImage(fish.thumbImgUrl, 300)}
@@ -716,12 +736,13 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                                                         height={200}
                                                         style={{ objectFit: "contain" }}
                                                         unoptimized
+                                                        className="w-full h-auto"
                                                     />
                                                 ) : (
                                                     <div className="bg-gray-200 rounded" style={{ width: '300px', height: '200px' }}></div>
                                                 )}
                                                 <h2 className="py-3 mb-2 text-xs md:text-base text-center text-gray-700 font-medium">
-                                                    {getJapaneseName(fish)}
+                                                    {fish.japaneseName}
                                                 </h2>
                                             </Link>
                                         </div>
