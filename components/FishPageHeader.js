@@ -39,7 +39,7 @@ export default function FishPageHeader({
 
             {/* data_fish が渡された時だけ最近の更新を表示 (index, kana で使用) */}
             {data_fish && data_fish[0] && (
-                 <p className="pt-1 pb-1 text-xs md:text-sm text-center text-gray-700 font-medium">
+                 <p className="pt-1 pb-6 text-xs md:text-sm text-center text-gray-700 font-medium">
                     最近の更新一覧は<Link href={"/fish/recent_updates"} className="underline hover:opacity-50">こちら</Link> (最終更新 : {data_fish[0].updatedAt.substr(0,10)})
                  </p>
             )}
