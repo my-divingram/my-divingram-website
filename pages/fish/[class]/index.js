@@ -4,7 +4,8 @@ import { Family, Genus } from "/components/Class";
 import { fetchAllPages } from "/libs/fetch_all_pages";
 import { categoryList } from "/constants/categories";
 import { categoryStructure } from "/constants/category-structure";
-import { useState, useMemo } from "react";
+import { useRouter } from "next/router";
+import { useState, useMemo, useEffect } from "react";
 
 const getHabitatColor = (habitatName) => {
     switch (habitatName) {
@@ -82,10 +83,26 @@ export default function CategoryPage({ pageData, categoryInfo, data_num, classPa
         ? `https://www.my-divingram.com${categoryInfo.img}`
         : "https://www.my-divingram.com/img/logo/favicon_small.jpg";
 
+    const router = useRouter();
 
     const [regionFilter, setRegionFilter] = useState(null);
     const [selectedHabitats, setSelectedHabitats] = useState([]);
     const allHabitats = ["海水", "汽水", "淡水"];
+
+    useEffect(() => {
+        if (!router.isReady) return;
+        const { region, habitats } = router.query;
+        if (region === 'domestic' || region === 'oversea') {
+            setRegionFilter(region);
+        }
+        if (habitats) {
+            const habitatArray = habitats.split(',');
+            const validHabitats = habitatArray.filter(h => allHabitats.includes(h));
+            if (validHabitats.length > 0) {
+                setSelectedHabitats(validHabitats);
+            }
+        }
+    }, [router.isReady, router.query]);
 
     const clearAllFilters = () => {
         setRegionFilter(null);

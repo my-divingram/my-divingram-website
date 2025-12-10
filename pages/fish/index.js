@@ -1,17 +1,17 @@
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { useState, useMemo, useEffect } from "react";
 import { client } from "/libs/client";
 import Layout from "/components/Layout";
 import FishPageHeader from "/components/FishPageHeader";
 import FishPageFooter from "/components/FishPageFooter";
-import { fetchAllPages } from "/libs/fetch_all_pages"; // サーバー用
-import { shuffleArray } from "/libs/utils"; // クライアント安全
+import { fetchAllPages } from "/libs/fetch_all_pages";
+import { shuffleArray } from "/libs/utils";
 import { categoryList } from "/constants/categories";
 
-// SSG
 export const getStaticProps = async() => {
-    // 並列取得
     const [
         data_fish,
         data_fish_ja,
@@ -23,9 +23,9 @@ export const getStaticProps = async() => {
         client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]isOversea[equals]false`, orders: `-updatedAt`, limit: 1}}),
         client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]freshwaterfish` , limit: 1 }}),
         client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]isSpotlight[equals]true`, orders: `-updatedAt`, limit: 40}}),
-        fetchAllPages("uwphoto", { // 共通関数を使用
+        fetchAllPages("uwphoto", {
             filters: `book[contains]魚`,
-            fields: 'id,japaneseName,class,latinName,isOversea'
+            fields: 'id,japaneseName,class,latinName,isOversea,habitat'
         })
     ]);
 
@@ -34,7 +34,7 @@ export const getStaticProps = async() => {
             data_fish: data_fish.contents,
             data_fish_slider: shuffleArray(data_fish_slider.contents),
             data_num: data_fish.totalCount,
-            data_num_ja: data_fish_ja.totalCount - data_fish_freshwater.totalCount,
+            data_num_ja: data_fish_ja.totalCount,
             allFishList: allFishList,
         },
     };
@@ -42,33 +42,102 @@ export const getStaticProps = async() => {
 
 function Home({data_fish, data_fish_slider, data_num, data_num_ja, allFishList}) {
     const description = '伊豆を中心に国内外を問わず未だ見ぬ魚を探して潜っているトラベルダイバーの"僕のだいびんぐらむ"です。個人で撮影した生態写真で魚図鑑を制作しています。'
-    // 構造化データ(JSON-LD)の作成
+
+    const router = useRouter();
+    const [regionFilter, setRegionFilter] = useState(null);
+    const [selectedHabitats, setSelectedHabitats] = useState([]);
+
+    // マウント時にURLからStateを復元
+    useEffect(() => {
+        if (!router.isReady) return;
+        const { region, habitats } = router.query;
+
+        if (region) {
+            setRegionFilter(region);
+        }
+        if (habitats) {
+            setSelectedHabitats(habitats.split(','));
+        }
+    }, [router.isReady]);
+
+    // State変更時にURLを更新 (shallowルーティング)
+    useEffect(() => {
+        if (!router.isReady) return;
+
+        const query = { ...router.query };
+
+        // regionの設定 (allの場合は削除)
+        if (regionFilter && regionFilter !== "all") {
+            query.region = regionFilter;
+        } else {
+            delete query.region;
+        }
+
+        // habitatsの設定 (空の場合は削除)
+        if (selectedHabitats.length > 0) {
+            query.habitats = selectedHabitats.join(',');
+        } else {
+            delete query.habitats;
+        }
+
+        // URLが変更になる場合のみ更新を実行
+        if (JSON.stringify(query) !== JSON.stringify(router.query)) {
+            router.replace({
+                pathname: router.pathname,
+                query: query
+            }, undefined, { shallow: true });
+        }
+    }, [regionFilter, selectedHabitats, router.isReady]);
+
+    const clearAllFilters = () => {
+        setRegionFilter(null);
+        setSelectedHabitats([]);
+    };
+
+    const toggleRegion = (region) => {
+        setRegionFilter(prev => prev === region ? null : region);
+    };
+
+    const toggleHabitat = (habitat) => {
+        setSelectedHabitats(prev =>
+            prev.includes(habitat)
+                ? prev.filter(h => h !== habitat)
+                : [...prev, habitat]
+        );
+    };
+
+    const isFilterActive = (regionFilter !== null && regionFilter !== "all") || selectedHabitats.length > 0;
+
+    const activeCategories = useMemo(() => {
+        const validFish = allFishList.filter(fish => {
+            if (regionFilter === "domestic" && fish.isOversea) return false;
+            if (regionFilter === "oversea" && !fish.isOversea) return false;
+
+            if (selectedHabitats.length > 0) {
+                if (!fish.habitat) return false;
+                const hasAll = selectedHabitats.every(h => fish.habitat.includes(h));
+                if (!hasAll) return false;
+            }
+            return true;
+        });
+        return new Set(validFish.map(fish => fish.class));
+    }, [allFishList, regionFilter, selectedHabitats]);
+
+
+    // 構造化データ
     const structuredData = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         "itemListElement": [
-            {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "TOP",
-                "item": "https://www.my-divingram.com"
-            },
-            {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "僕らむの魚図鑑",
-                "item": "https://www.my-divingram.com/fish"
-            }
+            { "@type": "ListItem", "position": 1, "name": "TOP", "item": "https://www.my-divingram.com" },
+            { "@type": "ListItem", "position": 2, "name": "僕らむの魚図鑑", "item": "https://www.my-divingram.com/fish" }
         ]
     };
 
     return (
         <Layout title="僕らむの魚図鑑" description={description} url="https://www.my-divingram.com/fish" imageUrl="https://www.my-divingram.com/img/logo/favicon_small.jpg">
             <Head>
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-                />
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
             </Head>
 
             <div className="px-3 md:px-20 font-sans">
@@ -77,29 +146,48 @@ function Home({data_fish, data_fish_slider, data_num, data_num_ja, allFishList})
                     data_fish_slider={data_fish_slider}
                     data_num={data_num}
                     data_num_ja={data_num_ja}
-                    data_fish={data_fish} // 最終更新日用
-                    allFishList={allFishList} // 検索用
-                    showSearch={true} // 検索を表示
-                    showIndex={true}  // 索引を表示
+                    data_fish={data_fish}
+                    allFishList={allFishList}
+                    showSearch={true}
+                    showIndex={true}
+                    regionFilter={regionFilter}
+                    toggleRegion={toggleRegion}
+                    selectedHabitats={selectedHabitats}
+                    toggleHabitat={toggleHabitat}
+                    clearAllFilters={clearAllFilters}
+                    isFilterActive={isFilterActive}
                 />
 
                 <div className="grid px-3 gap-3 grid-cols-3 md:grid-cols-6">
-                    {categoryList.map((cat) => (
-                        <div key={cat.name} className="flex justify-center hover:opacity-80">
-                            <Link href={cat.href}>
-                                <Image
-                                    src={cat.img}
-                                    alt={cat.alt}
-                                    width={300}
-                                    height={200}
-                                    style={{objectFit:"contain"}}
-                                />
-                                <h2 className="py-3 text-xs md:text-base text-center text-gray-700 font-medium">
-                                    {cat.name}
-                                </h2>
-                            </Link>
-                        </div>
-                    ))}
+                    {categoryList.map((cat) => {
+                        const catId = cat.href.split("/").pop();
+                        const isActive = activeCategories.has(catId);
+                        return (
+                            <div key={cat.name} className={`flex justify-center transition-all duration-300 ${isActive ? "hover:opacity-80" : "grayscale opacity-50"}`}>
+                                <Link
+                                    href={{
+                                        pathname: cat.href,
+                                        query: {
+                                            ...(regionFilter !== 'all' ? { region: regionFilter } : {}),
+                                            ...(selectedHabitats.length > 0 ? { habitats: selectedHabitats.join(',') } : {})
+                                        }
+                                    }}
+                                    className={!isActive ? "cursor-default pointer-events-none" : ""}
+                                >
+                                    <Image
+                                        src={cat.img}
+                                        alt={cat.alt}
+                                        width={300}
+                                        height={200}
+                                        style={{objectFit:"contain"}}
+                                    />
+                                    <h2 className={`py-3 text-xs md:text-base text-center font-medium ${isActive ? "text-gray-700" : "text-gray-400"}`}>
+                                        {cat.name}
+                                    </h2>
+                                </Link>
+                            </div>
+                        );
+                    })}
                 </div>
 
                 <FishPageFooter />

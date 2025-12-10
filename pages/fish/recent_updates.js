@@ -58,7 +58,7 @@ export const getStaticProps = async() => {
             monthsData: monthsDataForProps,
             data_fish_slider: shuffleArray(data_fish_slider.contents), // 共通関数
             data_num: data_fish.totalCount,
-            data_num_ja: data_fish_ja.totalCount - data_fish_freshwater.totalCount,
+            data_num_ja: data_fish_ja.totalCount,
         },
     };
 };
