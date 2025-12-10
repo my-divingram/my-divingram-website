@@ -84,17 +84,22 @@ export default function CategoryPage({ pageData, categoryInfo, data_num, classPa
         : "https://www.my-divingram.com/img/logo/favicon_small.jpg";
 
     const router = useRouter();
-
+    const [isInitialized, setIsInitialized] = useState(false);
     const [regionFilter, setRegionFilter] = useState(null);
     const [selectedHabitats, setSelectedHabitats] = useState([]);
     const allHabitats = ["海水", "汽水", "淡水"];
 
     useEffect(() => {
         if (!router.isReady) return;
+
         const { region, habitats } = router.query;
+
+        // 地域フィルタの復元
         if (region === 'domestic' || region === 'oversea') {
             setRegionFilter(region);
         }
+
+        // 生息域フィルタの復元
         if (habitats) {
             const habitatArray = habitats.split(',');
             const validHabitats = habitatArray.filter(h => allHabitats.includes(h));
@@ -102,7 +107,48 @@ export default function CategoryPage({ pageData, categoryInfo, data_num, classPa
                 setSelectedHabitats(validHabitats);
             }
         }
-    }, [router.isReady, router.query]);
+        setIsInitialized(true);
+
+    }, [router.isReady]);
+
+    useEffect(() => {
+        if (!isInitialized || !router.isReady) return;
+
+        const query = { ...router.query };
+        let changed = false;
+
+        if (regionFilter && regionFilter !== "all") {
+            if (query.region !== regionFilter) {
+                query.region = regionFilter;
+                changed = true;
+            }
+        } else {
+            if (query.region) {
+                delete query.region;
+                changed = true;
+            }
+        }
+
+        if (selectedHabitats.length > 0) {
+            const hStr = selectedHabitats.join(',');
+            if (query.habitats !== hStr) {
+                query.habitats = hStr;
+                changed = true;
+            }
+        } else {
+            if (query.habitats) {
+                delete query.habitats;
+                changed = true;
+            }
+        }
+
+        if (changed) {
+            router.replace({
+                pathname: router.pathname,
+                query: query
+            }, undefined, { shallow: true });
+        }
+    }, [regionFilter, selectedHabitats, router.isReady, isInitialized]);
 
     const clearAllFilters = () => {
         setRegionFilter(null);

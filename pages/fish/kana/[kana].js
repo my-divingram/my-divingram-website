@@ -90,7 +90,7 @@ export default function KanaList({
     const description = '伊豆を中心に国内外を問わず未だ見ぬ魚を探して潜っているトラベルダイバーの"僕のだいびんぐらむ"です。個人で撮影した生態写真で魚図鑑を制作しています。'
     const url = `https://www.my-divingram.com/fish/${kana}`
     const router = useRouter();
-
+    const [isInitialized, setIsInitialized] = useState(false);
     const [regionFilter, setRegionFilter] = useState(null);
     const [selectedHabitats, setSelectedHabitats] = useState([]);
 
@@ -101,11 +101,12 @@ export default function KanaList({
 
         if (region) setRegionFilter(region);
         if (habitats) setSelectedHabitats(habitats.split(','));
+        setIsInitialized(true);
     }, [router.isReady]);
 
     // State変更時: State -> URL更新
     useEffect(() => {
-        if (!router.isReady) return;
+        if (!isInitialized || !router.isReady) return;
 
         const query = { ...router.query };
         let changed = false;
@@ -141,7 +142,7 @@ export default function KanaList({
                 query: query
             }, undefined, { shallow: true });
         }
-    }, [regionFilter, selectedHabitats, router.isReady]);
+    }, [regionFilter, selectedHabitats, router.isReady, isInitialized]);
 
     const clearAllFilters = () => {
         setRegionFilter(null);

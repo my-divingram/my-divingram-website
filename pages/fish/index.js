@@ -44,6 +44,7 @@ function Home({data_fish, data_fish_slider, data_num, data_num_ja, allFishList})
     const description = '伊豆を中心に国内外を問わず未だ見ぬ魚を探して潜っているトラベルダイバーの"僕のだいびんぐらむ"です。個人で撮影した生態写真で魚図鑑を制作しています。'
 
     const router = useRouter();
+    const [isInitialized, setIsInitialized] = useState(false);
     const [regionFilter, setRegionFilter] = useState(null);
     const [selectedHabitats, setSelectedHabitats] = useState([]);
 
@@ -58,36 +59,51 @@ function Home({data_fish, data_fish_slider, data_num, data_num_ja, allFishList})
         if (habitats) {
             setSelectedHabitats(habitats.split(','));
         }
+        setIsInitialized(true);
     }, [router.isReady]);
 
     // State変更時にURLを更新 (shallowルーティング)
     useEffect(() => {
-        if (!router.isReady) return;
+        if (!isInitialized || !router.isReady) return;
 
         const query = { ...router.query };
+        let changed = false;
 
-        // regionの設定 (allの場合は削除)
+        // regionの設定
         if (regionFilter && regionFilter !== "all") {
-            query.region = regionFilter;
+            if (query.region !== regionFilter) {
+                query.region = regionFilter;
+                changed = true;
+            }
         } else {
-            delete query.region;
+            if (query.region) {
+                delete query.region;
+                changed = true;
+            }
         }
 
-        // habitatsの設定 (空の場合は削除)
+        // habitatsの設定
         if (selectedHabitats.length > 0) {
-            query.habitats = selectedHabitats.join(',');
+            const hStr = selectedHabitats.join(',');
+            if (query.habitats !== hStr) {
+                query.habitats = hStr;
+                changed = true;
+            }
         } else {
-            delete query.habitats;
+            if (query.habitats) {
+                delete query.habitats;
+                changed = true;
+            }
         }
 
         // URLが変更になる場合のみ更新を実行
-        if (JSON.stringify(query) !== JSON.stringify(router.query)) {
+        if (changed) {
             router.replace({
                 pathname: router.pathname,
                 query: query
             }, undefined, { shallow: true });
         }
-    }, [regionFilter, selectedHabitats, router.isReady]);
+    }, [regionFilter, selectedHabitats, isInitialized, router.isReady]);
 
     const clearAllFilters = () => {
         setRegionFilter(null);
