@@ -709,7 +709,7 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                                         <div key={fish.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
                                             <Link href={`/fish/${fish.class}/${fish.latinName}`.replace(" ", "_")} className="relative block">
                                                 {fish.isOversea && (
-                                                    <div className="absolute top-0 right-0 w-[25%] max-w-[60px] bg-sky-800/70 z-10 shadow-sm pointer-events-none">
+                                                    <div className="absolute top-0 right-0 w-[30%] max-w-[60px] bg-gray-800/50 z-10 shadow-sm pointer-events-none">
                                                         <div className="w-full h-auto px-[10%] py-[10%]">
                                                             <svg viewBox="0 0 30 10" className="w-full h-auto block fill-white">
                                                                 <text

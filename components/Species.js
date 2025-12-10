@@ -52,11 +52,11 @@ export function Species({classes, categoryUrl, pagedata}) {
                 <div className="flex flex-wrap justify-center items-center gap-2 pb-5">
 
                     {pagedata.isOversea ? (
-                        <span className="mr-3 px-3 py-1 text-[10px] md:text-xs font-bold text-sky-800 bg-white border border-sky-800 rounded-full shadow-sm">
+                        <span className="mr-2 px-3 py-1 text-[10px] md:text-xs font-bold text-sky-800 bg-white border border-sky-800 rounded-full shadow-sm">
                             海外種
                         </span>
                     ) : (
-                        <span className="mr-3 px-3 py-1 text-[10px] md:text-xs font-bold text-sky-800 bg-white border border-sky-800 rounded-full shadow-sm">
+                        <span className="mr-2 px-3 py-1 text-[10px] md:text-xs font-bold text-sky-800 bg-white border border-sky-800 rounded-full shadow-sm">
                             国内種
                         </span>
                     )}
