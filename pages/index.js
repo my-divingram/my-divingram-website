@@ -16,7 +16,8 @@ export const getStaticProps = async() => {
     const data_fish = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚`, orders: `-updatedAt`, limit: 70}});
     // const data_crustacean = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚`, orders: `-updatedAt` }});
     // const data_seaslug = await client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚`, orders: `-updatedAt` }});
-    const data_blog = await client.get({ endpoint: "blog", queries: {orders: `-createdAt`, limit: 3}});
+    const data_blog = await client.get({ endpoint: "blog", queries: { filters: 'is_top[equals]true', orders: 'createdAt', limit: 3 }
+    });
 
     return {
         props: {
@@ -198,7 +199,7 @@ function Home({data_fish, data_blog}) {
 
                 <div className="pt-10 pb-8">
                     <h1 className="text-xl md:text-2xl text-center text-sky-800 font-black mb-2">BLOG</h1>
-                    <p className="text-xs text-center text-gray-500 mb-8 tracking-wider">僕らむののダイビングログ・コラム</p>
+                    <p className="text-xs text-center text-gray-500 mb-8 tracking-wider">ダイビングログ・コラム・遠征の作戦会議など</p>
 
                     <div className="flex flex-col md:flex-row justify-center items-center gap-6 px-10 md:px-0">
                         {data_blog.map((data) => (
