@@ -383,6 +383,7 @@ export const categoryStructure = {
                 { key: "テングヨウジ属", displayName: "テングヨウジ属 (Microphis)" },
                 { key: "ボウヨウジ属", displayName: "ボウヨウジ属 (Phoxocampus)" },
                 { key: "Siokunichthys", displayName: "Siokunichthys属" },
+                { key: "ヨウジウオ属", displayName: "ヨウジウオ属 (Syngnathus)" },
                 { key: "ヒフキヨウジ属", displayName: "ヒフキヨウジ属 (Trachyrhamphus)" },
             ]
         }
@@ -935,6 +936,7 @@ export const categoryStructure = {
                 { key: "ルリスズメダイ属", displayName: "ルリスズメダイ属 (Chrysiptera)" },
                 { key: "ミスジリュウキュウスズメダイ属", displayName: "ミスジリュウキュウスズメダイ属 (Dascyllus)" },
                 { key: "ダンダラスズメダイ属", displayName: "ダンダラスズメダイ属 (Dischistodus)" },
+                { key: "スズメダイモドキ属", displayName: "スズメダイモドキ属 (Hemiglyphidodon)" },
                 { key: "Hypsypops", displayName: "Hypsypops属" },
                 { key: "ハナダイダマシ属", displayName: "ハナダイダマシ属 (Lepidozygus)" },
                 { key: "ヒレナガスズメダイ属", displayName: "ヒレナガスズメダイ属 (Neoglyphidodon)" },
@@ -1371,6 +1373,7 @@ export const categoryStructure = {
             familyName: "サバ科",
             genusName: [
                 { key: "カマスサワラ属", displayName: "カマスサワラ属 (Acanthocybium)" },
+                { key: "スマ属", displayName: "スマ属 (Euthynnus)" },
                 { key: "ニジョウサバ属", displayName: "ニジョウサバ属 (Grammatorcynus)" },
                 { key: "イソマグロ属", displayName: "イソマグロ属 (Gymnosarda)" },
                 { key: "グルクマ属", displayName: "グルクマ属 (Rastrelliger)" },
@@ -1752,6 +1755,12 @@ export const categoryStructure = {
             familyName: "タチウオ科", // 4451
             genusName: [
                 { key: "タチウオ属", displayName: "タチウオ属 (Trichiurus)" },
+            ]
+        },
+        {
+            familyName: "ツノダシ科", // 4361
+            genusName: [
+                { key: "ツノダシ属", displayName: "ツノダシ属 (Zanclus)" },
             ]
         },
         {
