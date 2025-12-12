@@ -150,6 +150,17 @@ export default function BlogId({ data_blog }) {
                 prose-h1:mb-6
                 prose-h1:text-lg
                 prose-h1:md:text-xl
+
+                prose-table:bg-white
+                prose-table:border-collapse
+                prose-table:border
+                prose-table:border-gray-500
+                prose-th:border
+                prose-th:border-gray-500
+                prose-td:border
+                prose-td:border-gray-500
+                prose-th:text-center
+                prose-td:text-center
               "
           /></div>
         </Layout>
