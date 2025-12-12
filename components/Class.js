@@ -16,7 +16,7 @@ export function Genus({genus, data}) {
                 {data.map((data) => (
                         <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
                             <Link
-                                href={`${data.class}/${data.latinName}`.replace(" ", "_")}
+                                href={`${data.class}/${data.latinName}`.replaceAll(" ", "_")}
                                 className="relative block"
                             >
                                 {data.isOversea && (

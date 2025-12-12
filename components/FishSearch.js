@@ -40,7 +40,7 @@ export default function FishSearch({ allFishList }) {
                             {searchResults.slice(0, 50).map((fish) => (
                                 <li key={fish.id} className="border-b last:border-b-0">
                                     <Link
-                                        href={`/fish/${fish.class}/${fish.latinName}`.replace(" ", "_")}
+                                        href={`/fish/${fish.class}/${fish.latinName}`.replaceAll(" ", "_")}
                                         className="block px-4 py-3 text-sm text-gray-700 hover:bg-sky-50 transition-colors"
                                         onClick={() => setSearchTerm("")}
                                     >

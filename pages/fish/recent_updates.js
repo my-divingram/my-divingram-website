@@ -97,7 +97,7 @@ function Home({monthsData, data_fish_slider, data_num, data_num_ja}) {
                         <div className="flex flex-wrap justify-center">
                             {monthData.items.map((data) => (
                                 <div key={data.id} className="px-3 w-1/3 md:w-1/6 hover:opacity-80">
-                                    <Link href={`/fish/${data.class}/${data.latinName}`.replace(" ", "_")} className="relative block">
+                                    <Link href={`/fish/${data.class}/${data.latinName}`.replaceAll(" ", "_")} className="relative block">
 
                                         {data.isOversea && (
                                             <div className="absolute top-0 right-0 w-[30%] max-w-[60px] bg-gray-800/50 z-10 shadow-sm pointer-events-none">

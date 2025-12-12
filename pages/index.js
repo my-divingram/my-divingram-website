@@ -106,7 +106,7 @@ function Home({data_fish, data_blog}) {
                     {data_fish.map((data) => (
                         <SplideSlide key={data.id}>
                             <div className="hover:opacity-80">
-                                <Link href={`/fish/${data.class}/${data.latinName}`.replace(" ", "_")}>
+                                <Link href={`/fish/${data.class}/${data.latinName}`.replaceAll(" ", "_")}>
                                     <Image src={getOptimizedMicroCMSImage(data.thumbImg.url, 300)} alt={data.japaneseName} width={300} height={200} style={{objectFit:"contain"}} unoptimized={true} priority={true}/>
                                     <h2 className="pt-3 pb-5 text-xs md:text-sm text-center text-gray-700 font-medium">{data.japaneseName}</h2>
                                 </Link>

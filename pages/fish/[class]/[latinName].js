@@ -28,7 +28,7 @@ export const getStaticProps = async (context) => {
     const pagedata = await client.get({
         endpoint: "uwphoto",
         queries: {
-            filters: `latinName[equals]${latinName}`.replace("_", " "),
+            filters: `latinName[equals]${latinName}`.replaceAll("_", " "),
             limit: 1
         }
     });
@@ -50,7 +50,7 @@ export const getStaticPaths = async() => {
 
     // 全魚種データからパス ( /fish/[class]/[latinName] ) の配列を生成
     const paths = allFish.map((content) =>
-        `/fish/${content.class}/${content.latinName}`.replace(" ", "_")
+        `/fish/${content.class}/${content.latinName}`.replaceAll(" ", "_")
     );
 
     return {
@@ -62,7 +62,7 @@ export const getStaticPaths = async() => {
 export default function IndividualPage({pagedata}){
     const title = `${pagedata.japaneseName} | 僕らむの魚図鑑`
     const description = `【ダイビング】${pagedata.japaneseName}（${pagedata.latinName}）の水中写真です。近似種との見分け方や生息域、生息水深などをダイビングで撮影した生態写真とともに紹介しています。`
-    const url = `https://www.my-divingram.com/fish/${pagedata.class}/${pagedata.latinName}`.replace(" ", "_")
+    const url = `https://www.my-divingram.com/fish/${pagedata.class}/${pagedata.latinName}`.replaceAll(" ", "_")
 
     // pagedata.class (例: "goby") から、categoryList (例: { name: "ハゼの仲間", href: "fish/goby", ... }) を探す
     const category = categoryList.find(
@@ -76,7 +76,7 @@ export default function IndividualPage({pagedata}){
     // 構造化データ(JSON-LD)の作成 (パンくずリスト用)
     const baseUrl = "https://www.my-divingram.com";
     const categoryUrl = `${baseUrl}/fish/${pagedata.class}`;
-    const currentUrl = `${baseUrl}/fish/${pagedata.class}/${pagedata.latinName}`.replace(" ", "_");
+    const currentUrl = `${baseUrl}/fish/${pagedata.class}/${pagedata.latinName}`.replaceAll(" ", "_");
     const structuredData = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
