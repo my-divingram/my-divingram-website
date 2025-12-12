@@ -76,6 +76,10 @@ export default function BlogId({ data_blog }) {
         }
     };
 
+    const contentWithScrollableTable = data_blog.article
+        .replace(/<table/g, '<div class="overflow-x-auto w-full my-4"><table')
+        .replace(/<\/table>/g, '</table></div>');
+
     if (!isAuthenticated) {
         return (
             <Layout title={title} description="パスワードで保護された記事です" url={url} imageUrl={data_blog.thumbnail.url}>
@@ -125,7 +129,7 @@ export default function BlogId({ data_blog }) {
           <p className="text-sm md:text-base text-center text-gray-700">{data_blog.publishedAt.substr(0,10)}</p>
 
           <div
-              dangerouslySetInnerHTML={{__html: `${data_blog.article}`,}}
+              dangerouslySetInnerHTML={{__html: contentWithScrollableTable}}
               className="
                 prose prose-sm md:prose-base
                 prose-p:leading-relaxed
@@ -161,6 +165,7 @@ export default function BlogId({ data_blog }) {
                 prose-td:border-gray-500
                 prose-th:text-center
                 prose-td:text-center
+                prose-table:whitespace-nowrap
               "
           /></div>
         </Layout>
