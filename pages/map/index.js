@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Layout from "/components/Layout";
 import Link from "next/link";
 import Image from "next/image";
@@ -85,7 +84,7 @@ export const getStaticProps = async () => {
 
     const allFishData = await fetchAllPages("uwphoto", {
         filters: `book[contains]魚`,
-        fields: 'id,japaneseName,class,latinName,record,thumbInfo,thumbImg,isOversea'
+        fields: 'id,japaneseName,class,latinName,record,thumbInfo,thumbImg,isOversea,habitat'
     });
 
     const locationMap = {};
@@ -113,8 +112,6 @@ export const getStaticProps = async () => {
         const latLng = locationData[locationName];
         const speciesIds = finalLocationMap[locationName];
         if (!latLng) {
-            // 緯度経度データ(locations.js)に見つからなかった場所をログに出力
-            // (locationName === "某所" など、意図的に除外するものは除く)
             if (locationName !== "某所") {
                 console.warn(`[Location Mismatch] 緯度経度が見つかりません: "${locationName}" "${speciesIds}"`);
             }
@@ -138,7 +135,8 @@ export const getStaticProps = async () => {
                 isOversea: f.isOversea,
                 class: f.class,
                 latinName: f.latinName,
-                thumbImgUrl: f.thumbImg ? f.thumbImg.url : null
+                thumbImgUrl: f.thumbImg ? f.thumbImg.url : null,
+                habitat: f.habitat || []
             })),
             mapMarkers: mapMarkers,
         },
@@ -166,7 +164,7 @@ const SimpleBarChart = ({
     const maxVal = Math.max(...data.map(d => d[yKey])) || 1;
 
     return (
-        <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 w-full relative">
+        <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 w-full relative h-full flex flex-col">
             {selectedValues.length > 0 && onClear && (
                 <button
                     type="button"
@@ -174,7 +172,7 @@ const SimpleBarChart = ({
                         e.stopPropagation();
                         onClear();
                     }}
-                    className="absolute top-2 right-2 p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-full hover:bg-gray-50"
+                    className="absolute top-2 right-2 p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-full hover:bg-gray-50 z-10"
                     title="選択を解除"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -185,7 +183,7 @@ const SimpleBarChart = ({
 
             <h3 className="text-sm font-bold text-gray-700 mb-4 text-center">{title}</h3>
 
-            <div className="flex items-end justify-between gap-1 border-b border-gray-300 pb-0 pt-5" style={{ height: `${height}px` }}>
+            <div className="flex items-end justify-between gap-1 border-b border-gray-300 pb-0 pt-5 flex-grow" style={{ minHeight: `${height}px` }}>
                 {data.map((d, i) => {
                     const barHeight = Math.max((d[yKey] / maxVal) * 100, 0);
                     const isSelected = selectedValues.length === 0 || selectedValues.includes(d.value);
@@ -194,7 +192,7 @@ const SimpleBarChart = ({
                     return (
                         <div
                             key={i}
-                            className="flex flex-col items-center justify-end flex-1 h-full min-w-0 cursor-pointer"
+                            className="flex flex-col items-center justify-end flex-1 h-full min-w-0 cursor-pointer group"
                             onClick={() => onBarClick && onBarClick(d.value)}
                         >
                             <div
@@ -234,11 +232,6 @@ const SimpleBarChart = ({
 };
 
 export default function LocationSearchPage({ allRecords, speciesLookup, mapMarkers }) {
-    // --- パスワード認証 State ---
-    // const [isAuthenticated, setIsAuthenticated] = useState(false);
-    // const [inputPassword, setInputPassword] = useState("");
-    // const [error, setError] = useState("");
-    // const CORRECT_PASSWORD = "genicanthus";
 
     const router = useRouter();
 
@@ -246,82 +239,48 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedMonth, setSelectedMonth] = useState([]);
     const [selectedDepth, setSelectedDepth] = useState([]);
+    const [selectedHabitat, setSelectedHabitat] = useState([]); // Habitat用State
     const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
     const [isMapClick, setIsMapClick] = useState(false);
 
-    // --- 認証チェック (SessionStorage) ---
-    // useEffect(() => {
-    //     // 認証チェックが通った後、保存されたフィルターを読み込む
-    //     if (isAuthenticated) {
-    //         const savedTerm = sessionStorage.getItem('searchTerm');
-    //         const savedMonth = sessionStorage.getItem('selectedMonth');
-    //         const savedDepth = sessionStorage.getItem('selectedDepth');
 
-    //         if (savedTerm) {
-    //             setSearchTerm(savedTerm);
-    //         }
-    //         if (savedMonth) {
-    //             setSelectedMonth(JSON.parse(savedMonth)); // 配列はJSONとして保存されている
-    //         }
-    //         if (savedDepth) {
-    //             setSelectedDepth(JSON.parse(savedDepth)); // 配列はJSONとして保存されている
-    //         }
-    //     }
-    // }, [isAuthenticated]); // 認証が完了した時に一度だけ実行
-
-    // useEffect(() => {
-    //     if (isAuthenticated) {
-    //         sessionStorage.setItem('searchTerm', searchTerm);
-    //         sessionStorage.setItem('selectedMonth', JSON.stringify(selectedMonth));
-    //         sessionStorage.setItem('selectedDepth', JSON.stringify(selectedDepth));
-    //     }
-    // }, [searchTerm, selectedMonth, selectedDepth, isAuthenticated]); // フィルター値が変わるたびに実行
-
+    // --- SessionStorage 読み込み ---
     useEffect(() => {
         const savedTerm = sessionStorage.getItem('searchTerm');
         const savedMonth = sessionStorage.getItem('selectedMonth');
         const savedDepth = sessionStorage.getItem('selectedDepth');
+        const savedHabitat = sessionStorage.getItem('selectedHabitat');
 
-        if (savedTerm) {
-            setSearchTerm(savedTerm);
-        }
-        if (savedMonth) {
-            setSelectedMonth(JSON.parse(savedMonth));
-        }
-        if (savedDepth) {
-            setSelectedDepth(JSON.parse(savedDepth));
-        }
+        if (savedTerm) setSearchTerm(savedTerm);
+        if (savedMonth) setSelectedMonth(JSON.parse(savedMonth));
+        if (savedDepth) setSelectedDepth(JSON.parse(savedDepth));
+        if (savedHabitat) setSelectedHabitat(JSON.parse(savedHabitat));
     }, []);
 
+    // --- スクロール位置保存 ---
     useEffect(() => {
-        // ページ離脱時にスクロール位置を保存する関数
         const saveScrollPosition = () => {
             sessionStorage.setItem("scrollPosition", window.scrollY.toString());
         };
-
-        // イベントリスナー登録 (ページ遷移開始時に実行)
         router.events.on("routeChangeStart", saveScrollPosition);
-
-        // マウント時にスクロール位置を復元
         const savedPosition = sessionStorage.getItem("scrollPosition");
         if (savedPosition) {
-            // フィルター適用や描画の反映を待つため、わずかに遅延させる
             setTimeout(() => {
                 window.scrollTo(0, parseFloat(savedPosition));
             }, 100);
         }
-
-        // クリーンアップ
         return () => {
             router.events.off("routeChangeStart", saveScrollPosition);
         };
     }, [router]);
 
+    // --- SessionStorage 保存 ---
     useEffect(() => {
         sessionStorage.setItem('searchTerm', searchTerm);
         sessionStorage.setItem('selectedMonth', JSON.stringify(selectedMonth));
         sessionStorage.setItem('selectedDepth', JSON.stringify(selectedDepth));
-    }, [searchTerm, selectedMonth, selectedDepth]);
+        sessionStorage.setItem('selectedHabitat', JSON.stringify(selectedHabitat));
+    }, [searchTerm, selectedMonth, selectedDepth, selectedHabitat]);
 
     // --- フィルター用データ ---
     const months = useMemo(() => Array.from({ length: 12 }, (_, i) => (i + 1).toString()), []);
@@ -331,6 +290,12 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
         { key: 'depth3', label: '標準', range: '(10-30m)', fullLabel: '標準 (10-30m)' },
         { key: 'depth4', label: '深場', range: '(30-40m+)', fullLabel: '深場 (30-40m+)' },
         { key: 'depth5', label: '超深場', range: '(40m+以深)', fullLabel: '超深場 (40m+以深)' },
+    ], []);
+
+    const habitatTypes = useMemo(() => [
+        { key: '海水', label: '海水' },
+        { key: '汽水', label: '汽水' },
+        { key: '淡水', label: '淡水' }
     ], []);
 
     // --- 種IDと種名のマッピング ---
@@ -375,12 +340,28 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
         const depthMap = {};
         depthRanges.forEach(d => depthMap[d.key] = new Set());
 
+        // 生息環境の集計用マップ
+        const habitatMap = {};
+        habitatTypes.forEach(h => habitatMap[h.key] = new Set());
+
         locRecords.forEach(r => {
+            // 月の集計
             if (r.month && monthMap[r.month]) {
                 monthMap[r.month].add(r.id);
             }
+            // 水深の集計
             if (r.depth && depthMap[r.depth]) {
                 depthMap[r.depth].add(r.id);
+            }
+            // 生息環境の集計
+            const fish = speciesMap[r.id];
+            if (fish && fish.habitat) {
+                const fishHabitats = Array.isArray(fish.habitat) ? fish.habitat : [fish.habitat];
+                fishHabitats.forEach(h => {
+                    if (habitatMap[h]) {
+                        habitatMap[h].add(r.id);
+                    }
+                });
             }
         });
 
@@ -397,52 +378,65 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
             value: d.key
         }));
 
-        return { monthData, depthData };
+        const habitatData = habitatTypes.map(h => ({
+            label: h.label,
+            count: habitatMap[h.key].size,
+            value: h.key
+        }));
 
-    }, [searchTerm, allRecords, months, depthRanges]);
+        return { monthData, depthData, habitatData };
 
+    }, [searchTerm, allRecords, months, depthRanges, habitatTypes, speciesMap]);
+
+    const isHabitatMatch = (speciesId) => {
+        if (selectedHabitat.length === 0) return true;
+        const fish = speciesMap[speciesId];
+        if (!fish || !fish.habitat) return false;
+
+        const fishHabitats = Array.isArray(fish.habitat) ? fish.habitat : [fish.habitat];
+        return fishHabitats.some(h => selectedHabitat.includes(h));
+    };
 
     // --- 検索ロジック ---
     const searchResults = useMemo(() => {
-        const isFilterApplied = searchTerm || selectedMonth.length > 0 || selectedDepth.length > 0;
+        const isFilterApplied = searchTerm || selectedMonth.length > 0 || selectedDepth.length > 0 || selectedHabitat.length > 0;
         if (!isFilterApplied) return [];
 
         const lowerTerm = searchTerm.toLowerCase();
 
+        // 1. レコード（場所・月・深さ）で絞り込み
         const filteredRecords = allRecords.filter(record => {
-            if (searchTerm && !record.loc.includes(lowerTerm)) {
-                return false;
-            }
-            if (selectedMonth.length > 0 && !selectedMonth.includes(record.month)) {
-                return false;
-            }
-            if (selectedDepth.length > 0 && !selectedDepth.includes(record.depth)) {
-                return false;
-            }
+            if (searchTerm && !record.loc.includes(lowerTerm)) return false;
+            if (selectedMonth.length > 0 && !selectedMonth.includes(record.month)) return false;
+            if (selectedDepth.length > 0 && !selectedDepth.includes(record.depth)) return false;
             return true;
         });
 
-        const finalIds = new Set(filteredRecords.map(record => record.id));
+        // 2. 魚種データ（生息環境）でさらに絞り込み
+        const finalIds = new Set();
+        filteredRecords.forEach(record => {
+            if (isHabitatMatch(record.id)) {
+                finalIds.add(record.id);
+            }
+        });
+
         const results = Array.from(finalIds)
             .map(id => speciesMap[id])
             .filter(Boolean);
 
         return results.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName, "ja"));
-    }, [searchTerm, selectedMonth, selectedDepth, allRecords, speciesMap]);
+    }, [searchTerm, selectedMonth, selectedDepth, selectedHabitat, allRecords, speciesMap]);
 
     // --- マップ用データ生成 ---
     const filteredMapMarkers = useMemo(() => {
-        const isDateDepthFilterApplied = selectedMonth.length > 0 || selectedDepth.length > 0;
+        const isFilterApplied = selectedMonth.length > 0 || selectedDepth.length > 0 || selectedHabitat.length > 0;
         const dynamicLocationMap = {};
         const lowerTerm = searchTerm.toLowerCase();
 
         allRecords.forEach(record => {
-            if (selectedMonth.length > 0 && !selectedMonth.includes(record.month)) {
-                return;
-            }
-            if (selectedDepth.length > 0 && !selectedDepth.includes(record.depth)) {
-                return;
-            }
+            if (selectedMonth.length > 0 && !selectedMonth.includes(record.month)) return;
+            if (selectedDepth.length > 0 && !selectedDepth.includes(record.depth)) return;
+            if (!isHabitatMatch(record.id)) return;
 
             if (record.loc) {
                 if (!dynamicLocationMap[record.loc]) {
@@ -458,19 +452,17 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
              let speciesCount = marker.speciesCount;
              let speciesIds = marker.speciesIds;
 
-             if (isDateDepthFilterApplied) {
+             if (isFilterApplied) {
                  if (dynamicLocationMap[locationNameLower]) {
                      const ids = Array.from(dynamicLocationMap[locationNameLower]);
                      speciesCount = ids.length;
                      speciesIds = ids;
                  } else {
-                     speciesCount = 0; // 0件の場合は表示しない、あるいは0として扱う
+                     speciesCount = 0;
                  }
              }
 
-             // isDateDepthFilterAppliedがtrueでcount0なら、ピン自体を表示しないロジックの場合
-             if (isDateDepthFilterApplied && speciesCount === 0) continue;
-
+             if (isFilterApplied && speciesCount === 0) continue;
              const isMatch = !searchTerm || locationNameLower.includes(lowerTerm);
 
              newMapMarkers.push({
@@ -482,13 +474,11 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
         }
         return newMapMarkers;
 
-    }, [searchTerm, selectedMonth, selectedDepth, allRecords, mapMarkers]);
+    }, [searchTerm, selectedMonth, selectedDepth, selectedHabitat, allRecords, mapMarkers]);
 
     const mapKey = useMemo(() => "map-view", []);
-
-    const defaultCenter = [35.6809591, 139.7673068]; // 日本の中心（初期値）
+    const defaultCenter = [35.6809591, 139.7673068]; 
     const defaultZoom = 4;
-
     const mapConfig = useMemo(() => {
         if (searchTerm && locationData[searchTerm]) {
             return {
@@ -499,13 +489,9 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
         if (isMapClick) {
             return { center: null, zoom: null };
         }
-        return {
-            center: defaultCenter,
-            zoom: defaultZoom
-        };
+        return { center: defaultCenter, zoom: defaultZoom };
     }, [searchTerm, isMapClick]);
 
-        // --- イベントハンドラ ---
     const handleMarkerClick = (locationName) => {
         setIsMapClick(true);
         if (searchTerm === locationName) {
@@ -515,51 +501,6 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
         }
     };
 
-    // const handlePasswordSubmit = (e) => {
-    //     e.preventDefault();
-    //     if (inputPassword === CORRECT_PASSWORD) {
-    //         setIsAuthenticated(true);
-    //         sessionStorage.setItem("search-auth", "true");
-    //         setError("");
-    //     } else {
-    //         setError("パスワードが違います。");
-    //     }
-    // };
-
-
-    // --- パスワード認証前の表示 ---
-    // if (!isAuthenticated) {
-    //     return (
-    //         <Layout title="認証 | 僕らむの魚図鑑" description="アクセスが制限されています" url="https://www.my-divingram.com/search" imageUrl="https://www.my-divingram.com/img/logo/favicon_small.jpg">
-    //             <Head>
-    //                 <meta name="robots" content="noindex" />
-    //             </Head>
-    //             <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-white to-sky-100">
-    //                 <form
-    //                     onSubmit={handlePasswordSubmit}
-    //                     className="p-8 bg-white rounded-lg shadow-xl"
-    //                 >
-    //                     <h1 className="text-lg font-bold text-gray-700 mb-4">パスワードを入力してください</h1>
-    //                     <input
-    //                         type="password"
-    //                         value={inputPassword}
-    //                         onChange={(e) => setInputPassword(e.target.value)}
-    //                         className="w-full p-3 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
-    //                     />
-    //                     {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
-    //                     <button
-    //                         type="submit"
-    //                         className="w-full mt-4 px-4 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition-colors"
-    //                     >
-    //                         認証
-    //                     </button>
-    //                 </form>
-    //             </div>
-    //         </Layout>
-    //     );
-    // }
-
-    // --- 認証後の通常のページ表示 ---
     return (
         <Layout title="Map | 僕らむの魚図鑑" description="撮影場所・水深から魚種を検索できます" url="https://www.my-divingram.com/search" imageUrl="https://www.my-divingram.com/img/logo/favicon_small.jpg">
 
@@ -572,10 +513,9 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                     現在のデータ数 : {allRecords.length}件
                 </p>
 
-                <div className="max-w-xl mx-auto md:max-w-5xl mb-10 p-5 bg-white rounded-lg shadow-xl md:grid md:grid-cols-3 md:gap-8">                    {/* --- 左カラム (ポイント + 地図) --- */}
+                <div className="max-w-xl mx-auto md:max-w-5xl mb-10 p-5 bg-white rounded-lg shadow-xl md:grid md:grid-cols-3 md:gap-8">
+                    {/* --- 左カラム (ポイント + 地図) --- */}
                     <div className="md:col-span-2 flex flex-col">
-
-                        {/* ポイント (場所名) */}
                         <div className="mb-6">
                             <label htmlFor="location-search" className="block text-sm font-medium text-gray-700 mb-2">ポイント</label>
                             <div className="relative">
@@ -590,8 +530,6 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                                         setSearchTerm(e.target.value);
                                     }}
                                 />
-
-                                {/* 入力がある時だけ ×ボタン を表示 */}
                                 {searchTerm && (
                                     <button
                                         type="button"
@@ -608,8 +546,6 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                                 )}
                             </div>
                         </div>
-
-                        {/* 地図 */}
                         <div className="mb-6 md:mb-0 shadow-lg rounded-lg overflow-hidden">
                             <LocationMap
                                 key={mapKey}
@@ -621,7 +557,7 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                         </div>
                     </div>
 
-                    {/* --- 右カラム (月 + 水深) --- */}
+                    {/* --- 右カラム (フィルター) --- */}
                     <div className="flex flex-col">
                         <button
                             type="button"
@@ -631,29 +567,39 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                             <svg className={`w-5 h-5 transition-transform ${isMobileFilterOpen ? 'rotate-180' : ''}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                 <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                             </svg>
-                            <span className="ml-2">撮影月 または 水深 でフィルタリング</span>
+                            <span className="ml-2">生息環境・水深・撮影月で絞り込み</span>
                         </button>
 
-                        {/* フィルターのラッパー (折りたたみ対応) */}
                         <div className={`${isMobileFilterOpen ? 'block' : 'hidden'} md:block`}>
-                            {/* 撮影月 (複数選択) */}
+                            {/* 1. 生息環境 */}
                             <div className="mb-6">
-                                <label className="block text-sm font-medium text-gray-700 mb-2">撮影月</label>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">生息環境</label>
                                 <div className="flex flex-wrap gap-2">
-                                    <button type="button" onClick={() => handleFilterToggle("All", selectedMonth, setSelectedMonth)} className={`px-3 py-2 text-sm font-medium rounded-full shadow-sm ${selectedMonth.length === 0 ? 'bg-sky-600 text-white' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'}`}>All</button>
-                                    {months.map(m => (
-                                        <button key={m} type="button" onClick={() => handleFilterToggle(m, selectedMonth, setSelectedMonth)} className={`px-3 py-2 text-sm font-medium rounded-full shadow-sm ${selectedMonth.includes(m) ? 'bg-sky-600 text-white' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'}`}>{m}月</button>
+                                    <button type="button" onClick={() => handleFilterToggle("All", selectedHabitat, setSelectedHabitat)} className={`px-4 py-2 text-sm font-medium rounded-full shadow-sm ${selectedHabitat.length === 0 ? 'bg-sky-600 text-white' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'}`}>All</button>
+                                    {habitatTypes.map(habitat => (
+                                        <button key={habitat.key} type="button" onClick={() => handleFilterToggle(habitat.key, selectedHabitat, setSelectedHabitat)} className={`px-4 py-2 text-sm font-medium rounded-full shadow-sm ${selectedHabitat.includes(habitat.key) ? 'bg-sky-600 text-white' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'}`}>{habitat.label}</button>
                                     ))}
                                 </div>
                             </div>
 
-                            {/* 水深 (複数選択) */}
+                            {/* 2. 水深 */}
                             <div className="mb-6">
                                 <label className="block text-sm font-medium text-gray-700 mb-2">水深</label>
                                 <div className="flex flex-wrap gap-2">
                                     <button type="button" onClick={() => handleFilterToggle("All", selectedDepth, setSelectedDepth)} className={`px-4 py-2 text-sm font-medium rounded-full shadow-sm ${selectedDepth.length === 0 ? 'bg-sky-600 text-white' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'}`}>All</button>
                                     {depthRanges.map(range => (
                                         <button key={range.key} type="button" onClick={() => handleFilterToggle(range.key, selectedDepth, setSelectedDepth)} className={`px-4 py-2 text-sm font-medium rounded-full shadow-sm ${selectedDepth.includes(range.key) ? 'bg-sky-600 text-white' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'}`}>{range.fullLabel}</button>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* 3. 撮影月 */}
+                            <div className="mb-6">
+                                <label className="block text-sm font-medium text-gray-700 mb-2">撮影月</label>
+                                <div className="flex flex-wrap gap-2">
+                                    <button type="button" onClick={() => handleFilterToggle("All", selectedMonth, setSelectedMonth)} className={`px-3 py-2 text-sm font-medium rounded-full shadow-sm ${selectedMonth.length === 0 ? 'bg-sky-600 text-white' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'}`}>All</button>
+                                    {months.map(m => (
+                                        <button key={m} type="button" onClick={() => handleFilterToggle(m, selectedMonth, setSelectedMonth)} className={`px-3 py-2 text-sm font-medium rounded-full shadow-sm ${selectedMonth.includes(m) ? 'bg-sky-600 text-white' : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'}`}>{m}月</button>
                                     ))}
                                 </div>
                             </div>
@@ -664,40 +610,56 @@ export default function LocationSearchPage({ allRecords, speciesLookup, mapMarke
                 {/* 検索結果 (サムネイル付き) */}
                 <div className="pt-2">
 
-                    {/* グラフ表示エリア (データがあれば常に表示) */}
+                    {/* グラフ表示エリア */}
                     {locationStats && (
                         <div className="max-w-xl mx-auto md:max-w-5xl mb-8">
                             <h2 className="text-lg font-bold text-gray-700 mb-7 text-center">
                                 {searchTerm ? `${searchTerm}の撮影魚種分布` : "撮影魚種分布"}
                             </h2>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <SimpleBarChart
-                                    data={locationStats.monthData}
-                                    title="撮影月"
-                                    yKey="count"
-                                    labelKey="label"
-                                    barWidth="w-3 md:w-5"
-                                    onBarClick={(val) => handleFilterToggle(val, selectedMonth, setSelectedMonth)}
-                                    selectedValues={selectedMonth}
-                                    onClear={() => setSelectedMonth([])}
-                                />
-                                <SimpleBarChart
-                                    data={locationStats.depthData}
-                                    title="水深"
-                                    yKey="count"
-                                    labelKey="label"
-                                    subLabelKey="subLabel"
-                                    barWidth="w-8 md:w-12"
-                                    onBarClick={(val) => handleFilterToggle(val, selectedDepth, setSelectedDepth)}
-                                    selectedValues={selectedDepth}
-                                    onClear={() => setSelectedDepth([])}
-                                />
+                            <div className="grid grid-cols-5 gap-2 md:gap-4">
+                                <div className="col-span-2">
+                                    <SimpleBarChart
+                                        data={locationStats.habitatData}
+                                        title="生息環境"
+                                        yKey="count"
+                                        labelKey="label"
+                                        barWidth="w-8 md:w-12"
+                                        onBarClick={(val) => handleFilterToggle(val, selectedHabitat, setSelectedHabitat)}
+                                        selectedValues={selectedHabitat}
+                                        onClear={() => setSelectedHabitat([])}
+                                    />
+                                </div>
+                                <div className="col-span-3">
+                                    <SimpleBarChart
+                                        data={locationStats.depthData}
+                                        title="水深"
+                                        yKey="count"
+                                        labelKey="label"
+                                        subLabelKey="subLabel"
+                                        barWidth="w-8 md:w-12"
+                                        onBarClick={(val) => handleFilterToggle(val, selectedDepth, setSelectedDepth)}
+                                        selectedValues={selectedDepth}
+                                        onClear={() => setSelectedDepth([])}
+                                    />
+                                </div>
+                                <div className="col-span-5">
+                                    <SimpleBarChart
+                                        data={locationStats.monthData}
+                                        title="撮影月"
+                                        yKey="count"
+                                        labelKey="label"
+                                        barWidth="w-3 md:w-5"
+                                        onBarClick={(val) => handleFilterToggle(val, selectedMonth, setSelectedMonth)}
+                                        selectedValues={selectedMonth}
+                                        onClear={() => setSelectedMonth([])}
+                                    />
+                                </div>
                             </div>
                         </div>
                     )}
 
-                    {/* 検索結果リスト (検索ワード または フィルターがある時のみ表示) */}
-                    {(searchTerm || selectedMonth.length > 0 || selectedDepth.length > 0) && (
+                    {/* 検索結果リスト */}
+                    {(searchTerm || selectedMonth.length > 0 || selectedDepth.length > 0 || selectedHabitat.length > 0) && (
                         <>
                             <h2 className="pb-2 text-lg font-bold text-gray-700 mb-4 text-center">
                                 検索結果 : {searchResults.length}種
