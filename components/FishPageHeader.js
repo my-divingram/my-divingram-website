@@ -107,14 +107,13 @@ export default function FishPageHeader({
 
                     {isFilterActive && (
                         <div className="flex items-center gap-3 animate-fade-in-up">
-                            <span className="text-xs md:text-sm font-bold text-gray-700">
+                            <span className="text-xs md:text-sm text-gray-700 font-medium">
                                 該当種 : {filteredCount}種
                             </span>
                             <button
                                 onClick={clearAllFilters}
                                 className="flex items-center gap-1 px-3 py-1 text-[11px] text-gray-500 bg-gray-50 hover:bg-gray-200 rounded-full transition-colors shadow-sm"
                             >
-                                {/* ... SVGアイコン ... */}
                                 <span>条件をクリア</span>
                             </button>
                         </div>
