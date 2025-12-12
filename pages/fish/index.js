@@ -184,7 +184,7 @@ function Home({data_fish, data_fish_slider, data_num, data_num_ja, allFishList})
                                     href={{
                                         pathname: cat.href,
                                         query: {
-                                            ...(regionFilter !== 'all' ? { region: regionFilter } : {}),
+                                            ...(regionFilter && regionFilter !== 'all' ? { region: regionFilter } : {}),
                                             ...(selectedHabitats.length > 0 ? { habitats: selectedHabitats.join(',') } : {})
                                         }
                                     }}
