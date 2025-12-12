@@ -25,7 +25,6 @@ export const getStaticProps = async() => {
     const commonRequests = [
         client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚`, orders: `-updatedAt`, limit: 1}}),
         client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]isOversea[equals]false`, orders: `-updatedAt`, limit: 1}}),
-        client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]freshwaterfish` , limit: 1 }}),
         client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]isSpotlight[equals]true`, orders: `-updatedAt`, limit: 40}}),
     ];
 
@@ -38,7 +37,7 @@ export const getStaticProps = async() => {
     });
 
     const [
-        data_fish, data_fish_ja, data_fish_freshwater, data_fish_slider, ...monthlyData
+        data_fish, data_fish_ja, data_fish_slider, ...monthlyData
     ] = await Promise.all([...commonRequests, ...monthlyRequests]);
 
     const monthsDataForProps = months.map((month, index) => {

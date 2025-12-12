@@ -99,8 +99,27 @@ function Home({data_fish, data_blog}) {
 
             <div className="px-5 md:px-20">
 
-                <h1 className="pt-10 mb-2 text-xl md:text-2xl text-center text-sky-800 font-black">RECORD</h1>
-                <p className="text-xs text-center text-gray-500 mb-8 tracking-wider">Last Updated : {data_fish[0].updatedAt.substr(0,10)}</p>
+                <h1 className="pt-10 mb-2 text-xl md:text-2xl text-center text-sky-800 font-black">UPDATES</h1>
+
+                <div className="flex flex-col items-center gap-3 mb-8">
+                    <p className="text-xs text-center text-gray-500 tracking-wider">
+                        Latest Entry : {data_fish[0].updatedAt.substr(0,10)}
+                    </p>
+                    <Link href="/fish/recent_updates" className="group">
+                        <div className="flex items-center gap-2.5 px-5 py-2 bg-white rounded-full border border-gray-100 shadow-sm group-hover:shadow-md group-hover:border-sky-200 transition-all duration-300 cursor-pointer">
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
+                            </span>
+                            <span className="text-xs font-bold text-gray-600 group-hover:text-sky-700 tracking-wide transition-colors">
+                                最近追加された魚たちを見る
+                            </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-3 h-3 text-gray-300 group-hover:text-sky-500 group-hover:translate-x-0.5 transition-all duration-300">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                            </svg>
+                        </div>
+                    </Link>
+                </div>
 
                 <Splide options={{type:"loop", gap:"24px", drag:"free", perPage:10, breakpoints:{640:{perPage:3}}, autoScroll:{pauseOnHover:true, pauseOnFocus:false, rewind:false, speed:0.3}}} extensions={{AutoScroll}}>
                     {data_fish.map((data) => (
@@ -238,9 +257,20 @@ function Home({data_fish, data_blog}) {
                             </Link>
                         ))}
                     </div>
-                    <div className="mt-10 text-center">
-                        <Link href="/blog" className="inline-block px-8 py-3 rounded-full border border-sky-600 text-sky-600 font-bold text-sm hover:bg-sky-600 hover:text-white transition-all duration-300">
-                            記事一覧へ
+                    <div className="mt-10 flex justify-center">
+                        <Link href="/blog" className="group">
+                            <div className="flex items-center gap-2.5 px-6 py-2.5 bg-white rounded-full border border-gray-100 shadow-sm group-hover:shadow-md group-hover:border-sky-200 transition-all duration-300 cursor-pointer">
+                                <span className="relative flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
+                                </span>
+                                <span className="text-xs md:text-sm font-bold text-gray-600 group-hover:text-sky-700 tracking-wide transition-colors">
+                                    記事一覧を見る
+                                </span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-3 h-3 text-gray-300 group-hover:text-sky-500 group-hover:translate-x-0.5 transition-all duration-300">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                </svg>
+                            </div>
                         </Link>
                     </div>
                 </div>

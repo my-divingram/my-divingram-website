@@ -15,13 +15,11 @@ export const getStaticProps = async() => {
     const [
         data_fish,
         data_fish_ja,
-        data_fish_freshwater,
         data_fish_slider,
         allFishList
     ] = await Promise.all([
         client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚`, orders: `-updatedAt`, limit: 1}}),
         client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]isOversea[equals]false`, orders: `-updatedAt`, limit: 1}}),
-        client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]freshwaterfish` , limit: 1 }}),
         client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]isSpotlight[equals]true`, orders: `-updatedAt`, limit: 40}}),
         fetchAllPages("uwphoto", {
             filters: `book[contains]魚`,
@@ -124,20 +122,32 @@ function Home({data_fish, data_fish_slider, data_num, data_num_ja, allFishList})
 
     const isFilterActive = (regionFilter !== null && regionFilter !== "all") || selectedHabitats.length > 0;
 
-    const activeCategories = useMemo(() => {
-        const validFish = allFishList.filter(fish => {
+    const filteredFish = useMemo(() => {
+        return allFishList.filter(fish => {
             if (regionFilter === "domestic" && fish.isOversea) return false;
             if (regionFilter === "oversea" && !fish.isOversea) return false;
 
             if (selectedHabitats.length > 0) {
-                if (!fish.habitat) return false;
+                if (!fish.habitat || !Array.isArray(fish.habitat)) return false;
                 const hasAll = selectedHabitats.every(h => fish.habitat.includes(h));
                 if (!hasAll) return false;
             }
             return true;
         });
-        return new Set(validFish.map(fish => fish.class));
     }, [allFishList, regionFilter, selectedHabitats]);
+
+    const activeCategories = useMemo(() => {
+        const classSet = new Set();
+        filteredFish.forEach(fish => {
+            if (!fish.class) return;
+            if (Array.isArray(fish.class)) {
+                fish.class.forEach(c => classSet.add(c));
+            } else {
+                classSet.add(fish.class);
+            }
+        });
+        return classSet;
+    }, [filteredFish]);
 
 
     // 構造化データ
@@ -172,6 +182,7 @@ function Home({data_fish, data_fish_slider, data_num, data_num_ja, allFishList})
                     toggleHabitat={toggleHabitat}
                     clearAllFilters={clearAllFilters}
                     isFilterActive={isFilterActive}
+                    filteredCount={filteredFish.length}
                 />
 
                 <div className="grid px-3 gap-3 grid-cols-3 md:grid-cols-6">

@@ -36,7 +36,6 @@ export const getStaticProps = async (context) => {
         allKanaData,
         data_fish,
         data_fish_ja,
-        data_fish_freshwater,
         data_fish_slider,
         allFishList
     ] = await Promise.all([
@@ -46,7 +45,6 @@ export const getStaticProps = async (context) => {
         }),
         client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚`, orders: `-updatedAt`, limit: 1}}),
         client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]isOversea[equals]false`, orders: `-updatedAt`, limit: 1}}),
-        client.get({ endpoint: "uwphoto", queries: { filters: `class[equals]freshwaterfish` , limit: 1 }}),
         client.get({ endpoint: "uwphoto", queries: { filters: `book[contains]魚[and]isSpotlight[equals]true`, orders: `-updatedAt`, limit: 40}}),
         fetchAllPages("uwphoto", {
             filters: `book[contains]魚`,
@@ -208,6 +206,7 @@ export default function KanaList({
                     toggleHabitat={toggleHabitat}
                     clearAllFilters={clearAllFilters}
                     isFilterActive={isFilterActive}
+                    filteredCount={filteredData.length}
                 />
 
                 <h1 className="pb-10 text-center text-xl md:text-2xl text-sky-800 font-black">

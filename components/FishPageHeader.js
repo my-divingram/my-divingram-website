@@ -31,7 +31,8 @@ export default function FishPageHeader({
     selectedHabitats,
     toggleHabitat,
     clearAllFilters,
-    isFilterActive
+    isFilterActive,
+    filteredCount
 }) {
     const getQueryObj = () => {
         const query = {};
@@ -57,14 +58,14 @@ export default function FishPageHeader({
                 ))}
             </Splide>
 
-            <p className="text-sm md:text-lg text-center text-gray-700 font-medium">掲載種 : {data_num}種</p>
-            <p className="text-sm md:text-lg text-center text-gray-700 font-medium">うち日本産魚類 : {data_num_ja}種</p>
+            <p className="pt-2 text-sm md:text-lg text-center text-gray-700 font-medium">掲載種 : {data_num}種</p>
+            <p className="pb-4 text-sm md:text-lg text-center text-gray-700 font-medium">うち日本産魚類 : {data_num_ja}種</p>
 
-            {data_fish && data_fish[0] && (
+            {/* {data_fish && data_fish[0] && (
                  <p className="pt-1 pb-6 text-xs md:text-sm text-center text-gray-700 font-medium">
                     最近の更新一覧は<Link href={"/fish/recent_updates"} className="underline hover:opacity-50">こちら</Link> (最終更新 : {data_fish[0].updatedAt.substr(0,10)})
                  </p>
-            )}
+            )} */}
 
             {/* フィルタボタンエリア */}
             {toggleRegion && (
@@ -105,15 +106,18 @@ export default function FishPageHeader({
                     </div>
 
                     {isFilterActive && (
-                        <button
-                            onClick={clearAllFilters}
-                            className="flex items-center gap-1 px-3 py-1 text-[11px] text-gray-500 bg-gray-50 hover:bg-gray-200 rounded-full transition-colors shadow-sm"
-                        >
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3">
-                                <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clipRule="evenodd" />
-                            </svg>
-                            <span>条件をクリア</span>
-                        </button>
+                        <div className="flex items-center gap-3 animate-fade-in-up">
+                            <span className="text-xs md:text-sm font-bold text-gray-700">
+                                該当種 : {filteredCount}種
+                            </span>
+                            <button
+                                onClick={clearAllFilters}
+                                className="flex items-center gap-1 px-3 py-1 text-[11px] text-gray-500 bg-gray-50 hover:bg-gray-200 rounded-full transition-colors shadow-sm"
+                            >
+                                {/* ... SVGアイコン ... */}
+                                <span>条件をクリア</span>
+                            </button>
+                        </div>
                     )}
                 </div>
             )}
