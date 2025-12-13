@@ -174,6 +174,7 @@ export const categoryStructure = {
         {
             familyName: "コイ科",
             genusName: [
+                { key: "コイ属", displayName: "コイ属 (Cyprinus)" },
                 { key: "タモロコ属", displayName: "タモロコ属 (Gnathopogon)" },
                 { key: "カマツカ属", displayName: "カマツカ属 (Pseudogobio)" },
                 { key: "ムギツク属", displayName: "ムギツク属 (Pungtungia)" },
@@ -1625,6 +1626,12 @@ export const categoryStructure = {
             familyName: "セミホウボウ科", // 2075
             genusName: [
                 { key: "セミホウボウ属", displayName: "セミホウボウ属 (Dactyloptena)" },
+            ]
+        },
+        {
+            familyName: "ケツギョ科", // 2088
+            genusName: [
+                { key: "オヤニラミ属", displayName: "オヤニラミ属 (Coreoperca)" },
             ]
         },
         {
