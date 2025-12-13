@@ -1714,6 +1714,7 @@ export const categoryStructure = {
         {
             familyName: "シマイサキ科", // 3072
             genusName: [
+                { key: "シマイサキ属", displayName: "シマイサキ属 (Rhyncopelates)" },
                 { key: "コトヒキ属", displayName: "コトヒキ属 (Terapon)" },
             ]
         },
