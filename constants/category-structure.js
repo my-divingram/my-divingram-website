@@ -529,6 +529,7 @@ export const categoryStructure = {
                 { key: "ツマグロカジカ属", displayName: "ツマグロカジカ属 (Gymnocanthus)" },
                 { key: "イダテンカジカ属", displayName: "イダテンカジカ属 (Ocynectes)" },
                 { key: "アナハゼ属", displayName: "アナハゼ属 (Pseudoblennius)" },
+                { key: "カマキリ属", displayName: "カマキリ属 (Rheopresbe)" },
                 { key: "スイ属", displayName: "スイ属 (Vellitor)" },
             ]
         }
