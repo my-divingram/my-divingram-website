@@ -414,6 +414,7 @@ export const categoryStructure = {
             genusName: [
                 { key: "ダンゴオコゼ属", displayName: "ダンゴオコゼ属 (Caracanthus)" },
                 { key: "ヒメヤマノカミ属", displayName: "ヒメヤマノカミ属 (Dendrochirus)" },
+                { key: "エボシカサゴ属", displayName: "エボシカサゴ属 (Ebosia)" },
                 { key: "ヒレボシミノカサゴ属", displayName: "ヒレボシミノカサゴ属 (Nemapterois)" },
                 { key: "シマヒメヤマノカミ属", displayName: "シマヒメヤマノカミ属 (Neochirus)" },
                 { key: "セトミノカサゴ属", displayName: "セトミノカサゴ属 (Parapterois)" },
@@ -726,6 +727,7 @@ export const categoryStructure = {
                 { key: "ナンヨウカイワリ属", displayName: "ナンヨウカイワリ属 (Ferdaiua)" },
                 { key: "コガネアジ属", displayName: "コガネアジ属 (Flavocaranx)" },
                 { key: "コガネシマアジ属", displayName: "コガネシマアジ属 (Gnathanodon)" },
+                { key: "カイワリ属", displayName: "カイワリ属 (Kaiwarinus)" },
                 { key: "シマアジ属", displayName: "シマアジ属 (Pseudocaranx)" },
                 { key: "イケカツオ属", displayName: "イケカツオ属 (Scomberoides)" },
                 { key: "ブリ属", displayName: "ブリ属 (Seriola)" },
@@ -1364,6 +1366,12 @@ export const categoryStructure = {
             familyName: "カマス科",
             genusName: [
                 { key: "カマス属", displayName: "カマス属 (Sphyraena)" },
+            ]
+        },
+        {
+            familyName: "クロタチカマス科",
+            genusName: [
+                { key: "クロタチカマス属", displayName: "クロタチカマス属 (Gempylus)" },
             ]
         }
     ],
