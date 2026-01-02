@@ -1671,6 +1671,12 @@ export const categoryStructure = {
             ]
         },
         {
+            familyName: "ヒイラギ科", // 2555
+            genusName: [
+                { key: "イトヒキヒイラギ属", displayName: "イトヒキヒイラギ属 (Equulites)" },
+            ]
+        },
+        {
             familyName: "クロサギ科", // 2655
             genusName: [
                 { key: "クロサギ属", displayName: "クロサギ属 (Gerres)" },
