@@ -1427,6 +1427,7 @@ export const categoryStructure = {
             genusName: [
                 { key: "トビササウシノシタ属", displayName: "トビササウシノシタ属 (Aseraggodes)" },
                 { key: "ミナミシマウシノシタ属", displayName: "ミナミシマウシノシタ属 (Brachirus)" },
+                { key: "ササウシノシタ属", displayName: "ササウシノシタ属 (Heteromycteris)" },
                 { key: "ミナミウシノシタ属", displayName: "ミナミウシノシタ属 (Pardachirus)" },
                 { key: "サザナミウシノシタ属", displayName: "サザナミウシノシタ属 (Soleichthys)" },
                 { key: "シマウシノシタ属", displayName: "シマウシノシタ属 (Zebrias)" },
