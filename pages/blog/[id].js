@@ -143,17 +143,21 @@ export default function BlogId({ data_blog }) {
                 prose-figcaption:mt-2
                 prose-strong:font-extrabold
 
-                prose-h1:bg-sky-800/80
-                prose-h1:text-white
+               prose-h1:bg-white
+                prose-h1:border
+                prose-h1:border-sky-800
+                prose-h1:border-l-[6px]
+                prose-h1:border-l-sky-800
+                prose-h1:text-gray-700
                 prose-h1:font-bold
-                prose-h1:px-6
+                prose-h1:px-4
                 prose-h1:py-3
-                prose-h1:rounded-lg
-                prose-h1:shadow-md
                 prose-h1:mt-12
                 prose-h1:mb-6
                 prose-h1:text-lg
                 prose-h1:md:text-xl
+                prose-h1:shadow-none
+                prose-h1:rounded-none
 
                 prose-table:bg-white
                 prose-table:border-collapse
