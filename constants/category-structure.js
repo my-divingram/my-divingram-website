@@ -1640,6 +1640,12 @@ export const categoryStructure = {
             ]
         },
         {
+            familyName: "アカメ科", // 2075
+            genusName: [
+                { key: "アカメモドキ属", displayName: "アカメモドキ属 (Psammoperca)" },
+            ]
+        },
+        {
             familyName: "ケツギョ科", // 2088
             genusName: [
                 { key: "オヤニラミ属", displayName: "オヤニラミ属 (Coreoperca)" },
