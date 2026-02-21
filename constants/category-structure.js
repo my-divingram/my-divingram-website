@@ -1602,6 +1602,7 @@ export const categoryStructure = {
         {
             familyName: "カダヤシ科", // 1568
             genusName: [
+                { key: "カダヤシ属", displayName: "カダヤシ属 (Gambusia)" },
                 { key: "グッピー属", displayName: "グッピー属 (Poecilia)" },
                 { key: "ソードテール属", displayName: "ソードテール属 (Xiphophorus)" },
             ]
