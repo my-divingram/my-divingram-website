@@ -97,7 +97,7 @@ export default function BlogId({ data_blog }) {
                         className="p-8 bg-white rounded-lg shadow-xl max-w-md w-full"
                     >
                         <h1 className="text-lg font-bold text-gray-700 mb-4 text-center">
-                            この記事はパスワードで保護されています。
+                            こちらは非公開の記事です。管理者にパスワードをお問い合わせください。
                         </h1>
                         <input
                             type="password"
