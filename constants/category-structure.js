@@ -1279,6 +1279,7 @@ export const categoryStructure = {
                 { key: "シラヌイハゼ属", displayName: "シラヌイハゼ属 (Silhouettea)" },
                 { key: "ヒメハゼ属", displayName: "ヒメハゼ属 (Favonigobius)" },
                 { key: "ノボリハゼ属", displayName: "ノボリハゼ属 (Oligolepis)" },
+                { key: "ヒナハゼ属", displayName: "ヒナハゼ属 (Redigobius)" },
                 { key: "キララハゼ属", displayName: "キララハゼ属 (Acentrogobius)" },
                 { key: "サンカクハゼ属", displayName: "サンカクハゼ属 (Fusigobius)" },
                 { key: "イサゴハゼ属", displayName: "イサゴハゼ属 (Gobiopsis)" },
