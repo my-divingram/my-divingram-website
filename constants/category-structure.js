@@ -731,6 +731,7 @@ export const categoryStructure = {
                 { key: "カイワリ属", displayName: "カイワリ属 (Kaiwarinus)" },
                 { key: "シマアジ属", displayName: "シマアジ属 (Pseudocaranx)" },
                 { key: "イケカツオ属", displayName: "イケカツオ属 (Scomberoides)" },
+                { key: "メアジ属", displayName: "メアジ属 (Selar)" },
                 { key: "ブリ属", displayName: "ブリ属 (Seriola)" },
                 { key: "コバンアジ属", displayName: "コバンアジ属 (Trachinotus)" },
                 { key: "マアジ属", displayName: "マアジ属 (Trachurus)" },
