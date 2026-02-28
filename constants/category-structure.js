@@ -1297,6 +1297,12 @@ export const categoryStructure = {
             ]
         },
         {
+            familyName: "スナハゼ科",
+            genusName: [
+                { key: "スナハゼ属", displayName: "スナハゼ属 (Kraemeria)" },
+            ]
+        },
+        {
             familyName: "オオメワラスボ科",
             genusName: [
                 { key: "オオメワラスボ属", displayName: "オオメワラスボ属 (Gunnellichthys)" },
