@@ -719,6 +719,7 @@ export const categoryStructure = {
             familyName: "アジ科",
             genusName: [
                 { key: "イトヒキアジ属", displayName: "イトヒキアジ属 (Alectis)" },
+                { key: "マブタシマアジ属", displayName: "マブタシマアジ属 (Alepes)" },
                 { key: "マテアジ属", displayName: "マテアジ属 (Atule)" },
                 { key: "ギンガメアジ属", displayName: "ギンガメアジ属 (Caranx)" },
                 { key: "インドカイワリ属", displayName: "インドカイワリ属 (Craterognathus)" },
