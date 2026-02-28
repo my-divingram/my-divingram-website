@@ -1617,6 +1617,12 @@ export const categoryStructure = {
             ]
         },
         {
+            familyName: "サヨリ科", // 1574
+            genusName: [
+                { key: "サヨリ属", displayName: "サヨリ属 (Hyporhamphus)" },
+            ]
+        },
+        {
             familyName: "ダツ科", // 1622
             genusName: [
                 { key: "ダツ属", displayName: "ダツ属 (Strongylura)" },
