@@ -334,12 +334,11 @@ export default function CategoryPage({ pageData, categoryInfo, data_num, classPa
                             />
                         }
                         {family.genusName.map(genus => (
-                            <div key={genus.genusName} id={genus.genusName} className="scroll-mt-24">
-                                <Genus
-                                    genus={genus.genusName}
-                                    data={genus.items}
-                                />
-                            </div>
+                            <Genus
+                                key={genus.genusName}
+                                genus={genus.genusName}
+                                data={genus.items}
+                            />
                         ))}
                     </div>
                 ))}
