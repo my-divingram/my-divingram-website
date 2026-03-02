@@ -43,7 +43,9 @@ export function Species({classes, categoryUrl, pagedata}) {
                     {" > "}
                     <Link href={categoryUrl} className="underline hover:opacity-50">{classes}</Link>
                     {" > "}
-                    {pagedata.genus}
+                    <Link href={`${categoryUrl}#${pagedata.genus}`} className="underline hover:opacity-50">
+                        {pagedata.genus}
+                    </Link>
                 </p>
 
                 <h1 className="pt-5 text-xl md:text-2xl text-center text-gray-700 font-black">{pagedata.japaneseName}</h1>
