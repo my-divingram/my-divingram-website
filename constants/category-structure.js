@@ -1496,6 +1496,7 @@ export const categoryStructure = {
             genusName: [
                 { key: "コンゴウフグ属", displayName: "コンゴウフグ属 (Lactoria)" },
                 { key: "ハコフグ属", displayName: "ハコフグ属 (Ostracion)" },
+                { key: "ラクダハコフグ属", displayName: "ラクダハコフグ属 (Tetrosomus)" },
             ]
         },
         {
