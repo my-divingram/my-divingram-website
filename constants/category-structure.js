@@ -160,6 +160,7 @@ export const categoryStructure = {
             familyName: "アナゴ科",
             genusName: [
                 { key: "ゴテンアナゴ属", displayName: "ゴテンアナゴ属 (Ariosoma)" },
+                { key: "ギンアナゴ属", displayName: "ギンアナゴ属 (Gnathophis)" },
                 { key: "クロアナゴ属", displayName: "クロアナゴ属 (Conger)" },
                 { key: "シンジュアナゴ属", displayName: "シンジュアナゴ属 (Gorgasia)" },
                 { key: "チンアナゴ属", displayName: "チンアナゴ属 (Heteroconger)" },
