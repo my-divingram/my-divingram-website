@@ -43,6 +43,7 @@ export const getStaticProps = async(context) => {
         genusName: family.genusName.map(genusDef => {
             const items = fishByGenus[genusDef.key] || [];
             return {
+                genusKey: genusDef.key,
                 genusName: genusDef.displayName,
                 items: items.sort((a, b) => a.japaneseName.localeCompare(b.japaneseName, "ja"))
             };
@@ -334,11 +335,12 @@ export default function CategoryPage({ pageData, categoryInfo, data_num, classPa
                             />
                         }
                         {family.genusName.map(genus => (
-                            <Genus
-                                key={genus.genusName}
-                                genus={genus.genusName}
-                                data={genus.items}
-                            />
+                            <div key={genus.genusName} id={genus.genusKey} className="scroll-mt-24">
+                                <Genus
+                                    genus={genus.genusName}
+                                    data={genus.items}
+                                />
+                            </div>
                         ))}
                     </div>
                 ))}

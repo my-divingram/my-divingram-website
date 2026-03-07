@@ -77,6 +77,7 @@ export default function IndividualPage({pagedata}){
     const baseUrl = "https://www.my-divingram.com";
     const categoryUrl = `${baseUrl}/fish/${pagedata.class}`;
     const currentUrl = `${baseUrl}/fish/${pagedata.class}/${pagedata.latinName}`.replaceAll(" ", "_");
+    const relativeCategoryUrl = `/fish/${pagedata.class}`;
     const structuredData = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
@@ -135,7 +136,7 @@ export default function IndividualPage({pagedata}){
             </Head>
             <Species
                 classes={className}
-                categoryUrl={categoryUrl}
+                categoryUrl={relativeCategoryUrl}
                 pagedata={{
                     ...pagedata,
                     latinName: displayLatinName
