@@ -181,6 +181,7 @@ export const categoryStructure = {
                 { key: "ムギツク属", displayName: "ムギツク属 (Pungtungia)" },
                 { key: "ヒガイ属", displayName: "ヒガイ属 (Sarcocheilichthys)" },
                 { key: "ウグイ属", displayName: "ウグイ属 (Pseudaspius)" },
+                { key: "バラタナゴ属", displayName: "バラタナゴ属 (Rhodeus)" },
                 { key: "アブラハヤ属", displayName: "アブラハヤ属 (Rhynchocypris)" },
                 { key: "カワムツ属", displayName: "カワムツ属 (Candidia)" },
                 { key: "ハス属", displayName: "ハス属 (Opsariichthys)" },
