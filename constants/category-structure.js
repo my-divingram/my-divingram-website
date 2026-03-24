@@ -1582,6 +1582,7 @@ export const categoryStructure = {
         {
             familyName: "チゴダラ科", // 1065
             genusName: [
+                { key: "イトヒキダラ属", displayName: "イトヒキダラ属 (Laemonema)" },
                 { key: "イソアイナメ属", displayName: "イソアイナメ属 (Lotella)" },
                 { key: "チゴダラ属", displayName: "チゴダラ属 (Physiculus)" },
             ]
