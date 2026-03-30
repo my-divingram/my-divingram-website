@@ -279,6 +279,7 @@ export const categoryStructure = {
             familyName: "アンコウ科",
             genusName: [
                 { key: "アンコウ属", displayName: "アンコウ属 (Lophiomus)" },
+                { key: "キアンコウ属", displayName: "キアンコウ属 (Lophius)" },
             ]
         },
         {
