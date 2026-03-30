@@ -1787,6 +1787,12 @@ export const categoryStructure = {
             ]
         },
         {
+            familyName: "イボダイ科", // 3091
+            genusName: [
+                { key: "メダイ属", displayName: "メダイ属 (Hyperoglyphe)" },
+            ]
+        },
+        {
             familyName: "エボシダイ科", // 3107
             genusName: [
                 { key: "スジハナビラウオ属", displayName: "スジハナビラウオ属 (Psenes)" },
