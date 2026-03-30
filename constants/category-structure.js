@@ -1610,6 +1610,7 @@ export const categoryStructure = {
             familyName: "トウゴロウイワシ科", // 1559
             genusName: [
                 { key: "ヤクシマイワシ属", displayName: "ヤクシマイワシ属 (Atherinomorus)" },
+                { key: "トウゴロウイワシ属", displayName: "トウゴロウイワシ属 (Doboatherina)" },
                 { key: "ギンイソイワシ属", displayName: "ギンイソイワシ属 (Hypoatherina)" },
             ]
         },
