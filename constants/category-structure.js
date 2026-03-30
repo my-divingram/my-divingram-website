@@ -1565,6 +1565,7 @@ export const categoryStructure = {
         {
             familyName: "ハダカイワシ科", // 969
             genusName: [
+                { key: "アラハダカ属", displayName: "アラハダカ属 (Dasyscopelus)" },
                 { key: "ハダカイワシ属", displayName: "ハダカイワシ属 (Diaphus)" },
             ]
         },
