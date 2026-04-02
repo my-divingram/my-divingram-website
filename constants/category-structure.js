@@ -1587,6 +1587,7 @@ export const categoryStructure = {
                 { key: "イトヒキダラ属", displayName: "イトヒキダラ属 (Laemonema)" },
                 { key: "イソアイナメ属", displayName: "イソアイナメ属 (Lotella)" },
                 { key: "チゴダラ属", displayName: "チゴダラ属 (Physiculus)" },
+                { key: "チゴダラ科属不明", displayName: "未同定属 (Moridae, indet. gen.)" },
             ]
         },
         {
