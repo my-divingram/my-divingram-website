@@ -197,6 +197,7 @@ export const categoryStructure = {
             familyName: "ドジョウ科",
             genusName: [
                 { key: "シマドジョウ属", displayName: "シマドジョウ属 (Cobitis)" },
+                { key: "ドジョウ属", displayName: "ドジョウ属 (Misgurnus)" },
             ]
         },
         {
