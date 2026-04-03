@@ -1053,6 +1053,7 @@ export const categoryStructure = {
                 { key: "ムシャギンポ属", displayName: "ムシャギンポ属 (Alectrias)" },
                 { key: "フサギンポ属", displayName: "フサギンポ属 (Chirolophis)" },
                 { key: "ダイナンギンポ属", displayName: "ダイナンギンポ属 (Dictyosoma)" },
+                { key: "ムスジガジ属", displayName: "ムスジガジ属 (Ernogrammus)" },
                 { key: "オキカズナギ属", displayName: "オキカズナギ属 (Opisthocentrus)" },
                 { key: "カズナギ属", displayName: "カズナギ属 (Zoarchias)" },
             ]
