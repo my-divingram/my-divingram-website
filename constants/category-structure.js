@@ -533,6 +533,7 @@ export const categoryStructure = {
                 { key: "ツマグロカジカ属", displayName: "ツマグロカジカ属 (Gymnocanthus)" },
                 { key: "イダテンカジカ属", displayName: "イダテンカジカ属 (Ocynectes)" },
                 { key: "アナハゼ属", displayName: "アナハゼ属 (Pseudoblennius)" },
+                { key: "ヤセカジカ属", displayName: "ヤセカジカ属 (Radulinopsis)" },
                 { key: "カマキリ属", displayName: "カマキリ属 (Rheopresbe)" },
                 { key: "スイ属", displayName: "スイ属 (Vellitor)" },
             ]
@@ -1654,6 +1655,7 @@ export const categoryStructure = {
         {
             familyName: "ダンゴウオ科", // 2075
             genusName: [
+                { key: "ホテイウオ属", displayName: "ホテイウオ属 (Aptocyclus)" },
                 { key: "イボダンゴ属", displayName: "イボダンゴ属 (Eumicrotremus)" },
             ]
         },
