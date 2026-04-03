@@ -1297,6 +1297,7 @@ export const categoryStructure = {
                 { key: "チチブ属", displayName: "チチブ属 (Tridentiger)" },
                 { key: "ホオカギハゼ属", displayName: "ホオカギハゼ属 (Ancistrogobius)" },
                 { key: "サザレハゼ属", displayName: "サザレハゼ属 (Grallenia)" },
+                { key: "シロウオ属", displayName: "シロウオ属 (Leucopsarion)" },
                 { key: "Rhinogobiops", displayName: "Rhinogobiops属" },
                 { key: "Signigobius", displayName: "Signigobius属" },
                 { key: "ハゼ科未記載属", displayName: "未記載属 (Gobiidae indet. gen.)" },
