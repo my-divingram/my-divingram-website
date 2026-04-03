@@ -175,6 +175,7 @@ export const categoryStructure = {
         {
             familyName: "コイ科",
             genusName: [
+                { key: "タナゴ属", displayName: "タナゴ属 (Acheilognathus)" },
                 { key: "コイ属", displayName: "コイ属 (Cyprinus)" },
                 { key: "タモロコ属", displayName: "タモロコ属 (Gnathopogon)" },
                 { key: "カマツカ属", displayName: "カマツカ属 (Pseudogobio)" },
