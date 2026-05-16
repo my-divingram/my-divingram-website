@@ -551,6 +551,18 @@ export const categoryStructure = {
     ],
 
     // ------------------------------------
+    // トクビレの仲間 (poacher)
+    // ------------------------------------
+    poacher: [
+        {
+            familyName: "トクビレ科",
+            genusName: [
+                { key: "ツノシャチウオ属", displayName: "ツノシャチウオ属 (Hypsagonus)" },
+            ]
+        }
+    ],
+
+    // ------------------------------------
     // ハタの仲間 (grouper)
     // ------------------------------------
     grouper: [
@@ -922,18 +934,6 @@ export const categoryStructure = {
                 { key: "ベニゴンベ属", displayName: "ベニゴンベ属 (Neocirrhites)" },
                 { key: "クダゴンベ属", displayName: "クダゴンベ属 (Oxycirrhites)" },
                 { key: "ホシゴンベ属", displayName: "ホシゴンベ属 (Paracirrhites)" },
-            ]
-        }
-    ],
-
-    // ------------------------------------
-    // タカノハダイの仲間 (trumpeter)
-    // ------------------------------------
-    trumpeter: [
-        {
-            familyName: "タカノハダイ科",
-            genusName: [
-                { key: "タカノハダイ属", displayName: "タカノハダイ属 (Goniistius)" },
             ]
         }
     ],
@@ -1750,6 +1750,12 @@ export const categoryStructure = {
             familyName: "カワビシャ科", // 2913
             genusName: [
                 { key: "テングダイ属", displayName: "テングダイ属 (Evistias)" },
+            ]
+        },
+        {
+            familyName: "タカノハダイ科", // 2932
+            genusName: [
+                { key: "タカノハダイ属", displayName: "タカノハダイ属 (Goniistius)" },
             ]
         },
         {
