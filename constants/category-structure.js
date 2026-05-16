@@ -296,7 +296,7 @@ export const categoryStructure = {
                 { key: "Lophiocharon", displayName: "Lophiocharon属" },
                 { key: "Nudiantennarius", displayName: "Nudiantennarius属" },
             ]
-        }
+        },
         {
             familyName: "アカグツ科",
             genusName: [
