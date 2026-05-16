@@ -297,6 +297,12 @@ export const categoryStructure = {
                 { key: "Nudiantennarius", displayName: "Nudiantennarius属" },
             ]
         }
+        {
+            familyName: "アカグツ科",
+            genusName: [
+                { key: "アカグツ属", displayName: "アカグツ属 (Halieutaea)" },
+            ]
+        }
     ],
 
     // ------------------------------------
