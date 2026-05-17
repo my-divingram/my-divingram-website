@@ -1662,6 +1662,7 @@ export const categoryStructure = {
         {
             familyName: "クサウオ科", // 2075
             genusName: [
+                { key: "スイショウウオ属", displayName: "スイショウウオ属 (Crystallichthys)" },
                 { key: "クサウオ属", displayName: "クサウオ属 (Liparis)" },
             ]
         },
