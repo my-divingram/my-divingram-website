@@ -539,6 +539,7 @@ export const categoryStructure = {
             genusName: [
                 { key: "ニジカジカ属", displayName: "ニジカジカ属 (Alcichthys)" },
                 { key: "カジカ属", displayName: "カジカ属 (Cottus)" },
+                { key: "オニカジカ属", displayName: "オニカジカ属 (Enophrys)" },
                 { key: "サラサカジカ属", displayName: "サラサカジカ属 (Furcina)" },
                 { key: "ツマグロカジカ属", displayName: "ツマグロカジカ属 (Gymnocanthus)" },
                 { key: "イダテンカジカ属", displayName: "イダテンカジカ属 (Ocynectes)" },
