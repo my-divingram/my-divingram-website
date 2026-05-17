@@ -546,6 +546,7 @@ export const categoryStructure = {
                 { key: "アナハゼ属", displayName: "アナハゼ属 (Pseudoblennius)" },
                 { key: "ヤセカジカ属", displayName: "ヤセカジカ属 (Radulinopsis)" },
                 { key: "カマキリ属", displayName: "カマキリ属 (Rheopresbe)" },
+                { key: "ホッキョクカジカ属", displayName: "ホッキョクカジカ属 (Triglops)" },
                 { key: "スイ属", displayName: "スイ属 (Vellitor)" },
             ]
         }
