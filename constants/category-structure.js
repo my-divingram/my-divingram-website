@@ -559,6 +559,7 @@ export const categoryStructure = {
             familyName: "トクビレ科",
             genusName: [
                 { key: "ツノシャチウオ属", displayName: "ツノシャチウオ属 (Hypsagonus)" },
+                { key: "オニシャチウオ属", displayName: "オニシャチウオ属 (Tilesina)" },
             ]
         }
     ],
