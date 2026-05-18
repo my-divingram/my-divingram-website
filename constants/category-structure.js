@@ -543,6 +543,7 @@ export const categoryStructure = {
                 { key: "サラサカジカ属", displayName: "サラサカジカ属 (Furcina)" },
                 { key: "ツマグロカジカ属", displayName: "ツマグロカジカ属 (Gymnocanthus)" },
                 { key: "イダテンカジカ属", displayName: "イダテンカジカ属 (Ocynectes)" },
+                { key: "クロカジカ属", displayName: "クロカジカ属 (Porocottus)" },
                 { key: "アナハゼ属", displayName: "アナハゼ属 (Pseudoblennius)" },
                 { key: "ヤセカジカ属", displayName: "ヤセカジカ属 (Radulinopsis)" },
                 { key: "カマキリ属", displayName: "カマキリ属 (Rheopresbe)" },
