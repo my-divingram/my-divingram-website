@@ -1610,6 +1610,12 @@ export const categoryStructure = {
             ]
         },
         {
+            familyName: "タラ科", // 1072
+            genusName: [
+                { key: "コマイ属", displayName: "コマイ属 (Eleginus)" },
+            ]
+        },
+        {
             familyName: "アシロ科", // 1173
             genusName: [
                 { key: "イタチウオ属", displayName: "イタチウオ属 (Brotula)" },
