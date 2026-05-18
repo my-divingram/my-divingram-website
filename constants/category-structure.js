@@ -1448,6 +1448,7 @@ export const categoryStructure = {
             familyName: "カレイ科",
             genusName: [
                 { key: "ソウハチ属", displayName: "ソウハチ属 (Cleisthenes)" },
+                { key: "サメガレイ属", displayName: "サメガレイ属 (Clidoderma)" },
                 { key: "スナガレイ属", displayName: "スナガレイ属 (Limanda)" },
                 { key: "メイタガレイ属", displayName: "メイタガレイ属 (Pleuronichthys)" },
                 { key: "マガレイ属", displayName: "マガレイ属 (Pseudopleuronectes)" },
