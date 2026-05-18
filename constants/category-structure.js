@@ -1068,6 +1068,7 @@ export const categoryStructure = {
                 { key: "ダイナンギンポ属", displayName: "ダイナンギンポ属 (Dictyosoma)" },
                 { key: "ムスジガジ属", displayName: "ムスジガジ属 (Ernogrammus)" },
                 { key: "オキカズナギ属", displayName: "オキカズナギ属 (Opisthocentrus)" },
+                { key: "キタフサギンポ属", displayName: "キタフサギンポ属 (Soldatovia)" },
                 { key: "カズナギ属", displayName: "カズナギ属 (Zoarchias)" },
             ]
         },
