@@ -1451,7 +1451,9 @@ export const categoryStructure = {
             genusName: [
                 { key: "ソウハチ属", displayName: "ソウハチ属 (Cleisthenes)" },
                 { key: "サメガレイ属", displayName: "サメガレイ属 (Clidoderma)" },
+                { key: "シャムシュガレイ属", displayName: "シャムシュガレイ属 (Lepidopsetta)" },
                 { key: "スナガレイ属", displayName: "スナガレイ属 (Limanda)" },
+                { key: "ヌマガレイ属", displayName: "ヌマガレイ属 (Platichthys)" },
                 { key: "メイタガレイ属", displayName: "メイタガレイ属 (Pleuronichthys)" },
                 { key: "マガレイ属", displayName: "マガレイ属 (Pseudopleuronectes)" },
             ]
