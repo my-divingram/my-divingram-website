@@ -561,6 +561,8 @@ export const categoryStructure = {
             genusName: [
                 { key: "シチロウウオ属", displayName: "シチロウウオ属 (Brachyopsis)" },
                 { key: "ツノシャチウオ属", displayName: "ツノシャチウオ属 (Hypsagonus)" },
+                { key: "テングトクビレ属", displayName: "テングトクビレ属 (Leptagonus)" },
+                { key: "トクビレ属", displayName: "トクビレ属 (Podothecus)" },
                 { key: "オニシャチウオ属", displayName: "オニシャチウオ属 (Tilesina)" },
             ]
         }
