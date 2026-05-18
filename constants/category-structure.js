@@ -535,6 +535,12 @@ export const categoryStructure = {
     // ------------------------------------
     sculpin: [
         {
+            familyName: "ケムシカジカ科",
+            genusName: [
+                { key: "イソバテング属", displayName: "イソバテング属 (Blepsias)" },
+            ]
+        },
+        {
             familyName: "カジカ科",
             genusName: [
                 { key: "ニジカジカ属", displayName: "ニジカジカ属 (Alcichthys)" },
