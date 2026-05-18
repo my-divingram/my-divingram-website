@@ -1614,6 +1614,7 @@ export const categoryStructure = {
             familyName: "タラ科", // 1072
             genusName: [
                 { key: "コマイ属", displayName: "コマイ属 (Eleginus)" },
+                { key: "マダラ属", displayName: "マダラ属 (Gadus)" },
             ]
         },
         {
