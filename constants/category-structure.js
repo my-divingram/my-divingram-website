@@ -188,6 +188,7 @@ export const categoryStructure = {
                 { key: "ムギツク属", displayName: "ムギツク属 (Pungtungia)" },
                 { key: "ヒガイ属", displayName: "ヒガイ属 (Sarcocheilichthys)" },
                 { key: "タモロコ属", displayName: "タモロコ属 (Gnathopogon)" },
+                { key: "ニゴイ属", displayName: "ニゴイ属 (Hemibarbus)" },
                 { key: "スゴモロコ属", displayName: "スゴモロコ属 (Squalidus)" },
                 { key: "カマツカ属", displayName: "カマツカ属 (Pseudogobio)" },
             ]
