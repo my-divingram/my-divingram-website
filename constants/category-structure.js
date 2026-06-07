@@ -180,7 +180,7 @@ export const categoryStructure = {
                 { key: "アブラボテ属", displayName: "アブラボテ属 (Tanakia)" },
                 { key: "タナゴ属", displayName: "タナゴ属 (Acheilognathus)" },
                 { key: "バラタナゴ属", displayName: "バラタナゴ属 (Rhodeus)" },
-                { key: "ハス属", displayName: "ハス属 (Opsariichthys)" },
+                { key: "オイカワ属", displayName: "オイカワ属 (Zacco)" },
                 { key: "カワムツ属", displayName: "カワムツ属 (Candidia)" },
                 { key: "ウグイ属", displayName: "ウグイ属 (Pseudaspius)" },
                 { key: "アブラハヤ属", displayName: "アブラハヤ属 (Rhynchocypris)" },
