@@ -244,6 +244,12 @@ export const categoryStructure = {
     // ------------------------------------
     salmon: [
         {
+            familyName: "キュウリウオ科",
+            genusName: [
+                { key: "ワカサギ属", displayName: "ワカサギ属 (Hypomesus)" },
+            ]
+        },
+        {
             familyName: "アユ科",
             genusName: [
                 { key: "アユ属", displayName: "アユ属 (Plecoglossus)" },
