@@ -1667,6 +1667,12 @@ export const categoryStructure = {
             ]
         },
         {
+            familyName: "メダカ科", // 1572
+            genusName: [
+                { key: "メダカ属", displayName: "メダカ属 (Oryzias)" },
+            ]
+        },
+        {
             familyName: "サヨリ科", // 1574
             genusName: [
                 { key: "サヨリ属", displayName: "サヨリ属 (Hyporhamphus)" },
