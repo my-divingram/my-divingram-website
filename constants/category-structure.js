@@ -1293,6 +1293,7 @@ export const categoryStructure = {
                 { key: "ヒトミハゼ属", displayName: "ヒトミハゼ属 (Psammogobius)" },
                 { key: "ヒゲモジャハゼ属", displayName: "ヒゲモジャハゼ属 (Barbuligobius)" },
                 { key: "ツムギハゼ属", displayName: "ツムギハゼ属 (Yongeichthys)" },
+                { key: "ハダカハゼ属", displayName: "ハダカハゼ属 (Kelloggella)" },
                 { key: "ニラミハゼ属", displayName: "ニラミハゼ属 (Heteroplopomus)" },
                 { key: "サビハゼ属", displayName: "サビハゼ属 (Sagamia)" },
                 { key: "キヌバリ属", displayName: "キヌバリ属 (Pterogobius)" },
