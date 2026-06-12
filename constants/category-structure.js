@@ -1688,6 +1688,7 @@ export const categoryStructure = {
         {
             familyName: "ダツ科", // 1622
             genusName: [
+                { key: "ヒメダツ属", displayName: "ヒメダツ属 (Platybelone)" },
                 { key: "ダツ属", displayName: "ダツ属 (Strongylura)" },
                 { key: "テンジクダツ属", displayName: "テンジクダツ属 (Tylosurus)" },
             ]
