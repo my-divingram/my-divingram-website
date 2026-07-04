@@ -496,6 +496,7 @@ export const categoryStructure = {
             familyName: "イボオコゼ科",
             genusName: [
                 { key: "Acanthosphex", displayName: "Acanthosphex属" },
+                { key: "マスダオコゼ属", displayName: "マスダオコゼ属 (Cocotropus)" },
                 { key: "カゴシマオコゼ属", displayName: "カゴシマオコゼ属 (Paraploactis)" },
             ]
         }
