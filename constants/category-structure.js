@@ -1483,7 +1483,6 @@ export const categoryStructure = {
                 { key: "トビササウシノシタ属", displayName: "トビササウシノシタ属 (Aseraggodes)" },
                 { key: "ミナミシマウシノシタ属", displayName: "ミナミシマウシノシタ属 (Brachirus)" },
                 { key: "ササウシノシタ属", displayName: "ササウシノシタ属 (Heteromycteris)" },
-                { key: "タイワンシタビラメ属", displayName: "タイワンシタビラメ属 (Paraplagusia)" },
                 { key: "ミナミウシノシタ属", displayName: "ミナミウシノシタ属 (Pardachirus)" },
                 { key: "サザナミウシノシタ属", displayName: "サザナミウシノシタ属 (Soleichthys)" },
                 { key: "シマウシノシタ属", displayName: "シマウシノシタ属 (Zebrias)" },
@@ -1493,6 +1492,7 @@ export const categoryStructure = {
             familyName: "ウシノシタ科",
             genusName: [
                 { key: "イヌノシタ属", displayName: "イヌノシタ属 (Cynoglossus)" },
+                { key: "タイワンシタビラメ属", displayName: "タイワンシタビラメ属 (Paraplagusia)" },
             ]
         }
     ],
