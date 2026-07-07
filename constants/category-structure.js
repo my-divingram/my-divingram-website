@@ -1325,6 +1325,7 @@ export const categoryStructure = {
                 { key: "ノボリハゼ属", displayName: "ノボリハゼ属 (Oligolepis)" },
                 { key: "ヒナハゼ属", displayName: "ヒナハゼ属 (Redigobius)" },
                 { key: "キララハゼ属", displayName: "キララハゼ属 (Acentrogobius)" },
+                { key: "クロコハゼ属", displayName: "クロコハゼ属 (Drombus)" },
                 { key: "サンカクハゼ属", displayName: "サンカクハゼ属 (Fusigobius)" },
                 { key: "イサゴハゼ属", displayName: "イサゴハゼ属 (Gobiopsis)" },
                 { key: "モエギハゼ属", displayName: "モエギハゼ属 (Tryssogobius)" },
