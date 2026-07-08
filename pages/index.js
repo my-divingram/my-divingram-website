@@ -201,12 +201,12 @@ function Home({data_fish, data_blog}) {
                             <h2 className="py-3 text-lg md:text-xl text-center text-gray-700 font-medium">僕らむの魚図鑑</h2>
                         </Link>
                     </div>
-                    <div className="pb-2 px-10 md:px-0 flex justify-center items-center hover:opacity-80">
+                    {/* <div className="pb-2 px-10 md:px-0 flex justify-center items-center hover:opacity-80">
                         <Link href="https://www.my-divingram.com/blog/ewm3zlrgu3h">
                             <Image src="/img/book/seaslug.png" alt="seaslug" width={360} height={240} style={{objectFit:"contain"}}/>
                             <h2 className="py-3 text-lg md:text-xl text-center text-gray-700 font-medium">僕らむのウミウシ図鑑</h2>
                         </Link>
-                    </div>
+                    </div> */}
                     {/* <div className="px-10 md:px-0 flex justify-center items-center hover:opacity-80">
                         <Link href="crustacean">
                             <Image src="/img/book/crustacean.png" alt="crustacean" width={300} height={200} style={{objectFit:"contain"}}/>
@@ -275,7 +275,7 @@ function Home({data_fish, data_blog}) {
                     </div>
                 </div>
 
-
+{/* 
                 <h1 className="pt-6 mb-2 text-xl md:text-2xl text-center text-sky-800 font-black" id="youtube">YouTube</h1>
                 <p className="text-xs text-center text-gray-500 mb-8 tracking-wider">気まぐれで水中映像を紹介</p>
                 <div className="pb-2 flex justify-center">
@@ -291,12 +291,20 @@ function Home({data_fish, data_blog}) {
                             </div>
                         </SplideSlide>
                     </Splide>
-                </div>
+                </div> */}
 
 
-                <h1 className="pt-10 mb-6 text-xl md:text-2xl text-center text-sky-800 font-black" id="academic-support">ACADEMIC SUPPORT</h1>
+                <h1 className="pt-10 mb-6 text-xl md:text-2xl text-center text-sky-800 font-black" id="academic-support">写真提供・協力</h1>
 
                 <div className="max-w-2xl mx-auto px-5 md:px-0 flex flex-col">
+                    <Link href="https://www.yamakei.co.jp/products/2826063790.html" target="_blank" rel="noopener noreferrer" className="group flex items-start gap-3 py-1 border-b border-gray-100 last:border-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-gray-400 group-hover:text-sky-500 flex-shrink-0 mt-0.5 transition-colors">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                        </svg>
+                        <span className="text-sm md:text-base text-gray-700 group-hover:text-sky-700 transition-colors leading-relaxed">
+                            『くらべてわかる海水魚』 (山と溪谷社)
+                        </span>
+                    </Link>
                     <Link href="https://lkcnhm.nus.edu.sg/rbz/cleaning-up-the-cleaner-wrasses-revision-of-the-labroides-phthirophagus-and-labroides-bicolor-species-complexes-with-rediagnosis-of-labroides-quadrilineatus-and-descriptions-of-two-new-species-tele" target="_blank" rel="noopener noreferrer" className="group flex items-start gap-3 py-1 border-b border-gray-100 last:border-none">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-gray-400 group-hover:text-sky-500 flex-shrink-0 mt-0.5 transition-colors">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
