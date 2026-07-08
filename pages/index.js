@@ -294,7 +294,8 @@ function Home({data_fish, data_blog}) {
                 </div> */}
 
 
-                <h1 className="pt-10 mb-6 text-xl md:text-2xl text-center text-sky-800 font-black" id="academic-support">写真提供・協力</h1>
+                <h1 className="pt-10 mb-2 text-xl md:text-2xl text-center text-sky-800 font-black" id="academic-support">写真提供</h1>
+                <p className="text-xs text-center text-gray-500 mb-8 tracking-wider">論文や書籍への写真提供・調査協力など</p>
 
                 <div className="max-w-2xl mx-auto px-5 md:px-0 flex flex-col">
                     <Link href="https://www.yamakei.co.jp/products/2826063790.html" target="_blank" rel="noopener noreferrer" className="group flex items-start gap-3 py-1 border-b border-gray-100 last:border-none">
