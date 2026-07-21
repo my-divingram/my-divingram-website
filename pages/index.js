@@ -298,6 +298,14 @@ function Home({data_fish, data_blog}) {
                 <p className="text-xs text-center text-gray-500 mb-8 tracking-wider">論文や書籍への写真提供・調査協力など</p>
 
                 <div className="max-w-2xl mx-auto px-5 md:px-0 flex flex-col">
+                    <Link href="https://events.nikkeibp.co.jp/event/2026/GNPS_jp" target="_blank" rel="noopener noreferrer" className="group flex items-start gap-3 py-1 border-b border-gray-100 last:border-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-gray-400 group-hover:text-sky-500 flex-shrink-0 mt-0.5 transition-colors">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                        </svg>
+                        <span className="text-sm md:text-base text-gray-700 group-hover:text-sky-700 transition-colors leading-relaxed">
+                            農林水産省 展示パネル, GLOBAL NATURE POSITIVE SUMMIT 2026
+                        </span>
+                    </Link>
                     <Link href="https://www.yamakei.co.jp/products/2826063790.html" target="_blank" rel="noopener noreferrer" className="group flex items-start gap-3 py-1 border-b border-gray-100 last:border-none">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-gray-400 group-hover:text-sky-500 flex-shrink-0 mt-0.5 transition-colors">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
