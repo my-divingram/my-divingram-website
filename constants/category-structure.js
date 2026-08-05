@@ -1442,6 +1442,7 @@ export const categoryStructure = {
                 { key: "ニジョウサバ属", displayName: "ニジョウサバ属 (Grammatorcynus)" },
                 { key: "イソマグロ属", displayName: "イソマグロ属 (Gymnosarda)" },
                 { key: "グルクマ属", displayName: "グルクマ属 (Rastrelliger)" },
+                { key: "サワラ属", displayName: "サワラ属 (Scomberomorus)" },
             ]
         }
     ],
