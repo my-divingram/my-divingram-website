@@ -1426,6 +1426,7 @@ export const categoryStructure = {
             familyName: "クロタチカマス科",
             genusName: [
                 { key: "クロタチカマス属", displayName: "クロタチカマス属 (Gempylus)" },
+                { key: "クロシビカマス属", displayName: "クロシビカマス属 (Promethichthys)" },
             ]
         }
     ],
