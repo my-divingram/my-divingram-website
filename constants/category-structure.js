@@ -227,6 +227,12 @@ export const categoryStructure = {
             ]
         },
         {
+            familyName: "アカザ科",
+            genusName: [
+                { key: "アカザ属", displayName: "アカザ属 (Liobagrus)" },
+            ]
+        },
+        {
             familyName: "ナマズ科",
             genusName: [
                 { key: "ナマズ属", displayName: "ナマズ属 (Silurus)" },
