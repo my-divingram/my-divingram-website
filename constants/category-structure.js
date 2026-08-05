@@ -1304,6 +1304,7 @@ export const categoryStructure = {
                 { key: "ハダカハゼ属", displayName: "ハダカハゼ属 (Kelloggella)" },
                 { key: "ニラミハゼ属", displayName: "ニラミハゼ属 (Heteroplopomus)" },
                 { key: "サビハゼ属", displayName: "サビハゼ属 (Sagamia)" },
+                { key: "マハゼ属", displayName: "マハゼ属 (Acanthogobius)" },
                 { key: "キヌバリ属", displayName: "キヌバリ属 (Pterogobius)" },
                 { key: "スナゴハゼ属", displayName: "スナゴハゼ属 (Pseudogobius)" },
                 { key: "インコハゼ属", displayName: "インコハゼ属 (Exyrias)" },
