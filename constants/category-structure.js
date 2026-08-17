@@ -192,6 +192,7 @@ export const categoryStructure = {
                 { key: "ニゴイ属", displayName: "ニゴイ属 (Hemibarbus)" },
                 { key: "スゴモロコ属", displayName: "スゴモロコ属 (Squalidus)" },
                 { key: "カマツカ属", displayName: "カマツカ属 (Pseudogobio)" },
+                { key: "Hemiculter", displayName: "Hemiculter属 (Hemiculter)" },
             ]
         },
     ],
