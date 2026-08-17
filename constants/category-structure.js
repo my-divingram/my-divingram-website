@@ -193,6 +193,7 @@ export const categoryStructure = {
                 { key: "スゴモロコ属", displayName: "スゴモロコ属 (Squalidus)" },
                 { key: "カマツカ属", displayName: "カマツカ属 (Pseudogobio)" },
                 { key: "Hemiculter", displayName: "Hemiculter属 (Hemiculter)" },
+                { key: "ゼゼラ属", displayName: "ゼゼラ属 (Biwia)" },
             ]
         },
     ],
