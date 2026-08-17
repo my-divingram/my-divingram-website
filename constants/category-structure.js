@@ -1261,6 +1261,12 @@ export const categoryStructure = {
             ]
         },
         {
+            familyName: "ドンコ科",
+            genusName: [
+                { key: "ドンコ属", displayName: "ドンコ属 (Odontobutis)" },
+            ]
+        },
+        {
             familyName: "カワアナゴ科",
             genusName: [
                 { key: "ノコギリハゼ属", displayName: "ノコギリハゼ属 (Butis)" },
