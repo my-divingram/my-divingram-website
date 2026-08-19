@@ -183,6 +183,7 @@ export const categoryStructure = {
                 { key: "オイカワ属", displayName: "オイカワ属 (Zacco)" },
                 { key: "ハス属", displayName: "ハス属 (Opsariichthys)" },
                 { key: "カワムツ属", displayName: "カワムツ属 (Candidia)" },
+                { key: "Hemiculter", displayName: "Hemiculter属 (Hemiculter)" },
                 { key: "ウグイ属", displayName: "ウグイ属 (Pseudaspius)" },
                 { key: "アブラハヤ属", displayName: "アブラハヤ属 (Rhynchocypris)" },
                 { key: "モツゴ属", displayName: "モツゴ属 (Pseudorasbora)" },
@@ -192,7 +193,6 @@ export const categoryStructure = {
                 { key: "ニゴイ属", displayName: "ニゴイ属 (Hemibarbus)" },
                 { key: "スゴモロコ属", displayName: "スゴモロコ属 (Squalidus)" },
                 { key: "カマツカ属", displayName: "カマツカ属 (Pseudogobio)" },
-                { key: "Hemiculter", displayName: "Hemiculter属 (Hemiculter)" },
                 { key: "ゼゼラ属", displayName: "ゼゼラ属 (Biwia)" },
             ]
         },
