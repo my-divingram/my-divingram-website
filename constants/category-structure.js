@@ -417,6 +417,7 @@ export const categoryStructure = {
                 { key: "Siokunichthys", displayName: "Siokunichthys属" },
                 { key: "ヨウジウオ属", displayName: "ヨウジウオ属 (Syngnathus)" },
                 { key: "ヒフキヨウジ属", displayName: "ヒフキヨウジ属 (Trachyrhamphus)" },
+                { key: "オクヨウジ属", displayName: "オクヨウジ属 (Urocampus)" },
             ]
         }
     ],
@@ -1521,6 +1522,12 @@ export const categoryStructure = {
     // カワハギの仲間 (filefish)
     // ------------------------------------
     filefish: [
+        {
+            familyName: "ギマ科",
+            genusName: [
+                { key: "ギマ属", displayName: "ギマ属 (Triacanthus)" },
+            ]
+        },
         {
             familyName: "モンガラカワハギ科",
             genusName: [
