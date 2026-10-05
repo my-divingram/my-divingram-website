@@ -246,6 +246,12 @@ export const categoryStructure = {
                 { key: "ゴンズイ属", displayName: "ゴンズイ属 (Plotosus)" },
             ]
         },
+        {
+            familyName: "ロリカリア科",
+            genusName: [
+                { key: "マダラロリカリア属", displayName: "マダラロリカリア属 (Pterygoplichthys)" },
+            ]
+        },
     ],
 
     // ------------------------------------
