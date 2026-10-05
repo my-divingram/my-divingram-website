@@ -848,6 +848,7 @@ export const categoryStructure = {
                 { key: "ヒゲダイ属", displayName: "ヒゲダイ属 (Hapalogenys)" },
                 { key: "イサキ属", displayName: "イサキ属 (Parapristipoma)" },
                 { key: "コショウダイ属", displayName: "コショウダイ属 (Plectorhinchus)" },
+                { key: "ミゾイサキ属", displayName: "ミゾイサキ属 (Pomadasys)" },
             ]
         }
     ],
