@@ -101,7 +101,7 @@ export default function LocationMap({ markers, onMarkerClick, center, zoom }) {
         >
             <MapController center={center} zoom={zoom} />
             <TileLayer
-                url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+                url={`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=${process.env.NEXT_PUBLIC_CARTO_API_KEY}`}
                 attribution='&copy; CARTO'
             />
             <MarkerClusterGroup
