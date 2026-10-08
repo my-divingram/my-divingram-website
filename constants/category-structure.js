@@ -1088,6 +1088,7 @@ export const categoryStructure = {
                 { key: "ブダイ属", displayName: "ブダイ属 (Calotomus)" },
                 { key: "イロブダイ属", displayName: "イロブダイ属 (Cetoscarus)" },
                 { key: "ハゲブダイ属", displayName: "ハゲブダイ属 (Chlorurus)" },
+                { key: "キツネブダイ属", displayName: "キツネブダイ属 (Hipposcarus)" },
                 { key: "アオブダイ属", displayName: "アオブダイ属 (Scarus)" },
             ]
         }
