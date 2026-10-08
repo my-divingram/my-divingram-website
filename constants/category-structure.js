@@ -1343,6 +1343,7 @@ export const categoryStructure = {
                 { key: "ハゴロモハゼ属", displayName: "ハゴロモハゼ属 (Myersina)" },
                 { key: "ヤツシハゼ属", displayName: "ヤツシハゼ属 (Vanderhorstia)" },
                 { key: "カスリハゼ属", displayName: "カスリハゼ属 (Waitea)" },
+                { key: "ハラマキハゼ属", displayName: "ハラマキハゼ属 (Psilogobius)" },
                 { key: "キンセンハゼ属", displayName: "キンセンハゼ属 (Koumansetta)" },
                 { key: "サラサハゼ属", displayName: "サラサハゼ属 (Amblygobius)" },
                 { key: "ホシハゼ属", displayName: "ホシハゼ属 (Asterropteryx)" },
