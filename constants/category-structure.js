@@ -878,6 +878,7 @@ export const categoryStructure = {
                 { key: "クロダイ属", displayName: "クロダイ属 (Acanthopagrus)" },
                 { key: "チダイ属", displayName: "チダイ属 (Evynnis)" },
                 { key: "マダイ属", displayName: "マダイ属 (Pagrus)" },
+                { key: "ヘダイ属", displayName: "ヘダイ属 (Rhabdosargus)" },
             ]
         }
     ],
