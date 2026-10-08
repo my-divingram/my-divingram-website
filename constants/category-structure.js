@@ -1359,6 +1359,7 @@ export const categoryStructure = {
                 { key: "ホムラハゼ属", displayName: "ホムラハゼ属 (Discordipinna)" },
                 { key: "ヨシノボリ属", displayName: "ヨシノボリ属 (Rhinogobius)" },
                 { key: "チチブ属", displayName: "チチブ属 (Tridentiger)" },
+                { key: "ミツボシガラスハゼ属", displayName: "ミツボシガラスハゼ属 (Minysicya)" },
                 { key: "ホオカギハゼ属", displayName: "ホオカギハゼ属 (Ancistrogobius)" },
                 { key: "サザレハゼ属", displayName: "サザレハゼ属 (Grallenia)" },
                 { key: "シロウオ属", displayName: "シロウオ属 (Leucopsarion)" },
