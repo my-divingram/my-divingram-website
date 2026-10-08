@@ -1282,6 +1282,7 @@ export const categoryStructure = {
             genusName: [
                 { key: "ノコギリハゼ属", displayName: "ノコギリハゼ属 (Butis)" },
                 { key: "カワアナゴ属", displayName: "カワアナゴ属 (Eleotris)" },
+                { key: "タメトモハゼ属", displayName: "タメトモハゼ属 (Giuris)" },
             ]
         },
         {
