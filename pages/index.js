@@ -298,6 +298,22 @@ function Home({data_fish, data_blog}) {
                 <p className="text-xs text-center text-gray-500 mb-8 tracking-wider">論文や書籍への写真提供・調査協力など</p>
 
                 <div className="max-w-2xl mx-auto px-5 md:px-0 flex flex-col">
+                    <Link href="https://www.fish-isj.jp/wp-content/uploads/2026_program_sokuhou_261001.pdf" target="_blank" rel="noopener noreferrer" className="group flex items-start gap-3 py-1 border-b border-gray-100 last:border-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-gray-400 group-hover:text-sky-500 flex-shrink-0 mt-0.5 transition-colors">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                        </svg>
+                        <span className="text-sm md:text-base text-gray-700 group-hover:text-sky-700 transition-colors leading-relaxed">
+                            日本産ササウシノシタ科トビササウシノシタ属魚類の分類学的再検討（日本魚類学会年会2026）
+                        </span>
+                    </Link>
+                    <Link href="https://www.fish-isj.jp/wp-content/uploads/2026_program_sokuhou_261001.pdf" target="_blank" rel="noopener noreferrer" className="group flex items-start gap-3 py-1 border-b border-gray-100 last:border-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-gray-400 group-hover:text-sky-500 flex-shrink-0 mt-0.5 transition-colors">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                        </svg>
+                        <span className="text-sm md:text-base text-gray-700 group-hover:text-sky-700 transition-colors leading-relaxed">
+                            2026年の低水温期に駿河湾で確認されたウナギ目魚類（日本魚類学会年会2026, 共著）
+                        </span>
+                    </Link>
                     <Link href="https://www.jstage.jst.go.jp/article/jji/advpub/0/advpub_26-017/_article/-char/ja" target="_blank" rel="noopener noreferrer" className="group flex items-start gap-3 py-1 border-b border-gray-100 last:border-none">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-gray-400 group-hover:text-sky-500 flex-shrink-0 mt-0.5 transition-colors">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
