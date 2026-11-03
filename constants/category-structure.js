@@ -1918,15 +1918,21 @@ export const categoryStructure = {
             ]
         },
         {
+            familyName: "ツノダシ科", // 4361
+            genusName: [
+                { key: "ツノダシ属", displayName: "ツノダシ属 (Zanclus)" },
+            ]
+        },
+        {
             familyName: "タチウオ科", // 4451
             genusName: [
                 { key: "タチウオ属", displayName: "タチウオ属 (Trichiurus)" },
             ]
         },
         {
-            familyName: "ツノダシ科", // 4361
+            familyName: "タイワンドジョウ科", // 4477
             genusName: [
-                { key: "ツノダシ属", displayName: "ツノダシ属 (Zanclus)" },
+                { key: "タイワンドジョウ属", displayName: "タイワンドジョウ属 (Channa)" },
             ]
         },
         {
