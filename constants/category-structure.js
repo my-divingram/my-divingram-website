@@ -1765,6 +1765,7 @@ export const categoryStructure = {
         {
             familyName: "アカメ科", // 2075
             genusName: [
+                { key: "アカメ属", displayName: "アカメ属 (Lates)" },
                 { key: "アカメモドキ属", displayName: "アカメモドキ属 (Psammoperca)" },
             ]
         },
