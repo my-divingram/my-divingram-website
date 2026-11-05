@@ -30,7 +30,7 @@ export const categoryList = [
     { name: "アマダイの仲間", href: "fish/tilefish", img: "/img/class/tilefish.jpeg", alt: "tilefish" },
     { name: "アジの仲間", href: "fish/horsemackerel", img: "/img/class/horsemackerel.png", alt: "anthias" },
     { name: "フエダイの仲間", href: "fish/snapper", img: "/img/class/snapper.jpeg", alt: "snapper" },
-    { name: "タカサゴの仲間", href: "fish/fusilier", img: "/img/class/fusilier.png", alt: "fusilier" },
+    { name: "タカサゴの仲間", href: "fish/fusilier", img: "/img/class/fusilier.jpeg", alt: "fusilier" },
     { name: "イサキの仲間", href: "fish/sweetlips", img: "/img/class/sweetlips.jpeg", alt: "sweetlips" },
     { name: "イトヨリダイの仲間", href: "fish/threadfinbream", img: "/img/class/threadfinbream.jpeg", alt: "threadfinbream" },
     { name: "タイの仲間", href: "fish/seabream", img: "/img/class/seabream.jpeg", alt: "seabream" },
