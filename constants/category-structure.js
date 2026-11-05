@@ -408,6 +408,7 @@ export const categoryStructure = {
         {
             familyName: "ヨウジウオ科",
             genusName: [
+                { key: "タツノオトシゴ属", displayName: "タツノオトシゴ属 (Hippocampus)" },
                 { key: "タツノイトコ属", displayName: "タツノイトコ属 (Acentronura)" },
                 { key: "チンヨウジウオ属", displayName: "チンヨウジウオ属 (Bulbonaricus)" },
                 { key: "イシヨウジ属", displayName: "イシヨウジ属 (Corythoichthys)" },
@@ -415,12 +416,12 @@ export const categoryStructure = {
                 { key: "アマクサヨウジ属", displayName: "アマクサヨウジ属 (Festucalex)" },
                 { key: "ウミヤッコ属", displayName: "ウミヤッコ属 (Halicampus)" },
                 { key: "カワヨウジ属", displayName: "カワヨウジ属 (Hippichthys)" },
-                { key: "タツノオトシゴ属", displayName: "タツノオトシゴ属 (Hippocampus)" },
                 { key: "Kyonemichthys", displayName: "Kyonemichthys属" },
                 { key: "ダイダイヨウジ属", displayName: "ダイダイヨウジ属 (Maroubra)" },
                 { key: "テングヨウジ属", displayName: "テングヨウジ属 (Microphis)" },
                 { key: "ボウヨウジ属", displayName: "ボウヨウジ属 (Phoxocampus)" },
                 { key: "Siokunichthys", displayName: "Siokunichthys属" },
+                { key: "スミツキヨウジ属", displayName: "スミツキヨウジ属 (Solegnathus)" },
                 { key: "ヨウジウオ属", displayName: "ヨウジウオ属 (Syngnathus)" },
                 { key: "ヒフキヨウジ属", displayName: "ヒフキヨウジ属 (Trachyrhamphus)" },
                 { key: "オクヨウジ属", displayName: "オクヨウジ属 (Urocampus)" },
