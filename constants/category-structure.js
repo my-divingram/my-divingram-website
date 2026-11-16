@@ -346,6 +346,7 @@ export const categoryStructure = {
             familyName: "ヒウチダイ科",
             genusName: [
                 { key: "ハリダシエビス属", displayName: "ハリダシエビス属 (Aulotrachichthys)" },
+                { key: "ハシキンメ属", displayName: "ハシキンメ属 (Gephyroberyx)" },
             ]
         },
         {
